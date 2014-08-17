@@ -13,7 +13,7 @@
 
       <script>
         $(function() {
-          setupLanguages(["php","java","csharp"]);
+          setupLanguages(["shell","shell"]);
         });
       </script>
   </head>
@@ -28,9 +28,8 @@
     <div class="tocify-wrapper">
       <img src="images/logo.png" />
         <div class="lang-selector">
-              <a href="#" data-language-name="php">php</a>
-              <a href="#" data-language-name="java">java</a>
-              <a href="#" data-language-name="csharp">csharp</a>
+              <a href="#" data-language-name="shell">json</a>
+              <a href="#" data-language-name="shell">xml</a>
         </div>
         <div class="search">
           <input type="text" class="search" id="input-search" placeholder="Search">
@@ -48,7 +47,7 @@
       <div class="content">
         <h1 id='summary'>Summary</h1>
 <p>The Whispir API has been designed to provide application developers the ability to embed the powerful multichannel messaging capabilities the Whispir Platform provides, directly into any application with access to the web.</p>
-
+<h1 id='access'>Access</h1>
 <p>To start, you need access to the following:</p>
 
 <ul>
@@ -57,36 +56,22 @@
 </ul>
 
 <p>With this information you can begin to make requests to the API.</p>
-<h1 id='access'>Access</h1>
-<blockquote>
-<p>To authorize, use this code:</p>
-</blockquote>
-<pre class="highlight ruby"><span class="nb">require</span> <span class="s1">'kittn'</span>
-
-<span class="n">api</span> <span class="o">=</span> <span class="no">Kittn</span><span class="o">::</span><span class="no">APIClient</span><span class="p">.</span><span class="nf">authorize!</span><span class="p">(</span><span class="s1">'meowmeowmeow'</span><span class="p">)</span>
-</pre>
-<pre class="highlight python"><span class="kn">import</span> <span class="s">'kittn'</span>
-
-<span class="n">api</span> <span class="o">=</span> <span class="n">Kittn</span><span class="o">.</span><span class="n">authorize</span><span class="p">(</span><span class="s">'meowmeowmeow'</span><span class="p">)</span>
-</pre>
-<pre class="highlight shell"><span class="c"># With shell, you can just pass the correct header with each request</span>
-curl <span class="s2">"api_endpoint_here"</span>
-  -H <span class="s2">"Authorization: meowmeowmeow"</span>
-</pre>
-
-<blockquote>
-<p>Make sure to replace <code class="prettyprint">meowmeowmeow</code> with your API key.</p>
-</blockquote>
-
-<p>Kittn uses API keys to allow access to the API. You can register a new Kittn API key at our <a href="http://example.com/developers">developer portal</a>.</p>
-
-<p>Kittn expects for the API key to be included in all API requests to the server in a header that looks like the following:</p>
-
-<p><code class="prettyprint">Authorization: meowmeowmeow</code></p>
 
 <p><aside class="notice">
 You must replace <code class="prettyprint">meowmeowmeow</code> with your personal API key.
 </aside></p>
+
+<blockquote>
+<p>To authorize, use this code:</p>
+</blockquote>
+<pre class="highlight json"><span class="err">HTTP</span><span class="w"> </span><span class="mf">1.1</span><span class="w"> </span><span class="err">GET</span><span class="w"> </span><span class="err">https://api.whispir.com?apikey=json</span><span class="w">
+
+
+</span></pre>
+<pre class="highlight xml">HTTP 1.1 GET https://api.whispir.com?apikey=xml
+
+
+</pre>
 <h1 id='kittens'>Kittens</h1><h2 id='get-all-kittens'>Get All Kittens</h2><pre class="highlight ruby"><span class="nb">require</span> <span class="s1">'kittn'</span>
 
 <span class="n">api</span> <span class="o">=</span> <span class="no">Kittn</span><span class="o">::</span><span class="no">APIClient</span><span class="p">.</span><span class="nf">authorize!</span><span class="p">(</span><span class="s1">'meowmeowmeow'</span><span class="p">)</span>
@@ -252,9 +237,8 @@ Remember — a happy kitten is an authenticated kitten!
       </div>
       <div class="dark-box">
           <div class="lang-selector">
-                <a href="#" data-language-name="php">php</a>
-                <a href="#" data-language-name="java">java</a>
-                <a href="#" data-language-name="csharp">csharp</a>
+                <a href="#" data-language-name="shell">json</a>
+                <a href="#" data-language-name="shell">xml</a>
           </div>
       </div>
     </div>
