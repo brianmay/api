@@ -45,7 +45,7 @@
     <div class="page-wrapper">
       <div class="dark-box"></div>
       <div class="content">
-        <h1 id='summary'>Summary</h1>
+        <h1 id='whispir-api'>Whispir API</h1>
 <blockquote>
 <p>Whispir&rsquo;s API requires only 3 parameters within JSON or XML to send an SMS message</p>
 </blockquote>
@@ -99,214 +99,218 @@ curl -H <span class="s2">"Authorization: Basic &lt;YOUR AUTHORIZATION HEADER&gt;
 <li>Build forms to allow contacts to self-register and manage their account, with auto-generated email notifications</li>
 <li>Create, update and delete distribution lists that can be accessed for messaging at a later date</li>
 </ul>
-<h1 id='access'>Access</h1>
-<p>To start, you need access to the following:</p>
+<h1 id='accessing-the-api'>Accessing the API</h1>
+<p>To get started using the Whispir API, you&rsquo;ll need a few things:</p>
+
+<ol>
+<li>Register with Whispir to receive a Whispir Username and Password - (<a href="https://app.whispir.it/pub/whispirSelfRegistration.pub">Free Trial</a>)</li>
+<li>Get an API Key - (<a href="https://developer.whispir.com/member/register">Developer Account Here</a>)</li>
+<li>Check your connectivity to the API</li>
+<li>Try it out! Send an SMS Message</li>
+</ol>
+<h2 id='step-1---register-with-whispir'>Step 1 - Register with Whispir</h2>
+<p>Whispir&rsquo;s API is available for all existing Whispir customers to use.  If you&rsquo;re already a Whispir customer, great! Your existing username and password will work straight away.  You don&rsquo;t even need to contact us.</p>
+
+<p>If you&rsquo;re a new customer and are interested in finding out more about using the API, please send an email with your details to <a href="mailto:sales@whispir.com">sales@whispir.com</a>, and one of our sales reps will get back to with all the information you need.</p>
+
+<p>Once you&rsquo;ve got your Whispir Username and Password handy, you&rsquo;re ready to move to Step 2.</p>
+<h2 id='step-2---get-an-api-key'>Step 2 - Get an API Key</h2>
+<p>If you haven&rsquo;t done so already, click <a href="http://developer.whispir.com/member/register">Register</a>, fill in the form you&rsquo;ll receive an email with your API key. </p>
+
+<p>Please note that your API key will need to be activated by one of our support team members, it should be done within a few hours so please be patient.  If you&rsquo;ve already registered but haven&rsquo;t heard back after 24 hours, please contact us at <a href="mailto:apisupport@whispir.com">apisupport@whispir.com</a>.</p>
+
+<p>Once you&rsquo;ve got your API key, you&rsquo;re ready to move to Step 3.</p>
+<h2 id='step-3---check-your-connectivity-to-the-api'>Step 3 - Check your connectivity to the API</h2>
+<blockquote>
+<p>Using the information on the left, you can execute the following curl statment: </p>
+</blockquote>
+<pre class="highlight shell">curl -H <span class="s2">"Authorization: &lt;Your Authorization Header&gt;"</span> https://api.whispir.com?apikey<span class="o">=</span>&lt;Your API Key&gt;
+
+<span class="c"># e.g. with sample values</span>
+
+curl -H <span class="s2">"Authorization: Basic am9obi5zbWl0aDpteXBhc3N3b3Jk"</span> https://api.whispir.com?apikey<span class="o">=</span>89asdfohasd89023rsd 
+</pre>
+
+<blockquote>
+<p>If all is correct, the following response should be expected (Whispir&rsquo;s API defaults to an XML response)</p>
+</blockquote>
+<pre class="highlight shell">&lt;?xml <span class="nv">version</span><span class="o">=</span><span class="s2">"1.0"</span> <span class="nv">encoding</span><span class="o">=</span><span class="s2">"UTF-8"</span> <span class="nv">standalone</span><span class="o">=</span><span class="s2">"yes"</span>?&gt;
+&lt;ns2:company <span class="nv">xmlns</span><span class="o">=</span><span class="s2">"http://schemas.api.whispir.com/dap"</span> 
+             xmlns:ns2<span class="o">=</span><span class="s2">"http://schemas.api.whispir.com"</span>&gt;
+    &lt;link <span class="nv">method</span><span class="o">=</span><span class="s2">"GET"</span> 
+          <span class="nv">rel</span><span class="o">=</span><span class="s2">"retrieveWorkspaces"</span> 
+          <span class="nv">uri</span><span class="o">=</span><span class="s2">"https://api.whispir.com/workspaces?apikey=89asdfohasd89023rsd"</span>/&gt;
+    ...
+&lt;/ns2:company&gt;
+</pre>
+
+<blockquote>
+<p>This may look a bit scary at first, but it will all make sense shortly. All you need to know now is you&rsquo;ve got access to the API!</p>
+</blockquote>
+
+<p>The first thing you&rsquo;ll need to do is generate the <strong>Authorization Header</strong> for your API requests. You&rsquo;ll need to use this on every request that you submit to the Whispir API.</p>
+
+<p>Whispir is currently using BASIC HTTP Authentication for all requests.</p>
+
+<p>You can generate this header in most programming lanugages very easily, however for ease of use you can generate it here by filling in the form below. </p>
+
+<p><strong>Note:</strong> Your Whispir authentication information is not submitted or stored anywhere, it is only used as part of the algorithm to automatically generate the header. </p>
+
+<p><strong>Whispir Username:</strong>&nbsp;<input id="username" name="username" style="width: 60%; margin-bottom: 3px;" type="text"> <br/>
+<strong>Whispir Password:</strong>&nbsp;<input id="password" name="password" style="width: 60%" type="password"></p>
+
+<p><button onclick="doEncode()" name="encode">Generate your Authorization Header</button></p>
+
+<p><strong>Authorization Header:</strong>&nbsp;<input id="result" name="result" style="width: 60%" type="text"> <br/></p>
+
+<p>Once you have generated this header, you can use it in a request to the API.  This will ensure everything is working correctly.  To do this you can use a curl script, or another generic REST client.</p>
+<h3 id='using-a-generic-rest-client'>Using a generic REST Client</h3>
+<p>If you&rsquo;re unsure about using curl, you can install a REST Client plugin in your browser and test the calls through there.  Whispir recommends using the <a href="https://addons.mozilla.org/en-US/firefox/addon/restclient/">RESTClient plugin for Firefox</a>.</p>
+
+<p>To test your connectivity, you need to enter your Whispir username and password and provide the API URL that you would like to call.</p>
+
+<p>The HTTP call will look more like the following:</p>
+
+<p><code class="prettyprint">GET https://api.whispir.com?apikey=89asdfohasd89023rsdfhio8923</code></p>
+
+<p>With the following header (as a minimum).</p>
+
+<p><code class="prettyprint">Authorization: Basic am9obi5zbWl0aDpteXBhc3N3b3Jk</code></p>
+<h3 id='resolving-connectivity-issues'>Resolving connectivity issues</h3>
+<p>If you get a different response than <strong>HTTP 200 OK</strong>, perform the following:</p>
+
+<p><strong>HTTP 403 Forbidden, or HTTP 401 Unauthorized</strong></p>
 
 <ul>
-<li>A Whispir Account (<a href="https://app.whispir.it/pub/whispirSelfRegistration.pub">Free Trial Here</a>)</li>
-<li>An API key (<a href="https://developer.whispir.com/member/register">Developer Account Here</a>)</li>
+<li>Your Authorization header may not be quite right, verify your username and password browsing to <a href="http://www.whispir.com">Whispir</a> and clicking &lsquo;Sign In&rsquo;,</li>
+<li>Try and re-generate the Base64 encoded username and password using the form above</li>
 </ul>
 
-<p>With this information you can begin to make requests to the API.</p>
+<p><strong>Other HTTP errors or no connectivity at all</strong></p>
 
-<p><aside class="notice">
-You must replace <code class="prettyprint">meowmeowmeow</code> with your personal API key.
-</aside></p>
-
+<ul>
+<li>If you&rsquo;re still having issues, contact us at <a href="mailto:apisupport@whispir.com">apisupport@whispir.com</a></li>
+</ul>
+<h2 id='step-4-send-an-sms-message'>Step 4: Send an SMS Message</h2>
 <blockquote>
-<p>To authorize, use this code:</p>
+<p>Send your first message using curl</p>
 </blockquote>
-<pre class="highlight json"><span class="err">HTTP</span><span class="w"> </span><span class="mf">1.1</span><span class="w"> </span><span class="err">GET</span><span class="w"> </span><span class="err">https://api.whispir.com?apikey=json</span><span class="w">
-
-
-</span></pre>
-<pre class="highlight xml">HTTP 1.1 GET https://api.whispir.com?apikey=xml
-
-
-</pre>
-<pre class="highlight plaintext">//Company Workspace Endpoints
-
-/workspaces
-/messages
-/templates
-/distributionlists
-/scenarios
-/contacts
-/users
-
-//Other Workspace Endpoints
-
-/workspaces
-/messages
-/templates
-/distributionlists
-/scenarios
-/contacts
-/users
-
-</pre>
-<h1 id='kittens'>Kittens</h1><h2 id='get-all-kittens'>Get All Kittens</h2><pre class="highlight ruby"><span class="nb">require</span> <span class="s1">'kittn'</span>
-
-<span class="n">api</span> <span class="o">=</span> <span class="no">Kittn</span><span class="o">::</span><span class="no">APIClient</span><span class="p">.</span><span class="nf">authorize!</span><span class="p">(</span><span class="s1">'meowmeowmeow'</span><span class="p">)</span>
-<span class="n">api</span><span class="p">.</span><span class="nf">kittens</span><span class="p">.</span><span class="nf">get</span>
-</pre>
-<pre class="highlight python"><span class="kn">import</span> <span class="s">'kittn'</span>
-
-<span class="n">api</span> <span class="o">=</span> <span class="n">Kittn</span><span class="o">.</span><span class="n">authorize</span><span class="p">(</span><span class="s">'meowmeowmeow'</span><span class="p">)</span>
-<span class="n">api</span><span class="o">.</span><span class="n">kittens</span><span class="o">.</span><span class="n">get</span><span class="p">()</span>
-</pre>
-<pre class="highlight shell">curl <span class="s2">"http://example.com/api/kittens"</span>
-  -H <span class="s2">"Authorization: meowmeowmeow"</span>
+<pre class="highlight shell">curl -H <span class="s2">"Authorization: Basic am9obi5zbWl0aDpteXBhc3N3b3Jk"</span> 
+     -H <span class="s2">"Content-Type: application/vnd.whispir.message-v1+json"</span> 
+     -H <span class="s2">"Accept: application/vnd.whispir.message-v1+json"</span> 
+     -d <span class="s1">'{ "to": "&lt;DESTINATION PHONE NUMBER&gt;",
+     "subject": "This is the first line of my SMS",
+     "body": "This is the content of my SMS"
+   }'</span> 
+   https://api.whispir.com/messages?apikey<span class="o">=</span>89asdfohasd89023rsdfhio8923
 </pre>
 
 <blockquote>
-<p>The above command returns JSON structured like this:</p>
+<p>Once you submit this, Whispir will send you back an HTTP 202 Accepted stating that your request has been accepted for processing.  Within a few seconds your phone should be buzzing away.</p>
 </blockquote>
-<pre class="highlight json"><span class="p">[</span><span class="w">
-  </span><span class="p">{</span><span class="w">
-    </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Fluffums"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"breed"</span><span class="p">:</span><span class="w"> </span><span class="s2">"calico"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"fluffiness"</span><span class="p">:</span><span class="w"> </span><span class="mi">6</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"cuteness"</span><span class="p">:</span><span class="w"> </span><span class="mi">7</span><span class="w">
-  </span><span class="p">},</span><span class="w">
-  </span><span class="p">{</span><span class="w">
-    </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Isis"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"breed"</span><span class="p">:</span><span class="w"> </span><span class="s2">"unknown"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"fluffiness"</span><span class="p">:</span><span class="w"> </span><span class="mi">5</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"cuteness"</span><span class="p">:</span><span class="w"> </span><span class="mi">10</span><span class="w">
-  </span><span class="p">}</span><span class="w">
-</span><span class="p">]</span><span class="w">
-</span></pre>
+<h3 id='messages-endpoint'>Messages Endpoint</h3>
+<p>By now you should be able to connect to the API and can issue requests and receive responses. Based on this, you can now send your first SMS message using the API.</p>
 
-<p>This endpoint retrieves all kittens.</p>
-<h3 id='http-request'>HTTP Request</h3>
-<p><code class="prettyprint">GET http://example.com/kittens</code></p>
-<h3 id='query-parameters'>Query Parameters</h3>
-<table><thead>
-<tr>
-<th>Parameter</th>
-<th>Default</th>
-<th>Description</th>
-</tr>
-</thead><tbody>
-<tr>
-<td>include_cats</td>
-<td>false</td>
-<td>If set to true, the result will also include cats.</td>
-</tr>
-<tr>
-<td>available</td>
-<td>true</td>
-<td>If set to false, the result will include kittens that have already been adopted.</td>
-</tr>
-</tbody></table>
+<p>This is very similar to the previous request, but instead of using a <strong>HTTP GET</strong> to retrieve information, this time you&rsquo;re going to use a <strong>HTTP POST</strong> to push information to Whispir. </p>
 
-<p><aside class="success">
-Remember — a happy kitten is an authenticated kitten!
-</aside></p>
-<h2 id='get-a-specific-kitten'>Get a Specific Kitten</h2><pre class="highlight ruby"><span class="nb">require</span> <span class="s1">'kittn'</span>
+<p>As you&rsquo;re sending a message, you need to tell Whispir who to send it to, and what the type of content it is.</p>
 
-<span class="n">api</span> <span class="o">=</span> <span class="no">Kittn</span><span class="o">::</span><span class="no">APIClient</span><span class="p">.</span><span class="nf">authorize!</span><span class="p">(</span><span class="s1">'meowmeowmeow'</span><span class="p">)</span>
-<span class="n">api</span><span class="p">.</span><span class="nf">kittens</span><span class="p">.</span><span class="nf">get</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
-</pre>
-<pre class="highlight python"><span class="kn">import</span> <span class="s">'kittn'</span>
+<p>You&rsquo;re going to use the URL <code class="prettyprint">https://api.whispir.com/messages</code> as the API endpoint. </p>
+<h3 id='content-type'>Content Type</h3>
+<p>The next thing you need to do is tell Whispir what information you&rsquo;re sending.  You can just blindly send some XML or JSON content, but life is much easier if Whispir knows exatly what it is you are sending.</p>
 
-<span class="n">api</span> <span class="o">=</span> <span class="n">Kittn</span><span class="o">.</span><span class="n">authorize</span><span class="p">(</span><span class="s">'meowmeowmeow'</span><span class="p">)</span>
-<span class="n">api</span><span class="o">.</span><span class="n">kittens</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
-</pre>
-<pre class="highlight shell">curl <span class="s2">"http://example.com/api/kittens/3"</span>
-  -H <span class="s2">"Authorization: meowmeowmeow"</span>
-</pre>
+<p>You&rsquo;re going to tell Whispir what you are sending by using the <strong>Content-Type</strong> HTTP header.  Your Content-Type header is going to be (either JSON or XML):</p>
 
+<ul>
+<li>application/vnd.whispir.message-v1+json</li>
+<li>application/vnd.whispir.message-v1+xml</li>
+</ul>
+
+<p>This tells Whispir that you are sending content that conforms to Version 1 of the message schema.  As Whispir adds more features to each schema, our version numbers will increase, this is described in much more detail later on in the documentation.</p>
+<h3 id='sending-messages-using-json-and-xml'>Sending messages using JSON and XML</h3>
 <blockquote>
-<p>The above command returns JSON structured like this:</p>
+<p>Send your first message in JSON</p>
 </blockquote>
+<pre class="highlight plaintext">POST https://api.whispir.com/messages?apikey=89asdfohasd89023rsdfhio8923
+Authorization: Basic am9obi5zbWl0aDpteXBhc3N3b3Jk
+Content-Type: application/vnd.whispir.message-v1+json
+Accept: application/vnd.whispir.message-v1+json
+</pre>
 <pre class="highlight json"><span class="p">{</span><span class="w">
-  </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Isis"</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"breed"</span><span class="p">:</span><span class="w"> </span><span class="s2">"unknown"</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"fluffiness"</span><span class="p">:</span><span class="w"> </span><span class="mi">5</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"cuteness"</span><span class="p">:</span><span class="w"> </span><span class="mi">10</span><span class="w">
+    </span><span class="s2">"to"</span><span class="p">:</span><span class="w"> </span><span class="s2">"&lt;DESTINATION PHONE NUMBER&gt;"</span><span class="p">,</span><span class="w"> 
+    </span><span class="s2">"subject"</span><span class="p">:</span><span class="w"> </span><span class="s2">"This is the first line of my SMS"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"body"</span><span class="p">:</span><span class="w"> </span><span class="s2">"This is the content of my SMS"</span><span class="w">
 </span><span class="p">}</span><span class="w">
+
 </span></pre>
 
-<p>This endpoint retrieves a specific kitten.</p>
+<blockquote>
+<p>Send your first message in XML</p>
+</blockquote>
+<pre class="highlight plaintext">POST https://api.whispir.com/messages?apikey=89asdfohasd89023rsdfhio8923
+Authorization: Basic am9obi5zbWl0aDpteXBhc3N3b3Jk
+Content-Type: application/vnd.whispir.message-v1+xml
+Accept: application/vnd.whispir.message-v1+xml
+</pre>
+<pre class="highlight shell">&lt;?xml <span class="nv">version</span><span class="o">=</span><span class="s2">"1.0"</span> <span class="nv">encoding</span><span class="o">=</span><span class="s2">"UTF-8"</span> <span class="nv">standalone</span><span class="o">=</span><span class="s2">"yes"</span>?&gt;
+&lt;ns2:message xmlns:ns2<span class="o">=</span><span class="s2">"http://schemas.api.whispir.com"</span>&gt;
+    &lt;to&gt;&lt;DESTINATION PHONE NUMBER&gt;&lt;/to&gt;
+    &lt;subject&gt;This is the first line of my SMS&lt;/subject&gt;    
+    &lt;body&gt;This is the content of my SMS&lt;/body&gt;
+<span class="gp">&lt;/ns2:message&gt; </span>
 
-<p><aside class="warning">If you&rsquo;re not using an administrator API key, note that some kittens will return 403 Forbidden if they are hidden for admins only.</aside></p>
-<h3 id='http-request'>HTTP Request</h3>
-<p><code class="prettyprint">GET http://example.com/kittens/&lt;ID&gt;</code></p>
-<h3 id='url-parameters'>URL Parameters</h3>
+</pre>
+
+<p>Once you have successfully sent your SMS message using curl, you can move on to using your application to generate XML or JSON formats for processing.</p>
+
+<p>Be sure to include the correct headers for the desired content type:</p>
+
+<ul>
+<li>XML - <code class="prettyprint">application/vnd.whispir.message-v1+xml</code></li>
+<li>JSON - <code class="prettyprint">application/vnd.whispir.message-v1+json</code></li>
+</ul>
+
+<p>For more information on Messages and all the other Whispir resources please continue through the documentation, or browse straight to Messages resource documentation for more information.</p>
+<h1 id='rate-limiting'>Rate Limiting</h1>
+<p>Whispir&rsquo;s API usage is limited on a per-apikey basis using a <strong>per second</strong> limit and a <strong>per day</strong> limit.</p>
+
+<p>Depending on your Whispir License, you will obtain higher per second and per day rates:</p>
+
 <table><thead>
 <tr>
-<th>Parameter</th>
-<th>Description</th>
+<th>Whispir Edition</th>
+<th>Calls Per Second (CPS)</th>
+<th>Calls Per Day (CPD)</th>
 </tr>
 </thead><tbody>
 <tr>
-<td>ID</td>
-<td>The ID of the cat to retrieve</td>
+<td>API Only Edition</td>
+<td>7 calls per second</td>
+<td>5000 calls per day</td>
+</tr>
+<tr>
+<td>Business Edition</td>
+<td>1 call per second</td>
+<td>1000 calls per day</td>
+</tr>
+<tr>
+<td>Essential Edition</td>
+<td>1 call per second</td>
+<td>1000 calls per day</td>
+</tr>
+<tr>
+<td>Professional Edition</td>
+<td>3 call per second</td>
+<td>3000 calls per day</td>
+</tr>
+<tr>
+<td>Enterprise Edition</td>
+<td>7 call per second</td>
+<td>5000 calls per day</td>
 </tr>
 </tbody></table>
-
+<h1 id='messages'>Messages</h1><h2 id='get-messages-default-workspace'>Get Messages (Default Workspace)</h2>
           <h1 id='errors'>Errors</h1>
-<p><aside class="notice">This error section is stored in a separate file in <code class="prettyprint">includes/_errors.md</code>. Slate allows you to optionally separate out your docs into many files&hellip;just save them to the <code class="prettyprint">includes</code> folder and add them to the top of your <code class="prettyprint">index.md</code>&rsquo;s frontmatter. Files are included in the order listed.</aside></p>
-
-<p>The Kittn API uses the following error codes:</p>
-
-<table><thead>
-<tr>
-<th>Error Code</th>
-<th>Meaning</th>
-</tr>
-</thead><tbody>
-<tr>
-<td>400</td>
-<td>Bad Request &ndash; Your request sucks</td>
-</tr>
-<tr>
-<td>401</td>
-<td>Unauthorized &ndash; Your API key is wrong</td>
-</tr>
-<tr>
-<td>403</td>
-<td>Forbidden &ndash; The kitten requested is hidden for administrators only</td>
-</tr>
-<tr>
-<td>404</td>
-<td>Not Found &ndash; The specified kitten could not be found</td>
-</tr>
-<tr>
-<td>405</td>
-<td>Method Not Allowed &ndash; You tried to access a kitten with an invalid method</td>
-</tr>
-<tr>
-<td>406</td>
-<td>Not Acceptable &ndash; You requested a format that isn&rsquo;t json</td>
-</tr>
-<tr>
-<td>410</td>
-<td>Gone &ndash; The kitten requested has been removed from our servers</td>
-</tr>
-<tr>
-<td>418</td>
-<td>I&rsquo;m a teapot</td>
-</tr>
-<tr>
-<td>429</td>
-<td>Too Many Requests &ndash; You&rsquo;re requesting too many kittens! Slown down!</td>
-</tr>
-<tr>
-<td>500</td>
-<td>Internal Server Error &ndash; We had a problem with our server. Try again later.</td>
-</tr>
-<tr>
-<td>503</td>
-<td>Service Unavailable &ndash; We&rsquo;re temporarially offline for maintanance. Please try again later.</td>
-</tr>
-</tbody></table>
-
       </div>
       <div class="dark-box">
           <div class="lang-selector">
