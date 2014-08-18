@@ -4,7 +4,7 @@
     <meta charset="utf-8">
     <meta content="IE=edge,chrome=1" http-equiv="X-UA-Compatible">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-    <title>Whispir API</title>
+    <title>Whispir API Reference</title>
 
     <link href="stylesheets/screen.css" rel="stylesheet" type="text/css" media="screen" />
     <link href="stylesheets/print.css" rel="stylesheet" type="text/css" media="print" />
@@ -13,7 +13,7 @@
 
       <script>
         $(function() {
-          setupLanguages(["shell","shell"]);
+          setupLanguages(["json","xml"]);
         });
       </script>
   </head>
@@ -28,8 +28,8 @@
     <div class="tocify-wrapper">
       <img src="images/logo.png" />
         <div class="lang-selector">
-              <a href="#" data-language-name="shell">json</a>
-              <a href="#" data-language-name="shell">xml</a>
+              <a href="#" data-language-name="json">json</a>
+              <a href="#" data-language-name="xml">xml</a>
         </div>
         <div class="search">
           <input type="text" class="search" id="input-search" placeholder="Search">
@@ -46,7 +46,59 @@
       <div class="dark-box"></div>
       <div class="content">
         <h1 id='summary'>Summary</h1>
+<blockquote>
+<p>Whispir&rsquo;s API requires only 3 parameters within JSON or XML to send an SMS message</p>
+</blockquote>
+<pre class="highlight json"><span class="p">{</span><span class="w">
+   </span><span class="s2">"to"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"61400000000"</span><span class="p">,</span><span class="w">
+   </span><span class="s2">"subject"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"Test SMS Message"</span><span class="p">,</span><span class="w">
+   </span><span class="s2">"body"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"This is the body of my test SMS message"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></pre>
+<pre class="highlight xml"><span class="cp">&lt;?xml version="1.0" encoding="UTF-8" standalone="yes"?&gt;</span>
+<span class="nt">&lt;ns2:message</span> <span class="na">xmlns:ns2=</span><span class="s">"http://schemas.api.whispir.com"</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;to&gt;</span>61400000000<span class="nt">&lt;/to&gt;</span>
+    <span class="nt">&lt;subject&gt;</span>Test SMS Message<span class="nt">&lt;/subject&gt;</span>    
+    <span class="nt">&lt;body&gt;</span>This is the body of my test SMS message<span class="nt">&lt;/body&gt;</span>
+<span class="nt">&lt;/ns2:message&gt;</span> 
+</pre>
+
+<blockquote>
+<p>Using curl, this can be sent using the following command</p>
+</blockquote>
+<pre class="highlight shell"><span class="c"># Authorization and apikey are provided in the registration processes</span>
+
+curl -H <span class="s2">"Authorization: Basic &lt;YOUR AUTHORIZATION HEADER&gt;"</span> 
+     -H <span class="s2">"Content-Type: application/vnd.whispir.message-v1+json"</span> 
+     -H <span class="s2">"Accept: application/vnd.whispir.message-v1+json"</span> 
+     -d <span class="s2">"</span><span class="nv">$data</span><span class="s2">"</span> 
+     https://api.whispir.com/messages?apikey<span class="o">=</span>&lt;YOUR API KEY&gt;
+
+</pre>
+
 <p>The Whispir API has been designed to provide application developers the ability to embed the powerful multichannel messaging capabilities the Whispir Platform provides, directly into any application with access to the web.</p>
+
+<p><strong>Multichannel Messaging API</strong></p>
+
+<p>Whispir&rsquo;s API gives developers the ability to:</p>
+
+<ul>
+<li>Create, send and retrieve multi-channel messages over 8 different channels</li>
+<li>Invoke scenario based communications for quick, effective and targeted communications</li>
+<li>Publish messages to internal or external web pages, RSS feeds and social networks</li>
+<li>Asynchronously receive all responses to a given message and perform analysis on the data</li>
+</ul>
+
+<p><strong>Contact &amp; Recipient Management API</strong></p>
+
+<p>The Whispir API provides developers with the ability to manage the recipients of their messages:</p>
+
+<ul>
+<li>Store contact information in a cloud based highly available and accessible environment</li>
+<li>Use standards based methods to create, update, and delete contact information</li>
+<li>Build forms to allow contacts to self-register and manage their account, with auto-generated email notifications</li>
+<li>Create, update and delete distribution lists that can be accessed for messaging at a later date</li>
+</ul>
 <h1 id='access'>Access</h1>
 <p>To start, you need access to the following:</p>
 
@@ -70,6 +122,27 @@ You must replace <code class="prettyprint">meowmeowmeow</code> with your persona
 </span></pre>
 <pre class="highlight xml">HTTP 1.1 GET https://api.whispir.com?apikey=xml
 
+
+</pre>
+<pre class="highlight plaintext">//Company Workspace Endpoints
+
+/workspaces
+/messages
+/templates
+/distributionlists
+/scenarios
+/contacts
+/users
+
+//Other Workspace Endpoints
+
+/workspaces
+/messages
+/templates
+/distributionlists
+/scenarios
+/contacts
+/users
 
 </pre>
 <h1 id='kittens'>Kittens</h1><h2 id='get-all-kittens'>Get All Kittens</h2><pre class="highlight ruby"><span class="nb">require</span> <span class="s1">'kittn'</span>
@@ -237,8 +310,8 @@ Remember — a happy kitten is an authenticated kitten!
       </div>
       <div class="dark-box">
           <div class="lang-selector">
-                <a href="#" data-language-name="shell">json</a>
-                <a href="#" data-language-name="shell">xml</a>
+                <a href="#" data-language-name="json">json</a>
+                <a href="#" data-language-name="xml">xml</a>
           </div>
       </div>
     </div>
