@@ -13,7 +13,7 @@
 
       <script>
         $(function() {
-          setupLanguages(["json","xml"]);
+          setupLanguages(["go","xml"]);
         });
       </script>
   </head>
@@ -28,7 +28,7 @@
     <div class="tocify-wrapper">
       <img src="images/logo.png" />
         <div class="lang-selector">
-              <a href="#" data-language-name="json">json</a>
+              <a href="#" data-language-name="go">json</a>
               <a href="#" data-language-name="xml">xml</a>
         </div>
         <div class="search">
@@ -50,11 +50,11 @@
 <blockquote>
 <p>Whispir&rsquo;s API requires only 3 parameters within JSON or XML to send an SMS message</p>
 </blockquote>
-<pre class="highlight json"><span class="p">{</span><span class="w">
-   </span><span class="s2">"to"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"61400000000"</span><span class="p">,</span><span class="w">
-   </span><span class="s2">"subject"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"Test SMS Message"</span><span class="p">,</span><span class="w">
-   </span><span class="s2">"body"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"This is the body of my test SMS message"</span><span class="w">
-</span><span class="p">}</span><span class="w">
+<pre class="highlight go"><span class="p">{</span><span class="x">
+   </span><span class="s">"to"</span><span class="x"> </span><span class="o">:</span><span class="x"> </span><span class="s">"61400000000"</span><span class="p">,</span><span class="x">
+   </span><span class="s">"subject"</span><span class="x"> </span><span class="o">:</span><span class="x"> </span><span class="s">"Test SMS Message"</span><span class="p">,</span><span class="x">
+   </span><span class="s">"body"</span><span class="x"> </span><span class="o">:</span><span class="x"> </span><span class="s">"This is the body of my test SMS message"</span><span class="x">
+</span><span class="p">}</span><span class="x">
 </span></pre>
 <pre class="highlight xml"><span class="cp">&lt;?xml version="1.0" encoding="UTF-8" standalone="yes"?&gt;</span>
 <span class="nt">&lt;ns2:message</span> <span class="na">xmlns:ns2=</span><span class="s">"http://schemas.api.whispir.com"</span><span class="nt">&gt;</span>
@@ -193,7 +193,7 @@ curl -H <span class="s2">"Authorization: Basic am9obi5zbWl0aDpteXBhc3N3b3Jk"</sp
 <ul>
 <li>If you&rsquo;re still having issues, contact us at <a href="mailto:apisupport@whispir.com">apisupport@whispir.com</a></li>
 </ul>
-<h2 id='step-4-send-an-sms-message'>Step 4: Send an SMS Message</h2>
+<h2 id='step-4---send-an-sms-message'>Step 4 - Send an SMS Message</h2>
 <blockquote>
 <p>Send your first message using curl</p>
 </blockquote>
@@ -219,6 +219,34 @@ curl -H <span class="s2">"Authorization: Basic am9obi5zbWl0aDpteXBhc3N3b3Jk"</sp
 
 <p>You&rsquo;re going to use the URL <code class="prettyprint">https://api.whispir.com/messages</code> as the API endpoint. </p>
 <h3 id='content-type'>Content Type</h3>
+<blockquote>
+<p>Samples in XML and JSON</p>
+</blockquote>
+<pre class="highlight go"><span class="n">POST</span><span class="x"> </span><span class="n">https</span><span class="o">:</span><span class="c">//api.whispir.com/messages?apikey=89asdfohasd89023rsdfhio8923</span><span class="x">
+</span><span class="n">Authorization</span><span class="o">:</span><span class="x"> </span><span class="n">Basic</span><span class="x"> </span><span class="n">am9obi5zbWl0aDpteXBhc3N3b3Jk</span><span class="x">
+</span><span class="n">Content</span><span class="o">-</span><span class="n">Type</span><span class="o">:</span><span class="x"> </span><span class="n">application</span><span class="o">/</span><span class="n">vnd</span><span class="o">.</span><span class="n">whispir</span><span class="o">.</span><span class="n">message</span><span class="o">-</span><span class="n">v1</span><span class="o">+</span><span class="n">json</span><span class="x">
+</span><span class="n">Accept</span><span class="o">:</span><span class="x"> </span><span class="n">application</span><span class="o">/</span><span class="n">vnd</span><span class="o">.</span><span class="n">whispir</span><span class="o">.</span><span class="n">message</span><span class="o">-</span><span class="n">v1</span><span class="o">+</span><span class="n">json</span><span class="x">
+
+</span><span class="p">{</span><span class="x">
+    </span><span class="s">"to"</span><span class="o">:</span><span class="x"> </span><span class="s">"&lt;DESTINATION PHONE NUMBER&gt;"</span><span class="p">,</span><span class="x"> 
+    </span><span class="s">"subject"</span><span class="o">:</span><span class="x"> </span><span class="s">"This is the first line of my SMS"</span><span class="p">,</span><span class="x">
+    </span><span class="s">"body"</span><span class="o">:</span><span class="x"> </span><span class="s">"This is the content of my SMS"</span><span class="x">
+</span><span class="p">}</span><span class="x">
+</span></pre>
+<pre class="highlight xml">POST https://api.whispir.com/messages?apikey=89asdfohasd89023rsdfhio8923
+Authorization: Basic am9obi5zbWl0aDpteXBhc3N3b3Jk
+Content-Type: application/vnd.whispir.message-v1+xml
+Accept: application/vnd.whispir.message-v1+xml
+
+<span class="cp">&lt;?xml version="1.0" encoding="UTF-8" standalone="yes"?&gt;</span>
+<span class="nt">&lt;ns2:message</span> <span class="na">xmlns:ns2=</span><span class="s">"http://schemas.api.whispir.com"</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;to&gt;&lt;DESTINATION</span> <span class="err">PHONE</span> <span class="err">NUMBER</span><span class="nt">&gt;&lt;/to&gt;</span>
+    <span class="nt">&lt;subject&gt;</span>This is the first line of my SMS<span class="nt">&lt;/subject&gt;</span>    
+    <span class="nt">&lt;body&gt;</span>This is the content of my SMS<span class="nt">&lt;/body&gt;</span>
+<span class="nt">&lt;/ns2:message&gt;</span> 
+
+</pre>
+
 <p>The next thing you need to do is tell Whispir what information you&rsquo;re sending.  You can just blindly send some XML or JSON content, but life is much easier if Whispir knows exatly what it is you are sending.</p>
 
 <p>You&rsquo;re going to tell Whispir what you are sending by using the <strong>Content-Type</strong> HTTP header.  Your Content-Type header is going to be (either JSON or XML):</p>
@@ -230,39 +258,6 @@ curl -H <span class="s2">"Authorization: Basic am9obi5zbWl0aDpteXBhc3N3b3Jk"</sp
 
 <p>This tells Whispir that you are sending content that conforms to Version 1 of the message schema.  As Whispir adds more features to each schema, our version numbers will increase, this is described in much more detail later on in the documentation.</p>
 <h3 id='sending-messages-using-json-and-xml'>Sending messages using JSON and XML</h3>
-<blockquote>
-<p>Send your first message in JSON</p>
-</blockquote>
-<pre class="highlight plaintext">POST https://api.whispir.com/messages?apikey=89asdfohasd89023rsdfhio8923
-Authorization: Basic am9obi5zbWl0aDpteXBhc3N3b3Jk
-Content-Type: application/vnd.whispir.message-v1+json
-Accept: application/vnd.whispir.message-v1+json
-</pre>
-<pre class="highlight json"><span class="p">{</span><span class="w">
-    </span><span class="s2">"to"</span><span class="p">:</span><span class="w"> </span><span class="s2">"&lt;DESTINATION PHONE NUMBER&gt;"</span><span class="p">,</span><span class="w"> 
-    </span><span class="s2">"subject"</span><span class="p">:</span><span class="w"> </span><span class="s2">"This is the first line of my SMS"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"body"</span><span class="p">:</span><span class="w"> </span><span class="s2">"This is the content of my SMS"</span><span class="w">
-</span><span class="p">}</span><span class="w">
-
-</span></pre>
-
-<blockquote>
-<p>Send your first message in XML</p>
-</blockquote>
-<pre class="highlight plaintext">POST https://api.whispir.com/messages?apikey=89asdfohasd89023rsdfhio8923
-Authorization: Basic am9obi5zbWl0aDpteXBhc3N3b3Jk
-Content-Type: application/vnd.whispir.message-v1+xml
-Accept: application/vnd.whispir.message-v1+xml
-</pre>
-<pre class="highlight shell">&lt;?xml <span class="nv">version</span><span class="o">=</span><span class="s2">"1.0"</span> <span class="nv">encoding</span><span class="o">=</span><span class="s2">"UTF-8"</span> <span class="nv">standalone</span><span class="o">=</span><span class="s2">"yes"</span>?&gt;
-&lt;ns2:message xmlns:ns2<span class="o">=</span><span class="s2">"http://schemas.api.whispir.com"</span>&gt;
-    &lt;to&gt;&lt;DESTINATION PHONE NUMBER&gt;&lt;/to&gt;
-    &lt;subject&gt;This is the first line of my SMS&lt;/subject&gt;    
-    &lt;body&gt;This is the content of my SMS&lt;/body&gt;
-<span class="gp">&lt;/ns2:message&gt; </span>
-
-</pre>
-
 <p>Once you have successfully sent your SMS message using curl, you can move on to using your application to generate XML or JSON formats for processing.</p>
 
 <p>Be sure to include the correct headers for the desired content type:</p>
@@ -339,16 +334,11 @@ X-Mashery-Error-Detail: Account Over Queries Per Day Limit
 <blockquote>
 <p>Sample to send an SMS, Email, Voice call, and Web Publishing in one request</p>
 </blockquote>
-<pre class="highlight shell">HTTP 1.1 POST https://api.whispir.com/messages?apikey<span class="o">=</span>&lt;yourkey&gt;
+<pre class="highlight xml">HTTP 1.1 POST https://api.whispir.com/messages?apikey=<span class="nt">&lt;yourkey&gt;</span>
 Authorization: Basic am9obi5zbWl0aDpteXBhc3N3b3Jk
-
-<span class="c"># for XML</span>
 Content-Type: application/vnd.whispir.message-v1+xml
 
-<span class="c"># for JSON</span>
-Content-Type: application/vnd.whispir.message-v1+json
-</pre>
-<pre class="highlight xml"><span class="cp">&lt;?xml version="1.0" encoding="UTF-8" standalone="yes"?&gt;</span>
+<span class="cp">&lt;?xml version="1.0" encoding="UTF-8" standalone="yes"?&gt;</span>
 <span class="nt">&lt;ns2:message</span> <span class="na">xmlns:ns2=</span><span class="s">"http://schemas.api.whispir.com"</span><span class="nt">&gt;</span>
     <span class="nt">&lt;to&gt;</span>61400000000<span class="nt">&lt;/to&gt;</span>
     <span class="nt">&lt;subject&gt;</span>Test Message<span class="nt">&lt;/subject&gt;</span>    
@@ -386,45 +376,49 @@ Content-Type: application/vnd.whispir.message-v1+json
     <span class="nt">&lt;type&gt;</span>defaultNoReply<span class="nt">&lt;/type&gt;</span>
 <span class="nt">&lt;/ns2:message&gt;</span>
 </pre>
-<pre class="highlight json"><span class="p">{</span><span class="w">
-    </span><span class="s2">"to"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"61400000000"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"subject"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"Test Message"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"body"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"This is the body of my test SMS message"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"email"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-        </span><span class="s2">"body"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"This is the body of my test Email message"</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"footer"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"This is the footer of my message 
-                    (generally where a signature would go)"</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"type"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"text/plain"</span><span class="w">
-    </span><span class="p">},</span><span class="w">
-    </span><span class="s2">"voice"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-        </span><span class="s2">"header"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"This is the introduction, 
-                    read out prior to any key press"</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"body"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"This is the body of the voice call, 
-                  read out after the key press"</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"type"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"ConfCall:,
+<pre class="highlight go"><span class="n">HTTP</span><span class="x"> </span><span class="m">1.1</span><span class="x"> </span><span class="n">POST</span><span class="x"> </span><span class="n">https</span><span class="o">:</span><span class="c">//api.whispir.com/messages?apikey=&lt;yourkey&gt;</span><span class="x">
+</span><span class="n">Authorization</span><span class="o">:</span><span class="x"> </span><span class="n">Basic</span><span class="x"> </span><span class="n">am9obi5zbWl0aDpteXBhc3N3b3Jk</span><span class="x">
+</span><span class="n">Content</span><span class="o">-</span><span class="n">Type</span><span class="o">:</span><span class="x"> </span><span class="n">application</span><span class="o">/</span><span class="n">vnd</span><span class="o">.</span><span class="n">whispir</span><span class="o">.</span><span class="n">message</span><span class="o">-</span><span class="n">v1</span><span class="o">+</span><span class="n">json</span><span class="x">
+
+</span><span class="p">{</span><span class="x">
+    </span><span class="s">"to"</span><span class="x"> </span><span class="o">:</span><span class="x"> </span><span class="s">"61400000000"</span><span class="p">,</span><span class="x">
+    </span><span class="s">"subject"</span><span class="x"> </span><span class="o">:</span><span class="x"> </span><span class="s">"Test Message"</span><span class="p">,</span><span class="x">
+    </span><span class="s">"body"</span><span class="x"> </span><span class="o">:</span><span class="x"> </span><span class="s">"This is the body of my test SMS message"</span><span class="p">,</span><span class="x">
+    </span><span class="s">"email"</span><span class="x"> </span><span class="o">:</span><span class="x"> </span><span class="p">{</span><span class="x">
+        </span><span class="s">"body"</span><span class="x"> </span><span class="o">:</span><span class="x"> </span><span class="s">"This is the body of my test Email message"</span><span class="p">,</span><span class="x">
+        </span><span class="s">"footer"</span><span class="x"> </span><span class="o">:</span><span class="x"> </span><span class="s">"This is the footer of my message 
+                    (generally where a signature would go)"</span><span class="p">,</span><span class="x">
+        </span><span class="s">"type"</span><span class="x"> </span><span class="o">:</span><span class="x"> </span><span class="s">"text/plain"</span><span class="x">
+    </span><span class="p">},</span><span class="x">
+    </span><span class="s">"voice"</span><span class="x"> </span><span class="o">:</span><span class="x"> </span><span class="p">{</span><span class="x">
+        </span><span class="s">"header"</span><span class="x"> </span><span class="o">:</span><span class="x"> </span><span class="s">"This is the introduction, 
+                    read out prior to any key press"</span><span class="p">,</span><span class="x">
+        </span><span class="s">"body"</span><span class="x"> </span><span class="o">:</span><span class="x"> </span><span class="s">"This is the body of the voice call, 
+                  read out after the key press"</span><span class="p">,</span><span class="x">
+        </span><span class="s">"type"</span><span class="x"> </span><span class="o">:</span><span class="x"> </span><span class="s">"ConfCall:,
                   ConfAccountNo:,
                   ConfPinNo:,
                   ConfModPinNo:,
-                  Pin:"</span><span class="w">
-    </span><span class="p">},</span><span class="w">
-    </span><span class="s2">"web"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-        </span><span class="s2">"body"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"This is the content of my web publishing 
-                 or Rich Push Message"</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"type"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"text/plain"</span><span class="w">
-    </span><span class="p">},</span><span class="w">
-    </span><span class="s2">"social"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-        </span><span class="s2">"social"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-            </span><span class="s2">"id"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"social"</span><span class="p">,</span><span class="w">
-            </span><span class="s2">"body"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"Twitter Content."</span><span class="w">
-        </span><span class="p">},</span><span class="w">
-        </span><span class="s2">"social"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-            </span><span class="s2">"id"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"social_long"</span><span class="p">,</span><span class="w">
-            </span><span class="s2">"body"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"Facebook Content."</span><span class="p">,</span><span class="w">
-            </span><span class="s2">"type"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"text/plain"</span><span class="w">
-        </span><span class="p">}</span><span class="w">
-    </span><span class="p">},</span><span class="w">
-    </span><span class="s2">"type"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"defaultNoReply"</span><span class="w">
-</span><span class="p">}</span><span class="w">
+                  Pin:"</span><span class="x">
+    </span><span class="p">},</span><span class="x">
+    </span><span class="s">"web"</span><span class="x"> </span><span class="o">:</span><span class="x"> </span><span class="p">{</span><span class="x">
+        </span><span class="s">"body"</span><span class="x"> </span><span class="o">:</span><span class="x"> </span><span class="s">"This is the content of my web publishing 
+                 or Rich Push Message"</span><span class="p">,</span><span class="x">
+        </span><span class="s">"type"</span><span class="x"> </span><span class="o">:</span><span class="x"> </span><span class="s">"text/plain"</span><span class="x">
+    </span><span class="p">},</span><span class="x">
+    </span><span class="s">"social"</span><span class="x"> </span><span class="o">:</span><span class="x"> </span><span class="p">{</span><span class="x">
+        </span><span class="s">"social"</span><span class="x"> </span><span class="o">:</span><span class="x"> </span><span class="p">{</span><span class="x">
+            </span><span class="s">"id"</span><span class="x"> </span><span class="o">:</span><span class="x"> </span><span class="s">"social"</span><span class="p">,</span><span class="x">
+            </span><span class="s">"body"</span><span class="x"> </span><span class="o">:</span><span class="x"> </span><span class="s">"Twitter Content."</span><span class="x">
+        </span><span class="p">},</span><span class="x">
+        </span><span class="s">"social"</span><span class="x"> </span><span class="o">:</span><span class="x"> </span><span class="p">{</span><span class="x">
+            </span><span class="s">"id"</span><span class="x"> </span><span class="o">:</span><span class="x"> </span><span class="s">"social_long"</span><span class="p">,</span><span class="x">
+            </span><span class="s">"body"</span><span class="x"> </span><span class="o">:</span><span class="x"> </span><span class="s">"Facebook Content."</span><span class="p">,</span><span class="x">
+            </span><span class="s">"type"</span><span class="x"> </span><span class="o">:</span><span class="x"> </span><span class="s">"text/plain"</span><span class="x">
+        </span><span class="p">}</span><span class="x">
+    </span><span class="p">},</span><span class="x">
+    </span><span class="s">"type"</span><span class="x"> </span><span class="o">:</span><span class="x"> </span><span class="s">"defaultNoReply"</span><span class="x">
+</span><span class="p">}</span><span class="x">
 </span></pre>
 
 <p>Messages are the core of what the Whispir API offers as a service to customers. </p>
@@ -513,26 +507,177 @@ Content-Type: application/vnd.whispir.message-v1+json
         </tr>
     </tbody>
 </table>
-<h2 id='sending-basic-messages'>Sending Basic Messages</h2>
-<p>The &lsquo;to&rsquo; field can be provided in the following formats:</p>
-<p><strong>Ad-hoc Recipients</strong></p>
+<h2 id='sms-messages'>SMS Messages</h2><pre class="highlight xml">HTTP 1.1 POST https://api.whispir.com/messages?apikey=<span class="nt">&lt;yourkey&gt;</span>
+Authorization: Basic am9obi5zbWl0aDpteXBhc3N3b3Jk
+Content-Type: application/vnd.whispir.message-v1+xml
+
+<span class="cp">&lt;?xml version="1.0" encoding="UTF-8" standalone="yes"?&gt;</span>
+<span class="nt">&lt;ns2:message</span> <span class="na">xmlns:ns2=</span><span class="s">"http://schemas.api.whispir.com"</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;to&gt;</span>61400000000<span class="nt">&lt;/to&gt;</span>
+    <span class="nt">&lt;subject&gt;</span>Test SMS Message<span class="nt">&lt;/subject&gt;</span>    
+    <span class="nt">&lt;body&gt;</span>This is the body of my test SMS message<span class="nt">&lt;/body&gt;</span>
+<span class="nt">&lt;/ns2:message&gt;</span> 
+</pre>
+<pre class="highlight go"><span class="n">HTTP</span><span class="x"> </span><span class="m">1.1</span><span class="x"> </span><span class="n">POST</span><span class="x"> </span><span class="n">http</span><span class="o">:</span><span class="c">//api.whispir.com/messages?apikey=&lt;yourkey&gt;</span><span class="x">
+</span><span class="n">Authorization</span><span class="o">:</span><span class="x"> </span><span class="n">Basic</span><span class="x"> </span><span class="n">am9obi5zbWl0aDpteXBhc3N3b3Jk</span><span class="x">
+</span><span class="n">Content</span><span class="o">-</span><span class="n">Type</span><span class="o">:</span><span class="x"> </span><span class="n">application</span><span class="o">/</span><span class="n">vnd</span><span class="o">.</span><span class="n">whispir</span><span class="o">.</span><span class="n">message</span><span class="o">-</span><span class="n">v1</span><span class="o">+</span><span class="n">json</span><span class="x">
+</span><span class="n">Accept</span><span class="o">:</span><span class="x"> </span><span class="n">application</span><span class="o">/</span><span class="n">vnd</span><span class="o">.</span><span class="n">whispir</span><span class="o">.</span><span class="n">message</span><span class="o">-</span><span class="n">v1</span><span class="o">+</span><span class="n">json</span><span class="x">
+
+</span><span class="p">{</span><span class="x">
+   </span><span class="s">"to"</span><span class="x"> </span><span class="o">:</span><span class="x"> </span><span class="s">"61400000000"</span><span class="p">,</span><span class="x">
+   </span><span class="s">"subject"</span><span class="x"> </span><span class="o">:</span><span class="x"> </span><span class="s">"Test SMS Message"</span><span class="p">,</span><span class="x">
+   </span><span class="s">"body"</span><span class="x"> </span><span class="o">:</span><span class="x"> </span><span class="s">"This is the body of my test SMS message"</span><span class="x">
+</span><span class="p">}</span><span class="x">
+</span></pre>
+
+<p>Sending SMS from Whispir is as easy as providing the recipient information and the content of the message.</p>
+
+<p>Only <strong>3 fields</strong> are required:</p>
+
+<ol>
+<li>To - the mobile phone number of the recipient</li>
+<li>Subject - the first line or identifier of the SMS</li>
+<li>Body - the remainder of the SMS content</li>
+</ol>
+
+<p>The &lsquo;to&rsquo; field can be provided in the following formats:
+<table>
+    <thead>
+        <tr>
+            <th style="width: 50%" colspan="2">&lsquo;To&rsquo; field options</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td style="text-align: right; font-weight: bold;">Ad-hoc Recipients</td>
+            <td><strong>String</strong><br/>
+                <ul>
+                    <li>Mobile Phone: 61423456789</li>
+                    <li>Email Address: john.smith@test.com.au</li>
+                    <li>Landline: 61386000000</li>
+                </ul>
+            </td>
+        </tr>
+        <tr>
+            <td style="text-align: right; font-weight: bold;">Defined Whispir Recipients</td>
+            <td><strong>String</strong><br/>
+                <ul>
+                    <li><strong>Contact MRI:</strong><br/>John_Smith.782749@Contact.whispir.com</li>
+                    <li><strong>User MRI:</strong><br/>John_Smith@User.whispir.com</li>
+                    <li><strong>Distribution List MRI:</strong><br/>Incidents.373947@List.whispir.com</li>
+                </ul>
+            </td>
+        </tr>
+    </tbody>
+</table></p>
+
+<p><strong>Notes:</strong></p>
+
+<p>Each SMS message can contain up to <strong>1600</strong> characters. </p>
+
 <ul>
-    <li>Mobile Phone: 61423456789</li>
-    <li>Email Address: john.smith@test.com.au</li>
-    <li>Landline: 61386000000</li>
+<li>The Subject field is Mandatory.</li>
+<li>The Body field is Mandatory.</li>
 </ul>
-<p><strong>Defined Whispir Recipients</strong></p>
+<h2 id='email-messages'>Email Messages</h2>
+<blockquote>
+<p>Plain Text Email Example</p>
+</blockquote>
+<pre class="highlight xml">HTTP 1.1 POST https://api.whispir.com/messages?apikey=<span class="nt">&lt;yourkey&gt;</span>
+Authorization: Basic am9obi5zbWl0aDpteXBhc3N3b3Jk
+Content-Type: application/vnd.whispir.message-v1+xml
+
+<span class="cp">&lt;?xml version="1.0" encoding="UTF-8" standalone="yes"?&gt;</span>
+<span class="nt">&lt;ns2:message</span> <span class="na">xmlns:ns2=</span><span class="s">"http://schemas.api.whispir.com"</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;to&gt;</span>john.smith@test.com<span class="nt">&lt;/to&gt;</span>
+    <span class="nt">&lt;subject&gt;</span>Test Email Message<span class="nt">&lt;/subject&gt;</span>    
+    <span class="nt">&lt;email&gt;</span>
+        <span class="nt">&lt;body&gt;</span>This is the body of my test Email message<span class="nt">&lt;/body&gt;</span>
+        <span class="nt">&lt;footer&gt;</span>This is footer of my test Email<span class="nt">&lt;/footer&gt;</span>
+        <span class="nt">&lt;type&gt;</span>text/plain<span class="nt">&lt;/type&gt;</span>
+    <span class="nt">&lt;/email&gt;</span>
+<span class="nt">&lt;/ns2:message&gt;</span> 
+</pre>
+<pre class="highlight go"><span class="n">HTTP</span><span class="x"> </span><span class="m">1.1</span><span class="x"> </span><span class="n">POST</span><span class="x"> </span><span class="n">http</span><span class="o">:</span><span class="c">//api.whispir.com/messages?apikey=&lt;yourkey&gt;</span><span class="x">
+</span><span class="n">Authorization</span><span class="o">:</span><span class="x"> </span><span class="n">Basic</span><span class="x"> </span><span class="n">am9obi5zbWl0aDpteXBhc3N3b3Jk</span><span class="x">
+</span><span class="n">Content</span><span class="o">-</span><span class="n">Type</span><span class="o">:</span><span class="x"> </span><span class="n">application</span><span class="o">/</span><span class="n">vnd</span><span class="o">.</span><span class="n">whispir</span><span class="o">.</span><span class="n">message</span><span class="o">-</span><span class="n">v1</span><span class="o">+</span><span class="n">json</span><span class="x">
+</span><span class="n">Accept</span><span class="o">:</span><span class="x"> </span><span class="n">application</span><span class="o">/</span><span class="n">vnd</span><span class="o">.</span><span class="n">whispir</span><span class="o">.</span><span class="n">message</span><span class="o">-</span><span class="n">v1</span><span class="o">+</span><span class="n">json</span><span class="x">
+
+</span><span class="p">{</span><span class="x">
+    </span><span class="s">"to"</span><span class="x"> </span><span class="o">:</span><span class="x"> </span><span class="s">"john.smith@test.com"</span><span class="p">,</span><span class="x">
+    </span><span class="s">"subject"</span><span class="x"> </span><span class="o">:</span><span class="x"> </span><span class="s">"Test Email Message"</span><span class="p">,</span><span class="x">
+    </span><span class="s">"email"</span><span class="x"> </span><span class="o">:</span><span class="x"> </span><span class="p">{</span><span class="x">
+        </span><span class="s">"body"</span><span class="x"> </span><span class="o">:</span><span class="x"> </span><span class="s">"Email Body goes here."</span><span class="p">,</span><span class="x">
+        </span><span class="s">"footer"</span><span class="x"> </span><span class="o">:</span><span class="x"> </span><span class="s">"Email signature goes here."</span><span class="p">,</span><span class="x">
+        </span><span class="s">"type"</span><span class="x"> </span><span class="o">:</span><span class="x"> </span><span class="s">"text/plain"</span><span class="x">
+    </span><span class="p">}</span><span class="x">
+</span><span class="p">}</span><span class="x">
+</span></pre>
+
+<blockquote>
+<p>Rich Text Email Example</p>
+</blockquote>
+<pre class="highlight xml">HTTP 1.1 POST https://api.whispir.com/messages?apikey=<span class="nt">&lt;yourkey&gt;</span>
+Authorization: Basic am9obi5zbWl0aDpteXBhc3N3b3Jk
+Content-Type: application/vnd.whispir.message-v1+xml
+
+<span class="cp">&lt;?xml version="1.0" encoding="UTF-8" standalone="yes"?&gt;</span>
+<span class="nt">&lt;ns2:message</span> <span class="na">xmlns:ns2=</span><span class="s">"http://schemas.api.whispir.com"</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;to&gt;</span>john.smith@test.com<span class="nt">&lt;/to&gt;</span>
+    <span class="nt">&lt;subject&gt;</span>Test Email Message<span class="nt">&lt;/subject&gt;</span>    
+    <span class="nt">&lt;email&gt;</span>
+        <span class="nt">&lt;body&gt;</span>
+            <span class="cp">&lt;![CDATA[
+                &lt;div id="content"&gt;</span>
+                    <span class="nt">&lt;p&gt;</span>This is my content<span class="nt">&lt;/p&gt;</span>
+                <span class="nt">&lt;/div&gt;</span>
+            ]]&gt;
+        <span class="nt">&lt;/body&gt;</span>
+        <span class="nt">&lt;type&gt;</span>text/html<span class="nt">&lt;/type&gt;</span>
+    <span class="nt">&lt;/email&gt;</span>
+<span class="nt">&lt;/ns2:message&gt;</span> 
+</pre>
+<pre class="highlight go"><span class="n">HTTP</span><span class="x"> </span><span class="m">1.1</span><span class="x"> </span><span class="n">POST</span><span class="x"> </span><span class="n">http</span><span class="o">:</span><span class="c">//api.whispir.com/messages?apikey=&lt;yourkey&gt;</span><span class="x">
+</span><span class="n">Authorization</span><span class="o">:</span><span class="x"> </span><span class="n">Basic</span><span class="x"> </span><span class="n">am9obi5zbWl0aDpteXBhc3N3b3Jk</span><span class="x">
+</span><span class="n">Content</span><span class="o">-</span><span class="n">Type</span><span class="o">:</span><span class="x"> </span><span class="n">application</span><span class="o">/</span><span class="n">vnd</span><span class="o">.</span><span class="n">whispir</span><span class="o">.</span><span class="n">message</span><span class="o">-</span><span class="n">v1</span><span class="o">+</span><span class="n">json</span><span class="x">
+</span><span class="n">Accept</span><span class="o">:</span><span class="x"> </span><span class="n">application</span><span class="o">/</span><span class="n">vnd</span><span class="o">.</span><span class="n">whispir</span><span class="o">.</span><span class="n">message</span><span class="o">-</span><span class="n">v1</span><span class="o">+</span><span class="n">json</span><span class="x">
+
+</span><span class="p">{</span><span class="x">
+    </span><span class="s">"to"</span><span class="x"> </span><span class="o">:</span><span class="x"> </span><span class="s">"john.smith@test.com"</span><span class="p">,</span><span class="x">
+    </span><span class="s">"subject"</span><span class="x"> </span><span class="o">:</span><span class="x"> </span><span class="s">"Test Email Message"</span><span class="p">,</span><span class="x">
+    </span><span class="s">"email"</span><span class="x"> </span><span class="o">:</span><span class="x"> </span><span class="p">{</span><span class="x">
+        </span><span class="s">"body"</span><span class="x"> </span><span class="o">:</span><span class="x"> </span><span class="s">"&lt;div id='content'&gt;&lt;p&gt;This is my content&lt;/p&gt;&lt;/div&gt;"</span><span class="p">,</span><span class="x">
+        </span><span class="s">"type"</span><span class="x"> </span><span class="o">:</span><span class="x"> </span><span class="s">"text/plain"</span><span class="x">
+    </span><span class="p">}</span><span class="x">
+</span><span class="p">}</span><span class="x">
+</span></pre>
+
+<p>Whispir can easily be used as an API email gateway to deliver thousands of rich content emails for your campaigns.</p>
+
+<p><strong>Mandatory fields</strong></p>
+
 <ul>
-    <li>Contact MRI: John_Smith.782749@Contact.whispir.com</li>
-    <li>User MRI: John_Smith@User.whispir.com</li>
-    <li>Distribution List MRI: </li>
-</ul></p>
+<li>The Subject field is Mandatory.</li>
+<li>The Body field is Mandatory.</li>
+<li>The Type field is Mandatory and must specify a value of &lsquo;text/plain&rsquo; or &lsquo;text/html&rsquo; to describe the content of the message.</li>
+</ul>
+
+<p><strong>Whispir&rsquo;s support of Rich (HTML) Emails</strong></p>
+
+<ul>
+<li>HTML, HEAD and BODY HTML elements are not supported.  HTML content assumes that it is starting from within the BODY tag.</li>
+<li>HTML form and input elements are not supported in most email clients.  These can be included in the HTML content but should be thoroughly tested prior to use.</li>
+<li>STYLE elements are supported.  It is recommended that a single STYLE element at the top of the HTML that defines the styles for the entire email.  However, inline styles are also supported.</li>
+<li>Javascript is not supported and should not be used in e-mail messages.</li>
+<li>Images must be referenced through absolute web urls, any other mechanism will not work on most email clients.
+<br/><br/><strong>Note:</strong> Whispir does not host images for clients, you must use another hosting service and reference the URL in your Whispir request payload.</li>
+</ul>
 
           <h1 id='errors'>Errors</h1>
       </div>
       <div class="dark-box">
           <div class="lang-selector">
-                <a href="#" data-language-name="json">json</a>
+                <a href="#" data-language-name="go">json</a>
                 <a href="#" data-language-name="xml">xml</a>
           </div>
       </div>
