@@ -45,7 +45,8 @@
     <div class="page-wrapper">
       <div class="dark-box"></div>
       <div class="content">
-        <h1 id='whispir-api'>Whispir API</h1>
+        
+          <h1 id='whispir-api'>Whispir API</h1>
 <blockquote>
 <p>Whispir&rsquo;s API requires only 3 parameters within JSON or XML to send an SMS message</p>
 </blockquote>
@@ -99,7 +100,8 @@ curl -H <span class="s2">"Authorization: Basic &lt;YOUR AUTHORIZATION HEADER&gt;
 <li>Build forms to allow contacts to self-register and manage their account, with auto-generated email notifications</li>
 <li>Create, update and delete distribution lists that can be accessed for messaging at a later date</li>
 </ul>
-<h1 id='accessing-the-api'>Accessing the API</h1>
+
+          <h1 id='accessing-the-api'>Accessing the API</h1>
 <p>To get started using the Whispir API, you&rsquo;ll need a few things:</p>
 
 <ol>
@@ -271,8 +273,29 @@ Accept: application/vnd.whispir.message-v1+xml
 </ul>
 
 <p>For more information on Messages and all the other Whispir resources please continue through the documentation, or browse straight to Messages resource documentation for more information.</p>
-<h1 id='rate-limiting'>Rate Limiting</h1>
-<p>Whispir&rsquo;s API usage is limited on a per-apikey basis using a <strong>per second</strong> limit and a <strong>per day</strong> limit.</p>
+
+          <h1 id='rate-limiting'>Rate Limiting</h1>
+<blockquote>
+<p>In the event that Whispir&rsquo;s rate limits are breached, the following error messages will be returned from the Whispir API:</p>
+</blockquote>
+<pre class="highlight shell"><span class="c"># Over Queries Per Second Limit</span>
+
+GET /messages?apikey<span class="o">=</span>abc38bc83bcd3ucbud83
+
+HTTP 403 Forbidden
+X-Mashery-Error-Code: ERR_403_DEVELOPER_OVER_QPS
+X-Mashery-Error-Detail: Account Over Queries Per Second Limit
+
+<span class="c"># Over Queries Per Day Limit</span>
+
+GET /messages?apikey<span class="o">=</span>abc38bc83bcd3ucbud83
+
+HTTP 403 Forbidden
+X-Mashery-Error-Code: ERR_403_DEVELOPER_OVER_QPD
+X-Mashery-Error-Detail: Account Over Queries Per Day Limit
+</pre>
+
+<p>Whispir&rsquo;s API usage is limited on a per apikey basis using <strong>per second</strong> limit and <strong>per day</strong> limits.</p>
 
 <p>Depending on your Whispir License, you will obtain higher per second and per day rates:</p>
 
@@ -309,7 +332,202 @@ Accept: application/vnd.whispir.message-v1+xml
 <td>5000 calls per day</td>
 </tr>
 </tbody></table>
-<h1 id='messages'>Messages</h1><h2 id='get-messages-default-workspace'>Get Messages (Default Workspace)</h2>
+
+<p>If further calls per second or per day are required for your application, please contact your Whispir Sales Representative, or <a href="mailto:sales@whispir.com">sales@whispir.com</a>.</p>
+
+          <h1 id='messages'>Messages</h1>
+<blockquote>
+<p>Sample to send an SMS, Email, Voice call, and Web Publishing in one request</p>
+</blockquote>
+<pre class="highlight shell">HTTP 1.1 POST https://api.whispir.com/messages?apikey<span class="o">=</span>&lt;yourkey&gt;
+Authorization: Basic am9obi5zbWl0aDpteXBhc3N3b3Jk
+
+<span class="c"># for XML</span>
+Content-Type: application/vnd.whispir.message-v1+xml
+
+<span class="c"># for JSON</span>
+Content-Type: application/vnd.whispir.message-v1+json
+</pre>
+<pre class="highlight xml"><span class="cp">&lt;?xml version="1.0" encoding="UTF-8" standalone="yes"?&gt;</span>
+<span class="nt">&lt;ns2:message</span> <span class="na">xmlns:ns2=</span><span class="s">"http://schemas.api.whispir.com"</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;to&gt;</span>61400000000<span class="nt">&lt;/to&gt;</span>
+    <span class="nt">&lt;subject&gt;</span>Test Message<span class="nt">&lt;/subject&gt;</span>    
+    <span class="nt">&lt;body&gt;</span>This is the body of my test SMS message<span class="nt">&lt;/body&gt;</span>
+    <span class="nt">&lt;email&gt;</span>
+        <span class="nt">&lt;body&gt;</span>This is the body of my test Email message<span class="nt">&lt;/body&gt;</span>
+        <span class="nt">&lt;footer&gt;</span>This is footer of test email<span class="nt">&lt;/footer&gt;</span>
+        <span class="nt">&lt;type&gt;</span>text/plain<span class="nt">&lt;/type&gt;</span>
+    <span class="nt">&lt;/email&gt;</span>
+    <span class="nt">&lt;voice&gt;</span>
+        <span class="nt">&lt;header&gt;</span>test header<span class="nt">&lt;/header&gt;</span>        
+        <span class="nt">&lt;body&gt;</span>This is test voice body<span class="nt">&lt;/body&gt;</span>
+        <span class="nt">&lt;footer&gt;</span>test footer<span class="nt">&lt;/footer&gt;</span>
+        <span class="nt">&lt;type&gt;</span>
+            ConfCall:,
+            ConfAccountNo:,
+            ConfPinNo:,
+            ConfModPinNo:,
+            Pin:
+        <span class="nt">&lt;/type&gt;</span>
+    <span class="nt">&lt;/voice&gt;</span>
+    <span class="nt">&lt;web&gt;</span> 
+        <span class="nt">&lt;body&gt;</span>This is web body of my test message<span class="nt">&lt;/body&gt;</span> 
+        <span class="nt">&lt;type&gt;</span>text/plain<span class="nt">&lt;/type&gt;</span> 
+    <span class="nt">&lt;/web&gt;</span> 
+    <span class="nt">&lt;social&gt;</span>
+        <span class="nt">&lt;social</span> <span class="na">id=</span><span class="s">"social"</span><span class="nt">&gt;</span>
+            <span class="nt">&lt;body&gt;</span>Twitter Content.<span class="nt">&lt;/body&gt;</span>
+        <span class="nt">&lt;/social&gt;</span>
+        <span class="nt">&lt;social</span> <span class="na">id=</span><span class="s">"social_long"</span><span class="nt">&gt;</span>
+            <span class="nt">&lt;body&gt;</span>Facebook Content.<span class="nt">&lt;/body&gt;</span>
+            <span class="nt">&lt;type&gt;</span>text/plain<span class="nt">&lt;/type&gt;</span>
+        <span class="nt">&lt;/social&gt;</span>
+    <span class="nt">&lt;/social&gt;</span>
+    <span class="nt">&lt;type&gt;</span>defaultNoReply<span class="nt">&lt;/type&gt;</span>
+<span class="nt">&lt;/ns2:message&gt;</span>
+</pre>
+<pre class="highlight json"><span class="p">{</span><span class="w">
+    </span><span class="s2">"to"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"61400000000"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"subject"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"Test Message"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"body"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"This is the body of my test SMS message"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"email"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"body"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"This is the body of my test Email message"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"footer"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"This is the footer of my message 
+                    (generally where a signature would go)"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"type"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"text/plain"</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="s2">"voice"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"header"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"This is the introduction, 
+                    read out prior to any key press"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"body"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"This is the body of the voice call, 
+                  read out after the key press"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"type"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"ConfCall:,
+                  ConfAccountNo:,
+                  ConfPinNo:,
+                  ConfModPinNo:,
+                  Pin:"</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="s2">"web"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"body"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"This is the content of my web publishing 
+                 or Rich Push Message"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"type"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"text/plain"</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="s2">"social"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"social"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+            </span><span class="s2">"id"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"social"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"body"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"Twitter Content."</span><span class="w">
+        </span><span class="p">},</span><span class="w">
+        </span><span class="s2">"social"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+            </span><span class="s2">"id"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"social_long"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"body"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"Facebook Content."</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"type"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"text/plain"</span><span class="w">
+        </span><span class="p">}</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="s2">"type"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"defaultNoReply"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></pre>
+
+<p>Messages are the core of what the Whispir API offers as a service to customers. </p>
+
+<p>The <strong>messages</strong> endpoint allows a user to perform the following tasks:</p>
+
+<ol>
+<li>Retrieve a list of Sent messages</li>
+<li>Create (send) a new message</li>
+</ol>
+
+<p>These are described in more detail below:</p>
+
+<p>As message resources can exist in the default (Company) workspace or other workspace, messages have two access URLs:</p>
+
+<ul>
+<li>https://api.whispir.com/messages - for Company Workspace messages </li>
+<li>https://api.whispir.com/workspaces/:id/messages - for other Workspace messages</li>
+</ul>
+
+<p>If your application does not require separate workspaces, you can simply send all messages from the default Company workspace.</p>
+
+<table>
+    <thead>
+        <tr>
+            <th style="width: 50%" colspan="2">High-Level Request Elements</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td style="text-align: right; font-weight: bold;">to:</td>
+            <td><strong>String</strong><br/>
+                Specifies the recipients of the message e.g.
+                <ul>
+                    <li>Mobile Phone: 61423456789</li>
+                    <li>Email Address: john.smith@test.com.au</li>
+                    <li>Landline: 61386000000</li>
+                </ul>
+            </td>
+        </tr>
+        <tr>
+            <td style="text-align: right; font-weight: bold;">subject:</td>
+            <td><strong>String</strong><br/>
+                Specifies the first line of the SMS message or Voice call, and the subject of the Email message.
+            </td>
+        </tr>
+        <tr>
+            <td style="text-align: right; font-weight: bold;">body:</td>
+            <td><strong>String</strong><br/>
+                Specifies the content of the SMS message.
+            </td>
+        </tr>
+        <tr>
+            <td style="text-align: right; font-weight: bold;">email:</td>
+            <td><strong>Object</strong><br/>
+                Email object described below. Used for sending email messages.
+            </td>
+        </tr>
+        <tr>
+            <td style="text-align: right; font-weight: bold;">voice:</td>
+            <td><strong>Object</strong><br/>
+                Voice object described below. Used for sending voice calls to mobile phones and landlines.
+            </td>
+        </tr>
+        <tr>
+            <td style="text-align: right; font-weight: bold;">web:</td>
+            <td><strong>Object</strong><br/>
+                Web object described below. Used for web publishing and Rich Messages.
+            </td>
+        </tr>
+        <tr>
+            <td style="text-align: right; font-weight: bold;">social:</td>
+            <td><strong>Object</strong><br/>
+                Social object described below. Used for publishing content to social media (Twitter, Facebook, LinkedIn).
+            </td>
+        </tr>
+        <tr>
+            <td style="text-align: right; font-weight: bold;">type:</td>
+            <td><strong>String</strong><br/>
+                Allows the user to modify the message behaviour for replies and DLRs (delivery receipts) e.g.
+                <ul>
+                    <li>defaultNoReply - Used to reject any replies to this message.</li>
+                    <li>noDlr - Used to specify that DLRs should not be enabled for this message.</li>
+                </ul>
+            </td>
+        </tr>
+    </tbody>
+</table>
+<h2 id='sending-basic-messages'>Sending Basic Messages</h2>
+<p>The &lsquo;to&rsquo; field can be provided in the following formats:</p>
+<p><strong>Ad-hoc Recipients</strong></p>
+<ul>
+    <li>Mobile Phone: 61423456789</li>
+    <li>Email Address: john.smith@test.com.au</li>
+    <li>Landline: 61386000000</li>
+</ul>
+<p><strong>Defined Whispir Recipients</strong></p>
+<ul>
+    <li>Contact MRI: John_Smith.782749@Contact.whispir.com</li>
+    <li>User MRI: John_Smith@User.whispir.com</li>
+    <li>Distribution List MRI: </li>
+</ul></p>
+
           <h1 id='errors'>Errors</h1>
       </div>
       <div class="dark-box">
