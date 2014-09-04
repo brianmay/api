@@ -742,9 +742,7 @@ Content-Type: application/vnd.whispir.message-v1+xml
         </tr>
     </tbody>
 </table></p>
-
-<p><strong>Notes:</strong></p>
-
+<h3 id='notes'>Notes:</h3>
 <ul>
 <li>Each SMS message can contain up to <strong>1600</strong> characters. </li>
 <li>The Subject field is Mandatory.</li>
@@ -926,9 +924,7 @@ AABJRU5ErkJggg=="</span><span class="x">
 <p>Attachments can be of any type (e.g. PDF, Images, Documents), and can be up to 10MB in size (maximum for all attachments).</p>
 
 <p>Attachments must be provided in the payload of the message.  URLs can be referenced in the Email, but will not be added as message attachments.</p>
-
-<p><strong>Notes:</strong></p>
-
+<h3 id='notes'>Notes:</h3>
 <ul>
 <li>attachmentName - The name of the file being attached (mandatory)</li>
 <li>attachmentDesc - An optional description of the file being attached</li>
@@ -974,10 +970,71 @@ Content-Type: application/vnd.whispir.message-v1+xml
 </span><span class="p">}</span><span class="x">
 </span></pre>
 
+<blockquote>
+<p>Demonstration of sending a Text To Speech Voice call with an attached teleconference</p>
+</blockquote>
+<pre class="highlight xml">HTTP 1.1 POST https://api.whispir.com/messages?apikey=<span class="nt">&lt;yourkey&gt;</span>
+Authorization: Basic am9obi5zbWl0aDpteXBhc3N3b3Jk
+Content-Type: application/vnd.whispir.message-v1+xml
+
+<span class="cp">&lt;?xml version="1.0" encoding="UTF-8" standalone="yes"?&gt;</span>
+<span class="nt">&lt;ns2:message</span> <span class="na">xmlns:ns2=</span><span class="s">"http://schemas.api.whispir.com"</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;to&gt;</span>61400000000<span class="nt">&lt;/to&gt;</span>
+    <span class="nt">&lt;subject&gt;</span>Test Voice Call<span class="nt">&lt;/subject&gt;</span>    
+    <span class="nt">&lt;voice&gt;</span>
+        <span class="nt">&lt;header&gt;</span>This is the introduction of the voice call<span class="nt">&lt;/header&gt;</span>        
+        <span class="nt">&lt;body&gt;</span>This is body of the message<span class="nt">&lt;/body&gt;</span>
+        <span class="nt">&lt;footer&gt;</span>This is the footer of the message<span class="nt">&lt;/footer&gt;</span>
+        <span class="nt">&lt;type&gt;</span>
+            ConfCall:1800500536,
+            ConfAccountNo:12345678,
+            ConfPinNo:1234,
+            ConfModPinNo:1234,
+            Pin:
+        <span class="nt">&lt;/type&gt;</span>
+    <span class="nt">&lt;/voice&gt;</span>
+<span class="nt">&lt;/ns2:message&gt;</span> 
+</pre>
+<pre class="highlight go"><span class="n">HTTP</span><span class="x"> </span><span class="m">1.1</span><span class="x"> </span><span class="n">POST</span><span class="x"> </span><span class="n">https</span><span class="o">:</span><span class="c">//api.whispir.com/messages?apikey=&lt;yourkey&gt;</span><span class="x">
+</span><span class="n">Authorization</span><span class="o">:</span><span class="x"> </span><span class="n">Basic</span><span class="x"> </span><span class="n">am9obi5zbWl0aDpteXBhc3N3b3Jk</span><span class="x">
+</span><span class="n">Content</span><span class="o">-</span><span class="n">Type</span><span class="o">:</span><span class="x"> </span><span class="n">application</span><span class="o">/</span><span class="n">vnd</span><span class="o">.</span><span class="n">whispir</span><span class="o">.</span><span class="n">message</span><span class="o">-</span><span class="n">v1</span><span class="o">+</span><span class="n">json</span><span class="x">
+
+</span><span class="p">{</span><span class="x">
+    </span><span class="s">"to"</span><span class="x"> </span><span class="o">:</span><span class="x"> </span><span class="s">"61400000000"</span><span class="p">,</span><span class="x">
+    </span><span class="s">"subject"</span><span class="x"> </span><span class="o">:</span><span class="x"> </span><span class="s">"Test Voice Call"</span><span class="p">,</span><span class="x">
+    </span><span class="s">"voice"</span><span class="x"> </span><span class="o">:</span><span class="x"> </span><span class="p">{</span><span class="x">
+        </span><span class="s">"header"</span><span class="x"> </span><span class="o">:</span><span class="x"> </span><span class="s">"This is the introduction of the voice call"</span><span class="p">,</span><span class="x">
+        </span><span class="s">"body"</span><span class="x"> </span><span class="o">:</span><span class="x"> </span><span class="s">"This is body of the message"</span><span class="p">,</span><span class="x">
+        </span><span class="s">"footer"</span><span class="x"> </span><span class="o">:</span><span class="x"> </span><span class="s">"This is the footer of the message"</span><span class="p">,</span><span class="x">
+        </span><span class="s">"type"</span><span class="x"> </span><span class="o">:</span><span class="x"> </span><span class="s">"ConfCall:1800500536,
+                  ConfAccountNo:12345678,
+                  ConfPinNo:1234,
+                  ConfModPinNo:1234,
+                  Pin:"</span><span class="x">
+    </span><span class="p">}</span><span class="x">
+</span><span class="p">}</span><span class="x">
+</span></pre>
+
+<p>Whispir&rsquo;s API provides users the ability to send a Voice Call to any landline or mobile phones around the world.</p>
+
+<p>Whispir supports both <strong>Text to Speech</strong> and <strong>Pre-recorded WAV file</strong> approaches to sending Voice Calls.</p>
+
+<p>Using Whispir&rsquo;s Voice Module, you can easily connect all recipients onto a single bridged call, simplifying your teleconferences and ensuring your message gets through.</p>
+<h3 id='notes'>Notes:</h3>
+<ul>
+<li>The Subject field is Mandatory.</li>
+<li>The Body field is Mandatory.</li>
+<li>The Type field is Mandatory and at a minimum must specify the following string:
+<code class="prettyprint">&lt;type&gt;ConfCall:,ConfAccountNo:,ConfPinNo:,ConfModPinNo:,Pin:&lt;/type&gt;</code></li>
+<li>Pauses can be added in conference call details using a +</li>
+</ul>
+
+<p>Your account must be enabled to use the Voice capability within Whispir for this to function.  If you are unsure whether you can use Voice please contact <a href="mailto:apisupport@whispir.com">apisupport@whispir.com</a>.</p>
+
 <table>
     <thead>
         <tr>
-            <th style="width: 50%" colspan="2">&lsquo;To&rsquo; field options</th>
+            <th style="width: 50%" colspan="2">Custom Variables for Voice Calls</th>
         </tr>
     </thead>
     <tbody>
@@ -987,10 +1044,90 @@ Content-Type: application/vnd.whispir.message-v1+xml
         </tr>
         <tr>
             <td style="text-align: right; font-weight: bold;">@@teleconf_account@@</td>
-            <td>When Teleconferencing Services are used as part of voice calls, the Teleconference line that is used in the voice call can be accessed via this variable.<br/>e.g. 1800 123 123</td>
+            <td>When Teleconferencing Services are used as part of voice calls, the Teleconference Account or Room number that is used in the voice call can be accessed via this variable.<br/>e.g. 098711234</td>
+        </tr>
+        <tr>
+            <td style="text-align: right; font-weight: bold;">@@teleconf_pin@@</td>
+            <td>When Teleconferencing Services are used as part of voice calls, the Teleconference Room PIN that is used in the voice call can be accessed via this variable.<br/>e.g. 8181</td>
+        </tr>
+        <tr>
+            <td style="text-align: right; font-weight: bold;">@@teleconf_mod_pin@@</td>
+            <td>When Teleconferencing Services are used as part of voice calls, the Teleconference Moderator PIN that is used in the voice call can be accessed via this variable.<br/>e.g. 8181</td>
         </tr>
     </tbody>
 </table>
+
+<p><aside class="notice">
+Whispir&rsquo;s Voice Module doesn&rsquo;t include a Conference Call service.  User&rsquo;s can easily integrate existing conference call services using the fields provided.
+</aside></p>
+<h2 id='publishing-to-web-rss-or-social-media'>Publishing to Web, RSS or Social Media</h2>
+<blockquote>
+<p>Social Media Request/Response Example</p>
+</blockquote>
+<pre class="highlight xml">HTTP 1.1 POST https://api.whispir.com/messages?apikey=<span class="nt">&lt;yourkey&gt;</span>
+Authorization: Basic am9obi5zbWl0aDpteXBhc3N3b3Jk
+Content-Type: application/vnd.whispir.message-v1+xml
+
+<span class="cp">&lt;?xml version="1.0" encoding="UTF-8" standalone="yes"?&gt;</span>
+<span class="nt">&lt;ns2:message</span> <span class="na">xmlns:ns2=</span><span class="s">"http://schemas.api.whispir.com"</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;to&gt;</span>61400000000<span class="nt">&lt;/to&gt;</span>
+    <span class="nt">&lt;subject&gt;</span>Test Web Message<span class="nt">&lt;/subject&gt;</span>    
+    <span class="nt">&lt;web&gt;</span> 
+        <span class="nt">&lt;body&gt;</span>This is web body of my test message<span class="nt">&lt;/body&gt;</span> 
+        <span class="nt">&lt;type&gt;</span>text/plain<span class="nt">&lt;/type&gt;</span> 
+    <span class="nt">&lt;/web&gt;</span> 
+    <span class="nt">&lt;social&gt;</span> 
+        <span class="nt">&lt;social</span> <span class="na">id=</span><span class="s">"social"</span><span class="nt">&gt;</span> 
+            <span class="nt">&lt;body&gt;</span>This is the content of social message for Twitter<span class="nt">&lt;/body&gt;</span>
+         <span class="nt">&lt;/social&gt;</span> 
+        <span class="nt">&lt;social</span> <span class="na">id=</span><span class="s">"social_long"</span><span class="nt">&gt;</span> 
+            <span class="nt">&lt;body&gt;</span>This is the content of social message for Facebook<span class="nt">&lt;/body&gt;</span>
+            <span class="nt">&lt;type&gt;</span>text/plain<span class="nt">&lt;/type&gt;</span> 
+        <span class="nt">&lt;/social&gt;</span> 
+    <span class="nt">&lt;/social&gt;</span>
+<span class="nt">&lt;/ns2:message&gt;</span>
+</pre>
+<pre class="highlight go"><span class="n">HTTP</span><span class="x"> </span><span class="m">1.1</span><span class="x"> </span><span class="n">POST</span><span class="x"> </span><span class="n">https</span><span class="o">:</span><span class="c">//api.whispir.com/messages?apikey=&lt;yourkey&gt;</span><span class="x">
+</span><span class="n">Authorization</span><span class="o">:</span><span class="x"> </span><span class="n">Basic</span><span class="x"> </span><span class="n">am9obi5zbWl0aDpteXBhc3N3b3Jk</span><span class="x">
+</span><span class="n">Content</span><span class="o">-</span><span class="n">Type</span><span class="o">:</span><span class="x"> </span><span class="n">application</span><span class="o">/</span><span class="n">vnd</span><span class="o">.</span><span class="n">whispir</span><span class="o">.</span><span class="n">message</span><span class="o">-</span><span class="n">v1</span><span class="o">+</span><span class="n">json</span><span class="x">
+
+</span><span class="p">{</span><span class="x">
+    </span><span class="s">"to"</span><span class="x"> </span><span class="o">:</span><span class="x"> </span><span class="s">"61400000000"</span><span class="p">,</span><span class="x">
+    </span><span class="s">"subject"</span><span class="x"> </span><span class="o">:</span><span class="x"> </span><span class="s">"Test Web Message"</span><span class="p">,</span><span class="x">
+    </span><span class="s">"web"</span><span class="x"> </span><span class="o">:</span><span class="x"> </span><span class="p">{</span><span class="x">
+        </span><span class="s">"body"</span><span class="x"> </span><span class="o">:</span><span class="x"> </span><span class="s">"This is the body of the web content"</span><span class="p">,</span><span class="x">
+        </span><span class="s">"type"</span><span class="x"> </span><span class="o">:</span><span class="x"> </span><span class="s">"text/plain"</span><span class="x">
+    </span><span class="p">},</span><span class="x">
+    </span><span class="s">"social"</span><span class="x"> </span><span class="o">:</span><span class="x"> </span><span class="p">{</span><span class="x">
+        </span><span class="s">"social"</span><span class="x"> </span><span class="o">:</span><span class="x"> </span><span class="p">[{</span><span class="x">
+            </span><span class="s">"id"</span><span class="x"> </span><span class="o">:</span><span class="x"> </span><span class="s">"social"</span><span class="p">,</span><span class="x">
+            </span><span class="s">"body"</span><span class="x"> </span><span class="o">:</span><span class="x"> </span><span class="s">"This is the content of social message for Twitter"</span><span class="x">
+        </span><span class="p">},</span><span class="x"> </span><span class="p">{</span><span class="x">
+            </span><span class="s">"id"</span><span class="x"> </span><span class="o">:</span><span class="x"> </span><span class="s">"socialType"</span><span class="p">,</span><span class="x">
+            </span><span class="s">"body"</span><span class="x"> </span><span class="o">:</span><span class="x"> </span><span class="s">"text/plain"</span><span class="x">
+        </span><span class="p">},</span><span class="x"> </span><span class="p">{</span><span class="x">
+            </span><span class="s">"id"</span><span class="x"> </span><span class="o">:</span><span class="x"> </span><span class="s">"social_long"</span><span class="p">,</span><span class="x">
+            </span><span class="s">"body"</span><span class="x"> </span><span class="o">:</span><span class="x"> </span><span class="s">"This is the content of social message for Facebook"</span><span class="x">
+        </span><span class="p">}]</span><span class="x">
+    </span><span class="p">}</span><span class="x">
+</span><span class="p">}</span><span class="x">
+</span></pre>
+
+<p>The Whispir API supports publishing to Web, RSS and Social Media through existing configurations set up in the Whispir Platform.</p>
+
+<p>If your existing Whispir setup already allows you to publish to these destinations, you can simply specify the information in the message, and it will automatically be published as per your existing setup.</p>
+<h3 id='web-publishing'>Web Publishing</h3>
+<p>The Web section is used to publish information to Whispir&rsquo;s Contact Portal or Whispir Community, or to a pre-defined web destination e.g. your company intranet.  </p>
+
+<p>Whispir can automatically export this content as plain text or HTML and export it to a location for you to either iFrame into your webpage, or include via AJAX.</p>
+
+<p>For more information on web publishing, please contact <a href="mailto:apisupport@whispir.com">apisupport@whispir.com</a>.</p>
+<h3 id='social-publishing'>Social Publishing</h3>
+<p>The Social section is used to publish information to Twitter or Facebook as per your Whispir implementation.  </p>
+
+<p>Whispir can automatically publish content to your pre-configured Twitter and Facebook pages based on the information you have provided us.</p>
+
+<p>For more information about configuring Social Publishing, please contact <a href="mailto:apisupport@whispir.com">apisupport@whispir.com</a>.</p>
 
           <h1 id='errors'>Errors</h1>
       </div>
