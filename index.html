@@ -421,23 +421,31 @@ Content-Type: application/vnd.whispir.message-v1+xml
 </span><span class="p">}</span><span class="x">
 </span></pre>
 
-<p>Messages are the core of what the Whispir API offers as a service to customers. </p>
+<p>Messages are the core of what the Whispir API offers as a service to customers.</p>
+
+<p>Whispir has the ability to send messages across 7 different channels in a single API request:</p>
+
+<p><strong>SMS</strong> - up to 1600 characters per message, premium routes, delivery receipts<br/>
+<strong>Email</strong> - free email messaging with HTML and Plain Text support<br/>
+<strong>Voice</strong> - high quality outbound voice calls delivered to mobiles and landlines within seconds<br/>
+<strong>Rich Messages</strong> - personalised, targeted rich messaging to drive conversations<br/>
+<strong>Twitter</strong> - support for instant publishing to multiple twitter accounts<br/>
+<strong>Facebook</strong> - simplify the process of publishing to multiple facebook accounts instantaneously<br/>
+<strong>RSS</strong> - easily generate RSS feeds for consumption by other services</p>
 
 <p>The <strong>messages</strong> endpoint allows a user to perform the following tasks:</p>
 
 <ol>
-<li>Retrieve a list of Sent messages</li>
-<li>Create (send) a new message</li>
+<li>Create and Send a new message</li>
+<li>Retrieve a list of previously sent messages</li>
 </ol>
 
 <p>These are described in more detail below:</p>
 
 <p>As message resources can exist in the default (Company) workspace or other workspace, messages have two access URLs:</p>
 
-<ul>
-<li>https://api.whispir.com/messages - for Company Workspace messages </li>
-<li>https://api.whispir.com/workspaces/:id/messages - for other Workspace messages</li>
-</ul>
+<p><code class="prettyprint">https://api.whispir.com/messages</code> - for Company Workspace messages 
+<code class="prettyprint">https://api.whispir.com/workspaces/:id/messages</code> - for other Workspace messages</p>
 
 <p>If your application does not require separate workspaces, you can simply send all messages from the default Company workspace.</p>
 
@@ -826,11 +834,14 @@ Content-Type: application/vnd.whispir.message-v1+xml
 
 <p><strong>Mandatory fields</strong></p>
 
-<ul>
-<li>The Subject field is Mandatory.</li>
-<li>The Body field is Mandatory.</li>
-<li>The Type field is Mandatory and must specify a value of &lsquo;text/plain&rsquo; or &lsquo;text/html&rsquo; to describe the content of the message.</li>
-</ul>
+<p>Only 4 fields are required in order to send an email message.</p>
+
+<ol>
+<li>To - the recipient of the email message.</li>
+<li>Subject - the subject line of the email message.</li>
+<li>Body - the content of the email (either HTML or Plain Text content).</li>
+<li>Type - either &lsquo;text/plain&rsquo; or &lsquo;text/html&rsquo; to describe the content of the message.</li>
+</ol>
 <h3 id='whispir39s-support-of-rich-html-emails'>Whispir&rsquo;s support of Rich (HTML) Emails</h3>
 <blockquote>
 <p>Demonstration of a Rich (HTML) Email with an attachment</p>
@@ -1060,7 +1071,7 @@ Content-Type: application/vnd.whispir.message-v1+xml
 <p><aside class="notice">
 Whispir&rsquo;s Voice Module doesn&rsquo;t include a Conference Call service.  User&rsquo;s can easily integrate existing conference call services using the fields provided.
 </aside></p>
-<h2 id='publishing-to-web-rss-or-social-media'>Publishing to Web, RSS or Social Media</h2>
+<h2 id='rich-messages'>Rich Messages</h2><h2 id='publishing-to-websites-rss-or-social-media'>Publishing to Websites, RSS or Social Media</h2>
 <blockquote>
 <p>Social Media Request/Response Example</p>
 </blockquote>
