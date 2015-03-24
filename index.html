@@ -78,9 +78,7 @@ curl -H <span class="s2">"Authorization: Basic &lt;YOUR AUTHORIZATION HEADER&gt;
 </pre>
 
 <p>The Whispir API has been designed to provide application developers the ability to embed the powerful multichannel messaging capabilities the Whispir Platform provides, directly into any application with access to the web.</p>
-
-<p><strong>Multichannel Messaging API</strong></p>
-
+<h3 id='communications-api'>Communications API</h3>
 <p>Whispir&rsquo;s API gives developers the ability to:</p>
 
 <ul>
@@ -89,9 +87,7 @@ curl -H <span class="s2">"Authorization: Basic &lt;YOUR AUTHORIZATION HEADER&gt;
 <li>Publish messages to internal or external web pages, RSS feeds and social networks</li>
 <li>Asynchronously receive all responses to a given message and perform analysis on the data</li>
 </ul>
-
-<p><strong>Contact &amp; Recipient Management API</strong></p>
-
+<h3 id='contact-management-api'>Contact Management API</h3>
 <p>The Whispir API provides developers with the ability to manage the recipients of their messages:</p>
 
 <ul>
@@ -101,7 +97,7 @@ curl -H <span class="s2">"Authorization: Basic &lt;YOUR AUTHORIZATION HEADER&gt;
 <li>Create, update and delete distribution lists that can be accessed for messaging at a later date</li>
 </ul>
 
-          <h1 id='accessing-the-api'>Accessing the API</h1>
+          <h1 id='getting-started'>Getting Started</h1>
 <p>To get started using the Whispir API, you&rsquo;ll need a few things:</p>
 
 <ol>
@@ -110,19 +106,19 @@ curl -H <span class="s2">"Authorization: Basic &lt;YOUR AUTHORIZATION HEADER&gt;
 <li>Check your connectivity to the API</li>
 <li>Try it out! Send an SMS Message</li>
 </ol>
-<h2 id='step-1---register-with-whispir'>Step 1 - Register with Whispir</h2>
+<h2 id='register-with-whispir'>Register with Whispir</h2>
 <p>Whispir&rsquo;s API is available for all existing Whispir customers to use.  If you&rsquo;re already a Whispir customer, great! Your existing username and password will work straight away.  You don&rsquo;t even need to contact us.</p>
 
 <p>If you&rsquo;re a new customer and are interested in finding out more about using the API, please send an email with your details to <a href="mailto:sales@whispir.com">sales@whispir.com</a>, and one of our sales reps will get back to with all the information you need.</p>
 
 <p>Once you&rsquo;ve got your Whispir Username and Password handy, you&rsquo;re ready to move to Step 2.</p>
-<h2 id='step-2---get-an-api-key'>Step 2 - Get an API Key</h2>
+<h2 id='get-an-api-key'>Get an API Key</h2>
 <p>If you haven&rsquo;t done so already, click <a href="http://developer.whispir.com/member/register">Register</a>, fill in the form you&rsquo;ll receive an email with your API key. </p>
 
 <p>Please note that your API key will need to be activated by one of our support team members, it should be done within a few hours so please be patient.  If you&rsquo;ve already registered but haven&rsquo;t heard back after 24 hours, please contact us at <a href="mailto:apisupport@whispir.com">apisupport@whispir.com</a>.</p>
 
 <p>Once you&rsquo;ve got your API key, you&rsquo;re ready to move to Step 3.</p>
-<h2 id='step-3---check-your-connectivity-to-the-api'>Step 3 - Check your connectivity to the API</h2>
+<h2 id='connect-to-the-api'>Connect to the API</h2>
 <blockquote>
 <p>Using the information on the left, you can execute the following curl statment: </p>
 </blockquote>
@@ -193,7 +189,7 @@ curl -H <span class="s2">"Authorization: Basic am9obi5zbWl0aDpteXBhc3N3b3Jk"</sp
 <ul>
 <li>If you&rsquo;re still having issues, contact us at <a href="mailto:apisupport@whispir.com">apisupport@whispir.com</a></li>
 </ul>
-<h2 id='step-4---send-an-sms-message'>Step 4 - Send an SMS Message</h2>
+<h2 id='send-a-message'>Send a Message</h2>
 <blockquote>
 <p>Send your first message using curl</p>
 </blockquote>
@@ -269,7 +265,7 @@ Accept: application/vnd.whispir.message-v1+xml
 
 <p>For more information on Messages and all the other Whispir resources please continue through the documentation, or browse straight to Messages resource documentation for more information.</p>
 
-          <h1 id='rate-limiting'>Rate Limiting</h1>
+          <h2 id='api-limits'>API Limits</h2>
 <blockquote>
 <p>In the event that Whispir&rsquo;s rate limits are breached, the following error messages will be returned from the Whispir API:</p>
 </blockquote>
@@ -330,7 +326,7 @@ X-Mashery-Error-Detail: Account Over Queries Per Day Limit
 
 <p>If further calls per second or per day are required for your application, please contact your Whispir Sales Representative, or <a href="mailto:sales@whispir.com">sales@whispir.com</a>.</p>
 
-          <h1 id='messages'>Messages</h1>
+          <h1 id='communications'>Communications</h1>
 <blockquote>
 <p>Sample to send an SMS, Email, Voice call, and Web Publishing in one request</p>
 </blockquote>
@@ -417,13 +413,19 @@ Content-Type: application/vnd.whispir.message-v1+xml
             </span><span class="s">"type"</span><span class="x"> </span><span class="o">:</span><span class="x"> </span><span class="s">"text/plain"</span><span class="x">
         </span><span class="p">}</span><span class="x">
     </span><span class="p">},</span><span class="x">
-    </span><span class="s">"type"</span><span class="x"> </span><span class="o">:</span><span class="x"> </span><span class="s">"defaultNoReply"</span><span class="x">
+    </span><span class="s">"type"</span><span class="x"> </span><span class="o">:</span><span class="x"> </span><span class="s">"defaultNoReply"</span><span class="p">,</span><span class="x">
+    </span><span class="s">"features"</span><span class="x"> </span><span class="o">:</span><span class="x"> </span><span class="p">{</span><span class="x">
+        </span><span class="s">"pushOptions"</span><span class="x"> </span><span class="o">:</span><span class="x"> </span><span class="p">{</span><span class="x">
+            </span><span class="s">"notifications"</span><span class="x"> </span><span class="o">:</span><span class="x"> </span><span class="s">"enabled"</span><span class="p">,</span><span class="x">
+            </span><span class="s">"escalationMins"</span><span class="x"> </span><span class="o">:</span><span class="x"> </span><span class="s">"3"</span><span class="x">
+        </span><span class="p">}</span><span class="x">
+    </span><span class="p">}</span><span class="x">
 </span><span class="p">}</span><span class="x">
 </span></pre>
 
-<p>Messages are the core of what the Whispir API offers as a service to customers.</p>
+<p>Communications are the core of what the Whispir API offers as a service to customers.</p>
 
-<p>Whispir has the ability to send messages across 7 different channels in a single API request:</p>
+<p>Whispir has the ability to send communications across 7 different channels in a single API request:</p>
 
 <p><strong>SMS</strong> - up to 1600 characters per message, premium routes, delivery receipts<br/>
 <strong>Email</strong> - free email messaging with HTML and Plain Text support<br/>
@@ -433,7 +435,7 @@ Content-Type: application/vnd.whispir.message-v1+xml
 <strong>Facebook</strong> - simplify the process of publishing to multiple facebook accounts instantaneously<br/>
 <strong>RSS</strong> - easily generate RSS feeds for consumption by other services</p>
 
-<p>The <strong>messages</strong> endpoint allows a user to perform the following tasks:</p>
+<p>All communications are driven from the <code class="prettyprint">/messages</code> endpoint within the API.  This endpoint allows a user to perform the following tasks:</p>
 
 <ol>
 <li>Create and Send a new message</li>
@@ -510,6 +512,19 @@ Content-Type: application/vnd.whispir.message-v1+xml
                 <ul>
                     <li>defaultNoReply - Used to reject any replies to this message.</li>
                     <li>noDlr - Used to specify that DLRs should not be enabled for this message.</li>
+                </ul>
+            </td>
+        </tr>
+        <tr>
+            <td style="text-align: right; font-weight: bold;">features:</td>
+            <td><strong>Object</strong><br/>
+                Allows the user to modify the push notifications properties if these are configured in the company.
+                <br/>
+                <br/>
+                <strong>pushOptions:</strong>
+                <ul>
+                    <li>notifications - enabled/disabled</li>
+                    <li>escalationMins - # mins to await a push notifications response</li>
                 </ul>
             </td>
         </tr>
