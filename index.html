@@ -5,10 +5,11 @@
     <meta content="IE=edge,chrome=1" http-equiv="X-UA-Compatible">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
     <title>Whispir API Documentation</title>
+    <link rel="shortcut icon" href="images/favicon.ico" type="image/x-icon">
+    <link rel="icon" href="images/favicon.ico" type="image/x-icon">
 
     <link href="stylesheets/screen.css" rel="stylesheet" type="text/css" media="screen" />
     <link href="stylesheets/print.css" rel="stylesheet" type="text/css" media="print" />
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
       <script src="javascripts/all.js" type="text/javascript"></script>
 
       <script>
@@ -26,7 +27,7 @@
       </span>
     </a>
     <div class="tocify-wrapper">
-      <img src="images/logo.png" />
+      <img src="images/whispir.io_Logo_Negative.png" />
         <div class="lang-selector">
               <a href="#" data-language-name="go">json</a>
               <a href="#" data-language-name="xml">xml</a>
@@ -38,15 +39,15 @@
       <div id="toc">
       </div>
         <ul class="toc-footer">
-            <li><a href='http://developer.whispir.com'>Sign Up for a Developer Key</a></li>
-            <li><a href='http://github.com/tripit/slate'>Documentation Powered by Slate</a></li>
+            <li><a href='http://stage.whispir.io/register'>Create an API Key</a></li>
+            <li><a href='http://github.com/tripit/slate'>Documentation by Slate</a></li>
         </ul>
     </div>
     <div class="page-wrapper">
       <div class="dark-box"></div>
       <div class="content">
         
-          <h1 id='whispir-api'>Whispir API</h1>
+          <h1 id='whispir-io-api'>Whispir.io API</h1>
 <blockquote>
 <p>Whispir&rsquo;s API requires only 3 parameters within JSON or XML to send an SMS message</p>
 </blockquote>
@@ -57,7 +58,7 @@
 </span><span class="p">}</span><span class="x">
 </span></pre>
 <pre class="highlight xml"><span class="cp">&lt;?xml version="1.0" encoding="UTF-8" standalone="yes"?&gt;</span>
-<span class="nt">&lt;ns2:message</span> <span class="na">xmlns:ns2=</span><span class="s">"http://schemas.api.whispir.com"</span><span class="nt">&gt;</span>
+<span class="nt">&lt;ns2:message</span> <span class="na">xmlns:ns2=</span><span class="s">"https://schemas.api.whispir.com"</span><span class="nt">&gt;</span>
     <span class="nt">&lt;to&gt;</span>61400000000<span class="nt">&lt;/to&gt;</span>
     <span class="nt">&lt;subject&gt;</span>Test SMS Message<span class="nt">&lt;/subject&gt;</span>    
     <span class="nt">&lt;body&gt;</span>This is the body of my test SMS message<span class="nt">&lt;/body&gt;</span>
@@ -77,9 +78,15 @@ curl -H <span class="s2">"Authorization: Basic &lt;YOUR AUTHORIZATION HEADER&gt;
 
 </pre>
 
-<p>The Whispir API has been designed to provide application developers the ability to embed the powerful multichannel messaging capabilities the Whispir Platform provides, directly into any application with access to the web.</p>
-<h3 id='communications-api'>Communications API</h3>
-<p>Whispir&rsquo;s API gives developers the ability to:</p>
+<p>Built by developers, for developers, Whispir.io is the place where you can easily build accountable messaging into your app – SMS, email, push, voice, chat, web, social, &amp; rich messages.</p>
+
+<p>Easy to use, Whispir.io presents all the tools you need to develop a communications capability for your app and enable rapid deployment to market. Integrate, test, demonstrate, and commercialise your app, without significant capital investment, with leading messaging API technology.</p>
+
+<p>No other platform enables you to create &amp; send rich messages, personalise cross-channel communications, and enrich your contact data with relevance.</p>
+
+<p><strong>We can&rsquo;t wait to see what you build</strong></p>
+<h3 id='accountable-communications-api'>Accountable Communications API</h3>
+<p>The Whispir.io API gives developers the ability to:</p>
 
 <ul>
 <li>Create, send and retrieve multi-channel messages over 8 different channels</li>
@@ -87,8 +94,24 @@ curl -H <span class="s2">"Authorization: Basic &lt;YOUR AUTHORIZATION HEADER&gt;
 <li>Publish messages to internal or external web pages, RSS feeds and social networks</li>
 <li>Asynchronously receive all responses to a given message and perform analysis on the data</li>
 </ul>
+<h3 id='communications-template-api'>Communications Template API</h3>
+<p>The Whispir.io Template API gives developers the ability to:</p>
+
+<ul>
+<li>Create rich, cross-channel message templates that can be managed by designers within the Whispir Rich Message Studio.</li>
+<li>Ensure a DRY (don&rsquo;t repeat yourself) pattern within developer code by separating the communication content from code </li>
+<li>Reduce code change by managing content elsewhere</li>
+</ul>
+<h3 id='event-management-api'>Event Management API</h3>
+<p>The Whispir.io API Event Management API provides developers with the tools needed to manage the communication around events that happen:</p>
+
+<ul>
+<li>When events occur in your organisation, manage them using Whispir.io</li>
+<li>Save different event details; Severity, Priority, Description and Tasks to ensure a path to a seamless resolution</li>
+<li>Automatically inform teams through Whispir&rsquo;s integrated cross-channel messaging, ensuring that you know who has received the message, and more importantly; who hasn&rsquo;t</li>
+</ul>
 <h3 id='contact-management-api'>Contact Management API</h3>
-<p>The Whispir API provides developers with the ability to manage the recipients of their messages:</p>
+<p>The Whispir.io API provides developers with the ability to manage the recipients of their messages:</p>
 
 <ul>
 <li>Store contact information in a cloud based highly available and accessible environment</li>
@@ -98,31 +121,38 @@ curl -H <span class="s2">"Authorization: Basic &lt;YOUR AUTHORIZATION HEADER&gt;
 </ul>
 
           <h1 id='getting-started'>Getting Started</h1>
-<p>To get started using the Whispir API, you&rsquo;ll need a few things:</p>
+<p>Getting started with the Whispir.io API is easy:</p>
 
 <ol>
-<li>Register with Whispir to receive a Whispir Username and Password - (<a href="https://app.whispir.it/pub/whispirSelfRegistration.pub">Free Trial</a>)</li>
-<li>Get an API Key - (<a href="https://developer.whispir.com/member/register">Developer Account Here</a>)</li>
+<li>Register with Whispir.io to create your account - (<a href="https://stage.whispir.io/register">Free 30 Day Trial</a>)</li>
+<li>Create an App inside the Whispir.io App Dashboard - (<a href="https://stage.whispir.io/dashboard">App Dashboard</a>)</li>
 <li>Check your connectivity to the API</li>
-<li>Try it out! Send an SMS Message</li>
+<li>Try it out! Send your first message</li>
 </ol>
 <h2 id='register-with-whispir'>Register with Whispir</h2>
-<p>Whispir&rsquo;s API is available for all existing Whispir customers to use.  If you&rsquo;re already a Whispir customer, great! Your existing username and password will work straight away.  You don&rsquo;t even need to contact us.</p>
+<p>The Whispir.io API is available for all existing Whispir customers to use.  If you&rsquo;re already a Whispir customer, great! Your existing username and password will work straight away.  You don&rsquo;t even need to contact us.</p>
 
-<p>If you&rsquo;re a new customer and are interested in finding out more about using the API, please send an email with your details to <a href="mailto:sales@whispir.com">sales@whispir.com</a>, and one of our sales reps will get back to with all the information you need.</p>
+<p>Simply log in to (<a href="https://stage.whispir.io/login">whispir.io</a>) and create an app inside the app dashboard.</p>
 
-<p>Once you&rsquo;ve got your Whispir Username and Password handy, you&rsquo;re ready to move to Step 2.</p>
-<h2 id='get-an-api-key'>Get an API Key</h2>
-<p>If you haven&rsquo;t done so already, click <a href="http://developer.whispir.com/member/register">Register</a>, fill in the form you&rsquo;ll receive an email with your API key. </p>
+<p>If you&rsquo;re a new customer and are interested in using the API, sign up for our (<a href="https://stage.whispir.io/register">Free 30 Day Trial</a>). No Credit Card Required.  </p>
+<h2 id='create-an-app'>Create an app</h2>
+<p>Follow these simple steps to create your first Whispir.io Application.</p>
 
-<p>Please note that your API key will need to be activated by one of our support team members, it should be done within a few hours so please be patient.  If you&rsquo;ve already registered but haven&rsquo;t heard back after 24 hours, please contact us at <a href="mailto:apisupport@whispir.com">apisupport@whispir.com</a>.</p>
+<ol>
+<li><p>Log in to the (<a href="https://stage.whispir.io/login">whispir.io dashboard</a>).</p></li>
+<li><p>If you haven&rsquo;t validated your e-mail address, you&rsquo;ll need to do this first by clicking the <em>validate</em> link.  This will send you an e-mail.  Simply click the link in the e-mail you receive and your e-mail will be validated.</p></li>
+<li><p>You should now see the <em>Create App</em> button at the top of the screen.  Click this button to create your first app.</p></li>
+<li><p>You&rsquo;ll need to give your app a <strong>Name</strong> and a <strong>Description</strong>. These help you identify your app within the App Dashboard.  These won&rsquo;t be exposed to the users of your app.</p></li>
+<li><p>Click <em>Create</em>. That&rsquo;s it, you&rsquo;ve now created your first Whispir.io App.<br>
+An API key will be generated for this application automatically.  You&rsquo;ll need this API key to start making API calls for this application.</p></li>
+</ol>
 
-<p>Once you&rsquo;ve got your API key, you&rsquo;re ready to move to Step 3.</p>
+<p>Now that you&rsquo;ve got your App API key, you can check your connectivity to the API using the steps below.</p>
 <h2 id='connect-to-the-api'>Connect to the API</h2>
 <blockquote>
 <p>Using the information on the left, you can execute the following curl statment: </p>
 </blockquote>
-<pre class="highlight shell">curl -H <span class="s2">"Authorization: &lt;Your Authorization Header&gt;"</span> https://api.whispir.com?apikey<span class="o">=</span>&lt;Your API Key&gt;
+<pre class="highlight shell">curl -H <span class="s2">"Authorization: &lt;Your Authorization Header&gt;"</span> https://api.whispir.com?apikey<span class="o">=</span>&lt;Your App API Key&gt;
 
 <span class="c"># e.g. with sample values</span>
 
@@ -130,11 +160,11 @@ curl -H <span class="s2">"Authorization: Basic am9obi5zbWl0aDpteXBhc3N3b3Jk"</sp
 </pre>
 
 <blockquote>
-<p>If all is correct, the following response should be expected (Whispir&rsquo;s API defaults to an XML response)</p>
+<p>If all is correct, the following response should be expected (The Whispir.io API defaults to an XML response)</p>
 </blockquote>
 <pre class="highlight shell">&lt;?xml <span class="nv">version</span><span class="o">=</span><span class="s2">"1.0"</span> <span class="nv">encoding</span><span class="o">=</span><span class="s2">"UTF-8"</span> <span class="nv">standalone</span><span class="o">=</span><span class="s2">"yes"</span>?&gt;
-&lt;ns2:company <span class="nv">xmlns</span><span class="o">=</span><span class="s2">"http://schemas.api.whispir.com/dap"</span> 
-             xmlns:ns2<span class="o">=</span><span class="s2">"http://schemas.api.whispir.com"</span>&gt;
+&lt;ns2:company <span class="nv">xmlns</span><span class="o">=</span><span class="s2">"https://schemas.api.whispir.com/dap"</span> 
+             xmlns:ns2<span class="o">=</span><span class="s2">"https://schemas.api.whispir.com"</span>&gt;
     &lt;link <span class="nv">method</span><span class="o">=</span><span class="s2">"GET"</span> 
           <span class="nv">rel</span><span class="o">=</span><span class="s2">"retrieveWorkspaces"</span> 
           <span class="nv">uri</span><span class="o">=</span><span class="s2">"https://api.whispir.com/workspaces?apikey=89asdfohasd89023rsd"</span>/&gt;
@@ -146,52 +176,93 @@ curl -H <span class="s2">"Authorization: Basic am9obi5zbWl0aDpteXBhc3N3b3Jk"</sp
 <p>This may look a bit scary at first, but it will all make sense shortly. All you need to know now is you&rsquo;ve got access to the API!</p>
 </blockquote>
 
-<p>The first thing you&rsquo;ll need to do is generate the <strong>Authorization Header</strong> for your API requests. You&rsquo;ll need to use this on every request that you submit to the Whispir API.</p>
+<p>The first thing you&rsquo;ll need to do is generate your <strong>Authorization Header</strong> for your API requests. You&rsquo;ll need to use the Authorization Header on every request that you submit to the Whispir.io API.</p>
 
-<p>Whispir is currently using BASIC HTTP Authentication for all requests.</p>
+<p><strong>Whispir uses Basic HTTP Authentication for all API requests.</strong></p>
 
-<p>You can generate this header in most programming lanugages very easily, however for ease of use you can generate it here by filling in the form below. </p>
+<p>You can generate the Authorization header in most programming languages very easily, however for simplicity you can generate it here by filling in the form below. </p>
 
-<p><strong>Note:</strong> Your Whispir authentication information is not submitted or stored anywhere, it is only used as part of the algorithm to automatically generate the header. </p>
+<p><strong>Note:</strong> Your Whispir authentication information is not submitted or stored, it is only used as part of an algorithm to automatically generate your header. </p>
 
 <p><strong>Whispir Username:</strong>&nbsp;<input id="username" name="username" style="width: 60%; margin-bottom: 3px;" type="text"> <br/>
 <strong>Whispir Password:</strong>&nbsp;<input id="password" name="password" style="width: 60%" type="password"></p>
 
-<p><button onclick="doEncode()" name="encode">Generate your Authorization Header</button></p>
+<p><button onclick="doEncode()" name="encode" id="encode">Generate your Authorization Header</button></p>
 
 <p><strong>Authorization Header:</strong>&nbsp;<input id="result" name="result" style="width: 60%" type="text"> <br/></p>
 
-<p>Once you have generated this header, you can use it in a request to the API.  This will ensure everything is working correctly.  To do this you can use a curl script, or another generic REST client.</p>
+<p>Once you have generated this header, you can use it in a request to the API. This will ensure everything is working correctly. To do this you can use a programming lanugage, a curl script, or a generic REST client.</p>
+<h3 id='connect-using-a-programming-language'>Connect using a programming language</h3>
+<p>Whispir.io provides some basic code samples in a range of languages to assist users in geting started with the API.  Once you have created your App in the Whispir.io Dashboard, simply click on the <em>Code</em> tab on the left side of the screen.</p>
+
+<p>Select the App, and the action that you would like to perform (e.g. Send an SMS message).</p>
+
+<p>This will automatically generate the code for you.  You can copy this code into your IDE, import any required dependencies, and run it.</p>
+
+<p>You will need to replace the following elements of the request:</p>
+
+<ol>
+<li>App API Key</li>
+<li>Authorization Header</li>
+<li>Recipient information</li>
+<li>Message Subject</li>
+<li>Message Content</li>
+</ol>
+
+<p>Once you have verified you have replaced all of these, run the request in your IDE and you will receive your first message using the Whispir.io API.</p>
+<h3 id='using-curl'>Using cURL</h3>
+<p>cURL is a computer software project providing a library and command-line tool for transferring data using various protocols. One key use of cURL is to make HTTP requests.</p>
+
+<p>In order to test your ability to use the Whispir.io API, cURL is a very quick mechanism to enter on to a command line interface and make sure everything is set up correctly.</p>
+
+<p>Generate your Authorization Header using the form above, and using the code snippets in the code panel, you can execute your first request to the Whispir.io API.</p>
 <h3 id='using-a-generic-rest-client'>Using a generic REST Client</h3>
-<p>If you&rsquo;re unsure about using curl, you can install a REST Client plugin in your browser and test the calls through there.  Whispir recommends using the <a href="https://addons.mozilla.org/en-US/firefox/addon/restclient/">RESTClient plugin for Firefox</a>.</p>
+<p>If you&rsquo;re unsure about using curl, you can install a REST Client in your browser and test the calls through there.  Whispir recommends the following clients:</p>
 
-<p>To test your connectivity, you need to enter your Whispir username and password and provide the API URL that you would like to call.</p>
+<ol>
+<li><a href="https://www.getpostman.com/">Postman - Chrome/IE</a></li>
+<li><a href="https://restclient.net">RESTClient - Firefox</a></li>
+</ol>
 
-<p>The HTTP call will look more like the following:</p>
+<p>To test your connectivity, you will need to enter the following parameters:</p>
+
+<ol>
+<li>The URL that you would like to request</li>
+<li>Your App API Key</li>
+<li>Your Authorization Header</li>
+<li>(Optional) The Content-Type/Accept Headers</li>
+</ol>
+
+<p>The HTTP call will look like the following:</p>
 
 <p><code class="prettyprint">GET https://api.whispir.com?apikey=89asdfohasd89023rsdfhio8923</code></p>
 
 <p>With the following header (as a minimum).</p>
 
 <p><code class="prettyprint">Authorization: Basic am9obi5zbWl0aDpteXBhc3N3b3Jk</code></p>
+
+<p>Once you have executed this request, you should receive a <strong>200 OK</strong> response from the REST Client. This means that you have connectivity to the Whispir.io API and can start building your App.</p>
+
+<p>If you received another response, please continue to the next section to understand how to resolve your issues.</p>
 <h3 id='resolving-connectivity-issues'>Resolving connectivity issues</h3>
 <p>If you get a different response than <strong>HTTP 200 OK</strong>, perform the following:</p>
 
 <p><strong>HTTP 403 Forbidden, or HTTP 401 Unauthorized</strong></p>
 
 <ul>
-<li>Your Authorization header may not be quite right, verify your username and password browsing to <a href="http://www.whispir.com">Whispir</a> and clicking &lsquo;Sign In&rsquo;,</li>
-<li>Try and re-generate the Base64 encoded username and password using the form above</li>
+<li>Your Authorization header may not be quite right, verify your username and password browsing to <a href="https://stage.whispir.io">Whispir.io</a> and clicking &lsquo;Log In&rsquo;</li>
+<li>If you can successfully log in, then try and re-generate the Base64 encoded username and password using the form above.</li>
+<li>If you cannot log in, then it&rsquo;s possible your account isn&rsquo;t active. Contact your Whispir Administrator, or send a message to our support team at <a href="mailto:apisupport@whispir.com">apisupport@whispir.com</a>.</li>
 </ul>
 
 <p><strong>Other HTTP errors or no connectivity at all</strong></p>
 
 <ul>
-<li>If you&rsquo;re still having issues, contact us at <a href="mailto:apisupport@whispir.com">apisupport@whispir.com</a></li>
+<li>If you&rsquo;re still having issues, please contact us at <a href="mailto:apisupport@whispir.com">apisupport@whispir.com</a>.</li>
 </ul>
-<h2 id='send-a-message'>Send a Message</h2>
+<h2 id='creating-your-messages'>Creating your messages</h2>
 <blockquote>
-<p>Send your first message using curl</p>
+<p>Send your first message using cURL</p>
 </blockquote>
 <pre class="highlight shell">curl -H <span class="s2">"Authorization: Basic am9obi5zbWl0aDpteXBhc3N3b3Jk"</span> 
      -H <span class="s2">"Content-Type: application/vnd.whispir.message-v1+json"</span> 
@@ -206,12 +277,12 @@ curl -H <span class="s2">"Authorization: Basic am9obi5zbWl0aDpteXBhc3N3b3Jk"</sp
 <blockquote>
 <p>Once you submit this, Whispir will send you back an HTTP 202 Accepted stating that your request has been accepted for processing.  Within a few seconds your phone should be buzzing away.</p>
 </blockquote>
-<h3 id='messages-endpoint'>Messages Endpoint</h3>
+<h3 id='sending-messages'>Sending Messages</h3>
 <p>By now you should be able to connect to the API and can issue requests and receive responses. Based on this, you can now send your first SMS message using the API.</p>
 
-<p>This is very similar to the previous request, but instead of using a <strong>HTTP GET</strong> to retrieve information, this time you&rsquo;re going to use a <strong>HTTP POST</strong> to push information to Whispir. </p>
+<p>This is very similar to the previous request you executed to test your connectivity, but instead of using an <strong>HTTP GET</strong> to retrieve information, this time you&rsquo;re going to use an <strong>HTTP POST</strong> to ask Whispir to do something. </p>
 
-<p>As you&rsquo;re sending a message, you need to tell Whispir who to send it to, and what the type of content it is.</p>
+<p>As you&rsquo;re sending a message, you need to tell Whispir <em>who</em> to send it to, and <em>what</em> the type of content it is.</p>
 
 <p>You&rsquo;re going to use the URL <code class="prettyprint">https://api.whispir.com/messages</code> as the API endpoint. </p>
 <h3 id='content-type'>Content Type</h3>
@@ -235,8 +306,8 @@ Content-Type: application/vnd.whispir.message-v1+xml
 Accept: application/vnd.whispir.message-v1+xml
 
 <span class="cp">&lt;?xml version="1.0" encoding="UTF-8" standalone="yes"?&gt;</span>
-<span class="nt">&lt;ns2:message</span> <span class="na">xmlns:ns2=</span><span class="s">"http://schemas.api.whispir.com"</span><span class="nt">&gt;</span>
-    <span class="nt">&lt;to&gt;&lt;DESTINATION</span> <span class="err">PHONE</span> <span class="err">NUMBER</span><span class="nt">&gt;&lt;/to&gt;</span>
+<span class="nt">&lt;ns2:message</span> <span class="na">xmlns:ns2=</span><span class="s">"https://schemas.api.whispir.com"</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;to&gt;</span>[DESTINATION PHONE NUMBER]<span class="nt">&lt;/to&gt;</span>
     <span class="nt">&lt;subject&gt;</span>This is the first line of my SMS<span class="nt">&lt;/subject&gt;</span>    
     <span class="nt">&lt;body&gt;</span>This is the content of my SMS<span class="nt">&lt;/body&gt;</span>
 <span class="nt">&lt;/ns2:message&gt;</span> 
@@ -252,7 +323,7 @@ Accept: application/vnd.whispir.message-v1+xml
 <li>application/vnd.whispir.message-v1+xml</li>
 </ul>
 
-<p>This tells Whispir that you are sending content that conforms to Version 1 of the message schema.  As Whispir adds more features to each schema, our version numbers will increase, this is described in much more detail later on in the documentation.</p>
+<p>This tells Whispir that you are sending content that conforms to Version 1 of the message schema. As Whispir adds more features to each schema, our version numbers will increase, this is described in much more detail later on in the documentation.</p>
 <h3 id='sending-messages-using-json-and-xml'>Sending messages using JSON and XML</h3>
 <p>Once you have successfully sent your SMS message using curl, you can move on to using your application to generate XML or JSON formats for processing.</p>
 
@@ -289,44 +360,509 @@ X-Mashery-Error-Detail: Account Over Queries Per Day Limit
 <p>Whispir&rsquo;s API usage is limited on a per apikey basis using <strong>per second</strong> limit and <strong>per day</strong> limits.</p>
 
 <p>Depending on your Whispir License, you will obtain higher per second and per day rates:</p>
-
+<h3 id='whispir-io-editions'>Whispir.io Editions</h3>
 <table><thead>
 <tr>
-<th>Whispir Edition</th>
-<th>Calls Per Second (CPS)</th>
-<th>Calls Per Day (CPD)</th>
+<th>Whispir.io Edition</th>
+<th>Requests Per Second</th>
+<th>Requests Per Day</th>
 </tr>
 </thead><tbody>
 <tr>
-<td>API Only Edition</td>
-<td>7 calls per second</td>
-<td>5000 calls per day</td>
+<td>Startup API Edition</td>
+<td>5 requests per second</td>
+<td>10000 requests per day</td>
 </tr>
 <tr>
-<td>Business Edition</td>
-<td>1 call per second</td>
-<td>1000 calls per day</td>
+<td>Business API Edition</td>
+<td>10 requests per second</td>
+<td>20000 requests per day</td>
 </tr>
 <tr>
-<td>Essential Edition</td>
-<td>1 call per second</td>
-<td>1000 calls per day</td>
-</tr>
-<tr>
-<td>Professional Edition</td>
-<td>3 call per second</td>
-<td>3000 calls per day</td>
-</tr>
-<tr>
-<td>Enterprise Edition</td>
-<td>7 call per second</td>
-<td>5000 calls per day</td>
+<td>Enterprise API Edition</td>
+<td>30 requests per second</td>
+<td>50000 requests per day</td>
 </tr>
 </tbody></table>
 
-<p>If further calls per second or per day are required for your application, please contact your Whispir Sales Representative, or <a href="mailto:sales@whispir.com">sales@whispir.com</a>.</p>
+<p>If further calls per second or per day are required for your application, please contact your Whispir Sales Representative, or <a href="https://stage.whispir.io/contact/">Contact Us</a>.</p>
 
-          <h1 id='communications'>Communications</h1>
+          <h1 id='conventions'>Conventions</h1><h2 id='api-security'>API Security</h2>
+<blockquote>
+<p>Basic HTTP Authentication over HTTPS</p>
+</blockquote>
+<pre class="highlight plaintext">HTTPS GET /workspaces/123/contacts?firstname=John&amp;lastname=Smith?apikey=789264
+Authorization: Basic frJIUN8DYpKDtOLCwo//yllqDzg=
+</pre>
+
+<p>The Whispir.io API supports multiple methods of authentication to cater for varying client needs.  Authentication is necessary for users of the API to ensure that only valid and legal requests are processed by the Whispir messaging engine.</p>
+<h3 id='basic-authentication-over-https-default'>Basic Authentication over HTTPS (default)</h3>
+<p>The basic authentication process is offered for use with clients that already have an ‘up and running’ application, and would like to integrate Whispir as a messaging provider in a quick and simple fashion.</p>
+
+<p>Basic access authentication over HTTPS involves the application client sending an encoded Username and Password with when requesting resources from the server.</p>
+
+<p>Clients will also be required to provide the API Key that is provided when the application is registered within Mashery.  This API Key is used to determine the application that is making the request, and whether it is allowed to make requests, it is still within the request thresholds, and is a valid API Key. </p>
+
+<p>Once this has been confirmed, the request is forwarded on to Whispir for Basic authentication processing.</p>
+
+<ul>
+<li>If this Username and password is correct, the server will process the request and send back an appropriate response.</li>
+<li>If the Username and password is not correct, the server will send back an HTTP 401 (Authorization required).</li>
+</ul>
+
+<p><img alt="Basic Authentication" src="https://developer.whispir.com/files/Computer-diagram.png" /></p>
+
+<p>Once Whispir has validated the username and password, the requested resource is returned through Mashery to the application client.</p>
+<h3 id='basic-authentication--example'>Basic Authentication – Example</h3>
+<p>A valid request that will be accepted and authenticated by the Whispir messaging engine using Basic authentication is as follows:</p>
+
+<p>The ‘Authorization’ header is comprised of the word <strong>Basic</strong> followed by the base64 representation of the username and password of the user.</p>
+
+<p>More information about HTTP Basic Authentication can be found on <a title="Basic access authentication" href="https://en.wikipedia.org/wiki/Basic_access_authentication">Wikipedia</a>.</p>
+<h2 id='restful-architecture'>RESTful Architecture</h2>
+<p>The Whispir.io API provides interfaces for application clients to utilise Whispir functionality that are platform agnostic, without any dependency on the environment or programming language being used.</p>
+
+<p>Whispir&rsquo;s API supports multiple methods of inbound request over HTTPS, primarily:</p>
+
+<ul>
+<li>  XML</li>
+<li>  JSON</li>
+</ul>
+
+<p>Clients can issue requests using either of the methods, and receive a response in the same format. This allows easy integration with existing and new applications using technologies that are widely supported in a range of languages.</p>
+<h3 id='restful-architecture'>RESTful Architecture</h3>
+<p>The Whispir.io API employs a ‘REST’ (<strong>Re</strong>presentational <strong>S</strong>tate <strong>T</strong>ransfer) architecture.  This architecture is the foundation of the World Wide Web and is widely used in application, service and API development.</p>
+
+<p>An application is considered ‘RESTful’ if it conforms to a ‘REST’ architecture.  A ‘REST’ architecture consists of <strong>clients</strong> and <strong>servers</strong>.  The clients initiate requests to the servers, and the servers process the requests and return the appropriate responses.  Requests and responses are structured using defined and addressable <strong>resources</strong>. </p>
+
+<p>Each <strong>resource</strong> within the Whispir API is available through a secure and authenticated URL. </p>
+
+<p><strong>Note:</strong> More information about REST can be found on <a href="https://en.wikipedia.org/wiki/Representational_state_transfer">Wikipedia</a>.</p>
+<h2 id='retrieving-objects'>Retrieving objects</h2>
+<blockquote>
+<p>Retrieve all workspaces within your Company</p>
+</blockquote>
+<pre class="highlight xml">HTTP GET https://api.whispir.com/workspaces?apikey=bneov3023nfo023rssdf3
+</pre>
+<pre class="highlight go"><span class="n">HTTP</span><span class="x"> </span><span class="n">GET</span><span class="x"> </span><span class="n">https</span><span class="o">:</span><span class="c">//api.whispir.com/workspaces?apikey=bneov3023nfo023rssdf3</span><span class="x">
+</span></pre>
+
+<blockquote>
+<p>Retrieve all Messages from within the Company</p>
+</blockquote>
+<pre class="highlight xml">HTTP GET https://api.whispir.com/messages?apikey=bneov3023nfo023rssdf3
+</pre>
+<pre class="highlight go"><span class="n">HTTP</span><span class="x"> </span><span class="n">GET</span><span class="x"> </span><span class="n">https</span><span class="o">:</span><span class="c">//api.whispir.com/messages?apikey=bneov3023nfo023rssdf3</span><span class="x">
+</span></pre>
+
+<p>Application clients can retrieve lists of resources of a single type through a simple URL. </p>
+
+<p>For example, to retrieve a list of <strong>Workspaces</strong> from within the <strong>Company</strong>, the URL is as follows:</p>
+
+<p><code class="prettyprint">GET https://api.whispir.com/workspaces?apikey=bneov3023nfo023rssdf3</code></p>
+<h3 id='retrieving-a-single-object'>Retrieving a single object</h3>
+<blockquote>
+<p>Retrieve the Workspace with the ID of 12345</p>
+</blockquote>
+<pre class="highlight xml">GET https://api.whispir.com/workspaces/12345?apikey=bneov3023nfo023rssdf3
+</pre>
+<pre class="highlight go"><span class="n">GET</span><span class="x"> </span><span class="n">https</span><span class="o">:</span><span class="c">//api.whispir.com/workspaces/12345?apikey=bneov3023nfo023rssdf3</span><span class="x">
+</span></pre>
+
+<p>Application clients also have access to a single resource by specifying the relevant ID of the resource.  This information would have been returned when retrieving the list of resources as specified above.</p>
+
+<p>To retrieve a single <strong>Workspace</strong> when you know the ID, the URL is as follows:</p>
+
+<p><code class="prettyprint">GET https://api.whispir.com/workspaces/12345?apikey=bneov3023nfo023rssdf3</code></p>
+
+<p>Or to retrieve a single <strong>Contact</strong> when you know the ID, the URL is as follows:</p>
+
+<p><code class="prettyprint">GET https://api.whispir.com/contacts/78910?apikey=bneov3023nfo023rssdf3</code></p>
+
+<blockquote>
+<p>Retrieve the Contact with the ID of 78910</p>
+</blockquote>
+<pre class="highlight xml">GET https://api.whispir.com/contacts/78910?apikey=bneov3023nfo023rssdf3
+</pre>
+<pre class="highlight go"><span class="n">GET</span><span class="x"> </span><span class="n">https</span><span class="o">:</span><span class="c">//api.whispir.com/contacts/78910?apikey=bneov3023nfo023rssdf3</span><span class="x">
+</span></pre>
+<h3 id='nested-objects'>Nested objects</h3>
+<blockquote>
+<p>Retrieve the Contact with the ID 67890 from within the Workspace with ID 12345</p>
+</blockquote>
+<pre class="highlight xml">GET https://api.whispir.com/workspaces/12345/contacts/67890?apikey=bneov3023nfo023rssdf3
+</pre>
+<pre class="highlight go"><span class="n">GET</span><span class="x"> </span><span class="n">https</span><span class="o">:</span><span class="c">//api.whispir.com/workspaces/12345/contacts/67890?apikey=bneov3023nfo023rssdf3</span><span class="x">
+</span></pre>
+
+<p>Within Whispir&rsquo;s resource model, some resources are nested within one another.  For example; </p>
+
+<ul>
+<li>The <strong>Company</strong> resource contains many <strong>Workspaces</strong>.  </li>
+<li>The <strong>Workspace</strong> resource contains many <strong>Messages</strong>. <br></li>
+<li>Each <strong>Message</strong> resource contains a <strong>MessageStatus</strong>.</li>
+</ul>
+
+<p>Requests can be <em>nested</em> in order to provide application clients the ability to access specific resources when they are nested.</p>
+
+<p>For example, if you wanted to retrieve a <strong>Contact</strong> from within a <strong>Workspace</strong>, the URL would look as follows:</p>
+
+<p><code class="prettyprint">GET https://api.whispir.com/workspaces/12345/contacts/67890?apikey=bneov3023nfo023rssdf3</code></p>
+<h2 id='http-response-codes'>HTTP Response Codes</h2>
+<p>Application clients that are using Whispir&rsquo;s API will receive HTTP response codes in response to every request that is issued. </p>
+
+<p>The table below describes the response codes that will be issued and gives potential reasons as to why they may have been sent back.</p>
+
+<table>
+    <thead>
+        <tr>
+            <th style="width: 50%" colspan="2">Successful Response Codes</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td style="text-align: right; font-weight: bold;">200 OK:</td>
+            <td><strong>Successful request</strong><br/>
+                No further action required.
+            </td>
+        </tr>
+        <tr>
+            <td style="text-align: right; font-weight: bold;">201 Created:</td>
+            <td><strong>Successfully created the resource.</strong><br/>
+                The requested resource has been successfully created and can be found via the URL in the ‘Location’ header
+            </td>
+        </tr>
+        <tr>
+            <td style="text-align: right; font-weight: bold;">202 Accepted:</td>
+            <td><strong>Successfully accepted the request for processing</strong><br/>
+                The request has been accepted for processing by the asynchronous processor.
+            </td>
+        </tr>
+        <tr>
+            <td style="text-align: right; font-weight: bold;">204 No Content:</td>
+            <td><strong>Successfully processed the request, but no content was sent back</strong><br/>
+                The update (PUT) or delete (DELETE) request has been successfully processed, and no content was returned from the server.
+            </td>
+        </tr>
+        <tr>
+            <td style="text-align: right; font-weight: bold;">301 Moved Permanently:</td>
+            <td><strong>Successful request, but the resource is no longer available at this location.</strong><br/>
+                This resource URL should no longer be used. Check the location header of the response and redirect the request there.
+            </td>
+        </tr>
+        <tr>
+            <td style="text-align: right; font-weight: bold;">302 Found:</td>
+            <td><strong>Successful request, but the resource is temporarily not available at this location.</strong><br/>
+                This resource URL should still be used in future, but for this specific request, check the location header of the response and redirect the request there.
+            </td>
+        </tr>
+        <tr>
+            <td style="text-align: right; font-weight: bold;">304 Not modified:</td>
+            <td><strong>Content hasn’t changed since last request</strong><br/>
+                No action required
+            </td>
+        </tr>
+    </tbody>
+</table>
+
+<table>
+    <thead>
+        <tr>
+            <th style="width: 50%" colspan="2">Unsuccessful Response Codes</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td style="text-align: right; font-weight: bold;">400 Bad Request:</td>
+            <td><strong>Invalid or missing request parameters</strong><br/>
+                Inspect the request parameters and ensure that all required parameters are supplied.<br/><br/>
+
+                Note the error text in the response and update the request accordingly
+            </td>
+        </tr>
+        <tr>
+            <td style="text-align: right; font-weight: bold;">401 Unauthorized:</td>
+            <td><strong>Invalid or no credentials passed in the request</strong><br/>
+                Inspect the authorisation header and ensure that a valid authentication has been provided.
+            </td>
+        </tr>
+        <tr>
+            <td style="text-align: right; font-weight: bold;">403 Forbidden:</td>
+            <td><strong>Authorization credentials passed and accepted but account does not have permission</strong><br/>
+                Inspect the authorisation header and ensure that a valid authentication has been provided.
+            </td>
+        </tr>
+        <tr>
+            <td style="text-align: right; font-weight: bold;">404 Not Found:</td>
+            <td><strong>The requested URL does not exist</strong><br/>
+                The requested resource was not found, inspect the ID in the URL that was used and ensure that it is valid.<br/><br/>Also, inspect the Accept and Content-Type headers that are being used to make sure they are correct for the URL that is being requested.
+            </td>
+        </tr>
+        <tr>
+            <td style="text-align: right; font-weight: bold;">405 Method not allowed:</td>
+            <td><strong>The requested resource does not support the supplied verb</strong><br/>
+                Inspect the HTTP method that was used in the request and ensure that it is valid for the resource being requested
+            </td>
+        </tr>
+        <tr>
+            <td style="text-align: right; font-weight: bold;">415 Unsupported Media Type:</td>
+            <td><strong>The request was unsuccessful because the requested content type is not supported by the API.</strong><br/>
+                The application client can use this response to determine if it is asking for a supported version of a resource.  Upon receiving this response, the client can query the developer documentation to determine the appropriate version for the requested resource.<br/><br/>
+
+                In most cases, this is due to the user not supplying the correct Accept or Content-Type header for the requested URL.
+            </td>
+        </tr>
+        <tr>
+            <td style="text-align: right; font-weight: bold;">422 Unprocessable Entity:</td>
+            <td><strong>The request is formed correctly, but due to some condition the request cannot be processed e.g. email is required and it is not provided in the request</strong><br/>
+                The request did not contain all of the information required to perform this method.  Please check your request for the required fields to be passed in and try again.  The offending fields will be specified in the error text of the response.
+            </td>
+        </tr>
+        <tr>
+            <td style="text-align: right; font-weight: bold;">500 Internal Server Error:</td>
+            <td><strong>An internal error occurred when processing the request.</strong><br/>
+                Attempt the request again and if the HTTP 500 error re-occurs contact <a href="mailto:support@whispir.com">support@whispir.com</a>
+            </td>
+        </tr>
+        <tr>
+            <td style="text-align: right; font-weight: bold;">501 Method Not Implemented:</td>
+            <td><strong>The HTTP method being used has not yet been implemented for the requested resource.</strong><br/>
+                The method being used is not implemented for this resource. Please check the documentation for the specific resource type. 
+            </td>
+        </tr>
+    </tbody>
+</table>
+<h2 id='content-types-amp-versioning'>Content Types &amp; Versioning</h2>
+<p>The Whispir.io API has been designed and built to support the wide feature set provided in the current version of the Whispir Platform. </p>
+
+<p>In order to manage and incorporate change in future versions of the API, Whispir&rsquo;s API has implemented a versioning structure that allows application clients to choose which version of the API they would like to retrieve their responses from.</p>
+
+<p>This allows new versions to be built and old versions to be supported concurrently, with no impact to clients when changes are made.</p>
+
+<p>Whispir&rsquo;s API achieves this versioning capability by using <strong>Vendor Specific MIME Types (VSMT)</strong>.</p>
+<h3 id='without-vsmt'>Without VSMT</h3>
+<blockquote>
+<p>A Sample API request that is not using VSMT</p>
+</blockquote>
+<pre class="highlight plaintext">HTTP/1.1 GET /workspaces/123/contacts?firstName=Neil&amp;apikey=789264 
+Accept: application/xml
+
+HTTP/1.1 200 OK
+Content-Type: application/xml
+&lt;contact&gt;
+   &lt;name&gt;Neil Armstrong&lt;/name&gt;
+&lt;/contact&gt;
+</pre>
+
+<p>This implementation of an API in this manner works correctly, but conceptually it is incorrect.  The issue with this design is the request is only asking for an XML representation of some resource called a Contact, it is not specifically asking for the XML version of a <strong>Contact Resource</strong> as defined by Whispir&rsquo;s API.</p>
+
+<p>Any XML representation of a resource could be passed back e.g. a <strong>Cat</strong> or a <strong>House</strong>, and the client would need to inspect the response to determine whether it is a <strong>Contact</strong> or not through its own means.</p>
+<h3 id='with-vsmt'>With VSMT</h3>
+<blockquote>
+<p>A Sample API request that is uses VSMT</p>
+</blockquote>
+<pre class="highlight plaintext">HTTP/1.1 GET /workspaces/123/contacts?firstName=Neil&amp;apikey=789264 
+Accept: application/vnd.whispir.contact+xml
+
+HTTP/1.1 200 OK
+Content-Type: application/xml
+&lt;contact&gt;
+   &lt;name&gt;Neil Armstrong&lt;/name&gt;
+&lt;/contact&gt;
+</pre>
+
+<p>By using VSMT, Whispir can define and make available the various content types for resources prior to the requests being made. This allows the application clients to specify the resource that they would like to receive from the API, and Whispir will only return content of that specific type.</p>
+
+<p>For example:</p>
+
+<p>By using this method, the client is specifically asking for a resource representation of a <strong>Contact</strong> that is defined by Whispir&rsquo;s API.  There is no confusion about the representation that will be returned, and the client need not worry about validation as Whispir will only ever return a valid <strong>Contact</strong> as a response to this request.</p>
+
+<p>VSMT also allows the client the ability to choose the language in which their resource representation should be returned.  Using the previous example, the application client was asking for the <strong>Contact</strong> to be returned in <strong>XML</strong>.</p>
+
+<p><code class="prettyprint">Accept: application/vnd.whispir.contact+xml</code></p>
+
+<p>This <strong>Contact</strong> resource could just as easily be returned as a <strong>JSON</strong> object by changing the content type as follows:</p>
+
+<p><code class="prettyprint">Accept: application/vnd.whispir.contact+json</code></p>
+<h3 id='with-vsmt-including-versioning'>With VSMT (including versioning)</h3>
+<blockquote>
+<p>Sample request with VSMT and Versioning (V1)</p>
+</blockquote>
+<pre class="highlight plaintext">HTTP/1.1 GET /workspaces/123/contacts?firstName=Neil&amp;apikey=789264 
+Accept: application/vnd.whispir.contact-v1+xml
+
+HTTP/1.1 200 OK
+Content-Type: application/vnd.whispir.contact-v1+xml
+&lt;contact&gt;
+   &lt;name&gt;Neil Armstrong&lt;/name&gt;
+&lt;/contact&gt;
+</pre>
+
+<blockquote>
+<p>Sample request with VSMT and Versioning (V2)</p>
+</blockquote>
+<pre class="highlight plaintext">HTTP/1.1 GET /workspaces/123/contacts?firstName=Neil&amp;apikey=789264 
+Accept: application/vnd.whispir.contact-v2+xml
+
+HTTP/1.1 200 OK
+Content-Type: application/vnd.whispir.contact-v2+xml
+&lt;contact&gt;
+   &lt;name&gt;Neil Armstrong&lt;/name&gt;
+   &lt;mobile&gt;+61456838435&lt;/mobile&gt;
+   &lt;email&gt;neil.armstrong@space.com&lt;/email&gt;
+&lt;/contact&gt;
+</pre>
+
+<p>This method of using VSMT also allows the resource representations to be updated, re-written and maintained without any notification required to application clients.</p>
+
+<p>This can be achieved by adding a <strong>version</strong> element to the defined content types.</p>
+
+<p>By versioning the application MIME types, application clients can request the resource representation that their application is built on, e.g. ‘contact-v1’, or ‘workspace-v2’.</p>
+
+<p>Whispir can create new representations of these documents, and the application clients will not be affected by these changes.</p>
+
+<p>The <strong>v2</strong> version of this resource representation can co-exist with the <strong>v1</strong> version, and application clients do not need to worry about their existence.</p>
+<h3 id='deprecation-of-versions'>Deprecation of Versions</h3>
+<p>As the version numbers grow and new features are introduced into the resource representations, it is inevitable that the older versions will become deprecated and no longer supported over an extended period of time.</p>
+
+<p>This process of deprecation will be facilitated using HTTP Status Codes 301 and 415.</p>
+<h3 id='list-of-whispir39s-vsmt39s'>List of Whispir&rsquo;s VSMT&rsquo;s</h3>
+<p>The following table depicts the available mime types that will be accepted through Whispir&rsquo;s API:</p>
+
+<p><strong>Note:</strong> The Mime Type is always <em>Singular</em>. <code class="prettyprint">message-v1</code>, not <code class="prettyprint">messages-v1</code>.</p>
+
+<table>
+    <thead>
+        <tr>
+            <th style="width: 50%" colspan="2">List of Whispir.io VSMT&rsquo;s</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td style="text-align: right; font-weight: bold;">Workspace:</td>
+            <td>XML - application/vnd.whispir.workspace-v1+xml<br/>
+                JSON - application/vnd.whispir.workspace-v1+json
+            </td>
+        </tr>
+        <tr>
+            <td style="text-align: right; font-weight: bold;">Message:</td>
+            <td>XML - application/vnd.whispir.message-v1+xml<br/>
+                JSON - application/vnd.whispir.message-v1+json
+            </td>
+        </tr>
+        <tr>
+            <td style="text-align: right; font-weight: bold;">Message Status:</td>
+            <td>XML - application/vnd.whispir.messagestatus-v1+xml<br/>
+                JSON - application/vnd.whispir.messagestatus-v1+json
+            </td>
+        </tr>
+        <tr>
+            <td style="text-align: right; font-weight: bold;">Message Responses:</td>
+            <td>XML - application/vnd.whispir.messageresponse-v1+xml<br/>
+                JSON - application/vnd.whispir.messageresponse-v1+json
+            </td>
+        </tr>
+        <tr>
+            <td style="text-align: right; font-weight: bold;">Message Response Rule:</td>
+            <td>XML - application/vnd.whispir.responserule-v1+xml<br/>
+                JSON - application/vnd.whispir.responserule-v1+json
+            </td>
+        </tr>
+        <tr>
+            <td style="text-align: right; font-weight: bold;">Message Template:</td>
+            <td>XML - application/vnd.whispir.template-v1+xml<br/>
+                JSON - application/vnd.whispir.template-v1+json
+            </td>
+        </tr>
+        <tr>
+            <td style="text-align: right; font-weight: bold;">Contact:</td>
+            <td>XML - application/vnd.whispir.contact-v1+xml<br/>
+                JSON - application/vnd.whispir.contact-v1+json
+            </td>
+        </tr>
+        <tr>
+            <td style="text-align: right; font-weight: bold;">Distribution List:</td>
+            <td>XML - application/vnd.whispir.distributionlist-v1+xml<br/>
+                JSON - application/vnd.whispir.distributionlist-v1+json
+            </td>
+        </tr>
+        <tr>
+            <td style="text-align: right; font-weight: bold;">Message Scenario:</td>
+            <td>XML - application/vnd.whispir.scenario-v1+xml<br/>
+                JSON - application/vnd.whispir.scenario-v1+json
+            </td>
+        </tr>
+        <tr>
+            <td style="text-align: right; font-weight: bold;">Event:</td>
+            <td>XML - application/vnd.whispir.event-v1+xml<br/>
+                JSON - application/vnd.whispir.event-v1+json
+            </td>
+        </tr>
+        <tr>
+            <td style="text-align: right; font-weight: bold;">Asset:</td>
+            <td>XML - application/vnd.whispir.asset-v1+xml<br/>
+                JSON - application/vnd.whispir.asset-v1+json
+            </td>
+        </tr>
+        <tr>
+            <td style="text-align: right; font-weight: bold;">Custom List:</td>
+            <td>XML - application/vnd.whispir.customlist-v1+xml<br/>
+                JSON - application/vnd.whispir.customlist-v1+json
+            </td>
+        </tr>
+        <tr>
+            <td style="text-align: right; font-weight: bold;">Activity Log:</td>
+            <td>XML - application/vnd.whispir.activity-v1+xml<br/>
+                JSON - application/vnd.whispir.activity-v1+json
+            </td>
+        </tr>
+        <tr>
+            <td style="text-align: right; font-weight: bold;">User:</td>
+            <td>XML - application/vnd.whispir.user-v1+xml<br/>
+                JSON - application/vnd.whispir.user-v1+json
+            </td>
+        </tr>
+    </tbody>
+</table>
+<h2 id='pagination'>Pagination</h2>
+<blockquote>
+<p>Request for the first page of messages:</p>
+</blockquote>
+<pre class="highlight xml">GET https://api.whispir.com/?apikey=sbdsfd0sa09fds<span class="err">&amp;</span>limit=20<span class="err">&amp;</span>offset=0
+</pre>
+<pre class="highlight go"><span class="n">GET</span><span class="x"> </span><span class="n">https</span><span class="o">:</span><span class="c">//api.whispir.com/?apikey=sbdsfd0sa09fds&amp;limit=20&amp;offset=0</span><span class="x">
+</span></pre>
+
+<blockquote>
+<p>Request for the second page of messages (note the offset is now 20):</p>
+</blockquote>
+<pre class="highlight xml">GET https://api.whispir.com/?apikey=sbdsfd0sa09fds<span class="err">&amp;</span>limit=20<span class="err">&amp;</span>offset=20
+</pre>
+<pre class="highlight go"><span class="n">GET</span><span class="x"> </span><span class="n">https</span><span class="o">:</span><span class="c">//api.whispir.com/?apikey=sbdsfd0sa09fds&amp;limit=20&amp;offset=20</span><span class="x">
+</span></pre>
+
+<p>Requests that contain multiple items will be paginated by default.</p>
+
+<p>Each page will provide a maximum of <strong>20</strong> items per page.</p>
+
+<p>Two parameters can be used to control the number of items retrieved:</p>
+
+<ul>
+<li><code class="prettyprint">limit</code>: the number of rows to be returned (max: 20, default: 20)</li>
+<li><code class="prettyprint">offset</code>: the record number to start returning from (default: 0)</li>
+</ul>
+
+<p>Most resources will provide these links at the end of the response object in a <code class="prettyprint">link</code> array that supplies links with <code class="prettyprint">rel=next</code> and <code class="prettyprint">rel=prev</code> attributes.</p>
+
+<p>This makes programatic pagination easy as you can simply detect for the presence of these attributes.</p>
+
+<p><strong>Note:</strong> The following resources aren&rsquo;t paginated for ease of use:</p>
+
+<ul>
+<li>Workspaces</li>
+</ul>
+
+          <h1 id='messages'>Messages</h1>
 <blockquote>
 <p>Sample to send an SMS, Email, Voice call, and Web Publishing in one request</p>
 </blockquote>
@@ -335,7 +871,7 @@ Authorization: Basic am9obi5zbWl0aDpteXBhc3N3b3Jk
 Content-Type: application/vnd.whispir.message-v1+xml
 
 <span class="cp">&lt;?xml version="1.0" encoding="UTF-8" standalone="yes"?&gt;</span>
-<span class="nt">&lt;ns2:message</span> <span class="na">xmlns:ns2=</span><span class="s">"http://schemas.api.whispir.com"</span><span class="nt">&gt;</span>
+<span class="nt">&lt;ns2:message</span> <span class="na">xmlns:ns2=</span><span class="s">"https://schemas.api.whispir.com"</span><span class="nt">&gt;</span>
     <span class="nt">&lt;to&gt;</span>61400000000<span class="nt">&lt;/to&gt;</span>
     <span class="nt">&lt;subject&gt;</span>Test Message<span class="nt">&lt;/subject&gt;</span>    
     <span class="nt">&lt;body&gt;</span>This is the body of my test SMS message<span class="nt">&lt;/body&gt;</span>
@@ -423,11 +959,11 @@ Content-Type: application/vnd.whispir.message-v1+xml
 </span><span class="p">}</span><span class="x">
 </span></pre>
 
-<p>Communications are the core of what the Whispir API offers as a service to customers.</p>
+<p>Communications are the core of what the Whispir.io API offers as a service to customers.</p>
 
 <p>Whispir has the ability to send communications across 7 different channels in a single API request:</p>
 
-<p><strong>SMS</strong> - up to 1600 characters per message, premium routes, delivery receipts<br/>
+<p><strong>SMS</strong> - up to 1600&#42; characters per message, premium routes, delivery receipts<br/>
 <strong>Email</strong> - free email messaging with HTML and Plain Text support<br/>
 <strong>Voice</strong> - high quality outbound voice calls delivered to mobiles and landlines within seconds<br/>
 <strong>Rich Messages</strong> - personalised, targeted rich messaging to drive conversations<br/>
@@ -535,13 +1071,13 @@ Authorization: Basic am9obi5zbWl0aDpteXBhc3N3b3Jk
 Content-Type: application/vnd.whispir.message-v1+xml
 
 <span class="cp">&lt;?xml version="1.0" encoding="UTF-8" standalone="yes"?&gt;</span>
-<span class="nt">&lt;ns2:message</span> <span class="na">xmlns:ns2=</span><span class="s">"http://schemas.api.whispir.com"</span><span class="nt">&gt;</span>
+<span class="nt">&lt;ns2:message</span> <span class="na">xmlns:ns2=</span><span class="s">"https://schemas.api.whispir.com"</span><span class="nt">&gt;</span>
     <span class="nt">&lt;to&gt;</span>61400000000<span class="nt">&lt;/to&gt;</span>
     <span class="nt">&lt;subject&gt;</span>Test SMS Message<span class="nt">&lt;/subject&gt;</span>    
     <span class="nt">&lt;body&gt;</span>This is the body of my test SMS message<span class="nt">&lt;/body&gt;</span>
 <span class="nt">&lt;/ns2:message&gt;</span> 
 </pre>
-<pre class="highlight go"><span class="n">HTTP</span><span class="x"> </span><span class="m">1.1</span><span class="x"> </span><span class="n">POST</span><span class="x"> </span><span class="n">http</span><span class="o">:</span><span class="c">//api.whispir.com/messages?apikey=&lt;yourkey&gt;</span><span class="x">
+<pre class="highlight go"><span class="n">HTTP</span><span class="x"> </span><span class="m">1.1</span><span class="x"> </span><span class="n">POST</span><span class="x"> </span><span class="n">https</span><span class="o">:</span><span class="c">//api.whispir.com/messages?apikey=&lt;yourkey&gt;</span><span class="x">
 </span><span class="n">Authorization</span><span class="o">:</span><span class="x"> </span><span class="n">Basic</span><span class="x"> </span><span class="n">am9obi5zbWl0aDpteXBhc3N3b3Jk</span><span class="x">
 </span><span class="n">Content</span><span class="o">-</span><span class="n">Type</span><span class="o">:</span><span class="x"> </span><span class="n">application</span><span class="o">/</span><span class="n">vnd</span><span class="o">.</span><span class="n">whispir</span><span class="o">.</span><span class="n">message</span><span class="o">-</span><span class="n">v1</span><span class="o">+</span><span class="n">json</span><span class="x">
 </span><span class="n">Accept</span><span class="o">:</span><span class="x"> </span><span class="n">application</span><span class="o">/</span><span class="n">vnd</span><span class="o">.</span><span class="n">whispir</span><span class="o">.</span><span class="n">message</span><span class="o">-</span><span class="n">v1</span><span class="o">+</span><span class="n">json</span><span class="x">
@@ -595,11 +1131,13 @@ Content-Type: application/vnd.whispir.message-v1+xml
 </table></p>
 <h3 id='notes'>Notes:</h3>
 <ul>
-<li>Each SMS message can contain up to <strong>1600</strong> characters. </li>
+<li>Each SMS message can contain up to <strong>1600&#42;</strong> characters </li>
 <li>The Subject field is Mandatory.</li>
 <li>The Body field is Mandatory.</li>
 <li>MRI (Message Resource Identifier) is the unique Whispir address for the Contact, User or Distribution List.</li>
 </ul>
+
+<p>&#42; SMS character counts are limited in some countries. Contact your local Whispir Representative for information about the supported number of characters in your region.</p>
 <h2 id='email-messages'>Email Messages</h2>
 <blockquote>
 <p>Demonstration of a plain text Email</p>
@@ -609,17 +1147,17 @@ Authorization: Basic am9obi5zbWl0aDpteXBhc3N3b3Jk
 Content-Type: application/vnd.whispir.message-v1+xml
 
 <span class="cp">&lt;?xml version="1.0" encoding="UTF-8" standalone="yes"?&gt;</span>
-<span class="nt">&lt;ns2:message</span> <span class="na">xmlns:ns2=</span><span class="s">"http://schemas.api.whispir.com"</span><span class="nt">&gt;</span>
+<span class="nt">&lt;ns2:message</span> <span class="na">xmlns:ns2=</span><span class="s">"https://schemas.api.whispir.com"</span><span class="nt">&gt;</span>
     <span class="nt">&lt;to&gt;</span>john.smith@test.com<span class="nt">&lt;/to&gt;</span>
     <span class="nt">&lt;subject&gt;</span>Test Email Message<span class="nt">&lt;/subject&gt;</span>    
     <span class="nt">&lt;email&gt;</span>
-        <span class="nt">&lt;body&gt;</span>This is the body of my test Email message<span class="nt">&lt;/body&gt;</span>
-        <span class="nt">&lt;footer&gt;</span>This is footer of my test Email<span class="nt">&lt;/footer&gt;</span>
+        <span class="nt">&lt;body&gt;</span>Email Body goes here.<span class="nt">&lt;/body&gt;</span>
+        <span class="nt">&lt;footer&gt;</span>Email signature goes here.<span class="nt">&lt;/footer&gt;</span>
         <span class="nt">&lt;type&gt;</span>text/plain<span class="nt">&lt;/type&gt;</span>
     <span class="nt">&lt;/email&gt;</span>
 <span class="nt">&lt;/ns2:message&gt;</span> 
 </pre>
-<pre class="highlight go"><span class="n">HTTP</span><span class="x"> </span><span class="m">1.1</span><span class="x"> </span><span class="n">POST</span><span class="x"> </span><span class="n">http</span><span class="o">:</span><span class="c">//api.whispir.com/messages?apikey=&lt;yourkey&gt;</span><span class="x">
+<pre class="highlight go"><span class="n">HTTP</span><span class="x"> </span><span class="m">1.1</span><span class="x"> </span><span class="n">POST</span><span class="x"> </span><span class="n">https</span><span class="o">:</span><span class="c">//api.whispir.com/messages?apikey=&lt;yourkey&gt;</span><span class="x">
 </span><span class="n">Authorization</span><span class="o">:</span><span class="x"> </span><span class="n">Basic</span><span class="x"> </span><span class="n">am9obi5zbWl0aDpteXBhc3N3b3Jk</span><span class="x">
 </span><span class="n">Content</span><span class="o">-</span><span class="n">Type</span><span class="o">:</span><span class="x"> </span><span class="n">application</span><span class="o">/</span><span class="n">vnd</span><span class="o">.</span><span class="n">whispir</span><span class="o">.</span><span class="n">message</span><span class="o">-</span><span class="n">v1</span><span class="o">+</span><span class="n">json</span><span class="x">
 </span><span class="n">Accept</span><span class="o">:</span><span class="x"> </span><span class="n">application</span><span class="o">/</span><span class="n">vnd</span><span class="o">.</span><span class="n">whispir</span><span class="o">.</span><span class="n">message</span><span class="o">-</span><span class="n">v1</span><span class="o">+</span><span class="n">json</span><span class="x">
@@ -643,7 +1181,7 @@ Authorization: Basic am9obi5zbWl0aDpteXBhc3N3b3Jk
 Content-Type: application/vnd.whispir.message-v1+xml
 
 <span class="cp">&lt;?xml version="1.0" encoding="UTF-8" standalone="yes"?&gt;</span>
-<span class="nt">&lt;ns2:message</span> <span class="na">xmlns:ns2=</span><span class="s">"http://schemas.api.whispir.com"</span><span class="nt">&gt;</span>
+<span class="nt">&lt;ns2:message</span> <span class="na">xmlns:ns2=</span><span class="s">"https://schemas.api.whispir.com"</span><span class="nt">&gt;</span>
     <span class="nt">&lt;to&gt;</span>john.smith@test.com<span class="nt">&lt;/to&gt;</span>
     <span class="nt">&lt;subject&gt;</span>Test Email Message<span class="nt">&lt;/subject&gt;</span>    
     <span class="nt">&lt;email&gt;</span>
@@ -658,7 +1196,7 @@ Content-Type: application/vnd.whispir.message-v1+xml
     <span class="nt">&lt;/email&gt;</span>
 <span class="nt">&lt;/ns2:message&gt;</span> 
 </pre>
-<pre class="highlight go"><span class="n">HTTP</span><span class="x"> </span><span class="m">1.1</span><span class="x"> </span><span class="n">POST</span><span class="x"> </span><span class="n">http</span><span class="o">:</span><span class="c">//api.whispir.com/messages?apikey=&lt;yourkey&gt;</span><span class="x">
+<pre class="highlight go"><span class="n">HTTP</span><span class="x"> </span><span class="m">1.1</span><span class="x"> </span><span class="n">POST</span><span class="x"> </span><span class="n">https</span><span class="o">:</span><span class="c">//api.whispir.com/messages?apikey=&lt;yourkey&gt;</span><span class="x">
 </span><span class="n">Authorization</span><span class="o">:</span><span class="x"> </span><span class="n">Basic</span><span class="x"> </span><span class="n">am9obi5zbWl0aDpteXBhc3N3b3Jk</span><span class="x">
 </span><span class="n">Content</span><span class="o">-</span><span class="n">Type</span><span class="o">:</span><span class="x"> </span><span class="n">application</span><span class="o">/</span><span class="n">vnd</span><span class="o">.</span><span class="n">whispir</span><span class="o">.</span><span class="n">message</span><span class="o">-</span><span class="n">v1</span><span class="o">+</span><span class="n">json</span><span class="x">
 </span><span class="n">Accept</span><span class="o">:</span><span class="x"> </span><span class="n">application</span><span class="o">/</span><span class="n">vnd</span><span class="o">.</span><span class="n">whispir</span><span class="o">.</span><span class="n">message</span><span class="o">-</span><span class="n">v1</span><span class="o">+</span><span class="n">json</span><span class="x">
@@ -694,7 +1232,7 @@ Authorization: Basic am9obi5zbWl0aDpteXBhc3N3b3Jk
 Content-Type: application/vnd.whispir.message-v1+xml
 
 <span class="cp">&lt;?xml version="1.0" encoding="UTF-8" standalone="yes"?&gt;</span>
-<span class="nt">&lt;ns2:message</span> <span class="na">xmlns:ns2=</span><span class="s">"http://schemas.api.whispir.com"</span><span class="nt">&gt;</span>
+<span class="nt">&lt;ns2:message</span> <span class="na">xmlns:ns2=</span><span class="s">"https://schemas.api.whispir.com"</span><span class="nt">&gt;</span>
     <span class="nt">&lt;to&gt;</span>john.smith@test.com<span class="nt">&lt;/to&gt;</span>
     <span class="nt">&lt;subject&gt;</span>Test e-mail message with attachment<span class="nt">&lt;/subject&gt;</span>    
     <span class="nt">&lt;email&gt;</span>
@@ -726,7 +1264,7 @@ AABJRU5ErkJggg==<span class="nt">&lt;/derefUri&gt;</span>
     <span class="nt">&lt;/email&gt;</span>
 <span class="nt">&lt;/ns2:message&gt;</span>
 </pre>
-<pre class="highlight go"><span class="n">HTTP</span><span class="x"> </span><span class="m">1.1</span><span class="x"> </span><span class="n">POST</span><span class="x"> </span><span class="n">http</span><span class="o">:</span><span class="c">//api.whispir.com/messages?apikey=&lt;yourkey&gt;</span><span class="x">
+<pre class="highlight go"><span class="n">HTTP</span><span class="x"> </span><span class="m">1.1</span><span class="x"> </span><span class="n">POST</span><span class="x"> </span><span class="n">https</span><span class="o">:</span><span class="c">//api.whispir.com/messages?apikey=&lt;yourkey&gt;</span><span class="x">
 </span><span class="n">Authorization</span><span class="o">:</span><span class="x"> </span><span class="n">Basic</span><span class="x"> </span><span class="n">am9obi5zbWl0aDpteXBhc3N3b3Jk</span><span class="x">
 </span><span class="n">Content</span><span class="o">-</span><span class="n">Type</span><span class="o">:</span><span class="x"> </span><span class="n">application</span><span class="o">/</span><span class="n">vnd</span><span class="o">.</span><span class="n">whispir</span><span class="o">.</span><span class="n">message</span><span class="o">-</span><span class="n">v1</span><span class="o">+</span><span class="n">json</span><span class="x">
 </span><span class="n">Accept</span><span class="o">:</span><span class="x"> </span><span class="n">application</span><span class="o">/</span><span class="n">vnd</span><span class="o">.</span><span class="n">whispir</span><span class="o">.</span><span class="n">message</span><span class="o">-</span><span class="n">v1</span><span class="o">+</span><span class="n">json</span><span class="x"> 
@@ -797,14 +1335,22 @@ Authorization: Basic am9obi5zbWl0aDpteXBhc3N3b3Jk
 Content-Type: application/vnd.whispir.message-v1+xml
 
 <span class="cp">&lt;?xml version="1.0" encoding="UTF-8" standalone="yes"?&gt;</span>
-<span class="nt">&lt;ns2:message</span> <span class="na">xmlns:ns2=</span><span class="s">"http://schemas.api.whispir.com"</span><span class="nt">&gt;</span>
+<span class="nt">&lt;ns2:message</span> <span class="na">xmlns:ns2=</span><span class="s">"https://schemas.api.whispir.com"</span><span class="nt">&gt;</span>
     <span class="nt">&lt;to&gt;</span>61400000000<span class="nt">&lt;/to&gt;</span>
     <span class="nt">&lt;subject&gt;</span>Test Voice Call<span class="nt">&lt;/subject&gt;</span>    
     <span class="nt">&lt;voice&gt;</span>
-        <span class="nt">&lt;header&gt;</span>This is the introduction of the voice call<span class="nt">&lt;/header&gt;</span>        
-        <span class="nt">&lt;body&gt;</span>This is body of the message<span class="nt">&lt;/body&gt;</span>
-        <span class="nt">&lt;footer&gt;</span>This is the footer of the message<span class="nt">&lt;/footer&gt;</span>
-        <span class="nt">&lt;type&gt;</span>ConfCall:,ConfAccountNo:,ConfPinNo:,ConfModPinNo:,Pin:<span class="nt">&lt;/type&gt;</span>
+        <span class="nt">&lt;header&gt;</span>
+            This is the introduction of the voice call
+        <span class="nt">&lt;/header&gt;</span>        
+        <span class="nt">&lt;body&gt;</span>This is the body of the message<span class="nt">&lt;/body&gt;</span>
+        <span class="c">&lt;!-- Do not include line breaks in your API calls --&gt;</span>
+        <span class="nt">&lt;type&gt;</span>
+            ConfCall:,
+            ConfAccountNo:,
+            ConfPinNo:,
+            ConfModPinNo:,
+            Pin:
+        <span class="nt">&lt;/type&gt;</span>
     <span class="nt">&lt;/voice&gt;</span>
 <span class="nt">&lt;/ns2:message&gt;</span> 
 </pre>
@@ -817,8 +1363,7 @@ Content-Type: application/vnd.whispir.message-v1+xml
     </span><span class="s">"subject"</span><span class="x"> </span><span class="o">:</span><span class="x"> </span><span class="s">"Test Voice Call"</span><span class="p">,</span><span class="x">
     </span><span class="s">"voice"</span><span class="x"> </span><span class="o">:</span><span class="x"> </span><span class="p">{</span><span class="x">
         </span><span class="s">"header"</span><span class="x"> </span><span class="o">:</span><span class="x"> </span><span class="s">"This is the introduction of the voice call"</span><span class="p">,</span><span class="x">
-        </span><span class="s">"body"</span><span class="x"> </span><span class="o">:</span><span class="x"> </span><span class="s">"This is body of the message"</span><span class="p">,</span><span class="x">
-        </span><span class="s">"footer"</span><span class="x"> </span><span class="o">:</span><span class="x"> </span><span class="s">"This is the footer of the message"</span><span class="p">,</span><span class="x">
+        </span><span class="s">"body"</span><span class="x"> </span><span class="o">:</span><span class="x"> </span><span class="s">"This is the body of the message"</span><span class="p">,</span><span class="x">
         </span><span class="s">"type"</span><span class="x"> </span><span class="o">:</span><span class="x"> </span><span class="s">"ConfCall:,ConfAccountNo:,ConfPinNo:,ConfModPinNo:,Pin:"</span><span class="x">
     </span><span class="p">}</span><span class="x">
 </span><span class="p">}</span><span class="x">
@@ -832,19 +1377,22 @@ Authorization: Basic am9obi5zbWl0aDpteXBhc3N3b3Jk
 Content-Type: application/vnd.whispir.message-v1+xml
 
 <span class="cp">&lt;?xml version="1.0" encoding="UTF-8" standalone="yes"?&gt;</span>
-<span class="nt">&lt;ns2:message</span> <span class="na">xmlns:ns2=</span><span class="s">"http://schemas.api.whispir.com"</span><span class="nt">&gt;</span>
+<span class="nt">&lt;ns2:message</span> <span class="na">xmlns:ns2=</span><span class="s">"https://schemas.api.whispir.com"</span><span class="nt">&gt;</span>
     <span class="nt">&lt;to&gt;</span>61400000000<span class="nt">&lt;/to&gt;</span>
     <span class="nt">&lt;subject&gt;</span>Test Voice Call<span class="nt">&lt;/subject&gt;</span>    
     <span class="nt">&lt;voice&gt;</span>
-        <span class="nt">&lt;header&gt;</span>This is the introduction of the voice call<span class="nt">&lt;/header&gt;</span>        
+        <span class="nt">&lt;header&gt;</span>
+            This is the introduction of the voice call
+        <span class="nt">&lt;/header&gt;</span>        
         <span class="nt">&lt;body&gt;</span>This is body of the message<span class="nt">&lt;/body&gt;</span>
         <span class="nt">&lt;footer&gt;</span>This is the footer of the message<span class="nt">&lt;/footer&gt;</span>
+        <span class="c">&lt;!-- Do not include line breaks in your API calls --&gt;</span>
         <span class="nt">&lt;type&gt;</span>
             ConfCall:1800500536,
             ConfAccountNo:12345678,
             ConfPinNo:1234,
             ConfModPinNo:1234,
-            Pin:
+            Pin:0000
         <span class="nt">&lt;/type&gt;</span>
     <span class="nt">&lt;/voice&gt;</span>
 <span class="nt">&lt;/ns2:message&gt;</span> 
@@ -880,6 +1428,7 @@ Content-Type: application/vnd.whispir.message-v1+xml
 <li>The Body field is Mandatory.</li>
 <li>The Type field is Mandatory and at a minimum must specify the following string:
 <code class="prettyprint">&lt;type&gt;ConfCall:,ConfAccountNo:,ConfPinNo:,ConfModPinNo:,Pin:&lt;/type&gt;</code></li>
+<li><strong>The Type field is mandatory even when no conference call is being used</strong></li>
 <li>Pauses can be added in conference call details using a +</li>
 </ul>
 
@@ -923,7 +1472,7 @@ Authorization: Basic am9obi5zbWl0aDpteXBhc3N3b3Jk
 Content-Type: application/vnd.whispir.message-v1+xml
 
 <span class="cp">&lt;?xml version="1.0" encoding="UTF-8" standalone="yes"?&gt;</span>
-<span class="nt">&lt;ns2:message</span> <span class="na">xmlns:ns2=</span><span class="s">"http://schemas.api.whispir.com"</span><span class="nt">&gt;</span>
+<span class="nt">&lt;ns2:message</span> <span class="na">xmlns:ns2=</span><span class="s">"https://schemas.api.whispir.com"</span><span class="nt">&gt;</span>
     <span class="nt">&lt;to&gt;</span>61400000000<span class="nt">&lt;/to&gt;</span>
     <span class="nt">&lt;subject&gt;</span>Test Rich Message<span class="nt">&lt;/subject&gt;</span>    
     <span class="nt">&lt;body&gt;</span>This is some content followed by the Rich Message link @@web_link@@<span class="nt">&lt;/body&gt;</span>
@@ -939,7 +1488,7 @@ Content-Type: application/vnd.whispir.message-v1+xml
     <span class="nt">&lt;/web&gt;</span>
 <span class="nt">&lt;/ns2:message&gt;</span> 
 </pre>
-<pre class="highlight go"><span class="n">HTTP</span><span class="x"> </span><span class="m">1.1</span><span class="x"> </span><span class="n">POST</span><span class="x"> </span><span class="n">http</span><span class="o">:</span><span class="c">//api.whispir.com/messages?apikey=&lt;yourkey&gt;</span><span class="x">
+<pre class="highlight go"><span class="n">HTTP</span><span class="x"> </span><span class="m">1.1</span><span class="x"> </span><span class="n">POST</span><span class="x"> </span><span class="n">https</span><span class="o">:</span><span class="c">//api.whispir.com/messages?apikey=&lt;yourkey&gt;</span><span class="x">
 </span><span class="n">Authorization</span><span class="o">:</span><span class="x"> </span><span class="n">Basic</span><span class="x"> </span><span class="n">am9obi5zbWl0aDpteXBhc3N3b3Jk</span><span class="x">
 </span><span class="n">Content</span><span class="o">-</span><span class="n">Type</span><span class="o">:</span><span class="x"> </span><span class="n">application</span><span class="o">/</span><span class="n">vnd</span><span class="o">.</span><span class="n">whispir</span><span class="o">.</span><span class="n">message</span><span class="o">-</span><span class="n">v1</span><span class="o">+</span><span class="n">json</span><span class="x">
 </span><span class="n">Accept</span><span class="o">:</span><span class="x"> </span><span class="n">application</span><span class="o">/</span><span class="n">vnd</span><span class="o">.</span><span class="n">whispir</span><span class="o">.</span><span class="n">message</span><span class="o">-</span><span class="n">v1</span><span class="o">+</span><span class="n">json</span><span class="x">
@@ -963,7 +1512,7 @@ Authorization: Basic am9obi5zbWl0aDpteXBhc3N3b3Jk
 Content-Type: application/vnd.whispir.message-v1+xml
 
 <span class="cp">&lt;?xml version="1.0" encoding="UTF-8" standalone="yes"?&gt;</span>
-<span class="nt">&lt;ns2:message</span> <span class="na">xmlns:ns2=</span><span class="s">"http://schemas.api.whispir.com"</span><span class="nt">&gt;</span>
+<span class="nt">&lt;ns2:message</span> <span class="na">xmlns:ns2=</span><span class="s">"https://schemas.api.whispir.com"</span><span class="nt">&gt;</span>
     <span class="nt">&lt;to&gt;</span>61400000000<span class="nt">&lt;/to&gt;</span>
     <span class="nt">&lt;subject&gt;</span>Test Rich Message<span class="nt">&lt;/subject&gt;</span>    
     <span class="nt">&lt;body&gt;</span>This is some content followed by the Rich Message link @@web_link@@<span class="nt">&lt;/body&gt;</span>
@@ -983,7 +1532,7 @@ Content-Type: application/vnd.whispir.message-v1+xml
     <span class="nt">&lt;/web&gt;</span>
 <span class="nt">&lt;/ns2:message&gt;</span> 
 </pre>
-<pre class="highlight go"><span class="n">HTTP</span><span class="x"> </span><span class="m">1.1</span><span class="x"> </span><span class="n">POST</span><span class="x"> </span><span class="n">http</span><span class="o">:</span><span class="c">//api.whispir.com/messages?apikey=&lt;yourkey&gt;</span><span class="x">
+<pre class="highlight go"><span class="n">HTTP</span><span class="x"> </span><span class="m">1.1</span><span class="x"> </span><span class="n">POST</span><span class="x"> </span><span class="n">https</span><span class="o">:</span><span class="c">//api.whispir.com/messages?apikey=&lt;yourkey&gt;</span><span class="x">
 </span><span class="n">Authorization</span><span class="o">:</span><span class="x"> </span><span class="n">Basic</span><span class="x"> </span><span class="n">am9obi5zbWl0aDpteXBhc3N3b3Jk</span><span class="x">
 </span><span class="n">Content</span><span class="o">-</span><span class="n">Type</span><span class="o">:</span><span class="x"> </span><span class="n">application</span><span class="o">/</span><span class="n">vnd</span><span class="o">.</span><span class="n">whispir</span><span class="o">.</span><span class="n">message</span><span class="o">-</span><span class="n">v1</span><span class="o">+</span><span class="n">json</span><span class="x">
 </span><span class="n">Accept</span><span class="o">:</span><span class="x"> </span><span class="n">application</span><span class="o">/</span><span class="n">vnd</span><span class="o">.</span><span class="n">whispir</span><span class="o">.</span><span class="n">message</span><span class="o">-</span><span class="n">v1</span><span class="o">+</span><span class="n">json</span><span class="x">
@@ -1012,13 +1561,13 @@ Content-Type: application/vnd.whispir.message-v1+xml
 
 <p>Whispir&rsquo;s Rich Messages provide you with the capability to seamlessly &lsquo;push&rsquo; HTML content to your audience. </p>
 
-<p>This can be in the form of a simple web page, through to a mini web application with interactive widgets such as video, data visualisation, or map. </p>
+<p>This can be in the form of a simple web page, through to a mini web application with interactive widgets such as video, a data visualisation, or map. </p>
 
 <p>For example;</p>
 
-<p><img src="http://developer.whispir.com/files/rpm-iphone-shift.jpg" /></p>
+<p><img src="https://developer.whispir.com/files/rpm-iphone-shift.jpg" /></p>
 
-<p>Visit our demo site <a href="http://demo.whispir.com/rich-message.php" target="_blank">here</a> for lots of samples of rich messages.</p>
+<p>Visit our demo site <a href="https://demo.whispir.com/rich-message.php" target="_blank">here</a> for lots of samples of rich messages.</p>
 
 <p>The inclusion of the <code class="prettyprint">@@web_link@@</code> tag anywhere in the body of the SMS or Email will automatically generate a URL and embed any content specified in the web body of the same message.</p>
 <h3 id='requirements-to-use-rich-messaging'>Requirements to use Rich Messaging</h3>
@@ -1056,7 +1605,7 @@ Content-Type: application/vnd.whispir.message-v1+xml
 </ul>
 
 <p>More information about Rich Messages and the <code class="prettyprint">Whispir</code> object is included later in this documentation.</p>
-<h2 id='publishing-to-websites-rss-or-social-media'>Publishing to Websites, RSS or Social Media</h2>
+<h2 id='websocial-messaging'>Web/Social Messaging</h2>
 <blockquote>
 <p>Social Media Request/Response Example</p>
 </blockquote>
@@ -1065,7 +1614,7 @@ Authorization: Basic am9obi5zbWl0aDpteXBhc3N3b3Jk
 Content-Type: application/vnd.whispir.message-v1+xml
 
 <span class="cp">&lt;?xml version="1.0" encoding="UTF-8" standalone="yes"?&gt;</span>
-<span class="nt">&lt;ns2:message</span> <span class="na">xmlns:ns2=</span><span class="s">"http://schemas.api.whispir.com"</span><span class="nt">&gt;</span>
+<span class="nt">&lt;ns2:message</span> <span class="na">xmlns:ns2=</span><span class="s">"https://schemas.api.whispir.com"</span><span class="nt">&gt;</span>
     <span class="nt">&lt;to&gt;</span>61400000000<span class="nt">&lt;/to&gt;</span>
     <span class="nt">&lt;subject&gt;</span>Test Web Message<span class="nt">&lt;/subject&gt;</span>    
     <span class="nt">&lt;web&gt;</span> 
@@ -1133,13 +1682,13 @@ Authorization: Basic am9obi5zbWl0aDpteXBhc3N3b3Jk
 Content-Type: application/vnd.whispir.message-v1+xml
 
 <span class="cp">&lt;?xml version="1.0" encoding="UTF-8" standalone="yes"?&gt;</span>
-<span class="nt">&lt;ns2:message</span> <span class="na">xmlns:ns2=</span><span class="s">"http://schemas.api.whispir.com"</span><span class="nt">&gt;</span>
+<span class="nt">&lt;ns2:message</span> <span class="na">xmlns:ns2=</span><span class="s">"https://schemas.api.whispir.com"</span><span class="nt">&gt;</span>
     <span class="nt">&lt;to&gt;</span>61400000000<span class="nt">&lt;/to&gt;</span>
     <span class="nt">&lt;subject&gt;</span>Test SMS Message with tags<span class="nt">&lt;/subject&gt;</span>    
     <span class="nt">&lt;body&gt;</span>Hi @@first_name@@.  This is your message.<span class="nt">&lt;/body&gt;</span>
 <span class="nt">&lt;/ns2:message&gt;</span> 
 </pre>
-<pre class="highlight go"><span class="n">HTTP</span><span class="x"> </span><span class="m">1.1</span><span class="x"> </span><span class="n">POST</span><span class="x"> </span><span class="n">http</span><span class="o">:</span><span class="c">//api.whispir.com/messages?apikey=&lt;yourkey&gt;</span><span class="x">
+<pre class="highlight go"><span class="n">HTTP</span><span class="x"> </span><span class="m">1.1</span><span class="x"> </span><span class="n">POST</span><span class="x"> </span><span class="n">https</span><span class="o">:</span><span class="c">//api.whispir.com/messages?apikey=&lt;yourkey&gt;</span><span class="x">
 </span><span class="n">Authorization</span><span class="o">:</span><span class="x"> </span><span class="n">Basic</span><span class="x"> </span><span class="n">am9obi5zbWl0aDpteXBhc3N3b3Jk</span><span class="x">
 </span><span class="n">Content</span><span class="o">-</span><span class="n">Type</span><span class="o">:</span><span class="x"> </span><span class="n">application</span><span class="o">/</span><span class="n">vnd</span><span class="o">.</span><span class="n">whispir</span><span class="o">.</span><span class="n">message</span><span class="o">-</span><span class="n">v1</span><span class="o">+</span><span class="n">json</span><span class="x">
 </span><span class="n">Accept</span><span class="o">:</span><span class="x"> </span><span class="n">application</span><span class="o">/</span><span class="n">vnd</span><span class="o">.</span><span class="n">whispir</span><span class="o">.</span><span class="n">message</span><span class="o">-</span><span class="n">v1</span><span class="o">+</span><span class="n">json</span><span class="x">
@@ -1223,13 +1772,13 @@ Authorization: Basic am9obi5zbWl0aDpteXBhc3N3b3Jk
 Content-Type: application/vnd.whispir.message-v1+xml
 
 <span class="cp">&lt;?xml version="1.0" encoding="UTF-8" standalone="yes"?&gt;</span>
-<span class="nt">&lt;ns2:message</span> <span class="na">xmlns:ns2=</span><span class="s">"http://schemas.api.whispir.com"</span><span class="nt">&gt;</span>
+<span class="nt">&lt;ns2:message</span> <span class="na">xmlns:ns2=</span><span class="s">"https://schemas.api.whispir.com"</span><span class="nt">&gt;</span>
     <span class="nt">&lt;to&gt;</span>61400000000<span class="nt">&lt;/to&gt;</span>
     <span class="nt">&lt;subject&gt;</span>Test SMS Message with tags<span class="nt">&lt;/subject&gt;</span>    
     <span class="nt">&lt;body&gt;</span>Hi @@first_name@@.  The date is @@dd@@ / @@mm@@ / @@yyyy@@.<span class="nt">&lt;/body&gt;</span>
 <span class="nt">&lt;/ns2:message&gt;</span> 
 </pre>
-<pre class="highlight go"><span class="n">HTTP</span><span class="x"> </span><span class="m">1.1</span><span class="x"> </span><span class="n">POST</span><span class="x"> </span><span class="n">http</span><span class="o">:</span><span class="c">//api.whispir.com/messages?apikey=&lt;yourkey&gt;</span><span class="x">
+<pre class="highlight go"><span class="n">HTTP</span><span class="x"> </span><span class="m">1.1</span><span class="x"> </span><span class="n">POST</span><span class="x"> </span><span class="n">https</span><span class="o">:</span><span class="c">//api.whispir.com/messages?apikey=&lt;yourkey&gt;</span><span class="x">
 </span><span class="n">Authorization</span><span class="o">:</span><span class="x"> </span><span class="n">Basic</span><span class="x"> </span><span class="n">am9obi5zbWl0aDpteXBhc3N3b3Jk</span><span class="x">
 </span><span class="n">Content</span><span class="o">-</span><span class="n">Type</span><span class="o">:</span><span class="x"> </span><span class="n">application</span><span class="o">/</span><span class="n">vnd</span><span class="o">.</span><span class="n">whispir</span><span class="o">.</span><span class="n">message</span><span class="o">-</span><span class="n">v1</span><span class="o">+</span><span class="n">json</span><span class="x">
 </span><span class="n">Accept</span><span class="o">:</span><span class="x"> </span><span class="n">application</span><span class="o">/</span><span class="n">vnd</span><span class="o">.</span><span class="n">whispir</span><span class="o">.</span><span class="n">message</span><span class="o">-</span><span class="n">v1</span><span class="o">+</span><span class="n">json</span><span class="x">
@@ -1299,14 +1848,1132 @@ Content-Type: application/vnd.whispir.message-v1+xml
 
 <p>For more information about sending messages, please consult the documentation under Messaging.</p>
 
+          <h1 id='message-status'>Message Status</h1>
+<p>Whispir will automatically monitor the status of each message after it has been sent to each recipient.  Using the message status information, you are able to determine who received the message, what exact time they received it, on what message channel (SMS, Email, Voice, Web, Push Notification), whether they replied to the message, what time they replied, and on what messaging channel.</p>
+
+<p>Each message progresses through various states, from Pending to Acknowledged.</p>
+
+<p><img src="https://developer.whispir.com/files/MessageStatus.png" /></p>
+
+<table>
+    <thead>
+        <tr>
+            <th style="width: 50%" colspan="2">Message Status Descriptions</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td style="text-align: right; font-weight: bold;">Pending (PENDING):</td>
+            <td>
+                The message has not yet been processed by Whispir.  It is in a queue and will be processed shortly.
+            </td>
+        </tr>
+        <tr>
+            <td style="text-align: right; font-weight: bold;">Sent (SENT):</td>
+            <td>
+                The message has been sent from Whispir to the recipient, however, there has been no acknowledgement from the recipient via read receipt that the message has arrived.
+            </td>
+        </tr>
+        <tr>
+            <td style="text-align: right; font-weight: bold;">Received (DELIVRD):</td>
+            <td><strong>Email:</strong> Whispir has received acknowledgement via a read receipt that the message has arrived in the inbox.
+            <br/><br/>
+            <strong>SMS:</strong> Received status can mean one of two things for SMS.
+
+            <ol>
+                <li>The message has been received by the network and is being processed for delivery to the handset.<br/><br/>How long the message stays in this state is up to the telco.<br/><br/></li>
+                <li>The message has been received by the handset and confirmed by the telco.</li>
+            </ol>
+
+            </td>
+        </tr>
+        <tr>
+            <td style="text-align: right; font-weight: bold;">Acknowledged (READ):</td>
+            <td>
+               Whispir has received an intended response from the recipient, either by reply SMS, Email or Voice prompt
+            </td>
+        </tr>
+        <tr>
+            <td style="text-align: right; font-weight: bold;">Undeliverable (FAILED):</td>
+            <td>
+               Whispir was not able to deliver the message to the intended recipient on the specified channel.  This may be due to incorrect information e.g. wrong phone number or email address, or due to poor network coverage.
+            </td>
+        </tr>
+    </tbody>
+</table>
+
+<p>Using the API, developers are able to access this status information at either a <strong>Summary</strong> or <strong>Detailed</strong> level.</p>
+
+<p>The first thing a developer must do in order to retrieve the status of a sent message is retrieve the message using the API.</p>
+<h2 id='retrieve-a-message'>Retrieve a Message</h2>
+<blockquote>
+<p>Retrieve a message</p>
+</blockquote>
+<pre class="highlight xml"><span class="cp">&lt;?xml version="1.0" encoding="UTF-8" standalone="yes"?&gt;</span>
+<span class="nt">&lt;ns2:message</span> <span class="na">xmlns:ns2=</span><span class="s">"https://schemas.api.whispir.com"</span> <span class="na">xmlns:ns3=</span><span class="s">"https://schemas.api.whispir.com/dap"</span><span class="nt">&gt;</span>
+ <span class="nt">&lt;to&gt;</span>61400000000<span class="nt">&lt;/to&gt;</span>
+ <span class="nt">&lt;subject&gt;</span>test subject<span class="nt">&lt;/subject&gt;</span>
+ <span class="nt">&lt;body&gt;</span>test body<span class="nt">&lt;/body&gt;</span>
+ <span class="nt">&lt;voice/&gt;</span>
+ <span class="nt">&lt;from&gt;&lt;/from&gt;</span>
+ <span class="nt">&lt;direction&gt;</span>OUTGOING<span class="nt">&lt;/direction&gt;</span>
+ <span class="nt">&lt;responseCount&gt;</span>0<span class="nt">&lt;/responseCount&gt;</span>
+ <span class="nt">&lt;social/&gt;</span>
+ <span class="nt">&lt;createdTime&gt;</span>2012-09-24T15:36:16+10:00<span class="nt">&lt;/createdTime&gt;</span>
+ <span class="nt">&lt;ns3:link</span> <span class="na">method=</span><span class="s">"GET"</span> 
+   <span class="na">rel=</span><span class="s">"self"</span> 
+   <span class="na">uri=</span><span class="s">"https://api.whispir.com/messages/069BF68E5E0FE99B?apikey=498nadsasdff09fewdsafjaa90f"</span><span class="nt">/&gt;</span>
+ <span class="nt">&lt;ns3:link</span> <span class="na">method=</span><span class="s">"GET"</span> 
+   <span class="na">rel=</span><span class="s">"summaryStatus"</span> 
+   <span class="na">uri=</span><span class="s">"https://api.whispir.com/messages/069BF68E5E0FE99B/messagestatus?view=summary&amp;apikey=498nadsasdff09fewdsafjaa90f"</span><span class="nt">/&gt;</span>
+ <span class="nt">&lt;ns3:link</span> <span class="na">method=</span><span class="s">"GET"</span> 
+   <span class="na">rel=</span><span class="s">"detailedStatus"</span> 
+   <span class="na">uri=</span><span class="s">"https://api.whispir.com/messages/069BF68E5E0FE99B/messagestatus?view=detailed&amp;apikey=498nadsasdff09fewdsafjaa90f"</span><span class="nt">/&gt;</span>
+ <span class="nt">&lt;ns3:link</span> <span class="na">method=</span><span class="s">"GET"</span> 
+   <span class="na">rel=</span><span class="s">"summaryResponses"</span> 
+   <span class="na">uri=</span><span class="s">"https://api.whispir.com/messages/069BF68E5E0FE99B/messageresponses?view=summary&amp;filter=default&amp;apikey=498nadsasdff09fewdsafjaa90f"</span><span class="nt">/&gt;</span>
+ <span class="nt">&lt;ns3:link</span> <span class="na">method=</span><span class="s">"GET"</span> 
+   <span class="na">rel=</span><span class="s">"detailedResponses"</span> 
+   <span class="na">uri=</span><span class="s">"https://api.whispir.com/messages/069BF68E5E0FE99B/messageresponses?view=detailed&amp;filter=default&amp;apikey=498nadsasdff09fewdsafjaa90f"</span><span class="nt">/&gt;</span>
+ <span class="nt">&lt;ns3:link</span> <span class="na">method=</span><span class="s">"GET"</span> 
+   <span class="na">rel=</span><span class="s">"summaryResponsesWithResponseRule"</span> 
+   <span class="na">uri=</span><span class="s">"https://api.whispir.com/messages/069BF68E5E0FE99B/messageresponses?view=summary&amp;filter=responserule&amp;apikey=498nadsasdff09fewdsafjaa90f"</span><span class="nt">/&gt;</span>
+ <span class="nt">&lt;ns3:link</span> <span class="na">method=</span><span class="s">"GET"</span> 
+   <span class="na">rel=</span><span class="s">"detailedResponsesWithResponseRule"</span> 
+   <span class="na">uri=</span><span class="s">"https://api.whispir.com/messages/069BF68E5E0FE99B/messageresponses?view=detailed&amp;filter=responserule&amp;apikey=498nadsasdff09fewdsafjaa90f"</span><span class="nt">/&gt;</span>
+<span class="nt">&lt;/ns2:message&gt;</span>
+</pre>
+<pre class="highlight go"><span class="p">{</span><span class="x">
+    </span><span class="s">"to"</span><span class="o">:</span><span class="x"> </span><span class="s">"61400000000"</span><span class="p">,</span><span class="x">
+    </span><span class="s">"subject"</span><span class="o">:</span><span class="x"> </span><span class="s">"test subject"</span><span class="p">,</span><span class="x">
+    </span><span class="s">"body"</span><span class="o">:</span><span class="x"> </span><span class="s">"test body"</span><span class="p">,</span><span class="x">
+    </span><span class="s">"direction"</span><span class="o">:</span><span class="x"> </span><span class="s">"OUTGOING"</span><span class="p">,</span><span class="x">
+    </span><span class="s">"responseCount"</span><span class="o">:</span><span class="x"> </span><span class="s">"0"</span><span class="p">,</span><span class="x">
+    </span><span class="s">"createdTime"</span><span class="o">:</span><span class="x"> </span><span class="s">"2012-09-24T15:36:16+10:00"</span><span class="p">,</span><span class="x">
+    </span><span class="s">"link"</span><span class="o">:</span><span class="x"> </span><span class="p">[{</span><span class="x">
+      </span><span class="s">"method"</span><span class="o">:</span><span class="x"> </span><span class="s">"GET"</span><span class="p">,</span><span class="x">
+      </span><span class="s">"rel"</span><span class="o">:</span><span class="x"> </span><span class="s">"self"</span><span class="p">,</span><span class="x">
+      </span><span class="s">"uri"</span><span class="o">:</span><span class="x"> </span><span class="s">"https://api.whispir.com/messages/069BF68E5E0FE99B?apikey=498nadsasdff09fewdsafjaa90f"</span><span class="x">
+    </span><span class="p">},{</span><span class="x">
+      </span><span class="s">"method"</span><span class="o">:</span><span class="x"> </span><span class="s">"GET"</span><span class="p">,</span><span class="x">
+      </span><span class="s">"rel"</span><span class="o">:</span><span class="x"> </span><span class="s">"summaryStatus"</span><span class="p">,</span><span class="x">
+      </span><span class="s">"uri"</span><span class="o">:</span><span class="x"> </span><span class="s">"https://api.whispir.com/messages/069BF68E5E0FE99B/messagestatus?view=summary&amp;apikey=498nadsasdff09fewdsafjaa90f"</span><span class="x">
+    </span><span class="p">},{</span><span class="x">
+      </span><span class="s">"method"</span><span class="o">:</span><span class="x"> </span><span class="s">"GET"</span><span class="p">,</span><span class="x">
+      </span><span class="s">"rel"</span><span class="o">:</span><span class="x"> </span><span class="s">"detailedStatus"</span><span class="p">,</span><span class="x">
+      </span><span class="s">"uri"</span><span class="o">:</span><span class="x"> </span><span class="s">"https://api.whispir.com/messages/069BF68E5E0FE99B/messagestatus?view=detailed&amp;apikey=498nadsasdff09fewdsafjaa90f"</span><span class="x">
+    </span><span class="p">},{</span><span class="x">
+      </span><span class="s">"method"</span><span class="o">:</span><span class="x"> </span><span class="s">"GET"</span><span class="p">,</span><span class="x">
+      </span><span class="s">"rel"</span><span class="o">:</span><span class="x"> </span><span class="s">"summaryResponses"</span><span class="p">,</span><span class="x">
+      </span><span class="s">"uri"</span><span class="o">:</span><span class="x"> </span><span class="s">"https://api.whispir.com/messages/069BF68E5E0FE99B/messageresponses?view=summary&amp;filter=default&amp;apikey=498nadsasdff09fewdsafjaa90f"</span><span class="x">
+    </span><span class="p">},{</span><span class="x">
+      </span><span class="s">"method"</span><span class="o">:</span><span class="x"> </span><span class="s">"GET"</span><span class="p">,</span><span class="x">
+      </span><span class="s">"rel"</span><span class="o">:</span><span class="x"> </span><span class="s">"detailedResponses"</span><span class="p">,</span><span class="x">
+      </span><span class="s">"uri"</span><span class="o">:</span><span class="x"> </span><span class="s">"https://api.whispir.com/messages/069BF68E5E0FE99B/messageresponses?view=detailed&amp;filter=default&amp;apikey=498nadsasdff09fewdsafjaa90f"</span><span class="x">
+    </span><span class="p">},{</span><span class="x">
+      </span><span class="s">"method"</span><span class="o">:</span><span class="x"> </span><span class="s">"GET"</span><span class="p">,</span><span class="x">
+      </span><span class="s">"rel"</span><span class="o">:</span><span class="x"> </span><span class="s">"summaryResponsesWithResponseRule"</span><span class="p">,</span><span class="x">
+      </span><span class="s">"uri"</span><span class="o">:</span><span class="x"> </span><span class="s">"https://api.whispir.com/messages/069BF68E5E0FE99B/messageresponses?view=summary&amp;filter=responserule&amp;apikey=498nadsasdff09fewdsafjaa90f"</span><span class="x">
+    </span><span class="p">},{</span><span class="x">
+      </span><span class="s">"method"</span><span class="o">:</span><span class="x"> </span><span class="s">"GET"</span><span class="p">,</span><span class="x">
+      </span><span class="s">"rel"</span><span class="o">:</span><span class="x"> </span><span class="s">"detailedResponsesWithResponseRule"</span><span class="p">,</span><span class="x">
+      </span><span class="s">"uri"</span><span class="o">:</span><span class="x"> </span><span class="s">"https://api.whispir.com/messages/069BF68E5E0FE99B/messageresponses?view=detailed&amp;filter=responserule&amp;apikey=498nadsasdff09fewdsafjaa90f"</span><span class="x">
+    </span><span class="p">}]</span><span class="x">
+</span><span class="p">}</span><span class="x">
+</span></pre>
+
+<p>The example request below returns the Message that the API user requested.  </p>
+
+<p><code class="prettyprint">GET /messages/069BF68E5E0FE99B?apikey=498nadsasdff09fewdsafjaa90f</code></p>
+
+<p>Each of the URLs specified in the response can be accessed using the REL and appropriate METHOD to perform the specified functionality.</p>
+
+<table>
+    <thead>
+        <tr>
+            <th style="width: 50%" colspan="2">Rel Attribute Descriptions</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td style="text-align: right; font-weight: bold;">self:</td>
+            <td>
+                Retrieves the current message.
+            </td>
+        </tr>
+        <tr>
+            <td style="text-align: right; font-weight: bold;">summaryStatus:</td>
+            <td>
+                Returns the status information of the message as a messagestatus object, in a summary view.
+            </td>
+        </tr>
+        <tr>
+            <td style="text-align: right; font-weight: bold;">detailedStatus:</td>
+            <td>Returns the status information of the message as a messagestatus object, in a detailed view.
+            </td>
+        </tr>
+        <tr>
+            <td style="text-align: right; font-weight: bold;">summaryResponses:</td>
+            <td>
+               Returns the response information of the message as a messageresponse object, in a summary view.
+            </td>
+        </tr>
+        <tr>
+            <td style="text-align: right; font-weight: bold;">detailedResponses:</td>
+            <td>
+               Returns the response information of the message as a messageresponse object, in a detailed view.
+            </td>
+        </tr>
+        <tr>
+            <td style="text-align: right; font-weight: bold;">summaryResponsesWithResponseRule:</td>
+            <td>
+               Returns the response information of the message as a messageresponse object, filtered by the Response Rule (if one was used) in a summary view.
+            </td>
+        </tr>
+        <tr>
+            <td style="text-align: right; font-weight: bold;">detailedResponsesWithResponseRule:</td>
+            <td>
+               Returns the response information of the message as a messageresponse object, filtered by the Response Rule (if one was used) in a detailed view.
+            </td>
+        </tr>
+    </tbody>
+</table>
+<h2 id='retrieve-summary-status'>Retrieve Summary Status</h2>
+<blockquote>
+<p>Sample Summary Status Request</p>
+</blockquote>
+<pre class="highlight xml"><span class="nt">&lt;ns3:link</span> <span class="na">method=</span><span class="s">"GET"</span> 
+   <span class="na">rel=</span><span class="s">"summaryStatus"</span> 
+   <span class="na">uri=</span><span class="s">"https://api.whispir.com/messages/069BF68E5E0FE99B/messagestatus?view=summary&amp;apikey=498nadsasdff09fewdsafjaa90f"</span><span class="nt">/&gt;</span>
+</pre>
+<pre class="highlight go"><span class="p">{</span><span class="x">
+    </span><span class="s">"method"</span><span class="o">:</span><span class="x"> </span><span class="s">"GET"</span><span class="p">,</span><span class="x">
+    </span><span class="s">"rel"</span><span class="o">:</span><span class="x"> </span><span class="s">"summaryStatus"</span><span class="p">,</span><span class="x">
+    </span><span class="s">"uri"</span><span class="o">:</span><span class="x"> </span><span class="s">"https://api.whispir.com/messages/069BF68E5E0FE99B/messagestatus?view=summary&amp;apikey=498nadsasdff09fewdsafjaa90f"</span><span class="x">
+</span><span class="p">}</span><span class="x">
+</span></pre>
+
+<blockquote>
+<p>Sample Summary Status Response</p>
+</blockquote>
+<pre class="highlight xml"><span class="cp">&lt;?xml version="1.0" encoding="UTF-8" standalone="yes"?&gt;</span>
+<span class="nt">&lt;ns2:return</span> <span class="na">xmlns:ns2=</span><span class="s">"https://schemas.api.whispir.com/dap"</span> <span class="na">xmlns:ns3=</span><span class="s">"https://schemas.api.whispir.com"</span><span class="nt">&gt;</span>
+ <span class="nt">&lt;ns2:messageStatuses&gt;</span>
+  <span class="nt">&lt;ns2:messageStatus&gt;</span>
+    <span class="nt">&lt;ns2:link</span> <span class="na">method=</span><span class="s">"GET"</span> 
+             <span class="na">rel=</span><span class="s">"self"</span> 
+             <span class="na">uri=</span><span class="s">"https://api.whispir.com/messages/069BF68E5E0FE99B/messagestatus?view=summary&amp;apikey=498nadsasdff09fewdsafjaa90f"</span><span class="nt">/&gt;</span>
+    <span class="nt">&lt;categories&gt;</span>
+      <span class="nt">&lt;status</span> <span class="na">name=</span><span class="s">"Sent"</span><span class="nt">&gt;</span>
+        <span class="nt">&lt;percentageTotal&gt;</span>0.0%<span class="nt">&lt;/percentageTotal&gt;</span>
+        <span class="nt">&lt;recipientCount&gt;</span>0<span class="nt">&lt;/recipientCount&gt;</span>
+      <span class="nt">&lt;/status&gt;</span>
+      <span class="nt">&lt;status</span> <span class="na">name=</span><span class="s">"Pending"</span><span class="nt">&gt;</span>
+        <span class="nt">&lt;percentageTotal&gt;</span>0.0%<span class="nt">&lt;/percentageTotal&gt;</span>
+        <span class="nt">&lt;recipientCount&gt;</span>0<span class="nt">&lt;/recipientCount&gt;</span>
+      <span class="nt">&lt;/status&gt;</span>
+      <span class="nt">&lt;status</span> <span class="na">name=</span><span class="s">"Received"</span><span class="nt">&gt;</span>
+        <span class="nt">&lt;percentageTotal&gt;</span>0.0%<span class="nt">&lt;/percentageTotal&gt;</span>
+        <span class="nt">&lt;recipientCount&gt;</span>0<span class="nt">&lt;/recipientCount&gt;</span>
+      <span class="nt">&lt;/status&gt;</span>
+      <span class="nt">&lt;status</span> <span class="na">name=</span><span class="s">"Acknowledged"</span><span class="nt">&gt;</span>
+        <span class="nt">&lt;percentageTotal&gt;</span>100.0%<span class="nt">&lt;/percentageTotal&gt;</span>
+        <span class="nt">&lt;recipientCount&gt;</span>2<span class="nt">&lt;/recipientCount&gt;</span>
+      <span class="nt">&lt;/status&gt;</span>
+      <span class="nt">&lt;status</span> <span class="na">name=</span><span class="s">"Undeliverable"</span><span class="nt">&gt;</span>
+        <span class="nt">&lt;percentageTotal&gt;</span>0.0%<span class="nt">&lt;/percentageTotal&gt;</span>
+        <span class="nt">&lt;recipientCount&gt;</span>0<span class="nt">&lt;/recipientCount&gt;</span>
+      <span class="nt">&lt;/status&gt;</span>
+    <span class="nt">&lt;/categories&gt;</span>
+  <span class="nt">&lt;/ns2:messageStatus&gt;</span>
+ <span class="nt">&lt;/ns2:messageStatuses&gt;</span>
+<span class="nt">&lt;/ns2:return&gt;</span>
+</pre>
+<pre class="highlight go"><span class="p">{</span><span class="x">
+  </span><span class="s">"messageStatuses"</span><span class="x"> </span><span class="o">:</span><span class="x"> </span><span class="p">[</span><span class="x"> </span><span class="p">{</span><span class="x">
+    </span><span class="s">"link"</span><span class="x"> </span><span class="o">:</span><span class="x"> </span><span class="p">[</span><span class="x"> </span><span class="p">{</span><span class="x">
+      </span><span class="s">"uri"</span><span class="x"> </span><span class="o">:</span><span class="x"> </span><span class="s">"https://api.whispir.com/messages/069BF68E5E0FE99B/messagestatus?view=summary&amp;apikey=498nadsasdff09fewdsafjaa90f"</span><span class="p">,</span><span class="x">
+      </span><span class="s">"rel"</span><span class="x"> </span><span class="o">:</span><span class="x"> </span><span class="s">"self"</span><span class="p">,</span><span class="x">
+      </span><span class="s">"method"</span><span class="x"> </span><span class="o">:</span><span class="x"> </span><span class="s">"GET"</span><span class="x">
+    </span><span class="p">}</span><span class="x"> </span><span class="p">],</span><span class="x">
+    </span><span class="s">"categories"</span><span class="x"> </span><span class="o">:</span><span class="x"> </span><span class="p">[</span><span class="x"> </span><span class="p">{</span><span class="x">
+      </span><span class="s">"name"</span><span class="x"> </span><span class="o">:</span><span class="x"> </span><span class="s">"Sent"</span><span class="p">,</span><span class="x">
+      </span><span class="s">"recipientCount"</span><span class="x"> </span><span class="o">:</span><span class="x"> </span><span class="m">0</span><span class="p">,</span><span class="x">
+      </span><span class="s">"percentageTotal"</span><span class="x"> </span><span class="o">:</span><span class="x"> </span><span class="s">"0.0%"</span><span class="x">
+    </span><span class="p">},</span><span class="x"> </span><span class="p">{</span><span class="x">
+      </span><span class="s">"name"</span><span class="x"> </span><span class="o">:</span><span class="x"> </span><span class="s">"Pending"</span><span class="p">,</span><span class="x">
+      </span><span class="s">"recipientCount"</span><span class="x"> </span><span class="o">:</span><span class="x"> </span><span class="m">0</span><span class="p">,</span><span class="x">
+      </span><span class="s">"percentageTotal"</span><span class="x"> </span><span class="o">:</span><span class="x"> </span><span class="s">"0.0%"</span><span class="x">
+    </span><span class="p">},</span><span class="x"> </span><span class="p">{</span><span class="x">
+      </span><span class="s">"name"</span><span class="x"> </span><span class="o">:</span><span class="x"> </span><span class="s">"Received"</span><span class="p">,</span><span class="x">
+      </span><span class="s">"recipientCount"</span><span class="x"> </span><span class="o">:</span><span class="x"> </span><span class="m">0</span><span class="p">,</span><span class="x">
+      </span><span class="s">"percentageTotal"</span><span class="x"> </span><span class="o">:</span><span class="x"> </span><span class="s">"0.0%"</span><span class="x">
+    </span><span class="p">},</span><span class="x"> </span><span class="p">{</span><span class="x">
+      </span><span class="s">"name"</span><span class="x"> </span><span class="o">:</span><span class="x"> </span><span class="s">"Acknowledged"</span><span class="p">,</span><span class="x">
+      </span><span class="s">"recipientCount"</span><span class="x"> </span><span class="o">:</span><span class="x"> </span><span class="m">2</span><span class="p">,</span><span class="x">
+      </span><span class="s">"percentageTotal"</span><span class="x"> </span><span class="o">:</span><span class="x"> </span><span class="s">"100.0%"</span><span class="x">
+    </span><span class="p">},</span><span class="x"> </span><span class="p">{</span><span class="x">
+      </span><span class="s">"name"</span><span class="x"> </span><span class="o">:</span><span class="x"> </span><span class="s">"Undeliverable"</span><span class="p">,</span><span class="x">
+      </span><span class="s">"recipientCount"</span><span class="x"> </span><span class="o">:</span><span class="x"> </span><span class="m">0</span><span class="p">,</span><span class="x">
+      </span><span class="s">"percentageTotal"</span><span class="x"> </span><span class="o">:</span><span class="x"> </span><span class="s">"0.0%"</span><span class="x">
+    </span><span class="p">}</span><span class="x"> </span><span class="p">]</span><span class="x">
+  </span><span class="p">}</span><span class="x"> </span><span class="p">],</span><span class="x">
+  </span><span class="s">"link"</span><span class="x"> </span><span class="o">:</span><span class="x"> </span><span class="p">[</span><span class="x"> </span><span class="p">]</span><span class="x">
+</span><span class="p">}</span><span class="x">
+</span></pre>
+
+<p>Using the links provided in the message response, the user can simply make a new API request to retrieve the <strong>summaryStatus</strong> URL. </p>
+
+<p>In the example above, the <strong>summaryStatus</strong> URL is:</p>
+
+<p>So the request would look as follows:</p>
+
+<p><code class="prettyprint">GET https://api.whispir.com/messages/069BF68E5E0FE99B/messagestatus?view=summary&amp;apikey=498nadsasdff09fewdsafjaa90f</code></p>
+
+<p>As this is a <strong>GET</strong> request we don&rsquo;t have to provide any message body.</p>
+
+<p>This response states that of the 2 people that were sent the message, both of them <strong>Acknowledged</strong> it by sending a response.  </p>
+
+<p>Your application can use this information to easily determine the numbers of recipients in each state and show a small graph.</p>
+<h2 id='retrieve-detailed-status'>Retrieve Detailed Status</h2>
+<blockquote>
+<p>Sample Detailed Status Request</p>
+</blockquote>
+<pre class="highlight xml"><span class="nt">&lt;ns3:link</span> <span class="na">method=</span><span class="s">"GET"</span> 
+   <span class="na">rel=</span><span class="s">"summaryStatus"</span> 
+   <span class="na">uri=</span><span class="s">"https://api.whispir.com/messages/069BF68E5E0FE99B/messagestatus?view=detailed&amp;apikey=498nadsasdff09fewdsafjaa90f"</span><span class="nt">/&gt;</span>
+</pre>
+<pre class="highlight go"><span class="p">{</span><span class="x">
+    </span><span class="s">"method"</span><span class="o">:</span><span class="x"> </span><span class="s">"GET"</span><span class="p">,</span><span class="x">
+    </span><span class="s">"rel"</span><span class="o">:</span><span class="x"> </span><span class="s">"summaryStatus"</span><span class="p">,</span><span class="x">
+    </span><span class="s">"uri"</span><span class="o">:</span><span class="x"> </span><span class="s">"https://api.whispir.com/messages/069BF68E5E0FE99B/messagestatus?view=detailed&amp;apikey=498nadsasdff09fewdsafjaa90f"</span><span class="x">
+</span><span class="p">}</span><span class="x">
+</span></pre>
+
+<blockquote>
+<p>Sample Detailed Status Response</p>
+</blockquote>
+<pre class="highlight xml"><span class="cp">&lt;?xml version="1.0" encoding="UTF-8" standalone="yes"?&gt;</span>
+<span class="nt">&lt;ns2:return</span> <span class="na">xmlns:ns2=</span><span class="s">"https://schemas.api.whispir.com/dap"</span> <span class="na">xmlns:ns3=</span><span class="s">"https://schemas.api.whispir.com"</span><span class="nt">&gt;</span>
+  <span class="nt">&lt;status&gt;</span>1 to 2 of 2<span class="nt">&lt;/status&gt;</span>
+  <span class="nt">&lt;ns2:messageStatuses&gt;</span>
+    <span class="nt">&lt;ns2:messageStatus&gt;</span>
+      <span class="nt">&lt;ns2:link</span> <span class="na">method=</span><span class="s">"GET"</span> 
+            <span class="na">rel=</span><span class="s">"self"</span> 
+                <span class="na">uri=</span><span class="s">"https://api.whispir.com/messages/069BF68E5E0FE99B/messagestatus?apikey=498nadsasdff09fewdsafjaa90f&amp;view=detailed"</span><span class="nt">/&gt;</span>
+      <span class="nt">&lt;status</span> <span class="na">type=</span><span class="s">"email"</span><span class="nt">&gt;</span>
+        <span class="nt">&lt;destination&gt;&lt;/destination&gt;</span>
+        <span class="nt">&lt;status&gt;&lt;/status&gt;</span>
+      <span class="nt">&lt;/status&gt;</span>
+      <span class="nt">&lt;status</span> <span class="na">type=</span><span class="s">"sms"</span><span class="nt">&gt;</span>
+        <span class="nt">&lt;acknowlegedTimestamp&gt;</span>2012-09-28T08:47:50+10:00<span class="nt">&lt;/acknowlegedTimestamp&gt;</span>
+        <span class="nt">&lt;destination&gt;</span>61456191351<span class="nt">&lt;/destination&gt;</span>
+        <span class="nt">&lt;receivedTimestamp&gt;</span>2012-09-28T08:47:20+10:00<span class="nt">&lt;/receivedTimestamp&gt;</span>
+        <span class="nt">&lt;sentTimestamp&gt;</span>2012-09-28T08:47:17+10:00<span class="nt">&lt;/sentTimestamp&gt;</span>
+        <span class="nt">&lt;status&gt;</span>READ<span class="nt">&lt;/status&gt;</span>
+      <span class="nt">&lt;/status&gt;</span>
+      <span class="nt">&lt;status</span> <span class="na">type=</span><span class="s">"voice"</span><span class="nt">&gt;</span>
+        <span class="nt">&lt;destination&gt;&lt;/destination&gt;</span>
+        <span class="nt">&lt;status&gt;&lt;/status&gt;</span>
+      <span class="nt">&lt;/status&gt;</span>
+      <span class="nt">&lt;info&gt;</span> Out bound SMS text message sent OK. <span class="nt">&lt;/info&gt;</span>
+      <span class="nt">&lt;name&gt;</span>John Smith<span class="nt">&lt;/name&gt;</span>
+    <span class="nt">&lt;/ns2:messageStatus&gt;</span>
+    <span class="nt">&lt;ns2:messageStatus&gt;</span>
+      <span class="nt">&lt;ns2:link</span> <span class="na">method=</span><span class="s">"GET"</span> 
+            <span class="na">rel=</span><span class="s">"self"</span> 
+                <span class="na">uri=</span><span class="s">"https://api.whispir.com/messages/069BF68E5E0FE99B/messagestatus?apikey=498nadsasdff09fewdsafjaa90f&amp;view=detailed"</span><span class="nt">/&gt;</span>
+      <span class="nt">&lt;status</span> <span class="na">type=</span><span class="s">"email"</span><span class="nt">&gt;</span>
+        <span class="nt">&lt;destination&gt;&lt;/destination&gt;</span>
+        <span class="nt">&lt;status&gt;&lt;/status&gt;</span>
+      <span class="nt">&lt;/status&gt;</span>
+      <span class="nt">&lt;status</span> <span class="na">type=</span><span class="s">"sms"</span><span class="nt">&gt;</span>
+        <span class="nt">&lt;acknowlegedTimestamp&gt;</span>2012-09-28T08:47:49+10:00<span class="nt">&lt;/acknowlegedTimestamp&gt;</span>
+        <span class="nt">&lt;destination&gt;</span>61456191368<span class="nt">&lt;/destination&gt;</span>
+        <span class="nt">&lt;receivedTimestamp&gt;</span>2012-09-28T08:47:20+10:00<span class="nt">&lt;/receivedTimestamp&gt;</span>
+        <span class="nt">&lt;sentTimestamp&gt;</span>2012-09-28T08:47:17+10:00<span class="nt">&lt;/sentTimestamp&gt;</span>
+        <span class="nt">&lt;status&gt;</span>READ<span class="nt">&lt;/status&gt;</span>
+      <span class="nt">&lt;/status&gt;</span>
+      <span class="nt">&lt;status</span> <span class="na">type=</span><span class="s">"voice"</span><span class="nt">&gt;</span>
+        <span class="nt">&lt;destination&gt;&lt;/destination&gt;</span>
+        <span class="nt">&lt;status&gt;&lt;/status&gt;</span>
+      <span class="nt">&lt;/status&gt;</span>
+      <span class="nt">&lt;info&gt;</span> Out bound SMS text message sent OK. <span class="nt">&lt;/info&gt;</span>
+      <span class="nt">&lt;name&gt;</span>Fred Smith<span class="nt">&lt;/name&gt;</span>
+    <span class="nt">&lt;/ns2:messageStatus&gt;</span>
+  <span class="nt">&lt;/ns2:messageStatuses&gt;</span>
+<span class="nt">&lt;/ns2:return&gt;</span>
+</pre>
+<pre class="highlight go"><span class="p">{</span><span class="x">
+  </span><span class="s">"messageStatuses"</span><span class="x"> </span><span class="o">:</span><span class="x"> </span><span class="p">[</span><span class="x"> </span><span class="p">{</span><span class="x">
+    </span><span class="s">"name"</span><span class="x"> </span><span class="o">:</span><span class="x"> </span><span class="s">"John Smith"</span><span class="p">,</span><span class="x">
+    </span><span class="s">"info"</span><span class="x"> </span><span class="o">:</span><span class="x"> </span><span class="s">"Out bound SMS text message sent OK."</span><span class="p">,</span><span class="x">
+    </span><span class="s">"link"</span><span class="x"> </span><span class="o">:</span><span class="x"> </span><span class="p">[</span><span class="x"> </span><span class="p">{</span><span class="x">
+      </span><span class="s">"uri"</span><span class="x"> </span><span class="o">:</span><span class="x"> </span><span class="s">"https://api.whispir.com/messages/069BF68E5E0FE99B/messagestatus?apikey=498nadsasdff09fewdsafjaa90f&amp;view=detailed"</span><span class="p">,</span><span class="x">
+      </span><span class="s">"rel"</span><span class="x"> </span><span class="o">:</span><span class="x"> </span><span class="s">"self"</span><span class="p">,</span><span class="x">
+      </span><span class="s">"method"</span><span class="x"> </span><span class="o">:</span><span class="x"> </span><span class="s">"GET"</span><span class="x">
+    </span><span class="p">}</span><span class="x"> </span><span class="p">],</span><span class="x">
+    </span><span class="s">"status"</span><span class="x"> </span><span class="o">:</span><span class="x"> </span><span class="p">[</span><span class="x"> </span><span class="p">{</span><span class="x">
+      </span><span class="s">"type"</span><span class="x"> </span><span class="o">:</span><span class="x"> </span><span class="s">"email"</span><span class="p">,</span><span class="x">
+      </span><span class="s">"status"</span><span class="x"> </span><span class="o">:</span><span class="x"> </span><span class="s">""</span><span class="p">,</span><span class="x">
+      </span><span class="s">"destination"</span><span class="x"> </span><span class="o">:</span><span class="x"> </span><span class="s">""</span><span class="x">
+    </span><span class="p">},</span><span class="x"> </span><span class="p">{</span><span class="x">
+      </span><span class="s">"type"</span><span class="x"> </span><span class="o">:</span><span class="x"> </span><span class="s">"sms"</span><span class="p">,</span><span class="x">
+      </span><span class="s">"status"</span><span class="x"> </span><span class="o">:</span><span class="x"> </span><span class="s">"READ"</span><span class="p">,</span><span class="x">
+      </span><span class="s">"destination"</span><span class="x"> </span><span class="o">:</span><span class="x"> </span><span class="s">"61456191351"</span><span class="p">,</span><span class="x">
+      </span><span class="s">"sentTimestamp"</span><span class="x"> </span><span class="o">:</span><span class="x"> </span><span class="s">"2012-09-28T08:47:17+10:00"</span><span class="x">
+      </span><span class="s">"receivedTimestamp"</span><span class="x"> </span><span class="o">:</span><span class="x"> </span><span class="s">"2012-09-28T08:47:20+10:00"</span><span class="x">
+      </span><span class="s">"acknowlegedTimestamp"</span><span class="x"> </span><span class="o">:</span><span class="x"> </span><span class="s">"2012-09-28T08:47:50+10:00"</span><span class="x">
+    </span><span class="p">},</span><span class="x"> </span><span class="p">{</span><span class="x">
+      </span><span class="s">"type"</span><span class="x"> </span><span class="o">:</span><span class="x"> </span><span class="s">"voice"</span><span class="p">,</span><span class="x">
+      </span><span class="s">"status"</span><span class="x"> </span><span class="o">:</span><span class="x"> </span><span class="s">""</span><span class="p">,</span><span class="x">
+      </span><span class="s">"destination"</span><span class="x"> </span><span class="o">:</span><span class="x"> </span><span class="s">""</span><span class="x">
+    </span><span class="p">},{</span><span class="x">
+    </span><span class="s">"name"</span><span class="x"> </span><span class="o">:</span><span class="x"> </span><span class="s">"Fred Smith"</span><span class="p">,</span><span class="x">
+    </span><span class="s">"info"</span><span class="x"> </span><span class="o">:</span><span class="x"> </span><span class="s">"Out bound SMS text message sent OK."</span><span class="p">,</span><span class="x">
+    </span><span class="s">"link"</span><span class="x"> </span><span class="o">:</span><span class="x"> </span><span class="p">[</span><span class="x"> </span><span class="p">{</span><span class="x">
+      </span><span class="s">"uri"</span><span class="x"> </span><span class="o">:</span><span class="x"> </span><span class="s">"https://api.whispir.com/messages/069BF68E5E0FE99B/messagestatus?apikey=498nadsasdff09fewdsafjaa90f&amp;view=detailed"</span><span class="p">,</span><span class="x">
+      </span><span class="s">"rel"</span><span class="x"> </span><span class="o">:</span><span class="x"> </span><span class="s">"self"</span><span class="p">,</span><span class="x">
+      </span><span class="s">"method"</span><span class="x"> </span><span class="o">:</span><span class="x"> </span><span class="s">"GET"</span><span class="x">
+    </span><span class="p">}</span><span class="x"> </span><span class="p">],</span><span class="x">
+    </span><span class="s">"status"</span><span class="x"> </span><span class="o">:</span><span class="x"> </span><span class="p">[</span><span class="x"> </span><span class="p">{</span><span class="x">
+      </span><span class="s">"type"</span><span class="x"> </span><span class="o">:</span><span class="x"> </span><span class="s">"email"</span><span class="p">,</span><span class="x">
+      </span><span class="s">"status"</span><span class="x"> </span><span class="o">:</span><span class="x"> </span><span class="s">""</span><span class="p">,</span><span class="x">
+      </span><span class="s">"destination"</span><span class="x"> </span><span class="o">:</span><span class="x"> </span><span class="s">""</span><span class="x">
+    </span><span class="p">},</span><span class="x"> </span><span class="p">{</span><span class="x">
+      </span><span class="s">"type"</span><span class="x"> </span><span class="o">:</span><span class="x"> </span><span class="s">"sms"</span><span class="p">,</span><span class="x">
+      </span><span class="s">"status"</span><span class="x"> </span><span class="o">:</span><span class="x"> </span><span class="s">"READ"</span><span class="p">,</span><span class="x">
+      </span><span class="s">"destination"</span><span class="x"> </span><span class="o">:</span><span class="x"> </span><span class="s">"61456191368"</span><span class="p">,</span><span class="x">
+      </span><span class="s">"sentTimestamp"</span><span class="x"> </span><span class="o">:</span><span class="x"> </span><span class="s">"2012-09-28T08:47:17+10:00"</span><span class="x">
+      </span><span class="s">"receivedTimestamp"</span><span class="x"> </span><span class="o">:</span><span class="x"> </span><span class="s">"2012-09-28T08:47:20+10:00"</span><span class="x">
+      </span><span class="s">"acknowlegedTimestamp"</span><span class="x"> </span><span class="o">:</span><span class="x"> </span><span class="s">"2012-09-28T08:47:50+10:00"</span><span class="x">
+    </span><span class="p">},</span><span class="x"> </span><span class="p">{</span><span class="x">
+      </span><span class="s">"type"</span><span class="x"> </span><span class="o">:</span><span class="x"> </span><span class="s">"voice"</span><span class="p">,</span><span class="x">
+      </span><span class="s">"status"</span><span class="x"> </span><span class="o">:</span><span class="x"> </span><span class="s">""</span><span class="p">,</span><span class="x">
+      </span><span class="s">"destination"</span><span class="x"> </span><span class="o">:</span><span class="x"> </span><span class="s">""</span><span class="x">
+    </span><span class="p">}</span><span class="x"> </span><span class="p">],</span><span class="x">
+  </span><span class="s">"status"</span><span class="x"> </span><span class="o">:</span><span class="x"> </span><span class="s">"1 to 2 of 2"</span><span class="p">,</span><span class="x">
+  </span><span class="s">"link"</span><span class="x"> </span><span class="o">:</span><span class="x"> </span><span class="p">[</span><span class="x"> </span><span class="p">]</span><span class="x">
+</span><span class="p">}</span><span class="x">
+</span></pre>
+
+<p>Similar to the <strong>summaryStatus</strong>, using the links provided in the message response, the user can simply make a new API request to retrieve the <strong>detailedStatus</strong> URL. </p>
+
+<p><code class="prettyprint">GET https://api.whispir.com/messages/069BF68E5E0FE99B/messagestatus?view=detailed&amp;apikey=</code></p>
+
+<p>As this is a <strong>GET</strong> request we don&rsquo;t have to provide any message body. </p>
+
+<p>The user can easily use this information to receive a far more detailed status breakdown of (for each recipient):</p>
+
+<ul>
+<li>  The name of the recipient</li>
+<li>  The channel type (SMS, Email, Voice, Web)</li>
+<li>  The sent timestamp for each channel</li>
+<li>  The received timestamp for each channel</li>
+<li>  The acknowledged timestamp for each channel</li>
+<li>  The undeliverable timestamp (only present when the channel is undeliverable)</li>
+<li>  The overall status for this recipient (PENDING, SENT, DELIVRD, READ, FAILED)</li>
+<li>  The information text describing how this message has progressed.</li>
+</ul>
+
+<p>Once you have processed the status information, the next likely piece of information you will be looking to find is the content of the responses (if any).  The section on Message Responses describes how to retrieve this information.</p>
+
+          <h1 id='message-responses'>Message Responses</h1>
+<p>Recipients of Whispir Messages have the ability to respond directly to the message via the channels that they received the message on.  </p>
+
+<p>If they received the message via SMS, they can respond directly to the SMS message, and this will be visible through the Whispir.io API.</p>
+
+<p><img title="Message Response" src="https://developer.whispir.com/files/MessageResponse.png" /></p>
+
+<p>The sections below describe the process to retrieve the responses to any messages that you have sent via the Whispir.io API.</p>
+<h2 id='retrieve-a-message'>Retrieve a Message</h2>
+<blockquote>
+<p>Retrieve a message</p>
+</blockquote>
+<pre class="highlight xml"><span class="cp">&lt;?xml version="1.0" encoding="UTF-8" standalone="yes"?&gt;</span>
+<span class="nt">&lt;ns2:message</span> <span class="na">xmlns:ns2=</span><span class="s">"https://schemas.api.whispir.com"</span> <span class="na">xmlns:ns3=</span><span class="s">"https://schemas.api.whispir.com/dap"</span><span class="nt">&gt;</span>
+ <span class="nt">&lt;to&gt;</span>61400000000<span class="nt">&lt;/to&gt;</span>
+ <span class="nt">&lt;subject&gt;</span>test subject<span class="nt">&lt;/subject&gt;</span>
+ <span class="nt">&lt;body&gt;</span>test body<span class="nt">&lt;/body&gt;</span>
+ <span class="nt">&lt;voice/&gt;</span>
+ <span class="nt">&lt;from&gt;&lt;/from&gt;</span>
+ <span class="nt">&lt;direction&gt;</span>OUTGOING<span class="nt">&lt;/direction&gt;</span>
+ <span class="nt">&lt;responseCount&gt;</span>0<span class="nt">&lt;/responseCount&gt;</span>
+ <span class="nt">&lt;social/&gt;</span>
+ <span class="nt">&lt;createdTime&gt;</span>2012-09-24T15:36:16+10:00<span class="nt">&lt;/createdTime&gt;</span>
+ <span class="nt">&lt;ns3:link</span> <span class="na">method=</span><span class="s">"GET"</span> 
+   <span class="na">rel=</span><span class="s">"self"</span> 
+   <span class="na">uri=</span><span class="s">"https://api.whispir.com/messages/069BF68E5E0FE99B?apikey=498nadsasdff09fewdsafjaa90f"</span><span class="nt">/&gt;</span>
+ <span class="nt">&lt;ns3:link</span> <span class="na">method=</span><span class="s">"GET"</span> 
+   <span class="na">rel=</span><span class="s">"summaryStatus"</span> 
+   <span class="na">uri=</span><span class="s">"https://api.whispir.com/messages/069BF68E5E0FE99B/messagestatus?view=summary&amp;apikey=498nadsasdff09fewdsafjaa90f"</span><span class="nt">/&gt;</span>
+ <span class="nt">&lt;ns3:link</span> <span class="na">method=</span><span class="s">"GET"</span> 
+   <span class="na">rel=</span><span class="s">"detailedStatus"</span> 
+   <span class="na">uri=</span><span class="s">"https://api.whispir.com/messages/069BF68E5E0FE99B/messagestatus?view=detailed&amp;apikey=498nadsasdff09fewdsafjaa90f"</span><span class="nt">/&gt;</span>
+ <span class="nt">&lt;ns3:link</span> <span class="na">method=</span><span class="s">"GET"</span> 
+   <span class="na">rel=</span><span class="s">"summaryResponses"</span> 
+   <span class="na">uri=</span><span class="s">"https://api.whispir.com/messages/069BF68E5E0FE99B/messageresponses?view=summary&amp;filter=default&amp;apikey=498nadsasdff09fewdsafjaa90f"</span><span class="nt">/&gt;</span>
+ <span class="nt">&lt;ns3:link</span> <span class="na">method=</span><span class="s">"GET"</span> 
+   <span class="na">rel=</span><span class="s">"detailedResponses"</span> 
+   <span class="na">uri=</span><span class="s">"https://api.whispir.com/messages/069BF68E5E0FE99B/messageresponses?view=detailed&amp;filter=default&amp;apikey=498nadsasdff09fewdsafjaa90f"</span><span class="nt">/&gt;</span>
+ <span class="nt">&lt;ns3:link</span> <span class="na">method=</span><span class="s">"GET"</span> 
+   <span class="na">rel=</span><span class="s">"summaryResponsesWithResponseRule"</span> 
+   <span class="na">uri=</span><span class="s">"https://api.whispir.com/messages/069BF68E5E0FE99B/messageresponses?view=summary&amp;filter=responserule&amp;apikey=498nadsasdff09fewdsafjaa90f"</span><span class="nt">/&gt;</span>
+ <span class="nt">&lt;ns3:link</span> <span class="na">method=</span><span class="s">"GET"</span> 
+   <span class="na">rel=</span><span class="s">"detailedResponsesWithResponseRule"</span> 
+   <span class="na">uri=</span><span class="s">"https://api.whispir.com/messages/069BF68E5E0FE99B/messageresponses?view=detailed&amp;filter=responserule&amp;apikey=498nadsasdff09fewdsafjaa90f"</span><span class="nt">/&gt;</span>
+<span class="nt">&lt;/ns2:message&gt;</span>
+</pre>
+<pre class="highlight go"><span class="p">{</span><span class="x">
+    </span><span class="s">"to"</span><span class="o">:</span><span class="x"> </span><span class="s">"61400000000"</span><span class="p">,</span><span class="x">
+    </span><span class="s">"subject"</span><span class="o">:</span><span class="x"> </span><span class="s">"test subject"</span><span class="p">,</span><span class="x">
+    </span><span class="s">"body"</span><span class="o">:</span><span class="x"> </span><span class="s">"test body"</span><span class="p">,</span><span class="x">
+    </span><span class="s">"direction"</span><span class="o">:</span><span class="x"> </span><span class="s">"OUTGOING"</span><span class="p">,</span><span class="x">
+    </span><span class="s">"responseCount"</span><span class="o">:</span><span class="x"> </span><span class="s">"0"</span><span class="p">,</span><span class="x">
+    </span><span class="s">"createdTime"</span><span class="o">:</span><span class="x"> </span><span class="s">"2012-09-24T15:36:16+10:00"</span><span class="p">,</span><span class="x">
+    </span><span class="s">"link"</span><span class="o">:</span><span class="x"> </span><span class="p">[{</span><span class="x">
+      </span><span class="s">"method"</span><span class="o">:</span><span class="x"> </span><span class="s">"GET"</span><span class="p">,</span><span class="x">
+      </span><span class="s">"rel"</span><span class="o">:</span><span class="x"> </span><span class="s">"self"</span><span class="p">,</span><span class="x">
+      </span><span class="s">"uri"</span><span class="o">:</span><span class="x"> </span><span class="s">"https://api.whispir.com/messages/069BF68E5E0FE99B?apikey=498nadsasdff09fewdsafjaa90f"</span><span class="x">
+    </span><span class="p">},{</span><span class="x">
+      </span><span class="s">"method"</span><span class="o">:</span><span class="x"> </span><span class="s">"GET"</span><span class="p">,</span><span class="x">
+      </span><span class="s">"rel"</span><span class="o">:</span><span class="x"> </span><span class="s">"summaryStatus"</span><span class="p">,</span><span class="x">
+      </span><span class="s">"uri"</span><span class="o">:</span><span class="x"> </span><span class="s">"https://api.whispir.com/messages/069BF68E5E0FE99B/messagestatus?view=summary&amp;apikey=498nadsasdff09fewdsafjaa90f"</span><span class="x">
+    </span><span class="p">},{</span><span class="x">
+      </span><span class="s">"method"</span><span class="o">:</span><span class="x"> </span><span class="s">"GET"</span><span class="p">,</span><span class="x">
+      </span><span class="s">"rel"</span><span class="o">:</span><span class="x"> </span><span class="s">"detailedStatus"</span><span class="p">,</span><span class="x">
+      </span><span class="s">"uri"</span><span class="o">:</span><span class="x"> </span><span class="s">"https://api.whispir.com/messages/069BF68E5E0FE99B/messagestatus?view=detailed&amp;apikey=498nadsasdff09fewdsafjaa90f"</span><span class="x">
+    </span><span class="p">},{</span><span class="x">
+      </span><span class="s">"method"</span><span class="o">:</span><span class="x"> </span><span class="s">"GET"</span><span class="p">,</span><span class="x">
+      </span><span class="s">"rel"</span><span class="o">:</span><span class="x"> </span><span class="s">"summaryResponses"</span><span class="p">,</span><span class="x">
+      </span><span class="s">"uri"</span><span class="o">:</span><span class="x"> </span><span class="s">"https://api.whispir.com/messages/069BF68E5E0FE99B/messageresponses?view=summary&amp;filter=default&amp;apikey=498nadsasdff09fewdsafjaa90f"</span><span class="x">
+    </span><span class="p">},{</span><span class="x">
+      </span><span class="s">"method"</span><span class="o">:</span><span class="x"> </span><span class="s">"GET"</span><span class="p">,</span><span class="x">
+      </span><span class="s">"rel"</span><span class="o">:</span><span class="x"> </span><span class="s">"detailedResponses"</span><span class="p">,</span><span class="x">
+      </span><span class="s">"uri"</span><span class="o">:</span><span class="x"> </span><span class="s">"https://api.whispir.com/messages/069BF68E5E0FE99B/messageresponses?view=detailed&amp;filter=default&amp;apikey=498nadsasdff09fewdsafjaa90f"</span><span class="x">
+    </span><span class="p">},{</span><span class="x">
+      </span><span class="s">"method"</span><span class="o">:</span><span class="x"> </span><span class="s">"GET"</span><span class="p">,</span><span class="x">
+      </span><span class="s">"rel"</span><span class="o">:</span><span class="x"> </span><span class="s">"summaryResponsesWithResponseRule"</span><span class="p">,</span><span class="x">
+      </span><span class="s">"uri"</span><span class="o">:</span><span class="x"> </span><span class="s">"https://api.whispir.com/messages/069BF68E5E0FE99B/messageresponses?view=summary&amp;filter=responserule&amp;apikey=498nadsasdff09fewdsafjaa90f"</span><span class="x">
+    </span><span class="p">},{</span><span class="x">
+      </span><span class="s">"method"</span><span class="o">:</span><span class="x"> </span><span class="s">"GET"</span><span class="p">,</span><span class="x">
+      </span><span class="s">"rel"</span><span class="o">:</span><span class="x"> </span><span class="s">"detailedResponsesWithResponseRule"</span><span class="p">,</span><span class="x">
+      </span><span class="s">"uri"</span><span class="o">:</span><span class="x"> </span><span class="s">"https://api.whispir.com/messages/069BF68E5E0FE99B/messageresponses?view=detailed&amp;filter=responserule&amp;apikey=498nadsasdff09fewdsafjaa90f"</span><span class="x">
+    </span><span class="p">}]</span><span class="x">
+</span><span class="p">}</span><span class="x">
+</span></pre>
+
+<p>The example request below returns the Message that the API user requested.  </p>
+
+<p><code class="prettyprint">GET /messages/069BF68E5E0FE99B?apikey=498nadsasdff09fewdsafjaa90f</code></p>
+
+<p>Each of the URLs specified in the response can be accessed using the REL and appropriate METHOD to perform the specified functionality.</p>
+
+<table>
+    <thead>
+        <tr>
+            <th style="width: 50%" colspan="2">Rel Attribute Descriptions</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td style="text-align: right; font-weight: bold;">self:</td>
+            <td>
+                Retrieves the current message.
+            </td>
+        </tr>
+        <tr>
+            <td style="text-align: right; font-weight: bold;">summaryStatus:</td>
+            <td>
+                Returns the status information of the message as a messagestatus object, in a summary view.
+            </td>
+        </tr>
+        <tr>
+            <td style="text-align: right; font-weight: bold;">detailedStatus:</td>
+            <td>Returns the status information of the message as a messagestatus object, in a detailed view.
+            </td>
+        </tr>
+        <tr>
+            <td style="text-align: right; font-weight: bold;">summaryResponses:</td>
+            <td>
+               Returns the response information of the message as a messageresponse object, in a summary view.
+            </td>
+        </tr>
+        <tr>
+            <td style="text-align: right; font-weight: bold;">detailedResponses:</td>
+            <td>
+               Returns the response information of the message as a messageresponse object, in a detailed view.
+            </td>
+        </tr>
+        <tr>
+            <td style="text-align: right; font-weight: bold;">summaryResponsesWithResponseRule:</td>
+            <td>
+               Returns the response information of the message as a messageresponse object, filtered by the Response Rule (if one was used) in a summary view.
+            </td>
+        </tr>
+        <tr>
+            <td style="text-align: right; font-weight: bold;">detailedResponsesWithResponseRule:</td>
+            <td>
+               Returns the response information of the message as a messageresponse object, filtered by the Response Rule (if one was used) in a detailed view.
+            </td>
+        </tr>
+    </tbody>
+</table>
+<h2 id='summary-responses'>Summary Responses</h2>
+<blockquote>
+<p>Sample Summary Responses Request</p>
+</blockquote>
+<pre class="highlight xml"><span class="nt">&lt;ns3:link</span> <span class="na">method=</span><span class="s">"GET"</span> 
+   <span class="na">rel=</span><span class="s">"summaryResponses"</span> 
+   <span class="na">uri=</span><span class="s">"https://api.whispir.com/messages/069BF68E5E0FE99B/messageresponses?view=summary&amp;filter=default&amp;apikey=498nadsasdff09fewdsafjaa90f"</span><span class="nt">/&gt;</span>
+</pre>
+<pre class="highlight go"><span class="p">{</span><span class="x">
+    </span><span class="s">"method"</span><span class="o">:</span><span class="x"> </span><span class="s">"GET"</span><span class="p">,</span><span class="x">
+    </span><span class="s">"rel"</span><span class="o">:</span><span class="x"> </span><span class="s">"summaryResponses"</span><span class="p">,</span><span class="x">
+    </span><span class="s">"uri"</span><span class="o">:</span><span class="x"> </span><span class="s">"https://api.whispir.com/messages/069BF68E5E0FE99B/messageresponses?view=summary&amp;filter=default&amp;apikey=498nadsasdff09fewdsafjaa90f"</span><span class="x">
+</span><span class="p">}</span><span class="x">
+</span></pre>
+
+<blockquote>
+<p>Sample Summary Responses Response</p>
+</blockquote>
+<pre class="highlight xml"><span class="cp">&lt;?xml version="1.0" encoding="UTF-8" standalone="yes"?&gt;</span>
+<span class="nt">&lt;ns2:return</span> <span class="na">xmlns:ns2=</span><span class="s">"https://schemas.api.whispir.com/dap"</span> <span class="na">xmlns:ns3=</span><span class="s">"https://schemas.api.whispir.com"</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;ns2:link</span> <span class="na">method=</span><span class="s">"GET"</span> 
+              <span class="na">rel=</span><span class="s">"self"</span> 
+              <span class="na">uri=</span><span class="s">"https://api.whispir.com/messages/069BF68E5E0FE99B/messageresponses?view=summary&amp;filter=default&amp;apikey=498nadsasdff09fewdsafjaa90f"</span><span class="nt">/&gt;</span>
+    <span class="nt">&lt;ns2:messageresponses&gt;</span>
+        <span class="nt">&lt;ns2:response</span> <span class="na">type=</span><span class="s">"noresponse"</span><span class="nt">&gt;</span>
+            <span class="nt">&lt;percentageTotal&gt;</span>50%<span class="nt">&lt;/percentageTotal&gt;</span>
+            <span class="nt">&lt;responseCount&gt;</span>1<span class="nt">&lt;/responseCount&gt;</span>
+        <span class="nt">&lt;/ns2:response&gt;</span>
+        <span class="nt">&lt;ns2:response</span> <span class="na">type=</span><span class="s">"notmatched"</span><span class="nt">&gt;</span>
+            <span class="nt">&lt;percentageTotal&gt;</span>50%<span class="nt">&lt;/percentageTotal&gt;</span>
+            <span class="nt">&lt;responseCount&gt;</span>1<span class="nt">&lt;/responseCount&gt;</span>
+        <span class="nt">&lt;/ns2:response&gt;</span>
+    <span class="nt">&lt;/ns2:messageresponses&gt;</span>
+<span class="nt">&lt;/ns2:return&gt;</span>
+</pre>
+<pre class="highlight go"><span class="p">{</span><span class="x">
+  </span><span class="s">"messageresponses"</span><span class="x"> </span><span class="o">:</span><span class="x"> </span><span class="p">[</span><span class="x"> </span><span class="p">{</span><span class="x">
+    </span><span class="s">"percentageTotal"</span><span class="x"> </span><span class="o">:</span><span class="x"> </span><span class="s">"50%"</span><span class="p">,</span><span class="x">
+    </span><span class="s">"responseCount"</span><span class="x"> </span><span class="o">:</span><span class="x"> </span><span class="s">"1"</span><span class="p">,</span><span class="x">
+    </span><span class="s">"link"</span><span class="x"> </span><span class="o">:</span><span class="x"> </span><span class="p">[</span><span class="x"> </span><span class="p">],</span><span class="x">
+    </span><span class="s">"type"</span><span class="x"> </span><span class="o">:</span><span class="x"> </span><span class="s">"noresponse"</span><span class="x">
+  </span><span class="p">},{</span><span class="x">
+    </span><span class="s">"percentageTotal"</span><span class="x"> </span><span class="o">:</span><span class="x"> </span><span class="s">"50%"</span><span class="p">,</span><span class="x">
+    </span><span class="s">"responseCount"</span><span class="x"> </span><span class="o">:</span><span class="x"> </span><span class="s">"1"</span><span class="p">,</span><span class="x">
+    </span><span class="s">"link"</span><span class="x"> </span><span class="o">:</span><span class="x"> </span><span class="p">[</span><span class="x"> </span><span class="p">],</span><span class="x">
+    </span><span class="s">"type"</span><span class="x"> </span><span class="o">:</span><span class="x"> </span><span class="s">"notmatched"</span><span class="x">
+  </span><span class="p">}</span><span class="x"> </span><span class="p">],</span><span class="x">
+  </span><span class="s">"link"</span><span class="x"> </span><span class="o">:</span><span class="x"> </span><span class="p">[</span><span class="x"> </span><span class="p">{</span><span class="x">
+    </span><span class="s">"uri"</span><span class="x"> </span><span class="o">:</span><span class="x"> </span><span class="s">"https://api.whispir.com/messages/069BF68E5E0FE99B/messageresponses?view=summary&amp;filter=default&amp;apikey=498nadsasdff09fewdsafjaa90f"</span><span class="p">,</span><span class="x">
+    </span><span class="s">"rel"</span><span class="x"> </span><span class="o">:</span><span class="x"> </span><span class="s">"self"</span><span class="p">,</span><span class="x">
+    </span><span class="s">"method"</span><span class="x"> </span><span class="o">:</span><span class="x"> </span><span class="s">"GET"</span><span class="x">
+  </span><span class="p">}</span><span class="x"> </span><span class="p">]</span><span class="x">
+</span><span class="p">}</span><span class="x">
+</span></pre>
+
+<p>Using the links provided in the message response, the user can simply make a new API request to retrieve the <strong>summaryStatus</strong> URL. </p>
+
+<p>The request for this information would look as follows:</p>
+
+<p><code class="prettyprint">GET https://api.whispir.com/messages/069BF68E5E0FE99B/messagestatus?view=summary&amp;apikey=498nadsasdff09fewdsafjaa90f</code></p>
+
+<p>This request is asking for a couple of things:</p>
+
+<ol>
+<li> The URL is specifically asking for all of the <strong>messageresponses</strong> to the message with ID <strong>069BF68E5E0FE99B</strong></li>
+<li> The <strong>View</strong> parameter is specifying that the message responses should be shown in a <strong>summary</strong> view</li>
+<li> The <strong>Filter</strong> parameter is specifying that the filter should not use a response rule, it should show the <strong>default</strong> filter</li>
+</ol>
+
+<p>As this is a <strong>GET</strong> request we don&rsquo;t have to provide any message body.</p>
+
+<p>This response states that of the 2 people that were sent the message, both of them <strong>Acknowledged</strong> it by sending a response.  </p>
+
+<p>Your application can use this information to easily determine the numbers of recipients in each state and show a small graph.</p>
+<h2 id='detailed-status'>Detailed Status</h2>
+<blockquote>
+<p>Sample Detailed Responses Request</p>
+</blockquote>
+<pre class="highlight xml"><span class="nt">&lt;ns3:link</span> <span class="na">method=</span><span class="s">"GET"</span> 
+   <span class="na">rel=</span><span class="s">"detailedResponses"</span> 
+   <span class="na">uri=</span><span class="s">"https://api.whispir.com/messages/069BF68E5E0FE99B/messageresponses?view=detailed&amp;filter=default&amp;apikey=498nadsasdff09fewdsafjaa90f"</span><span class="nt">/&gt;</span>
+</pre>
+<pre class="highlight go"><span class="p">{</span><span class="x">
+    </span><span class="s">"method"</span><span class="o">:</span><span class="x"> </span><span class="s">"GET"</span><span class="p">,</span><span class="x">
+    </span><span class="s">"rel"</span><span class="o">:</span><span class="x"> </span><span class="s">"detailedResponses"</span><span class="p">,</span><span class="x">
+    </span><span class="s">"uri"</span><span class="o">:</span><span class="x"> </span><span class="s">"https://api.whispir.com/messages/069BF68E5E0FE99B/messageresponses?view=detailed&amp;filter=default&amp;apikey=498nadsasdff09fewdsafjaa90f"</span><span class="x">
+</span><span class="p">}</span><span class="x">
+</span></pre>
+
+<blockquote>
+<p>Sample Detailed Responses Response</p>
+</blockquote>
+<pre class="highlight xml"><span class="cp">&lt;?xml version="1.0" encoding="UTF-8" standalone="yes"?&gt;</span>
+<span class="nt">&lt;ns2:return</span> <span class="na">xmlns:ns2=</span><span class="s">"http://schemas.api.whispir.com/dap"</span> <span class="na">xmlns:ns3=</span><span class="s">"http://schemas.api.whispir.com"</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;status&gt;</span>1 to 2 of 2<span class="nt">&lt;/status&gt;</span>
+    <span class="nt">&lt;ns2:messageresponses&gt;</span>
+        <span class="nt">&lt;ns2:response&gt;</span>
+            <span class="nt">&lt;from&gt;</span>
+                <span class="nt">&lt;email&gt;</span>jsmith@test.com<span class="nt">&lt;/email&gt;</span>                
+                <span class="nt">&lt;mobile&gt;</span>61000000000<span class="nt">&lt;/mobile&gt;</span> 
+                <span class="nt">&lt;mri&gt;</span>John_Smith.484215.Critical_Incident_Management@Contact.whispir.com<span class="nt">&lt;/mri&gt;</span>
+                <span class="nt">&lt;name&gt;</span>John Smith<span class="nt">&lt;/name&gt;</span>
+                <span class="nt">&lt;voice&gt;</span>61000000000<span class="nt">&lt;/voice&gt;</span> 
+            <span class="nt">&lt;/from&gt;</span>
+            <span class="nt">&lt;responseCategory&gt;</span>noresponse<span class="nt">&lt;/responseCategory&gt;</span>
+            <span class="nt">&lt;responseMessage</span> <span class="na">channel=</span><span class="s">"N/A"</span><span class="nt">&gt;</span>
+                <span class="nt">&lt;acknowledged&gt;</span>N/A<span class="nt">&lt;/acknowledged&gt;</span>
+                <span class="nt">&lt;content&gt;</span>N/A<span class="nt">&lt;/content&gt;</span>
+            <span class="nt">&lt;/responseMessage&gt;</span>
+        <span class="nt">&lt;/ns2:response&gt;</span>
+        <span class="nt">&lt;ns2:response&gt;</span>
+            <span class="nt">&lt;from&gt;</span>
+                <span class="nt">&lt;email&gt;</span>fsmith@test.com<span class="nt">&lt;/email&gt;</span>
+                <span class="nt">&lt;mobile&gt;</span>61000000001<span class="nt">&lt;/mobile&gt;</span>  
+                <span class="nt">&lt;mri&gt;</span>Fred_Smith.341550.Critical_Incident_Management@Contact.whispir.com<span class="nt">&lt;/mri&gt;</span>
+                <span class="nt">&lt;name&gt;</span>Fred Smith<span class="nt">&lt;/name&gt;</span>
+                <span class="nt">&lt;voice&gt;</span>61000000001<span class="nt">&lt;/voice&gt;</span> 
+            <span class="nt">&lt;/from&gt;</span>
+            <span class="nt">&lt;responseCategory&gt;</span>notmatched<span class="nt">&lt;/responseCategory&gt;</span>
+            <span class="nt">&lt;responseMessage</span> <span class="na">channel=</span><span class="s">"SMS"</span><span class="nt">&gt;</span>
+                <span class="nt">&lt;acknowledged&gt;</span>28/09/12 08:48<span class="nt">&lt;/acknowledged&gt;</span>
+                <span class="nt">&lt;content&gt;</span>OK, got it. Thanks.<span class="nt">&lt;/content&gt;</span>
+            <span class="nt">&lt;/responseMessage&gt;</span>
+        <span class="nt">&lt;/ns2:response&gt;</span>
+    <span class="nt">&lt;/ns2:messageresponses&gt;</span>
+<span class="nt">&lt;/ns2:return&gt;</span>
+</pre>
+<pre class="highlight go"><span class="p">{</span><span class="x">
+  </span><span class="s">"status"</span><span class="x"> </span><span class="o">:</span><span class="x"> </span><span class="s">"1 to 2 of 2    "</span><span class="p">,</span><span class="x">
+  </span><span class="s">"messageresponses"</span><span class="x"> </span><span class="o">:</span><span class="x"> </span><span class="p">[</span><span class="x"> </span><span class="p">{</span><span class="x">
+    </span><span class="s">"from"</span><span class="x"> </span><span class="o">:</span><span class="x"> </span><span class="p">{</span><span class="x">
+      </span><span class="s">"name"</span><span class="x"> </span><span class="o">:</span><span class="x"> </span><span class="s">"John Smith"</span><span class="p">,</span><span class="x">
+      </span><span class="s">"mri"</span><span class="x"> </span><span class="o">:</span><span class="x"> </span><span class="s">"John_Smith.484215.Critical_Incident_Management@Contact.whispir.com"</span><span class="p">,</span><span class="x">
+      </span><span class="s">"mobile"</span><span class="x"> </span><span class="o">:</span><span class="x"> </span><span class="s">"61000000000"</span><span class="p">,</span><span class="x">
+      </span><span class="s">"email"</span><span class="x"> </span><span class="o">:</span><span class="x"> </span><span class="s">"jsmith@test.com"</span><span class="p">,</span><span class="x">
+      </span><span class="s">"voice"</span><span class="x"> </span><span class="o">:</span><span class="x"> </span><span class="s">"61000000000"</span><span class="x">
+    </span><span class="p">},</span><span class="x">
+    </span><span class="s">"responseCategory"</span><span class="x"> </span><span class="o">:</span><span class="x"> </span><span class="s">"noresponse"</span><span class="p">,</span><span class="x">
+    </span><span class="s">"responseMessage"</span><span class="x"> </span><span class="o">:</span><span class="x"> </span><span class="p">{</span><span class="x">
+      </span><span class="s">"content"</span><span class="x"> </span><span class="o">:</span><span class="x"> </span><span class="s">"N/A"</span><span class="p">,</span><span class="x">
+      </span><span class="s">"acknowledged"</span><span class="x"> </span><span class="o">:</span><span class="x"> </span><span class="s">"N/A"</span><span class="p">,</span><span class="x">
+      </span><span class="s">"channel"</span><span class="x"> </span><span class="o">:</span><span class="x"> </span><span class="s">"N/A"</span><span class="x">
+    </span><span class="p">}</span><span class="x">
+  </span><span class="p">},{</span><span class="x">
+    </span><span class="s">"from"</span><span class="x"> </span><span class="o">:</span><span class="x"> </span><span class="p">{</span><span class="x">
+      </span><span class="s">"name"</span><span class="x"> </span><span class="o">:</span><span class="x"> </span><span class="s">"Fred Smith"</span><span class="p">,</span><span class="x">
+      </span><span class="s">"mri"</span><span class="x"> </span><span class="o">:</span><span class="x"> </span><span class="s">"Fred_Smith.341550.Critical_Incident_Management@Contact.whispir.com"</span><span class="p">,</span><span class="x">
+      </span><span class="s">"mobile"</span><span class="x"> </span><span class="o">:</span><span class="x"> </span><span class="s">"61000000001"</span><span class="p">,</span><span class="x">
+      </span><span class="s">"email"</span><span class="x"> </span><span class="o">:</span><span class="x"> </span><span class="s">"fsmith@test.com"</span><span class="p">,</span><span class="x">
+      </span><span class="s">"voice"</span><span class="x"> </span><span class="o">:</span><span class="x"> </span><span class="s">"61000000001"</span><span class="x">
+    </span><span class="p">},</span><span class="x">
+    </span><span class="s">"responseCategory"</span><span class="x"> </span><span class="o">:</span><span class="x"> </span><span class="s">"notmatched"</span><span class="p">,</span><span class="x">
+    </span><span class="s">"responseMessage"</span><span class="x"> </span><span class="o">:</span><span class="x"> </span><span class="p">{</span><span class="x">
+      </span><span class="s">"content"</span><span class="x"> </span><span class="o">:</span><span class="x"> </span><span class="s">"OK, got it. Thanks."</span><span class="p">,</span><span class="x">
+      </span><span class="s">"acknowledged"</span><span class="x"> </span><span class="o">:</span><span class="x"> </span><span class="s">"28/09/12 08:48"</span><span class="p">,</span><span class="x">
+      </span><span class="s">"channel"</span><span class="x"> </span><span class="o">:</span><span class="x"> </span><span class="s">"SMS"</span><span class="x">
+    </span><span class="p">}</span><span class="x">
+  </span><span class="p">}</span><span class="x"> </span><span class="p">],</span><span class="x">
+  </span><span class="s">"link"</span><span class="x"> </span><span class="o">:</span><span class="x"> </span><span class="p">[</span><span class="x"> </span><span class="p">]</span><span class="x">
+</span><span class="p">}</span><span class="x">
+</span></pre>
+
+<blockquote>
+<p>This shows the application client that there were two intended recipients of this message.  1 of the recipients is in the <strong>noresponse</strong> category, meaning they have not provided a response.  1 of the recipients is in the <strong>notmatched</strong> category, meaning the response did not match any search criteria.</p>
+</blockquote>
+
+<p>Using the links provided in the message response, the user can simply make a new API request to retrieve the <strong>detailedResponses</strong> URL. </p>
+
+<p>The resulting request would look as follows:</p>
+
+<p><code class="prettyprint">GET https://api.whispir.com/messages/069BF68E5E0FE99B/messageresponses?view=detailed&amp;filter=default&amp;apikey=498nadsasdff09fewdsafjaa90f</code></p>
+
+<p>This request is asking for a couple of things:</p>
+
+<ol>
+<li> The URL is specifically asking for all of the <strong>messageresponses</strong> to the message with ID <strong>069BF68E5E0FE99B</strong></li>
+<li> The <strong>View</strong> parameter is specifying that the message responses should be shown in a <strong>detailed</strong> view</li>
+<li> The <strong>Filter</strong> parameter is specifying that the filter should not use a response rule, it should show the <strong>default</strong> filter</li>
+</ol>
+
+<p>As this is a <strong>GET</strong> request we don&rsquo;t have to provide any message body.</p>
+
+<p><strong>Note:</strong> Searching responses will be described further on in this documentation.</p>
+
+<ul>
+<li>  The <strong>responseMessage channel</strong> describes the messaging channel that the response has come in to the Whispir Platform via.</li>
+<li>  The <strong>responseMessage content</strong> describes the actual content of the inbound message.</li>
+<li>  The <strong>responseMessage acknowledged</strong> shows the date of when the response was received by the Whispir Platform</li>
+</ul>
+
+          <h1 id='templates'>Templates</h1>
+<p>Using the Whispir.io API, messages can be stored as Message Templates that can be easily referenced within your API calls.</p>
+
+<p>The purpose of using a Message Template rather than including your content directly into your messages API call is to ensure a separation of message content/design and application code.</p>
+
+<p>If you are including the content and design of messages within your application code, in the event these need to change, this is often a task for a developer, resulting in potentially lengthy change request cycles.</p>
+
+<p>The simple inclusion of a Message Template can alleviate this completely, allowing the designers to control the look and feel of the message, while the developer can control when it is triggered.</p>
+<h2 id='creating-templates'>Creating Templates</h2><pre class="highlight xml">HTTP 1.1 POST https://api.whispir.com/templates?apikey=<span class="nt">&lt;yourkey&gt;</span>
+Authorization: Basic am9obi5zbWl0aDpteXBhc3N3b3Jk
+Content-Type: application/vnd.whispir.template-v1+xml
+
+<span class="cp">&lt;?xml version="1.0" encoding="UTF-8"?&gt;</span>
+<span class="nt">&lt;ns3:template</span> <span class="na">xmlns:ns3=</span><span class="s">"https://schemas.api.whispir.com"</span> 
+              <span class="na">xmlns:ns2=</span><span class="s">"https://schemas.api.whispir.com/dap"</span><span class="nt">&gt;</span>
+  <span class="nt">&lt;messageTemplateName&gt;</span>Sample SMS Template<span class="nt">&lt;/messageTemplateName&gt;</span>
+  <span class="nt">&lt;messageTemplateDescription&gt;</span>
+    Template to provide an example on whispir.io
+  <span class="nt">&lt;/messageTemplateDescription&gt;</span>
+  <span class="nt">&lt;subject&gt;</span>Test SMS Message<span class="nt">&lt;/subject&gt;</span>
+  <span class="nt">&lt;body&gt;</span>This is the body of my test SMS message<span class="nt">&lt;/body&gt;</span>
+<span class="nt">&lt;/ns3:template&gt;</span>
+</pre>
+<pre class="highlight go"><span class="n">HTTP</span><span class="x"> </span><span class="m">1.1</span><span class="x"> </span><span class="n">POST</span><span class="x"> </span><span class="n">https</span><span class="o">:</span><span class="c">//api.whispir.com/templates?apikey=[yourkey]</span><span class="x">
+</span><span class="n">Authorization</span><span class="o">:</span><span class="x"> </span><span class="n">Basic</span><span class="x"> </span><span class="n">am9obi5zbWl0aDpteXBhc3N3b3Jk</span><span class="x">
+</span><span class="n">Content</span><span class="o">-</span><span class="n">Type</span><span class="o">:</span><span class="x"> </span><span class="n">application</span><span class="o">/</span><span class="n">vnd</span><span class="o">.</span><span class="n">whispir</span><span class="o">.</span><span class="n">template</span><span class="o">-</span><span class="n">v1</span><span class="o">+</span><span class="n">json</span><span class="x">
+
+</span><span class="p">{</span><span class="x"> 
+   </span><span class="s">"messageTemplateName"</span><span class="o">:</span><span class="x"> </span><span class="s">"Sample SMS Template"</span><span class="p">,</span><span class="x"> 
+   </span><span class="s">"messageTemplateDescription"</span><span class="o">:</span><span class="x"> </span><span class="s">"Template to provide an example on whispir.io"</span><span class="p">,</span><span class="x">
+   </span><span class="s">"subject"</span><span class="o">:</span><span class="x"> </span><span class="s">"Test SMS Message"</span><span class="p">,</span><span class="x">
+   </span><span class="s">"body"</span><span class="o">:</span><span class="x"> </span><span class="s">"This is the body of my test SMS message"</span><span class="x">
+</span><span class="p">}</span><span class="x">
+</span></pre>
+
+<blockquote>
+<p>The sample code above will create a simple SMS only message template within the default workspace.<br/><br/>
+The expected response to this call is an HTTP 201 - Created.</p>
+</blockquote>
+
+<p>To create a new message template, you can use the <code class="prettyprint">/templates</code> endpoint.</p>
+
+<p>Only <strong>3 fields</strong> are required:</p>
+
+<ol>
+<li>messageTemplateName - the name of the template to be stored</li>
+<li>subject - the first line or identifier of the SMS</li>
+<li>body - At least one of the <strong>Body</strong> fields must be populated (SMS, Email, Voice or Web).</li>
+</ol>
+
+<table>
+    <thead>
+        <tr>
+            <th style="width: 50%" colspan="2">High-Level Request Elements</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td style="text-align: right; font-weight: bold;">messageTemplateName:</td>
+            <td><strong>String</strong><br/>
+                Specifies the name of the message template to be used within message requests.
+            </td>
+        </tr>
+        <tr>
+            <td style="text-align: right; font-weight: bold;">messageTemplateDescription:</td>
+            <td><strong>String</strong><br/>
+                Specifies the description of the message template for others to understand it&rsquo;s purpose.
+            </td>
+        </tr>
+        <tr>
+            <td style="text-align: right; font-weight: bold;">subject:</td>
+            <td><strong>String</strong><br/>
+                Specifies the first line of the SMS message or Voice call, and the subject of the Email message.
+            </td>
+        </tr>
+        <tr>
+            <td style="text-align: right; font-weight: bold;">body:</td>
+            <td><strong>String</strong><br/>
+                Specifies the content of the SMS message.
+            </td>
+        </tr>
+        <tr>
+            <td style="text-align: right; font-weight: bold;">email:</td>
+            <td><strong>Object</strong><br/>
+                Email object described below. Used for sending email messages.
+            </td>
+        </tr>
+        <tr>
+            <td style="text-align: right; font-weight: bold;">voice:</td>
+            <td><strong>Object</strong><br/>
+                Voice object described below. Used for sending voice calls to mobile phones and landlines.
+            </td>
+        </tr>
+        <tr>
+            <td style="text-align: right; font-weight: bold;">web:</td>
+            <td><strong>Object</strong><br/>
+                Web object described below. Used for web publishing and Rich Messages.
+            </td>
+        </tr>
+        <tr>
+            <td style="text-align: right; font-weight: bold;">social:</td>
+            <td><strong>Object</strong><br/>
+                Social object described below. Used for publishing content to social media (Twitter, Facebook, LinkedIn).
+            </td>
+        </tr>
+        <tr>
+            <td style="text-align: right; font-weight: bold;">type:</td>
+            <td><strong>String</strong><br/>
+                Allows the user to modify the message behaviour for replies and DLRs (delivery receipts) e.g.
+                <ul>
+                    <li>defaultNoReply - Used to reject any replies to this message.</li>
+                    <li>noDlr - Used to specify that DLRs should not be enabled for this message.</li>
+                </ul>
+            </td>
+        </tr>
+        <tr>
+            <td style="text-align: right; font-weight: bold;">features:</td>
+            <td><strong>Object</strong><br/>
+                Allows the user to modify the push notifications properties if these are configured in the company.
+                <br/>
+                <br/>
+                <strong>pushOptions:</strong>
+                <ul>
+                    <li>notifications - enabled/disabled</li>
+                    <li>escalationMins - # mins to await a push notifications response</li>
+                </ul>
+            </td>
+        </tr>
+    </tbody>
+</table>
+
+<p><strong>Note:</strong> All of the options above are the same as provided in the <code class="prettyprint">/messages</code> endpoint <a href="#communications">here</a></p>
+<h2 id='retrieving-templates'>Retrieving Templates</h2><pre class="highlight xml">HTTP 1.1 GET https://api.whispir.com/templates?apikey=[your_api_key]
+Authorization: Basic am9obi5zbWl0aDpteXBhc3N3b3Jk
+Accept: application/vnd.whispir.template-v1+xml
+
+<span class="cp">&lt;?xml version="1.0" encoding="UTF-8" standalone="yes"?&gt;</span>
+<span class="nt">&lt;ns2:return</span> <span class="na">xmlns:ns2=</span><span class="s">"https://schemas.api.whispir.com/dap"</span> <span class="na">xmlns:ns3=</span><span class="s">"https://schemas.api.whispir.com"</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;status&gt;</span>1 to 4 of 4<span class="nt">&lt;/status&gt;</span>
+    <span class="nt">&lt;ns2:messagetemplates&gt;</span>
+        <span class="nt">&lt;ns2:template&gt;</span>
+            <span class="nt">&lt;ns2:link</span> <span class="na">uri=</span><span class="s">"https://api.whispir.com/templates/F0547F6F2E4839F8?apikey=[your_api_key]"</span> <span class="na">rel=</span><span class="s">"self"</span> <span class="na">method=</span><span class="s">"GET"</span><span class="nt">/&gt;</span>
+            <span class="nt">&lt;id&gt;</span>F0547F6F2E4839F8<span class="nt">&lt;/id&gt;</span>
+            <span class="nt">&lt;messageTemplateDescription&gt;</span>
+            <span class="nt">&lt;/messageTemplateDescription&gt;</span>
+            <span class="nt">&lt;messageTemplateName&gt;</span>
+              Appointment Reminder
+            <span class="nt">&lt;/messageTemplateName&gt;</span>
+        <span class="nt">&lt;/ns2:template&gt;</span>
+        <span class="nt">&lt;ns2:template&gt;</span>
+            <span class="nt">&lt;ns2:link</span> <span class="na">uri=</span><span class="s">"https://api.whispir.com/templates/DDE10AC13FB0E457?apikey=[your_api_key]"</span> <span class="na">rel=</span><span class="s">"self"</span> <span class="na">method=</span><span class="s">"GET"</span><span class="nt">/&gt;</span>
+            <span class="nt">&lt;id&gt;</span>DDE10AC13FB0E457<span class="nt">&lt;/id&gt;</span>
+            <span class="nt">&lt;messageTemplateDescription&gt;</span>
+            <span class="nt">&lt;/messageTemplateDescription&gt;</span>
+            <span class="nt">&lt;messageTemplateName&gt;</span>
+              Customer Survey
+            <span class="nt">&lt;/messageTemplateName&gt;</span>
+        <span class="nt">&lt;/ns2:template&gt;</span>
+        <span class="nt">&lt;ns2:template&gt;</span>
+            <span class="nt">&lt;ns2:link</span> <span class="na">uri=</span><span class="s">"https://api.whispir.com/templates/900972D1C916FE84?apikey=[your_api_key]"</span> <span class="na">rel=</span><span class="s">"self"</span> <span class="na">method=</span><span class="s">"GET"</span><span class="nt">/&gt;</span>
+            <span class="nt">&lt;id&gt;</span>900972D1C916FE84<span class="nt">&lt;/id&gt;</span>
+            <span class="nt">&lt;messageTemplateDescription&gt;</span>
+            <span class="nt">&lt;/messageTemplateDescription&gt;</span>
+            <span class="nt">&lt;messageTemplateName&gt;</span>
+              Service announcement
+            <span class="nt">&lt;/messageTemplateName&gt;</span>
+        <span class="nt">&lt;/ns2:template&gt;</span>
+        <span class="nt">&lt;ns2:template&gt;</span>
+            <span class="nt">&lt;ns2:link</span> <span class="na">uri=</span><span class="s">"https://api.whispir.com/templates/9CB9BE20B885542D?apikey=[your_api_key]"</span> <span class="na">rel=</span><span class="s">"self"</span> <span class="na">method=</span><span class="s">"GET"</span><span class="nt">/&gt;</span>
+            <span class="nt">&lt;id&gt;</span>9CB9BE20B885542D<span class="nt">&lt;/id&gt;</span>
+            <span class="nt">&lt;messageTemplateDescription&gt;</span>
+            <span class="nt">&lt;/messageTemplateDescription&gt;</span>
+            <span class="nt">&lt;messageTemplateName&gt;</span>
+              Shift Opportunity
+            <span class="nt">&lt;/messageTemplateName&gt;</span>
+        <span class="nt">&lt;/ns2:template&gt;</span>
+    <span class="nt">&lt;/ns2:messagetemplates&gt;</span>
+<span class="nt">&lt;/ns2:return&gt;</span>
+</pre>
+<pre class="highlight go"><span class="n">HTTP</span><span class="x"> </span><span class="m">1.1</span><span class="x"> </span><span class="n">GET</span><span class="x"> </span><span class="n">https</span><span class="o">:</span><span class="c">//api.whispir.com/templates?apikey=[your_api_key]</span><span class="x">
+</span><span class="n">Authorization</span><span class="o">:</span><span class="x"> </span><span class="n">Basic</span><span class="x"> </span><span class="n">am9obi5zbWl0aDpteXBhc3N3b3Jk</span><span class="x">
+</span><span class="n">Accept</span><span class="o">:</span><span class="x"> </span><span class="n">application</span><span class="o">/</span><span class="n">vnd</span><span class="o">.</span><span class="n">whispir</span><span class="o">.</span><span class="n">template</span><span class="o">-</span><span class="n">v1</span><span class="o">+</span><span class="n">json</span><span class="x">
+
+</span><span class="p">{</span><span class="x">
+  </span><span class="s">"status"</span><span class="x"> </span><span class="o">:</span><span class="x"> </span><span class="s">"1 to 4 of 4    "</span><span class="p">,</span><span class="x">
+  </span><span class="s">"messagetemplates"</span><span class="x"> </span><span class="o">:</span><span class="x"> </span><span class="p">[</span><span class="x"> </span><span class="p">{</span><span class="x">
+    </span><span class="s">"messageTemplateName"</span><span class="x"> </span><span class="o">:</span><span class="x"> </span><span class="s">"Appointment Reminder"</span><span class="p">,</span><span class="x">
+    </span><span class="s">"messageTemplateDescription"</span><span class="x"> </span><span class="o">:</span><span class="x"> </span><span class="s">""</span><span class="p">,</span><span class="x">
+    </span><span class="s">"id"</span><span class="x"> </span><span class="o">:</span><span class="x"> </span><span class="s">"F0547F6F2E4839F8"</span><span class="p">,</span><span class="x">
+    </span><span class="s">"link"</span><span class="x"> </span><span class="o">:</span><span class="x"> </span><span class="p">[</span><span class="x"> </span><span class="p">{</span><span class="x">
+      </span><span class="s">"uri"</span><span class="x"> </span><span class="o">:</span><span class="x"> </span><span class="s">"https://api.whispir.com/templates/F0547F6F2E4839F8?apikey=[your_api_key]"</span><span class="p">,</span><span class="x">
+      </span><span class="s">"rel"</span><span class="x"> </span><span class="o">:</span><span class="x"> </span><span class="s">"self"</span><span class="p">,</span><span class="x">
+      </span><span class="s">"method"</span><span class="x"> </span><span class="o">:</span><span class="x"> </span><span class="s">"GET"</span><span class="x">
+    </span><span class="p">}</span><span class="x"> </span><span class="p">]</span><span class="x">
+  </span><span class="p">},</span><span class="x"> </span><span class="p">{</span><span class="x">
+    </span><span class="s">"messageTemplateName"</span><span class="x"> </span><span class="o">:</span><span class="x"> </span><span class="s">"Customer Survey"</span><span class="p">,</span><span class="x">
+    </span><span class="s">"messageTemplateDescription"</span><span class="x"> </span><span class="o">:</span><span class="x"> </span><span class="s">""</span><span class="p">,</span><span class="x">
+    </span><span class="s">"id"</span><span class="x"> </span><span class="o">:</span><span class="x"> </span><span class="s">"DDE10AC13FB0E457"</span><span class="p">,</span><span class="x">
+    </span><span class="s">"link"</span><span class="x"> </span><span class="o">:</span><span class="x"> </span><span class="p">[</span><span class="x"> </span><span class="p">{</span><span class="x">
+      </span><span class="s">"uri"</span><span class="x"> </span><span class="o">:</span><span class="x"> </span><span class="s">"https://api.whispir.com/templates/DDE10AC13FB0E457?apikey=[your_api_key]"</span><span class="p">,</span><span class="x">
+      </span><span class="s">"rel"</span><span class="x"> </span><span class="o">:</span><span class="x"> </span><span class="s">"self"</span><span class="p">,</span><span class="x">
+      </span><span class="s">"method"</span><span class="x"> </span><span class="o">:</span><span class="x"> </span><span class="s">"GET"</span><span class="x">
+    </span><span class="p">}</span><span class="x"> </span><span class="p">]</span><span class="x">
+  </span><span class="p">},</span><span class="x"> </span><span class="p">{</span><span class="x">
+    </span><span class="s">"messageTemplateName"</span><span class="x"> </span><span class="o">:</span><span class="x"> </span><span class="s">"Service announcement"</span><span class="p">,</span><span class="x">
+    </span><span class="s">"messageTemplateDescription"</span><span class="x"> </span><span class="o">:</span><span class="x"> </span><span class="s">""</span><span class="p">,</span><span class="x">
+    </span><span class="s">"id"</span><span class="x"> </span><span class="o">:</span><span class="x"> </span><span class="s">"900972D1C916FE84"</span><span class="p">,</span><span class="x">
+    </span><span class="s">"link"</span><span class="x"> </span><span class="o">:</span><span class="x"> </span><span class="p">[</span><span class="x"> </span><span class="p">{</span><span class="x">
+      </span><span class="s">"uri"</span><span class="x"> </span><span class="o">:</span><span class="x"> </span><span class="s">"https://api.whispir.com/templates/900972D1C916FE84?apikey=[your_api_key]"</span><span class="p">,</span><span class="x">
+      </span><span class="s">"rel"</span><span class="x"> </span><span class="o">:</span><span class="x"> </span><span class="s">"self"</span><span class="p">,</span><span class="x">
+      </span><span class="s">"method"</span><span class="x"> </span><span class="o">:</span><span class="x"> </span><span class="s">"GET"</span><span class="x">
+    </span><span class="p">}</span><span class="x"> </span><span class="p">]</span><span class="x">
+  </span><span class="p">},</span><span class="x"> </span><span class="p">{</span><span class="x">
+    </span><span class="s">"messageTemplateName"</span><span class="x"> </span><span class="o">:</span><span class="x"> </span><span class="s">"Shift Opportunity"</span><span class="p">,</span><span class="x">
+    </span><span class="s">"messageTemplateDescription"</span><span class="x"> </span><span class="o">:</span><span class="x"> </span><span class="s">""</span><span class="p">,</span><span class="x">
+    </span><span class="s">"id"</span><span class="x"> </span><span class="o">:</span><span class="x"> </span><span class="s">"9CB9BE20B885542D"</span><span class="p">,</span><span class="x">
+    </span><span class="s">"link"</span><span class="x"> </span><span class="o">:</span><span class="x"> </span><span class="p">[</span><span class="x"> </span><span class="p">{</span><span class="x">
+      </span><span class="s">"uri"</span><span class="x"> </span><span class="o">:</span><span class="x"> </span><span class="s">"https://api.whispir.com/templates/9CB9BE20B885542D?apikey=[your_api_key]"</span><span class="p">,</span><span class="x">
+      </span><span class="s">"rel"</span><span class="x"> </span><span class="o">:</span><span class="x"> </span><span class="s">"self"</span><span class="p">,</span><span class="x">
+      </span><span class="s">"method"</span><span class="x"> </span><span class="o">:</span><span class="x"> </span><span class="s">"GET"</span><span class="x">
+    </span><span class="p">}</span><span class="x"> </span><span class="p">]</span><span class="x">
+  </span><span class="p">}</span><span class="x"> </span><span class="p">],</span><span class="x">
+  </span><span class="s">"link"</span><span class="x"> </span><span class="o">:</span><span class="x"> </span><span class="p">[</span><span class="x"> </span><span class="p">]</span><span class="x">
+</span><span class="p">}</span><span class="x">
+</span></pre>
+
+<p>To retrieve a list of templates from the Whispir.io API you can execute an <strong>HTTP GET</strong> using the <code class="prettyprint">/templates</code> endpoint.</p>
+
+<p>You will need to supply one of the following headers (for retrieving JSON or XML):</p>
+
+<ul>
+<li><code class="prettyprint">Accept: application/vnd.whispir.template-v1+xml</code></li>
+<li><code class="prettyprint">Accept: application/vnd.whispir.template-v1+json</code></li>
+</ul>
+
+<p>An array of Message Templates will be returned to you in the HTTP response body.</p>
+
+<p>Each of these templates will provide the following information:</p>
+
+<table>
+    <thead>
+        <tr>
+            <th style="width: 50%" colspan="2">Response Elements</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td style="text-align: right; font-weight: bold;">messageTemplateName:</td>
+            <td><strong>String</strong><br/>
+                Specifies the name of the message template to be used within message requests.
+            </td>
+        </tr>
+        <tr>
+            <td style="text-align: right; font-weight: bold;">messageTemplateDescription:</td>
+            <td><strong>String</strong><br/>
+                Specifies the description of the message template for others to understand it&rsquo;s purpose.
+            </td>
+        </tr>
+        <tr>
+            <td style="text-align: right; font-weight: bold;">id:</td>
+            <td><strong>String</strong><br/>
+                Specifies the ID of the template that can be used for message sending.
+            </td>
+        </tr>
+        <tr>
+            <td style="text-align: right; font-weight: bold;">link:</td>
+            <td><strong>Array</strong><br/>
+                Provides a list of URLs that can be used to manipulate or access the message template.
+                <ul>
+                  <li>uri - the link to access the message template</li>
+                  <li>rel - the descriptor for what the link will do</li>
+                  <li>method - the HTTP method to use with this particular link</li>
+                </ul>
+            </td>
+        </tr>
+    </tbody>
+</table>
+<h2 id='using-templates'>Using Templates</h2><pre class="highlight xml">HTTP 1.1 POST https://api.whispir.com/messages?apikey=[your_api_key]
+Authorization: Basic am9obi5zbWl0aDpteXBhc3N3b3Jk
+Content-Type: application/vnd.whispir.message-v1+xml
+
+<span class="cp">&lt;?xml version="1.0" encoding="UTF-8" standalone="yes"?&gt;</span>
+<span class="nt">&lt;ns2:message</span> <span class="na">xmlns:ns2=</span><span class="s">"https://schemas.api.whispir.com"</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;to&gt;</span>john.smith@test.com<span class="nt">&lt;/to&gt;</span>
+    <span class="nt">&lt;messageTemplateId&gt;</span>BACEB8D46BEF5315<span class="nt">&lt;/messageTemplateId&gt;</span>
+<span class="nt">&lt;/ns2:message&gt;</span> 
+</pre>
+<pre class="highlight go"><span class="n">HTTP</span><span class="x"> </span><span class="m">1.1</span><span class="x"> </span><span class="n">POST</span><span class="x"> </span><span class="n">https</span><span class="o">:</span><span class="c">//api.whispir.com/messages?apikey=[your_api_key]</span><span class="x">
+</span><span class="n">Authorization</span><span class="o">:</span><span class="x"> </span><span class="n">Basic</span><span class="x"> </span><span class="n">am9obi5zbWl0aDpteXBhc3N3b3Jk</span><span class="x">
+</span><span class="n">Content</span><span class="o">-</span><span class="n">Type</span><span class="o">:</span><span class="x"> </span><span class="n">application</span><span class="o">/</span><span class="n">vnd</span><span class="o">.</span><span class="n">whispir</span><span class="o">.</span><span class="n">message</span><span class="o">-</span><span class="n">v1</span><span class="o">+</span><span class="n">json</span><span class="x">
+
+</span><span class="p">{</span><span class="x"> 
+   </span><span class="s">"to"</span><span class="x"> </span><span class="o">:</span><span class="x"> </span><span class="s">"6140000000000"</span><span class="p">,</span><span class="x">
+   </span><span class="s">"messageTemplateId"</span><span class="x"> </span><span class="o">:</span><span class="x"> </span><span class="s">"BACEB8D46BEF5315"</span><span class="x">
+</span><span class="p">}</span><span class="x">
+</span></pre>
+
+<blockquote>
+<p>Alternatively, you can enter the Message Template Name in place of the Message Template ID:</p>
+</blockquote>
+<pre class="highlight xml">HTTP 1.1 POST https://api.whispir.com/messages?apikey=[your_api_key]
+Authorization: Basic am9obi5zbWl0aDpteXBhc3N3b3Jk
+Content-Type: application/vnd.whispir.message-v1+xml
+
+<span class="cp">&lt;?xml version="1.0" encoding="UTF-8" standalone="yes"?&gt;</span>
+<span class="nt">&lt;ns2:message</span> <span class="na">xmlns:ns2=</span><span class="s">"https://schemas.api.whispir.com"</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;to&gt;</span>6140000000000<span class="nt">&lt;/to&gt;</span>
+    <span class="nt">&lt;messageTemplateName&gt;</span>Sample SMS Template<span class="nt">&lt;/messageTemplateName&gt;</span>
+<span class="nt">&lt;/ns2:message&gt;</span> 
+</pre>
+<pre class="highlight go"><span class="n">HTTP</span><span class="x"> </span><span class="m">1.1</span><span class="x"> </span><span class="n">POST</span><span class="x"> </span><span class="n">https</span><span class="o">:</span><span class="c">//api.whispir.com/messages?apikey=[your_api_key]</span><span class="x">
+</span><span class="n">Authorization</span><span class="o">:</span><span class="x"> </span><span class="n">Basic</span><span class="x"> </span><span class="n">am9obi5zbWl0aDpteXBhc3N3b3Jk</span><span class="x">
+</span><span class="n">Content</span><span class="o">-</span><span class="n">Type</span><span class="o">:</span><span class="x"> </span><span class="n">application</span><span class="o">/</span><span class="n">vnd</span><span class="o">.</span><span class="n">whispir</span><span class="o">.</span><span class="n">message</span><span class="o">-</span><span class="n">v1</span><span class="o">+</span><span class="n">json</span><span class="x">
+
+</span><span class="p">{</span><span class="x"> 
+   </span><span class="s">"to"</span><span class="x"> </span><span class="o">:</span><span class="x"> </span><span class="s">"6140000000000"</span><span class="p">,</span><span class="x">
+   </span><span class="s">"messageTemplateName"</span><span class="x"> </span><span class="o">:</span><span class="x"> </span><span class="s">"Sample SMS Template"</span><span class="x">
+</span><span class="p">}</span><span class="x">
+</span></pre>
+
+<p>Whispir.io API messages can simply specify the Message Template ID in the messages request, instead of specifying the entire content payload.</p>
+
+<p>The message template can then easily be changed (using either another API request or by logging in to the Whispir Platform) and the part of the application sending the messages does not need to be altered.</p>
+<h2 id='overriding-templates'>Overriding Templates</h2>
+<blockquote>
+<p>You can override content in the template by supplying it inline with the message request</p>
+</blockquote>
+<pre class="highlight xml">HTTP 1.1 POST https://api.whispir.com/messages?apikey=[your_api_key]
+Authorization: Basic am9obi5zbWl0aDpteXBhc3N3b3Jk
+Content-Type: application/vnd.whispir.message-v1+xml
+
+<span class="cp">&lt;?xml version="1.0" encoding="UTF-8" standalone="yes"?&gt;</span>
+<span class="nt">&lt;ns2:message</span> <span class="na">xmlns:ns2=</span><span class="s">"https://schemas.api.whispir.com"</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;to&gt;</span>6140000000000<span class="nt">&lt;/to&gt;</span>
+    <span class="nt">&lt;messageTemplateName&gt;</span>Sample SMS Template<span class="nt">&lt;/messageTemplateName&gt;</span>
+    <span class="nt">&lt;subject&gt;</span>This will override the template Subject<span class="nt">&lt;/subject&gt;</span>
+    <span class="nt">&lt;body&gt;</span>This will override the template SMS Body<span class="nt">&lt;/body&gt;</span>
+<span class="nt">&lt;/ns2:message&gt;</span> 
+</pre>
+<pre class="highlight go"><span class="n">HTTP</span><span class="x"> </span><span class="m">1.1</span><span class="x"> </span><span class="n">POST</span><span class="x"> </span><span class="n">https</span><span class="o">:</span><span class="c">//api.whispir.com/messages?apikey=[your_api_key]</span><span class="x">
+</span><span class="n">Authorization</span><span class="o">:</span><span class="x"> </span><span class="n">Basic</span><span class="x"> </span><span class="n">am9obi5zbWl0aDpteXBhc3N3b3Jk</span><span class="x">
+</span><span class="n">Content</span><span class="o">-</span><span class="n">Type</span><span class="o">:</span><span class="x"> </span><span class="n">application</span><span class="o">/</span><span class="n">vnd</span><span class="o">.</span><span class="n">whispir</span><span class="o">.</span><span class="n">message</span><span class="o">-</span><span class="n">v1</span><span class="o">+</span><span class="n">json</span><span class="x">
+
+</span><span class="p">{</span><span class="x"> 
+   </span><span class="s">"to"</span><span class="x"> </span><span class="o">:</span><span class="x"> </span><span class="s">"6140000000000"</span><span class="p">,</span><span class="x">
+   </span><span class="s">"messageTemplateName"</span><span class="x"> </span><span class="o">:</span><span class="x"> </span><span class="s">"Sample SMS Template"</span><span class="p">,</span><span class="x">
+   </span><span class="s">"subject"</span><span class="x"> </span><span class="o">:</span><span class="x"> </span><span class="s">"This will override the template Subject"</span><span class="p">,</span><span class="x">
+   </span><span class="s">"body"</span><span class="x"> </span><span class="o">:</span><span class="x"> </span><span class="s">"This will override the template SMS Body"</span><span class="x">
+</span><span class="p">}</span><span class="x">
+</span></pre>
+
+<p>Users can easily override the content of the Message Template by supplying the content inline with the request to the <code class="prettyprint">/messages</code> endpoint.</p>
+
+<p>Any information provided in the message request will take precidence over the templated content.</p>
+
+<p>All of the features that are specified on the template (for example, any message aliasing) will still be respected when the message is delivered.</p>
+
           <h1 id='other-resources'>Other Resources</h1>
 <p><aside class="notice">
-    Updated 7 September 2014
+    Updated 22 April 2015
 </aside></p>
 
-<p>This API documentation is being migrated from <a href="http://developer.whispir.com">http://developer.whispir.com</a>.</p>
+<p>This API documentation is being migrated from <a href="https://developer.whispir.com/docs">https://developer.whispir.com/docs</a>.</p>
 
-<p>If the information about the resource you are looking for is not yet listed here, please check the old documentation.</p>
+<p>If the information about the resource you are looking for is not yet listed here, please check the previous documentation.</p>
 
 <p>If you still cannot find the information you&rsquo;re after, please send us an email at <a href="mailto:apisupport@whispir.com">apisupport@whispir.com</a></p>
 
