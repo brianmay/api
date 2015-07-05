@@ -47,7 +47,7 @@
       <div class="dark-box"></div>
       <div class="content">
         
-          <h1 id="whispir-api">Whispir API</h1>
+        <h1 id="whispir-api">Whispir API</h1>
 
 <blockquote>
 <p>API Endpoint</p>
@@ -93,8 +93,7 @@
 
 <p>Example Request</p>
 </blockquote>
-<pre><code class="highlight shell">
-<span class="c"># Authorization and apikey are provided in the registration processes</span>
+<pre><code class="highlight shell"><span class="c"># Authorization and apikey are provided in the registration processes</span>
 curl -H <span class="s2">"Authorization: Basic &lt;YOUR AUTHORIZATION HEADER&gt;"</span> 
      https://api.whispir.com/messages?apikey<span class="o">=</span>&lt;YOUR API KEY&gt;
 </code></pre>
@@ -152,7 +151,7 @@ curl -H <span class="s2">"Authorization: Basic &lt;YOUR AUTHORIZATION HEADER&gt;
 <li>Create, update and delete distribution lists that can be accessed for messaging at a later date</li>
 </ul>
 
-          <h1 id="getting-started">Getting Started</h1>
+        <h1 id="getting-started">Getting Started</h1>
 
 <p>Getting started with the Whispir.io API is easy:</p>
 
@@ -403,7 +402,7 @@ Accept: application/vnd.whispir.message-v1+xml
 
 <p>For more information on Messages and all the other Whispir resources please continue through the documentation, or browse straight to Messages resource documentation for more information.</p>
 
-          <h2 id="api-rate-limits">API Rate Limits</h2>
+        <h2 id="api-rate-limits">API Rate Limits</h2>
 
 <blockquote>
 <p>API Rate Limits</p>
@@ -461,7 +460,7 @@ X-Mashery-Error-Detail: Account Over Queries Per Day Limit
 
 <p>If further calls per second or per day are required for your application, please contact your Whispir Sales Representative, or <a href="https://whispir.io/contact/">Contact Us</a>.</p>
 
-          <h1 id="conventions">Conventions</h1>
+        <h1 id="conventions">Conventions</h1>
 
 <h2 id="api-security">API Security</h2>
 
@@ -856,7 +855,7 @@ HTTP/1.1 200 OK
 Content-Type: application/vnd.whispir.contact-v2+xml
 &lt;contact&gt;
    &lt;name&gt;Neil Armstrong&lt;/name&gt;
-   &lt;mobile&gt;+61456838435&lt;/mobile&gt;
+   &lt;mobile&gt;+61000000000&lt;/mobile&gt;
    &lt;email&gt;neil.armstrong@space.com&lt;/email&gt;
 &lt;/contact&gt;
 </code></pre>
@@ -1019,7 +1018,7 @@ Content-Type: application/vnd.whispir.contact-v2+xml
 <li>Scenarios</li>
 </ul>
 
-          <h1 id="messages">Messages</h1>
+        <h1 id="messages">Messages</h1>
 
 <blockquote>
 <p>Messages</p>
@@ -1035,7 +1034,7 @@ Authorization: Basic &lt;YOUR AUTH HEADER&gt;
 
 <span class="cp">&lt;?xml version="1.0" encoding="UTF-8" standalone="yes"?&gt;</span>
 <span class="nt">&lt;ns2:message</span> <span class="na">xmlns:ns2=</span><span class="s">"https://schemas.api.whispir.com"</span><span class="nt">&gt;</span>
-    <span class="nt">&lt;to&gt;</span>61400000000<span class="nt">&lt;/to&gt;</span>
+    <span class="nt">&lt;to&gt;</span>+61000000000<span class="nt">&lt;/to&gt;</span>
     <span class="nt">&lt;subject&gt;</span>Test Message<span class="nt">&lt;/subject&gt;</span>    
     <span class="nt">&lt;body&gt;</span>This is the body of my test SMS message<span class="nt">&lt;/body&gt;</span>
     <span class="nt">&lt;email&gt;</span>
@@ -1074,7 +1073,7 @@ Authorization: Basic &lt;YOUR AUTH HEADER&gt;
 <pre><code class="highlight go"><span class="n">Content</span><span class="o">-</span><span class="n">Type</span><span class="o">:</span><span class="x"> </span><span class="n">application</span><span class="o">/</span><span class="n">vnd</span><span class="o">.</span><span class="n">whispir</span><span class="o">.</span><span class="n">message</span><span class="o">-</span><span class="n">v1</span><span class="o">+</span><span class="n">json</span><span class="x">
 
 </span><span class="p">{</span><span class="x">
-    </span><span class="s">"to"</span><span class="x"> </span><span class="o">:</span><span class="x"> </span><span class="s">"61400000000"</span><span class="p">,</span><span class="x">
+    </span><span class="s">"to"</span><span class="x"> </span><span class="o">:</span><span class="x"> </span><span class="s">"+61000000000"</span><span class="p">,</span><span class="x">
     </span><span class="s">"subject"</span><span class="x"> </span><span class="o">:</span><span class="x"> </span><span class="s">"Test Message"</span><span class="p">,</span><span class="x">
     </span><span class="s">"body"</span><span class="x"> </span><span class="o">:</span><span class="x"> </span><span class="s">"This is the body of my test SMS message"</span><span class="p">,</span><span class="x">
     </span><span class="s">"email"</span><span class="x"> </span><span class="o">:</span><span class="x"> </span><span class="p">{</span><span class="x">
@@ -1208,7 +1207,7 @@ Authorization: Basic &lt;YOUR AUTH HEADER&gt;
             <td><strong>String</strong><br/>
                 Allows the user to modify the message behaviour for replies and DLRs (delivery receipts) e.g.
                 <ul>
-                    <li>defaultNoReply - Used to reject any replies to this message.</li>
+                    <li>defaultNoReply - Used to reject any replies to this message. This is also used to mask the sender&rsquo;s phone number when not using a Message Alias.</li>
                     <li>NoDlr - Used to specify that DLRs should not be enabled for this message.</li>
                 </ul>
             </td>
@@ -1246,7 +1245,7 @@ Accept: application/vnd.whispir.message-v1+xml
 
 <span class="cp">&lt;?xml version="1.0" encoding="UTF-8" standalone="yes"?&gt;</span>
 <span class="nt">&lt;ns2:message</span> <span class="na">xmlns:ns2=</span><span class="s">"https://schemas.api.whispir.com"</span><span class="nt">&gt;</span>
-    <span class="nt">&lt;to&gt;</span>61400000000<span class="nt">&lt;/to&gt;</span>
+    <span class="nt">&lt;to&gt;</span>+61000000000<span class="nt">&lt;/to&gt;</span>
     <span class="nt">&lt;subject&gt;</span>Test SMS Message<span class="nt">&lt;/subject&gt;</span>    
     <span class="nt">&lt;body&gt;</span>This is the body of my test SMS message<span class="nt">&lt;/body&gt;</span>
 <span class="nt">&lt;/ns2:message&gt;</span> 
@@ -1255,7 +1254,7 @@ Accept: application/vnd.whispir.message-v1+xml
 </span><span class="n">Accept</span><span class="o">:</span><span class="x"> </span><span class="n">application</span><span class="o">/</span><span class="n">vnd</span><span class="o">.</span><span class="n">whispir</span><span class="o">.</span><span class="n">message</span><span class="o">-</span><span class="n">v1</span><span class="o">+</span><span class="n">json</span><span class="x">
 
 </span><span class="p">{</span><span class="x">
-   </span><span class="s">"to"</span><span class="x"> </span><span class="o">:</span><span class="x"> </span><span class="s">"61400000000"</span><span class="p">,</span><span class="x">
+   </span><span class="s">"to"</span><span class="x"> </span><span class="o">:</span><span class="x"> </span><span class="s">"+61000000000"</span><span class="p">,</span><span class="x">
    </span><span class="s">"subject"</span><span class="x"> </span><span class="o">:</span><span class="x"> </span><span class="s">"Test SMS Message"</span><span class="p">,</span><span class="x">
    </span><span class="s">"body"</span><span class="x"> </span><span class="o">:</span><span class="x"> </span><span class="s">"This is the body of my test SMS message"</span><span class="x">
 </span><span class="p">}</span><span class="x">
@@ -1530,7 +1529,7 @@ Authorization: Basic am9obi5zbWl0aDpteXBhc3N3b3Jk
 
 <span class="cp">&lt;?xml version="1.0" encoding="UTF-8" standalone="yes"?&gt;</span>
 <span class="nt">&lt;ns2:message</span> <span class="na">xmlns:ns2=</span><span class="s">"https://schemas.api.whispir.com"</span><span class="nt">&gt;</span>
-    <span class="nt">&lt;to&gt;</span>61400000000<span class="nt">&lt;/to&gt;</span>
+    <span class="nt">&lt;to&gt;</span>+61000000000<span class="nt">&lt;/to&gt;</span>
     <span class="nt">&lt;subject&gt;</span>Test Voice Call<span class="nt">&lt;/subject&gt;</span>    
     <span class="nt">&lt;voice&gt;</span>
         <span class="nt">&lt;header&gt;</span>
@@ -1551,7 +1550,7 @@ Authorization: Basic am9obi5zbWl0aDpteXBhc3N3b3Jk
 <pre><code class="highlight go"><span class="n">Content</span><span class="o">-</span><span class="n">Type</span><span class="o">:</span><span class="x"> </span><span class="n">application</span><span class="o">/</span><span class="n">vnd</span><span class="o">.</span><span class="n">whispir</span><span class="o">.</span><span class="n">message</span><span class="o">-</span><span class="n">v1</span><span class="o">+</span><span class="n">json</span><span class="x">
 
 </span><span class="p">{</span><span class="x">
-    </span><span class="s">"to"</span><span class="x"> </span><span class="o">:</span><span class="x"> </span><span class="s">"61400000000"</span><span class="p">,</span><span class="x">
+    </span><span class="s">"to"</span><span class="x"> </span><span class="o">:</span><span class="x"> </span><span class="s">"+61000000000"</span><span class="p">,</span><span class="x">
     </span><span class="s">"subject"</span><span class="x"> </span><span class="o">:</span><span class="x"> </span><span class="s">"Test Voice Call"</span><span class="p">,</span><span class="x">
     </span><span class="s">"voice"</span><span class="x"> </span><span class="o">:</span><span class="x"> </span><span class="p">{</span><span class="x">
         </span><span class="s">"header"</span><span class="x"> </span><span class="o">:</span><span class="x"> </span><span class="s">"This is the introduction of the voice call"</span><span class="p">,</span><span class="x">
@@ -1573,7 +1572,7 @@ Authorization: Basic am9obi5zbWl0aDpteXBhc3N3b3Jk
 
 <span class="cp">&lt;?xml version="1.0" encoding="UTF-8" standalone="yes"?&gt;</span>
 <span class="nt">&lt;ns2:message</span> <span class="na">xmlns:ns2=</span><span class="s">"https://schemas.api.whispir.com"</span><span class="nt">&gt;</span>
-    <span class="nt">&lt;to&gt;</span>61400000000<span class="nt">&lt;/to&gt;</span>
+    <span class="nt">&lt;to&gt;</span>+61000000000<span class="nt">&lt;/to&gt;</span>
     <span class="nt">&lt;subject&gt;</span>Test Voice Call<span class="nt">&lt;/subject&gt;</span>    
     <span class="nt">&lt;voice&gt;</span>
         <span class="nt">&lt;header&gt;</span>
@@ -1595,7 +1594,7 @@ Authorization: Basic am9obi5zbWl0aDpteXBhc3N3b3Jk
 <pre><code class="highlight go"><span class="n">Content</span><span class="o">-</span><span class="n">Type</span><span class="o">:</span><span class="x"> </span><span class="n">application</span><span class="o">/</span><span class="n">vnd</span><span class="o">.</span><span class="n">whispir</span><span class="o">.</span><span class="n">message</span><span class="o">-</span><span class="n">v1</span><span class="o">+</span><span class="n">json</span><span class="x">
 
 </span><span class="p">{</span><span class="x">
-    </span><span class="s">"to"</span><span class="x"> </span><span class="o">:</span><span class="x"> </span><span class="s">"61400000000"</span><span class="p">,</span><span class="x">
+    </span><span class="s">"to"</span><span class="x"> </span><span class="o">:</span><span class="x"> </span><span class="s">"+61000000000"</span><span class="p">,</span><span class="x">
     </span><span class="s">"subject"</span><span class="x"> </span><span class="o">:</span><span class="x"> </span><span class="s">"Test Voice Call"</span><span class="p">,</span><span class="x">
     </span><span class="s">"voice"</span><span class="x"> </span><span class="o">:</span><span class="x"> </span><span class="p">{</span><span class="x">
         </span><span class="s">"header"</span><span class="x"> </span><span class="o">:</span><span class="x"> </span><span class="s">"This is the introduction of the voice call"</span><span class="p">,</span><span class="x">
@@ -1675,7 +1674,7 @@ Authorization: Basic am9obi5zbWl0aDpteXBhc3N3b3Jk
 
 <span class="cp">&lt;?xml version="1.0" encoding="UTF-8" standalone="yes"?&gt;</span>
 <span class="nt">&lt;ns2:message</span> <span class="na">xmlns:ns2=</span><span class="s">"https://schemas.api.whispir.com"</span><span class="nt">&gt;</span>
-    <span class="nt">&lt;to&gt;</span>61400000000<span class="nt">&lt;/to&gt;</span>
+    <span class="nt">&lt;to&gt;</span>+61000000000<span class="nt">&lt;/to&gt;</span>
     <span class="nt">&lt;subject&gt;</span>Test Rich Message<span class="nt">&lt;/subject&gt;</span>    
     <span class="nt">&lt;body&gt;</span>This is some content followed by the Rich Message link @@web_link@@<span class="nt">&lt;/body&gt;</span>
     <span class="nt">&lt;web&gt;</span>
@@ -1694,7 +1693,7 @@ Authorization: Basic am9obi5zbWl0aDpteXBhc3N3b3Jk
 </span><span class="n">Accept</span><span class="o">:</span><span class="x"> </span><span class="n">application</span><span class="o">/</span><span class="n">vnd</span><span class="o">.</span><span class="n">whispir</span><span class="o">.</span><span class="n">message</span><span class="o">-</span><span class="n">v1</span><span class="o">+</span><span class="n">json</span><span class="x">
 
 </span><span class="p">{</span><span class="x">
-   </span><span class="s">"to"</span><span class="x"> </span><span class="o">:</span><span class="x"> </span><span class="s">"61400000000"</span><span class="p">,</span><span class="x">
+   </span><span class="s">"to"</span><span class="x"> </span><span class="o">:</span><span class="x"> </span><span class="s">"+61000000000"</span><span class="p">,</span><span class="x">
    </span><span class="s">"subject"</span><span class="x"> </span><span class="o">:</span><span class="x"> </span><span class="s">"Test Rich Message"</span><span class="p">,</span><span class="x">
    </span><span class="s">"body"</span><span class="x"> </span><span class="o">:</span><span class="x"> </span><span class="s">"This is some content followed by the Rich Message link @@web_link@@"</span><span class="p">,</span><span class="x">
    </span><span class="s">"web"</span><span class="x"> </span><span class="o">:</span><span class="x"> </span><span class="p">{</span><span class="x">
@@ -1719,7 +1718,7 @@ Authorization: Basic am9obi5zbWl0aDpteXBhc3N3b3Jk
 
 <span class="cp">&lt;?xml version="1.0" encoding="UTF-8" standalone="yes"?&gt;</span>
 <span class="nt">&lt;ns2:message</span> <span class="na">xmlns:ns2=</span><span class="s">"https://schemas.api.whispir.com"</span><span class="nt">&gt;</span>
-    <span class="nt">&lt;to&gt;</span>61400000000<span class="nt">&lt;/to&gt;</span>
+    <span class="nt">&lt;to&gt;</span>+61000000000<span class="nt">&lt;/to&gt;</span>
     <span class="nt">&lt;subject&gt;</span>Test Rich Message<span class="nt">&lt;/subject&gt;</span>    
     <span class="nt">&lt;body&gt;</span>This is some content followed by the Rich Message link @@web_link@@<span class="nt">&lt;/body&gt;</span>
     <span class="nt">&lt;web&gt;</span>
@@ -1742,7 +1741,7 @@ Authorization: Basic am9obi5zbWl0aDpteXBhc3N3b3Jk
 </span><span class="n">Accept</span><span class="o">:</span><span class="x"> </span><span class="n">application</span><span class="o">/</span><span class="n">vnd</span><span class="o">.</span><span class="n">whispir</span><span class="o">.</span><span class="n">message</span><span class="o">-</span><span class="n">v1</span><span class="o">+</span><span class="n">json</span><span class="x">
 
 </span><span class="p">{</span><span class="x">
-   </span><span class="s">"to"</span><span class="x"> </span><span class="o">:</span><span class="x"> </span><span class="s">"61400000000"</span><span class="p">,</span><span class="x">
+   </span><span class="s">"to"</span><span class="x"> </span><span class="o">:</span><span class="x"> </span><span class="s">"+61000000000"</span><span class="p">,</span><span class="x">
    </span><span class="s">"subject"</span><span class="x"> </span><span class="o">:</span><span class="x"> </span><span class="s">"Test Rich Message"</span><span class="p">,</span><span class="x">
    </span><span class="s">"body"</span><span class="x"> </span><span class="o">:</span><span class="x"> </span><span class="s">"This is some content followed by the Rich Message link @@web_link@@"</span><span class="p">,</span><span class="x">
    </span><span class="s">"web"</span><span class="x"> </span><span class="o">:</span><span class="x"> </span><span class="p">{</span><span class="x">
@@ -1833,7 +1832,7 @@ Authorization: Basic am9obi5zbWl0aDpteXBhc3N3b3Jk
 
 <span class="cp">&lt;?xml version="1.0" encoding="UTF-8" standalone="yes"?&gt;</span>
 <span class="nt">&lt;ns2:message</span> <span class="na">xmlns:ns2=</span><span class="s">"https://schemas.api.whispir.com"</span><span class="nt">&gt;</span>
-    <span class="nt">&lt;to&gt;</span>61400000000<span class="nt">&lt;/to&gt;</span>
+    <span class="nt">&lt;to&gt;</span>+61000000000<span class="nt">&lt;/to&gt;</span>
     <span class="nt">&lt;subject&gt;</span>Test Web Message<span class="nt">&lt;/subject&gt;</span>    
     <span class="nt">&lt;web&gt;</span> 
         <span class="nt">&lt;body&gt;</span>This is web body of my test message<span class="nt">&lt;/body&gt;</span> 
@@ -1853,7 +1852,7 @@ Authorization: Basic am9obi5zbWl0aDpteXBhc3N3b3Jk
 <pre><code class="highlight go"><span class="n">Content</span><span class="o">-</span><span class="n">Type</span><span class="o">:</span><span class="x"> </span><span class="n">application</span><span class="o">/</span><span class="n">vnd</span><span class="o">.</span><span class="n">whispir</span><span class="o">.</span><span class="n">message</span><span class="o">-</span><span class="n">v1</span><span class="o">+</span><span class="n">json</span><span class="x">
 
 </span><span class="p">{</span><span class="x">
-    </span><span class="s">"to"</span><span class="x"> </span><span class="o">:</span><span class="x"> </span><span class="s">"61400000000"</span><span class="p">,</span><span class="x">
+    </span><span class="s">"to"</span><span class="x"> </span><span class="o">:</span><span class="x"> </span><span class="s">"+61000000000"</span><span class="p">,</span><span class="x">
     </span><span class="s">"subject"</span><span class="x"> </span><span class="o">:</span><span class="x"> </span><span class="s">"Test Web Message"</span><span class="p">,</span><span class="x">
     </span><span class="s">"web"</span><span class="x"> </span><span class="o">:</span><span class="x"> </span><span class="p">{</span><span class="x">
         </span><span class="s">"body"</span><span class="x"> </span><span class="o">:</span><span class="x"> </span><span class="s">"This is the body of the web content"</span><span class="p">,</span><span class="x">
@@ -1910,7 +1909,7 @@ Authorization: Basic am9obi5zbWl0aDpteXBhc3N3b3Jk
 
 <span class="cp">&lt;?xml version="1.0" encoding="UTF-8" standalone="yes"?&gt;</span>
 <span class="nt">&lt;ns2:message</span> <span class="na">xmlns:ns2=</span><span class="s">"https://schemas.api.whispir.com"</span><span class="nt">&gt;</span>
-    <span class="nt">&lt;to&gt;</span>61400000000<span class="nt">&lt;/to&gt;</span>
+    <span class="nt">&lt;to&gt;</span>+61000000000<span class="nt">&lt;/to&gt;</span>
     <span class="nt">&lt;subject&gt;</span>Test SMS Message with tags<span class="nt">&lt;/subject&gt;</span>    
     <span class="nt">&lt;body&gt;</span>Hi @@first_name@@.  This is your message.<span class="nt">&lt;/body&gt;</span>
 <span class="nt">&lt;/ns2:message&gt;</span> 
@@ -1919,7 +1918,7 @@ Authorization: Basic am9obi5zbWl0aDpteXBhc3N3b3Jk
 </span><span class="n">Accept</span><span class="o">:</span><span class="x"> </span><span class="n">application</span><span class="o">/</span><span class="n">vnd</span><span class="o">.</span><span class="n">whispir</span><span class="o">.</span><span class="n">message</span><span class="o">-</span><span class="n">v1</span><span class="o">+</span><span class="n">json</span><span class="x">
 
 </span><span class="p">{</span><span class="x">
-   </span><span class="s">"to"</span><span class="x"> </span><span class="o">:</span><span class="x"> </span><span class="s">"61400000000"</span><span class="p">,</span><span class="x">
+   </span><span class="s">"to"</span><span class="x"> </span><span class="o">:</span><span class="x"> </span><span class="s">"+61000000000"</span><span class="p">,</span><span class="x">
    </span><span class="s">"subject"</span><span class="x"> </span><span class="o">:</span><span class="x"> </span><span class="s">"Test SMS Message with tags"</span><span class="p">,</span><span class="x">
    </span><span class="s">"body"</span><span class="x"> </span><span class="o">:</span><span class="x"> </span><span class="s">"Hi @@first_name@@.  This is your message."</span><span class="x">
 </span><span class="p">}</span><span class="x">
@@ -2005,7 +2004,7 @@ Authorization: Basic am9obi5zbWl0aDpteXBhc3N3b3Jk
 
 <span class="cp">&lt;?xml version="1.0" encoding="UTF-8" standalone="yes"?&gt;</span>
 <span class="nt">&lt;ns2:message</span> <span class="na">xmlns:ns2=</span><span class="s">"https://schemas.api.whispir.com"</span><span class="nt">&gt;</span>
-    <span class="nt">&lt;to&gt;</span>61400000000<span class="nt">&lt;/to&gt;</span>
+    <span class="nt">&lt;to&gt;</span>+61000000000<span class="nt">&lt;/to&gt;</span>
     <span class="nt">&lt;subject&gt;</span>Test SMS Message with tags<span class="nt">&lt;/subject&gt;</span>    
     <span class="nt">&lt;body&gt;</span>Hi @@first_name@@.  The date is @@dd@@ / @@mm@@ / @@yyyy@@.<span class="nt">&lt;/body&gt;</span>
 <span class="nt">&lt;/ns2:message&gt;</span> 
@@ -2014,7 +2013,7 @@ Authorization: Basic am9obi5zbWl0aDpteXBhc3N3b3Jk
 </span><span class="n">Accept</span><span class="o">:</span><span class="x"> </span><span class="n">application</span><span class="o">/</span><span class="n">vnd</span><span class="o">.</span><span class="n">whispir</span><span class="o">.</span><span class="n">message</span><span class="o">-</span><span class="n">v1</span><span class="o">+</span><span class="n">json</span><span class="x">
 
 </span><span class="p">{</span><span class="x">
-   </span><span class="s">"to"</span><span class="x"> </span><span class="o">:</span><span class="x"> </span><span class="s">"61400000000"</span><span class="p">,</span><span class="x">
+   </span><span class="s">"to"</span><span class="x"> </span><span class="o">:</span><span class="x"> </span><span class="s">"+61000000000"</span><span class="p">,</span><span class="x">
    </span><span class="s">"subject"</span><span class="x"> </span><span class="o">:</span><span class="x"> </span><span class="s">"Test SMS Message with tags"</span><span class="p">,</span><span class="x">
    </span><span class="s">"body"</span><span class="x"> </span><span class="o">:</span><span class="x"> </span><span class="s">"Hi @@first_name@@.  The date is @@dd@@ / @@mm@@ / @@yyyy@@."</span><span class="x">
 </span><span class="p">}</span><span class="x">
@@ -2526,7 +2525,7 @@ Your request has been accepted for processing.
 
 <p>For more information about sending messages, please consult the documentation under Messaging.</p>
 
-          <h1 id="message-status">Message Status</h1>
+        <h1 id="message-status">Message Status</h1>
 
 <p>Whispir will automatically monitor the status of each message after it has been sent to each recipient.  Using the message status information, you are able to determine who received the message, what exact time they received it, on what message channel (SMS, Email, Voice, Web, Push Notification), whether they replied to the message, what time they replied, and on what messaging channel.</p>
 
@@ -2601,7 +2600,7 @@ Authorization: Basic am9obi5zbWl0aDpteXBhc3N3b3Jk
 
 <span class="cp">&lt;?xml version="1.0" encoding="UTF-8" standalone="yes"?&gt;</span>
 <span class="nt">&lt;ns2:message</span> <span class="na">xmlns:ns2=</span><span class="s">"https://schemas.api.whispir.com"</span> <span class="na">xmlns:ns3=</span><span class="s">"https://schemas.api.whispir.com/dap"</span><span class="nt">&gt;</span>
- <span class="nt">&lt;to&gt;</span>61400000000<span class="nt">&lt;/to&gt;</span>
+ <span class="nt">&lt;to&gt;</span>+61000000000<span class="nt">&lt;/to&gt;</span>
  <span class="nt">&lt;subject&gt;</span>test subject<span class="nt">&lt;/subject&gt;</span>
  <span class="nt">&lt;body&gt;</span>test body<span class="nt">&lt;/body&gt;</span>
  <span class="nt">&lt;voice/&gt;</span>
@@ -2636,7 +2635,7 @@ Authorization: Basic am9obi5zbWl0aDpteXBhc3N3b3Jk
 <pre><code class="highlight go"><span class="n">Content</span><span class="o">-</span><span class="n">Type</span><span class="o">:</span><span class="x"> </span><span class="n">application</span><span class="o">/</span><span class="n">vnd</span><span class="o">.</span><span class="n">whispir</span><span class="o">.</span><span class="n">message</span><span class="o">-</span><span class="n">v1</span><span class="o">+</span><span class="n">json</span><span class="x">
 
 </span><span class="p">{</span><span class="x">
-    </span><span class="s">"to"</span><span class="o">:</span><span class="x"> </span><span class="s">"61400000000"</span><span class="p">,</span><span class="x">
+    </span><span class="s">"to"</span><span class="o">:</span><span class="x"> </span><span class="s">"+61000000000"</span><span class="p">,</span><span class="x">
     </span><span class="s">"subject"</span><span class="o">:</span><span class="x"> </span><span class="s">"test subject"</span><span class="p">,</span><span class="x">
     </span><span class="s">"body"</span><span class="o">:</span><span class="x"> </span><span class="s">"test body"</span><span class="p">,</span><span class="x">
     </span><span class="s">"direction"</span><span class="o">:</span><span class="x"> </span><span class="s">"OUTGOING"</span><span class="p">,</span><span class="x">
@@ -2875,7 +2874,7 @@ Authorization: Basic am9obi5zbWl0aDpteXBhc3N3b3Jk
       <span class="nt">&lt;/status&gt;</span>
       <span class="nt">&lt;status</span> <span class="na">type=</span><span class="s">"sms"</span><span class="nt">&gt;</span>
         <span class="nt">&lt;acknowlegedTimestamp&gt;</span>2012-09-28T08:47:50+10:00<span class="nt">&lt;/acknowlegedTimestamp&gt;</span>
-        <span class="nt">&lt;destination&gt;</span>61456191351<span class="nt">&lt;/destination&gt;</span>
+        <span class="nt">&lt;destination&gt;</span>+61000000000<span class="nt">&lt;/destination&gt;</span>
         <span class="nt">&lt;receivedTimestamp&gt;</span>2012-09-28T08:47:20+10:00<span class="nt">&lt;/receivedTimestamp&gt;</span>
         <span class="nt">&lt;sentTimestamp&gt;</span>2012-09-28T08:47:17+10:00<span class="nt">&lt;/sentTimestamp&gt;</span>
         <span class="nt">&lt;status&gt;</span>READ<span class="nt">&lt;/status&gt;</span>
@@ -2897,7 +2896,7 @@ Authorization: Basic am9obi5zbWl0aDpteXBhc3N3b3Jk
       <span class="nt">&lt;/status&gt;</span>
       <span class="nt">&lt;status</span> <span class="na">type=</span><span class="s">"sms"</span><span class="nt">&gt;</span>
         <span class="nt">&lt;acknowlegedTimestamp&gt;</span>2012-09-28T08:47:49+10:00<span class="nt">&lt;/acknowlegedTimestamp&gt;</span>
-        <span class="nt">&lt;destination&gt;</span>61456191368<span class="nt">&lt;/destination&gt;</span>
+        <span class="nt">&lt;destination&gt;</span>+61000000000<span class="nt">&lt;/destination&gt;</span>
         <span class="nt">&lt;receivedTimestamp&gt;</span>2012-09-28T08:47:20+10:00<span class="nt">&lt;/receivedTimestamp&gt;</span>
         <span class="nt">&lt;sentTimestamp&gt;</span>2012-09-28T08:47:17+10:00<span class="nt">&lt;/sentTimestamp&gt;</span>
         <span class="nt">&lt;status&gt;</span>READ<span class="nt">&lt;/status&gt;</span>
@@ -2928,7 +2927,7 @@ Authorization: Basic am9obi5zbWl0aDpteXBhc3N3b3Jk
     </span><span class="p">},</span><span class="x"> </span><span class="p">{</span><span class="x">
       </span><span class="s">"type"</span><span class="x"> </span><span class="o">:</span><span class="x"> </span><span class="s">"sms"</span><span class="p">,</span><span class="x">
       </span><span class="s">"status"</span><span class="x"> </span><span class="o">:</span><span class="x"> </span><span class="s">"READ"</span><span class="p">,</span><span class="x">
-      </span><span class="s">"destination"</span><span class="x"> </span><span class="o">:</span><span class="x"> </span><span class="s">"61456191351"</span><span class="p">,</span><span class="x">
+      </span><span class="s">"destination"</span><span class="x"> </span><span class="o">:</span><span class="x"> </span><span class="s">"+61000000000"</span><span class="p">,</span><span class="x">
       </span><span class="s">"sentTimestamp"</span><span class="x"> </span><span class="o">:</span><span class="x"> </span><span class="s">"2012-09-28T08:47:17+10:00"</span><span class="x">
       </span><span class="s">"receivedTimestamp"</span><span class="x"> </span><span class="o">:</span><span class="x"> </span><span class="s">"2012-09-28T08:47:20+10:00"</span><span class="x">
       </span><span class="s">"acknowlegedTimestamp"</span><span class="x"> </span><span class="o">:</span><span class="x"> </span><span class="s">"2012-09-28T08:47:50+10:00"</span><span class="x">
@@ -2951,7 +2950,7 @@ Authorization: Basic am9obi5zbWl0aDpteXBhc3N3b3Jk
     </span><span class="p">},</span><span class="x"> </span><span class="p">{</span><span class="x">
       </span><span class="s">"type"</span><span class="x"> </span><span class="o">:</span><span class="x"> </span><span class="s">"sms"</span><span class="p">,</span><span class="x">
       </span><span class="s">"status"</span><span class="x"> </span><span class="o">:</span><span class="x"> </span><span class="s">"READ"</span><span class="p">,</span><span class="x">
-      </span><span class="s">"destination"</span><span class="x"> </span><span class="o">:</span><span class="x"> </span><span class="s">"61456191368"</span><span class="p">,</span><span class="x">
+      </span><span class="s">"destination"</span><span class="x"> </span><span class="o">:</span><span class="x"> </span><span class="s">"+61000000000"</span><span class="p">,</span><span class="x">
       </span><span class="s">"sentTimestamp"</span><span class="x"> </span><span class="o">:</span><span class="x"> </span><span class="s">"2012-09-28T08:47:17+10:00"</span><span class="x">
       </span><span class="s">"receivedTimestamp"</span><span class="x"> </span><span class="o">:</span><span class="x"> </span><span class="s">"2012-09-28T08:47:20+10:00"</span><span class="x">
       </span><span class="s">"acknowlegedTimestamp"</span><span class="x"> </span><span class="o">:</span><span class="x"> </span><span class="s">"2012-09-28T08:47:50+10:00"</span><span class="x">
@@ -2986,7 +2985,7 @@ Authorization: Basic am9obi5zbWl0aDpteXBhc3N3b3Jk
 
 <p>Once you have processed the status information, the next likely piece of information you will be looking to find is the content of the responses (if any).  The section on Message Responses describes how to retrieve this information.</p>
 
-          <h1 id="message-responses">Message Responses</h1>
+        <h1 id="message-responses">Message Responses</h1>
 
 <p>Recipients of Whispir Messages have the ability to respond directly to the message via the channels that they received the message on.  </p>
 
@@ -3012,7 +3011,7 @@ Authorization: Basic am9obi5zbWl0aDpteXBhc3N3b3Jk
 
 <span class="cp">&lt;?xml version="1.0" encoding="UTF-8" standalone="yes"?&gt;</span>
 <span class="nt">&lt;ns2:message</span> <span class="na">xmlns:ns2=</span><span class="s">"https://schemas.api.whispir.com"</span> <span class="na">xmlns:ns3=</span><span class="s">"https://schemas.api.whispir.com/dap"</span><span class="nt">&gt;</span>
- <span class="nt">&lt;to&gt;</span>61400000000<span class="nt">&lt;/to&gt;</span>
+ <span class="nt">&lt;to&gt;</span>+61000000000<span class="nt">&lt;/to&gt;</span>
  <span class="nt">&lt;subject&gt;</span>test subject<span class="nt">&lt;/subject&gt;</span>
  <span class="nt">&lt;body&gt;</span>test body<span class="nt">&lt;/body&gt;</span>
  <span class="nt">&lt;voice/&gt;</span>
@@ -3047,7 +3046,7 @@ Authorization: Basic am9obi5zbWl0aDpteXBhc3N3b3Jk
 <pre><code class="highlight go"><span class="n">Content</span><span class="o">-</span><span class="n">Type</span><span class="o">:</span><span class="x"> </span><span class="n">application</span><span class="o">/</span><span class="n">vnd</span><span class="o">.</span><span class="n">whispir</span><span class="o">.</span><span class="n">message</span><span class="o">-</span><span class="n">v1</span><span class="o">+</span><span class="n">json</span><span class="x">
 
 </span><span class="p">{</span><span class="x">
-    </span><span class="s">"to"</span><span class="o">:</span><span class="x"> </span><span class="s">"61400000000"</span><span class="p">,</span><span class="x">
+    </span><span class="s">"to"</span><span class="o">:</span><span class="x"> </span><span class="s">"+61000000000"</span><span class="p">,</span><span class="x">
     </span><span class="s">"subject"</span><span class="o">:</span><span class="x"> </span><span class="s">"test subject"</span><span class="p">,</span><span class="x">
     </span><span class="s">"body"</span><span class="o">:</span><span class="x"> </span><span class="s">"test body"</span><span class="p">,</span><span class="x">
     </span><span class="s">"direction"</span><span class="o">:</span><span class="x"> </span><span class="s">"OUTGOING"</span><span class="p">,</span><span class="x">
@@ -3260,10 +3259,10 @@ Authorization: Basic am9obi5zbWl0aDpteXBhc3N3b3Jk
         <span class="nt">&lt;ns2:response&gt;</span>
             <span class="nt">&lt;from&gt;</span>
                 <span class="nt">&lt;email&gt;</span>jsmith@test.com<span class="nt">&lt;/email&gt;</span>                
-                <span class="nt">&lt;mobile&gt;</span>61000000000<span class="nt">&lt;/mobile&gt;</span> 
+                <span class="nt">&lt;mobile&gt;</span>+61000000000<span class="nt">&lt;/mobile&gt;</span> 
                 <span class="nt">&lt;mri&gt;</span>John_Smith.484215.Critical_Incident_Management@Contact.whispir.com<span class="nt">&lt;/mri&gt;</span>
                 <span class="nt">&lt;name&gt;</span>John Smith<span class="nt">&lt;/name&gt;</span>
-                <span class="nt">&lt;voice&gt;</span>61000000000<span class="nt">&lt;/voice&gt;</span> 
+                <span class="nt">&lt;voice&gt;</span>+61000000000<span class="nt">&lt;/voice&gt;</span> 
             <span class="nt">&lt;/from&gt;</span>
             <span class="nt">&lt;responseCategory&gt;</span>noresponse<span class="nt">&lt;/responseCategory&gt;</span>
             <span class="nt">&lt;responseMessage</span> <span class="na">channel=</span><span class="s">"N/A"</span><span class="nt">&gt;</span>
@@ -3274,10 +3273,10 @@ Authorization: Basic am9obi5zbWl0aDpteXBhc3N3b3Jk
         <span class="nt">&lt;ns2:response&gt;</span>
             <span class="nt">&lt;from&gt;</span>
                 <span class="nt">&lt;email&gt;</span>fsmith@test.com<span class="nt">&lt;/email&gt;</span>
-                <span class="nt">&lt;mobile&gt;</span>61000000001<span class="nt">&lt;/mobile&gt;</span>  
+                <span class="nt">&lt;mobile&gt;</span>+61000000000<span class="nt">&lt;/mobile&gt;</span>  
                 <span class="nt">&lt;mri&gt;</span>Fred_Smith.341550.Critical_Incident_Management@Contact.whispir.com<span class="nt">&lt;/mri&gt;</span>
                 <span class="nt">&lt;name&gt;</span>Fred Smith<span class="nt">&lt;/name&gt;</span>
-                <span class="nt">&lt;voice&gt;</span>61000000001<span class="nt">&lt;/voice&gt;</span> 
+                <span class="nt">&lt;voice&gt;</span>+61000000000<span class="nt">&lt;/voice&gt;</span> 
             <span class="nt">&lt;/from&gt;</span>
             <span class="nt">&lt;responseCategory&gt;</span>notmatched<span class="nt">&lt;/responseCategory&gt;</span>
             <span class="nt">&lt;responseMessage</span> <span class="na">channel=</span><span class="s">"SMS"</span><span class="nt">&gt;</span>
@@ -3294,9 +3293,9 @@ Authorization: Basic am9obi5zbWl0aDpteXBhc3N3b3Jk
     </span><span class="s">"from"</span><span class="x"> </span><span class="o">:</span><span class="x"> </span><span class="p">{</span><span class="x">
       </span><span class="s">"name"</span><span class="x"> </span><span class="o">:</span><span class="x"> </span><span class="s">"John Smith"</span><span class="p">,</span><span class="x">
       </span><span class="s">"mri"</span><span class="x"> </span><span class="o">:</span><span class="x"> </span><span class="s">"John_Smith.484215.Critical_Incident_Management@Contact.whispir.com"</span><span class="p">,</span><span class="x">
-      </span><span class="s">"mobile"</span><span class="x"> </span><span class="o">:</span><span class="x"> </span><span class="s">"61000000000"</span><span class="p">,</span><span class="x">
+      </span><span class="s">"mobile"</span><span class="x"> </span><span class="o">:</span><span class="x"> </span><span class="s">"+61000000000"</span><span class="p">,</span><span class="x">
       </span><span class="s">"email"</span><span class="x"> </span><span class="o">:</span><span class="x"> </span><span class="s">"jsmith@test.com"</span><span class="p">,</span><span class="x">
-      </span><span class="s">"voice"</span><span class="x"> </span><span class="o">:</span><span class="x"> </span><span class="s">"61000000000"</span><span class="x">
+      </span><span class="s">"voice"</span><span class="x"> </span><span class="o">:</span><span class="x"> </span><span class="s">"+61000000000"</span><span class="x">
     </span><span class="p">},</span><span class="x">
     </span><span class="s">"responseCategory"</span><span class="x"> </span><span class="o">:</span><span class="x"> </span><span class="s">"noresponse"</span><span class="p">,</span><span class="x">
     </span><span class="s">"responseMessage"</span><span class="x"> </span><span class="o">:</span><span class="x"> </span><span class="p">{</span><span class="x">
@@ -3308,9 +3307,9 @@ Authorization: Basic am9obi5zbWl0aDpteXBhc3N3b3Jk
     </span><span class="s">"from"</span><span class="x"> </span><span class="o">:</span><span class="x"> </span><span class="p">{</span><span class="x">
       </span><span class="s">"name"</span><span class="x"> </span><span class="o">:</span><span class="x"> </span><span class="s">"Fred Smith"</span><span class="p">,</span><span class="x">
       </span><span class="s">"mri"</span><span class="x"> </span><span class="o">:</span><span class="x"> </span><span class="s">"Fred_Smith.341550.Critical_Incident_Management@Contact.whispir.com"</span><span class="p">,</span><span class="x">
-      </span><span class="s">"mobile"</span><span class="x"> </span><span class="o">:</span><span class="x"> </span><span class="s">"61000000001"</span><span class="p">,</span><span class="x">
+      </span><span class="s">"mobile"</span><span class="x"> </span><span class="o">:</span><span class="x"> </span><span class="s">"+61000000000"</span><span class="p">,</span><span class="x">
       </span><span class="s">"email"</span><span class="x"> </span><span class="o">:</span><span class="x"> </span><span class="s">"fsmith@test.com"</span><span class="p">,</span><span class="x">
-      </span><span class="s">"voice"</span><span class="x"> </span><span class="o">:</span><span class="x"> </span><span class="s">"61000000001"</span><span class="x">
+      </span><span class="s">"voice"</span><span class="x"> </span><span class="o">:</span><span class="x"> </span><span class="s">"+61000000000"</span><span class="x">
     </span><span class="p">},</span><span class="x">
     </span><span class="s">"responseCategory"</span><span class="x"> </span><span class="o">:</span><span class="x"> </span><span class="s">"notmatched"</span><span class="p">,</span><span class="x">
     </span><span class="s">"responseMessage"</span><span class="x"> </span><span class="o">:</span><span class="x"> </span><span class="p">{</span><span class="x">
@@ -3355,7 +3354,7 @@ Authorization: Basic am9obi5zbWl0aDpteXBhc3N3b3Jk
 <li>  The <strong>responseMessage acknowledged</strong> shows the date of when the response was received by the Whispir Platform</li>
 </ul>
 
-          <h1 id="templates">Templates</h1>
+        <h1 id="templates">Templates</h1>
 
 <p>Using the Whispir.io API, messages can be stored as Message Templates that can be easily referenced within your API calls.</p>
 
@@ -3677,7 +3676,7 @@ Authorization: Basic am9obi5zbWl0aDpteXBhc3N3b3Jk
 <pre><code class="highlight go"><span class="n">Content</span><span class="o">-</span><span class="n">Type</span><span class="o">:</span><span class="x"> </span><span class="n">application</span><span class="o">/</span><span class="n">vnd</span><span class="o">.</span><span class="n">whispir</span><span class="o">.</span><span class="n">message</span><span class="o">-</span><span class="n">v1</span><span class="o">+</span><span class="n">json</span><span class="x">
 
 </span><span class="p">{</span><span class="x"> 
-   </span><span class="s">"to"</span><span class="x"> </span><span class="o">:</span><span class="x"> </span><span class="s">"6140000000000"</span><span class="p">,</span><span class="x">
+   </span><span class="s">"to"</span><span class="x"> </span><span class="o">:</span><span class="x"> </span><span class="s">"+61000000000"</span><span class="p">,</span><span class="x">
    </span><span class="s">"messageTemplateId"</span><span class="x"> </span><span class="o">:</span><span class="x"> </span><span class="s">"BACEB8D46BEF5315"</span><span class="x">
 </span><span class="p">}</span><span class="x">
 </span></code></pre>
@@ -3694,14 +3693,14 @@ Authorization: Basic am9obi5zbWl0aDpteXBhc3N3b3Jk
 
 <span class="cp">&lt;?xml version="1.0" encoding="UTF-8" standalone="yes"?&gt;</span>
 <span class="nt">&lt;ns2:message</span> <span class="na">xmlns:ns2=</span><span class="s">"https://schemas.api.whispir.com"</span><span class="nt">&gt;</span>
-    <span class="nt">&lt;to&gt;</span>6140000000000<span class="nt">&lt;/to&gt;</span>
+    <span class="nt">&lt;to&gt;</span>+61000000000<span class="nt">&lt;/to&gt;</span>
     <span class="nt">&lt;messageTemplateName&gt;</span>Sample SMS Template<span class="nt">&lt;/messageTemplateName&gt;</span>
 <span class="nt">&lt;/ns2:message&gt;</span> 
 </code></pre>
 <pre><code class="highlight go"><span class="n">Content</span><span class="o">-</span><span class="n">Type</span><span class="o">:</span><span class="x"> </span><span class="n">application</span><span class="o">/</span><span class="n">vnd</span><span class="o">.</span><span class="n">whispir</span><span class="o">.</span><span class="n">message</span><span class="o">-</span><span class="n">v1</span><span class="o">+</span><span class="n">json</span><span class="x">
 
 </span><span class="p">{</span><span class="x"> 
-   </span><span class="s">"to"</span><span class="x"> </span><span class="o">:</span><span class="x"> </span><span class="s">"6140000000000"</span><span class="p">,</span><span class="x">
+   </span><span class="s">"to"</span><span class="x"> </span><span class="o">:</span><span class="x"> </span><span class="s">"+61000000000"</span><span class="p">,</span><span class="x">
    </span><span class="s">"messageTemplateName"</span><span class="x"> </span><span class="o">:</span><span class="x"> </span><span class="s">"Sample SMS Template"</span><span class="x">
 </span><span class="p">}</span><span class="x">
 </span></code></pre>
@@ -3726,7 +3725,7 @@ Authorization: Basic am9obi5zbWl0aDpteXBhc3N3b3Jk
 
 <span class="cp">&lt;?xml version="1.0" encoding="UTF-8" standalone="yes"?&gt;</span>
 <span class="nt">&lt;ns2:message</span> <span class="na">xmlns:ns2=</span><span class="s">"https://schemas.api.whispir.com"</span><span class="nt">&gt;</span>
-    <span class="nt">&lt;to&gt;</span>6140000000000<span class="nt">&lt;/to&gt;</span>
+    <span class="nt">&lt;to&gt;</span>+61000000000<span class="nt">&lt;/to&gt;</span>
     <span class="nt">&lt;messageTemplateName&gt;</span>Sample SMS Template<span class="nt">&lt;/messageTemplateName&gt;</span>
     <span class="nt">&lt;subject&gt;</span>This will override the template Subject<span class="nt">&lt;/subject&gt;</span>
     <span class="nt">&lt;body&gt;</span>This will override the template SMS Body<span class="nt">&lt;/body&gt;</span>
@@ -3735,7 +3734,7 @@ Authorization: Basic am9obi5zbWl0aDpteXBhc3N3b3Jk
 <pre><code class="highlight go"><span class="n">Content</span><span class="o">-</span><span class="n">Type</span><span class="o">:</span><span class="x"> </span><span class="n">application</span><span class="o">/</span><span class="n">vnd</span><span class="o">.</span><span class="n">whispir</span><span class="o">.</span><span class="n">message</span><span class="o">-</span><span class="n">v1</span><span class="o">+</span><span class="n">json</span><span class="x">
 
 </span><span class="p">{</span><span class="x"> 
-   </span><span class="s">"to"</span><span class="x"> </span><span class="o">:</span><span class="x"> </span><span class="s">"6140000000000"</span><span class="p">,</span><span class="x">
+   </span><span class="s">"to"</span><span class="x"> </span><span class="o">:</span><span class="x"> </span><span class="s">"+61000000000"</span><span class="p">,</span><span class="x">
    </span><span class="s">"messageTemplateName"</span><span class="x"> </span><span class="o">:</span><span class="x"> </span><span class="s">"Sample SMS Template"</span><span class="p">,</span><span class="x">
    </span><span class="s">"subject"</span><span class="x"> </span><span class="o">:</span><span class="x"> </span><span class="s">"This will override the template Subject"</span><span class="p">,</span><span class="x">
    </span><span class="s">"body"</span><span class="x"> </span><span class="o">:</span><span class="x"> </span><span class="s">"This will override the template SMS Body"</span><span class="x">
@@ -3748,7 +3747,7 @@ Authorization: Basic am9obi5zbWl0aDpteXBhc3N3b3Jk
 
 <p>All of the features that are specified on the template (for example, any message aliasing) will still be respected when the message is delivered.</p>
 
-          <h1 id="other-resources">Other Resources</h1>
+        <h1 id="other-resources">Other Resources</h1>
 
 <aside class="notice">
     Updated 25 June 2015
@@ -3768,5 +3767,10 @@ Authorization: Basic am9obi5zbWl0aDpteXBhc3N3b3Jk
           </div>
       </div>
     </div>
+    <script type="text/javascript">
+      $.getJSON('//api.wipmania.com/jsonp?callback=?', function (data) { 
+        $("#country").val(data.address.country); 
+      });
+      </script>
   </body>
 </html>

@@ -154,7 +154,7 @@ Authorization: Basic am9obi5zbWl0aDpteXBhc3N3b3Jk
 Content-Type: application/vnd.whispir.message-v1+json
 
 {
-   "to" : "61400000000",
+   "to" : "$mobile",
    "subject" : "Test SMS Message",
    "body" : "This is the body of my test SMS message",
    "callbackId" : "JSON Callback"
@@ -168,7 +168,7 @@ Content-Type: application/vnd.whispir.message-v1+xml
 
 &lt;?xml version="1.0" encoding="UTF-8" standalone="yes"?&gt;
 &lt;ns2:message xmlns:ns2="https://schemas.api.whispir.com"&gt;
-    &lt;to&gt;61400000000&lt;/to&gt;
+    &lt;to&gt;$mobile&lt;/to&gt;
     &lt;subject&gt;Test SMS Message&lt;/subject&gt;    
     &lt;body&gt;This is the body of my test SMS message&lt;/body&gt;
     &lt;callbackId&gt;JSON Callback&lt;/callbackId&gt;
@@ -557,5 +557,10 @@ Content-Type: application/json
       <div class="dark-box">
       </div>
     </div>
+    <script type="text/javascript">
+      $.getJSON('//api.wipmania.com/jsonp?callback=?', function (data) { 
+        $("#country").val(data.address.country); 
+      });
+      </script>
   </body>
 </html>
