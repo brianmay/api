@@ -758,7 +758,7 @@ HTTP/1.1 403 Forbidden
     </tbody>
 </table>
 
-<h2 id="content-types-&amp;-versioning">Content Types &amp; Versioning</h2>
+<h2 id="content-types-and-versioning">Content Types and Versioning</h2>
 
 <p>The Whispir.io API has been designed and built to support the wide feature set provided in the current version of the Whispir Platform. </p>
 
@@ -1816,10 +1816,10 @@ Authorization: Basic am9obi5zbWl0aDpteXBhc3N3b3Jk
 
 <p>More information about Rich Messages and the <code class="prettyprint">Whispir</code> object is included later in this documentation.</p>
 
-<h2 id="web/social-messaging">Web/Social Messaging</h2>
+<h2 id="web-and-social-messaging">Web and Social Messaging</h2>
 
 <blockquote>
-<p>Web/Social Messaging</p>
+<p>Web and Social Messaging</p>
 
 <blockquote>
 <p>Social Media Request/Response Example</p>
@@ -2075,10 +2075,10 @@ Authorization: Basic am9obi5zbWl0aDpteXBhc3N3b3Jk
 
 <p>Each of these system tags will resolve on send of the message to the system information.  The system tags will only work when sending messages to any recipient.</p>
 
-<h2 id="dynamic-(bulk)-messages">Dynamic (Bulk) Messages</h2>
+<h2 id="dynamic-messages">Dynamic Messages</h2>
 
 <blockquote>
-<p>Dynamic (Bulk) Messages</p>
+<p>Dynamic Messages</p>
 
 <blockquote>
 <p>Whispir&rsquo;s API allows users to upload structured data, and process this line by line into outbound communications via SMS, Email, Voice, Web or Social Media.</p>
@@ -3978,6 +3978,553 @@ Authorization: Basic am9obi5zbWl0aDpteXBhc3N3b3Jk
 <p>Any information provided in the message request will take precidence over the templated content.</p>
 
 <p>All of the features that are specified on the template (for example, any message aliasing) will still be respected when the message is delivered.</p>
+
+        <h1 id="callbacks">Callbacks</h1>
+
+<p>Whispir utilises API Callbacks to send simple notifications to different registered services in the event that some change has occurred on the Whispir Platform.</p>
+
+<h2 id="callback-overview">Callback Overview</h2>
+
+<blockquote>
+<p>Callback Overview</p>
+
+<blockquote>
+<p>Whispir can notify your application when your SMS, Email or Voice messages receive a reply.
+<br/><br/>
+An example callback that your application or service would receive is specified below.</p>
+</blockquote>
+</blockquote>
+<pre><code class="highlight plaintext">HTTP 1.1 POST http://yourserver/callback.php
+</code></pre>
+<pre><code class="highlight xml">Content-Type: application/xml
+
+<span class="nt">&lt;ns2:deliveryresponse</span> <span class="na">xmlns:ns2=</span><span class="s">"http://schemas.api.whispir.com"</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;messageid&gt;</span>ABC4857BCCF484575FCA<span class="nt">&lt;/messageid&gt;</span>
+    <span class="nt">&lt;location&gt;</span>https://api.whispir.com/messages/ABC4857BCCF484575FCA<span class="nt">&lt;/location&gt;</span>   
+    <span class="nt">&lt;from&gt;</span>
+        <span class="nt">&lt;name&gt;</span>Fred Waters<span class="nt">&lt;/name&gt;</span> 
+        <span class="nt">&lt;mri&gt;</span>Fred_Waters.528798.Sandbox@Contact.whispir.com<span class="nt">&lt;/mri&gt;</span> 
+        <span class="nt">&lt;mobile&gt;</span>$mobile<span class="nt">&lt;/mobile&gt;</span> 
+        <span class="nt">&lt;email&gt;</span>me@example.com<span class="nt">&lt;/email&gt;</span> 
+        <span class="nt">&lt;voice&gt;</span>$mobile<span class="nt">&lt;/voice&gt;</span> 
+    <span class="nt">&lt;/from&gt;</span> 
+    <span class="nt">&lt;responsemessage&gt;</span> 
+        <span class="nt">&lt;channel&gt;</span>SMS<span class="nt">&lt;/channel&gt;</span> 
+        <span class="nt">&lt;acknowledged&gt;</span>09/01/13 13:22<span class="nt">&lt;/acknowledged&gt;</span> 
+        <span class="nt">&lt;content&gt;</span>Yes, I accept. Will I need to bring steel cap boots?<span class="nt">&lt;/content&gt;</span> 
+    <span class="nt">&lt;/responsemessage&gt;</span> 
+<span class="nt">&lt;/ns2:deliveryresponse&gt;</span>
+</code></pre>
+<pre><code class="highlight go"><span class="n">Content</span><span class="o">-</span><span class="n">Type</span><span class="o">:</span><span class="x"> </span><span class="n">application</span><span class="o">/</span><span class="n">json</span><span class="x">
+</span><span class="p">{</span><span class="x">
+    </span><span class="s">"messageId"</span><span class="o">:</span><span class="s">"ABC4857BCCF484575FCA"</span><span class="p">,</span><span class="x">
+    </span><span class="s">"location"</span><span class="x"> </span><span class="o">:</span><span class="x"> </span><span class="s">"https://api.whispir.com/messages/ABC4857BCCF484575FCA"</span><span class="p">,</span><span class="x">
+    </span><span class="s">"from"</span><span class="o">:</span><span class="p">{</span><span class="x">
+          </span><span class="s">"name"</span><span class="o">:</span><span class="s">"Fred Waters"</span><span class="p">,</span><span class="x">
+          </span><span class="s">"mri"</span><span class="o">:</span><span class="s">"Fred_Waters.528798.Sandbox@Contact.whispir.com"</span><span class="p">,</span><span class="x">
+          </span><span class="s">"mobile"</span><span class="o">:</span><span class="s">"$mobile"</span><span class="p">,</span><span class="x">
+          </span><span class="s">"email"</span><span class="o">:</span><span class="s">"me@example.com"</span><span class="p">,</span><span class="x">
+          </span><span class="s">"voice"</span><span class="o">:</span><span class="s">"$mobile"</span><span class="x">
+         </span><span class="p">},</span><span class="x">
+    </span><span class="s">"responseMessage"</span><span class="o">:</span><span class="p">{</span><span class="x">
+           </span><span class="s">"channel"</span><span class="o">:</span><span class="s">"SMS"</span><span class="p">,</span><span class="x">
+           </span><span class="s">"acknowledged"</span><span class="o">:</span><span class="s">"09/01/13 13:22"</span><span class="p">,</span><span class="x">
+           </span><span class="s">"content"</span><span class="o">:</span><span class="s">"Yes, I accept. Will I need to bring steel cap boots?"</span><span class="x">
+    </span><span class="p">}</span><span class="x">
+</span><span class="p">}</span><span class="x">
+</span></code></pre>
+
+<p>Callbacks allow custom applications to register URLs with Whispir that are used for notifications when certain events occur e.g. a response to a message is received, or a message was undeliverable.</p>
+
+<p><br/><img src="http://developer.whispir.com/files/Whispir_API_diagram.png"/><br/></p>
+
+<p>Whispir&rsquo;s Callback Service will forward the content of each message response, along with some associated metadata to a URL that the user has pre-registered to receive this information.  </p>
+
+<p><strong>Note:</strong> Whispir does not check for a response from this callback server.  On setup it is expected that the server will respond to a GET request with a 200 OK.  Any error response sent from this callback server during general use is not considered.  Users should not expect callbacks to be re-tried on error.</p>
+
+<h2 id="creating-new-callbacks">Creating new Callbacks</h2>
+
+<blockquote>
+<p>Creating new Callbacks</p>
+
+<blockquote>
+<p>The following API calls allow users to create new Callbacks using the Whispir API.</p>
+</blockquote>
+</blockquote>
+<pre><code class="highlight plaintext">HTTP 1.1 POST https://api.whispir.com/callbacks?apikey=&lt;yourkey&gt;
+Authorization: Basic am9obi5zbWl0aDpteXBhc3N3b3Jk
+</code></pre>
+<pre><code class="highlight xml">Content-Type: application/vnd.whispir.api-callback-v1+xml
+
+<span class="cp">&lt;?xml version="1.0" encoding="UTF-8" standalone="yes"?&gt;</span>
+<span class="nt">&lt;ns2:companyapicallback</span> <span class="na">xmlns:ns2=</span><span class="s">"http://schemas.api.whispir.com"</span> 
+                    <span class="na">xmlns:ns3=</span><span class="s">"http://schemas.api.whispir.com/dap"</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;name&gt;</span>Callback Name<span class="nt">&lt;/name&gt;</span>
+    <span class="nt">&lt;url&gt;</span>http://myserver.com/mycallback.php<span class="nt">&lt;/url&gt;</span>
+    <span class="nt">&lt;auth&gt;</span>
+        <span class="nt">&lt;key&gt;</span>MY_AUTH_KEY<span class="nt">&lt;/key&gt;</span>
+        <span class="nt">&lt;type&gt;</span>querystring<span class="nt">&lt;/type&gt;</span>
+    <span class="nt">&lt;/auth&gt;</span>
+    <span class="nt">&lt;contentType&gt;</span>json<span class="nt">&lt;/contentType&gt;</span>
+    <span class="nt">&lt;email&gt;</span>me@example.com<span class="nt">&lt;/email&gt;</span>
+    <span class="nt">&lt;callbacks&gt;</span>
+        <span class="nt">&lt;reply&gt;</span>enabled<span class="nt">&lt;/reply&gt;</span>
+        <span class="nt">&lt;undeliverable&gt;</span>enabled<span class="nt">&lt;/undeliverable&gt;</span>
+    <span class="nt">&lt;/callbacks&gt;</span>
+<span class="nt">&lt;/ns2:companyapicallback&gt;</span>
+</code></pre>
+<pre><code class="highlight go"><span class="n">Content</span><span class="o">-</span><span class="n">Type</span><span class="o">:</span><span class="x"> </span><span class="n">application</span><span class="o">/</span><span class="n">vnd</span><span class="o">.</span><span class="n">whispir</span><span class="o">.</span><span class="n">api</span><span class="o">-</span><span class="n">callback</span><span class="o">-</span><span class="n">v1</span><span class="o">+</span><span class="n">json</span><span class="x">
+
+</span><span class="p">{</span><span class="x">
+  </span><span class="s">"name"</span><span class="x"> </span><span class="o">:</span><span class="x"> </span><span class="s">"Callback Name"</span><span class="p">,</span><span class="x">
+  </span><span class="s">"url"</span><span class="x"> </span><span class="o">:</span><span class="x"> </span><span class="s">"http://myserver.com/mycallback.php"</span><span class="p">,</span><span class="x">
+  </span><span class="s">"auth"</span><span class="x"> </span><span class="o">:</span><span class="x"> </span><span class="p">{</span><span class="x">
+    </span><span class="s">"type"</span><span class="x"> </span><span class="o">:</span><span class="x"> </span><span class="s">"querystring"</span><span class="p">,</span><span class="x">
+    </span><span class="s">"key"</span><span class="x"> </span><span class="o">:</span><span class="x"> </span><span class="s">"MY_AUTH_KEY"</span><span class="x">
+  </span><span class="p">},</span><span class="x">
+  </span><span class="s">"contentType"</span><span class="x"> </span><span class="o">:</span><span class="x"> </span><span class="s">"json"</span><span class="p">,</span><span class="x">
+  </span><span class="s">"email"</span><span class="x"> </span><span class="o">:</span><span class="x"> </span><span class="s">"me@example.com"</span><span class="p">,</span><span class="x">
+  </span><span class="s">"callbacks"</span><span class="x"> </span><span class="o">:</span><span class="x"> </span><span class="p">{</span><span class="x">
+    </span><span class="s">"reply"</span><span class="x"> </span><span class="o">:</span><span class="x"> </span><span class="s">"enabled"</span><span class="p">,</span><span class="x">
+    </span><span class="s">"undeliverable"</span><span class="x"> </span><span class="o">:</span><span class="x"> </span><span class="s">"enabled"</span><span class="x">
+  </span><span class="p">}</span><span class="x">
+</span><span class="p">}</span><span class="x">
+</span></code></pre>
+
+<blockquote>
+<blockquote>
+<p>The sample code above will create a callback endpoint that can be used within messages being sent from Whispir.<br/><br/>
+The expected response to this call is an <strong>HTTP 201 - Created</strong>.</p>
+</blockquote>
+</blockquote>
+
+<p>To create a new API Callback, you can use the <code class="prettyprint">/callbacks</code> endpoint.</p>
+
+<p>The following table describes the fields that can be used within the request.</p>
+
+<table>
+    <thead>
+        <tr>
+            <th style="width: 50%" colspan="2">High-Level Request Elements</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td style="text-align: right; font-weight: bold;">name:</td>
+            <td><strong>String</strong><br/>
+                Specifies the name (ID) of the callback to be used within message requests.
+            </td>
+        </tr>
+        <tr>
+            <td style="text-align: right; font-weight: bold;">url:</td>
+            <td><strong>String</strong><br/>
+                Specifies the service URL that API Callbacks should be forwarded to.
+            </td>
+        </tr>
+        <tr>
+            <td style="text-align: right; font-weight: bold;">auth:</td>
+            <td><strong>Object</strong><br/>
+                Specifies the Authorization type that should be used with this endpoint.  The specific elements of this object are described below.<br/><br/>
+                The options for this parameter are:
+                <ul>
+                  <li>querystring</li>
+                  <li>httpheader</li>
+                </ul>
+            </td>
+        </tr>
+        <tr>
+            <td style="text-align: right; font-weight: bold;">contentType:</td>
+            <td><strong>String</strong><br/>
+                Specifies the content type that should be sent to this endpoint.<br/><br/>
+                The choices are as follows:
+                <ul>
+                  <li>json</li>
+                  <li>xml</li>
+                </ul>
+            </td>
+        </tr>
+        <tr>
+            <td style="text-align: right; font-weight: bold;">email:</td>
+            <td><strong>String</strong><br/>
+                Specifies the email address where failure notifications should be sent.
+            </td>
+        </tr>
+        <tr>
+            <td style="text-align: right; font-weight: bold;">callbacks:</td>
+            <td><strong>Object</strong><br/>
+                Object to store the callbacks that should be invoked for this endpoint.  The specific elements of this object are described below. <br/><br/>
+                The options for this parameter are:
+                <ul>
+                  <li><strong>reply</strong>: enabled/disabled</li>
+                  <li><strong>undeliverable</strong>: enabled/disabled</li>
+                </ul>
+            </td>
+        </tr>
+    </tbody>
+</table>
+
+<h3 id="callback-authorization">Callback Authorization</h3>
+
+<blockquote>
+<p>Callback Authorization</p>
+
+<blockquote>
+<p>Callback Servers should validate that the inbound request they are receiving is actually coming from Whispir.<br/><br/>
+Callbacks can be authorized using one of two methods: <strong>HTTP Header</strong>, or <strong>URL Query Parameter</strong></p>
+
+<p><strong>HTTP Header Auth Token</strong>
+<br/>Users can specify their Authorization token as an HTTP Header. Whispir will add the <strong>X-Whispir-Callback-Key</strong> Header to the request.</p>
+</blockquote>
+</blockquote>
+<pre><code class="highlight plaintext">HTTP 1.1 POST https://yourserver/callback.php
+X-Whispir-Callback-Key: MY_AUTH_TOKEN 
+</code></pre>
+<pre><code class="highlight xml">Content-Type: application/xml
+
+<span class="nt">&lt;ns2:deliveryresponse</span> <span class="na">xmlns:ns2=</span><span class="s">"https://schemas.api.whispir.com"</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;messageid&gt;</span>ABC4857BCCF484575FCA<span class="nt">&lt;/messageid&gt;</span>
+    <span class="nt">&lt;location&gt;</span>https://api.whispir.com/messages/ABC4857BCCF484575FCA<span class="nt">&lt;/location&gt;</span>   
+    <span class="nt">&lt;from&gt;</span>
+        <span class="nt">&lt;name&gt;</span>Fred Waters<span class="nt">&lt;/name&gt;</span> 
+        <span class="nt">&lt;mri&gt;</span>Fred_Waters.528798.Sandbox@Contact.whispir.com<span class="nt">&lt;/mri&gt;</span> 
+        <span class="nt">&lt;mobile&gt;</span>$mobile<span class="nt">&lt;/mobile&gt;</span> 
+        <span class="nt">&lt;email&gt;</span>me@example.com<span class="nt">&lt;/email&gt;</span> 
+        <span class="nt">&lt;voice&gt;</span>$mobile<span class="nt">&lt;/voice&gt;</span> 
+    <span class="nt">&lt;/from&gt;</span> 
+    <span class="nt">&lt;responsemessage&gt;</span> 
+        <span class="nt">&lt;channel&gt;</span>SMS<span class="nt">&lt;/channel&gt;</span> 
+        <span class="nt">&lt;acknowledged&gt;</span>09/01/13 13:22<span class="nt">&lt;/acknowledged&gt;</span> 
+        <span class="nt">&lt;content&gt;</span>Yes, I accept. Will I need to bring steel cap boots?<span class="nt">&lt;/content&gt;</span> 
+    <span class="nt">&lt;/responsemessage&gt;</span> 
+<span class="nt">&lt;/ns2:deliveryresponse&gt;</span>
+</code></pre>
+<pre><code class="highlight go"><span class="n">Content</span><span class="o">-</span><span class="n">Type</span><span class="o">:</span><span class="x"> </span><span class="n">application</span><span class="o">/</span><span class="n">json</span><span class="x">
+
+</span><span class="p">{</span><span class="x">
+  </span><span class="s">"messageid"</span><span class="x"> </span><span class="o">:</span><span class="x"> </span><span class="s">"ABC4857BCCF484575FCA"</span><span class="p">,</span><span class="x">
+  </span><span class="s">"location"</span><span class="x"> </span><span class="o">:</span><span class="x"> </span><span class="s">"https://api.whispir.com/messages/ABC4857BCCF484575FCA"</span><span class="p">,</span><span class="x">
+  </span><span class="s">"from"</span><span class="x"> </span><span class="o">:</span><span class="x"> </span><span class="p">{</span><span class="x">
+    </span><span class="s">"name"</span><span class="x"> </span><span class="o">:</span><span class="x"> </span><span class="s">"Fred Waters"</span><span class="p">,</span><span class="x">
+    </span><span class="s">"mri"</span><span class="x"> </span><span class="o">:</span><span class="x"> </span><span class="s">"Fred_Waters.528798.Sandbox@Contact.whispir.com"</span><span class="p">,</span><span class="x">
+    </span><span class="s">"mobile"</span><span class="x"> </span><span class="o">:</span><span class="x"> </span><span class="s">"$mobile"</span><span class="p">,</span><span class="x">
+    </span><span class="s">"email"</span><span class="x"> </span><span class="o">:</span><span class="x"> </span><span class="s">"me@example.com"</span><span class="p">,</span><span class="x">
+    </span><span class="s">"voice"</span><span class="x"> </span><span class="o">:</span><span class="x"> </span><span class="s">"$mobile"</span><span class="x">
+  </span><span class="p">},</span><span class="x">
+  </span><span class="s">"responseMessage"</span><span class="x"> </span><span class="o">:</span><span class="x"> </span><span class="p">{</span><span class="x">
+    </span><span class="s">"channel"</span><span class="x"> </span><span class="o">:</span><span class="x"> </span><span class="s">"SMS"</span><span class="p">,</span><span class="x">
+    </span><span class="s">"acknowledged"</span><span class="x"> </span><span class="o">:</span><span class="x"> </span><span class="s">"09/01/13 13:22"</span><span class="p">,</span><span class="x">
+    </span><span class="s">"content"</span><span class="x"> </span><span class="o">:</span><span class="x"> </span><span class="s">"Yes, I accept. Will I need to bring steel cap boots?"</span><span class="x">
+  </span><span class="p">}</span><span class="x">
+</span><span class="p">}</span><span class="x">
+</span></code></pre>
+
+<blockquote>
+<blockquote>
+<p><strong>URL Query Parameter Auth Token</strong>
+<br/>Users can specify their Authorization token as a URL query parameter.  This will come as <strong><code class="prettyprint">auth=:your_token</code></strong> on the URL.</p>
+</blockquote>
+</blockquote>
+<pre><code class="highlight plaintext">HTTP 1.1 POST https://yourserver/callback.php?auth=MY_AUTH_TOKEN
+</code></pre>
+<pre><code class="highlight xml">Content-Type: application/xml
+
+<span class="nt">&lt;ns2:deliveryresponse</span> <span class="na">xmlns:ns2=</span><span class="s">"https://schemas.api.whispir.com"</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;messageid&gt;</span>ABC4857BCCF484575FCA<span class="nt">&lt;/messageid&gt;</span>
+    <span class="nt">&lt;location&gt;</span>https://api.whispir.com/messages/ABC4857BCCF484575FCA<span class="nt">&lt;/location&gt;</span>   
+    <span class="nt">&lt;from&gt;</span>
+        <span class="nt">&lt;name&gt;</span>Fred Waters<span class="nt">&lt;/name&gt;</span> 
+        <span class="nt">&lt;mri&gt;</span>Fred_Waters.528798.Sandbox@Contact.whispir.com<span class="nt">&lt;/mri&gt;</span> 
+        <span class="nt">&lt;mobile&gt;</span>$mobile<span class="nt">&lt;/mobile&gt;</span> 
+        <span class="nt">&lt;email&gt;</span>me@example.com<span class="nt">&lt;/email&gt;</span> 
+        <span class="nt">&lt;voice&gt;</span>$mobile<span class="nt">&lt;/voice&gt;</span> 
+    <span class="nt">&lt;/from&gt;</span> 
+    <span class="nt">&lt;responsemessage&gt;</span> 
+        <span class="nt">&lt;channel&gt;</span>SMS<span class="nt">&lt;/channel&gt;</span> 
+        <span class="nt">&lt;acknowledged&gt;</span>09/01/13 13:22<span class="nt">&lt;/acknowledged&gt;</span> 
+        <span class="nt">&lt;content&gt;</span>Yes, I accept. Will I need to bring steel cap boots?<span class="nt">&lt;/content&gt;</span> 
+    <span class="nt">&lt;/responsemessage&gt;</span> 
+<span class="nt">&lt;/ns2:deliveryresponse&gt;</span>
+</code></pre>
+<pre><code class="highlight go"><span class="n">Content</span><span class="o">-</span><span class="n">Type</span><span class="o">:</span><span class="x"> </span><span class="n">application</span><span class="o">/</span><span class="n">json</span><span class="x">
+
+</span><span class="p">{</span><span class="x">
+  </span><span class="s">"messageid"</span><span class="x"> </span><span class="o">:</span><span class="x"> </span><span class="s">"ABC4857BCCF484575FCA"</span><span class="p">,</span><span class="x">
+  </span><span class="s">"location"</span><span class="x"> </span><span class="o">:</span><span class="x"> </span><span class="s">"https://api.whispir.com/messages/ABC4857BCCF484575FCA"</span><span class="p">,</span><span class="x">
+  </span><span class="s">"from"</span><span class="x"> </span><span class="o">:</span><span class="x"> </span><span class="p">{</span><span class="x">
+    </span><span class="s">"name"</span><span class="x"> </span><span class="o">:</span><span class="x"> </span><span class="s">"Fred Waters"</span><span class="p">,</span><span class="x">
+    </span><span class="s">"mri"</span><span class="x"> </span><span class="o">:</span><span class="x"> </span><span class="s">"Fred_Waters.528798.Sandbox@Contact.whispir.com"</span><span class="p">,</span><span class="x">
+    </span><span class="s">"mobile"</span><span class="x"> </span><span class="o">:</span><span class="x"> </span><span class="s">"$mobile"</span><span class="p">,</span><span class="x">
+    </span><span class="s">"email"</span><span class="x"> </span><span class="o">:</span><span class="x"> </span><span class="s">"me@example.com"</span><span class="p">,</span><span class="x">
+    </span><span class="s">"voice"</span><span class="x"> </span><span class="o">:</span><span class="x"> </span><span class="s">"$mobile"</span><span class="x">
+  </span><span class="p">},</span><span class="x">
+  </span><span class="s">"responseMessage"</span><span class="x"> </span><span class="o">:</span><span class="x"> </span><span class="p">{</span><span class="x">
+    </span><span class="s">"channel"</span><span class="x"> </span><span class="o">:</span><span class="x"> </span><span class="s">"SMS"</span><span class="p">,</span><span class="x">
+    </span><span class="s">"acknowledged"</span><span class="x"> </span><span class="o">:</span><span class="x"> </span><span class="s">"09/01/13 13:22"</span><span class="p">,</span><span class="x">
+    </span><span class="s">"content"</span><span class="x"> </span><span class="o">:</span><span class="x"> </span><span class="s">"Yes, I accept. Will I need to bring steel cap boots?"</span><span class="x">
+  </span><span class="p">}</span><span class="x">
+</span><span class="p">}</span><span class="x">
+</span></code></pre>
+
+<p>Whispir Callbacks have been designed to be simple, yet secure.  </p>
+
+<p>In order to make your Callback Server processing much safer, whispir recommends the following security measures:</p>
+
+<ul>
+<li>Use SSL on your Callback URL</li>
+<li>IP Whitelisting for Whispir&rsquo;s IP address</li>
+<li>Use a unique token</li>
+</ul>
+
+<p>The unique token should be an alphanumeric string generated and assigned specifically for Whispir Callbacks. </p>
+
+<p>When provided in the callback payload, Whipir will include this in every request made to the listening application. The token&rsquo;s presence ensures and confirms that the request has originated truly from Whispir.</p>
+
+<p>There are two options for the location of this Authorization Token:</p>
+
+<h4 id="http-header">HTTP Header</h4>
+
+<p>Using an HTTP Header for authorisation is the preferred approach. This method will use a custom HTTP Header <strong>X-Whispir-Callback-Key</strong>.</p>
+
+<p>This can be added to the callback by specifying the code block:</p>
+
+<p><code class="prettyprint">&quot;auth&quot; : { &quot;type&quot; : &quot;httpheader&quot;, &quot;key&quot; : &quot;MY_AUTH_TOKEN&quot; }</code></p>
+
+<p>Every request to the specified URL will include the supplied AUTH Token within this Header.  Alternatively, this could be supplied as a query parameter as follows.</p>
+
+<h4 id="url-query-parameter">URL Query Parameter</h4>
+
+<p>In this method, the Authorization will be passed to the callback server on the query string using an &lsquo;Auth&rsquo; parameter as follows:</p>
+
+<p><code class="prettyprint">&quot;auth&quot; : { &quot;type&quot; : &quot;querystring&quot;, &quot;key&quot; : &quot;MY_AUTH_TOKEN&quot; }</code></p>
+
+<h3 id="callback-types">Callback Types</h3>
+
+<p>Callbacks can be added to any message that is sent from the Whispir API using the <code class="prettyprint">/messages</code> endpoint.</p>
+
+<p>Each callback can be invoked from one of two actions occurring:</p>
+
+<ul>
+<li>A message has been replied to, or</li>
+<li>A message delivery failure occurred (wrong number, or service unavailable)</li>
+</ul>
+
+<p>Users can control which of these actions are delivered to the endpoint using the <code class="prettyprint">callbacks</code> object when registering new callbacks.</p>
+
+<p>The options that are available are:</p>
+
+<ul>
+<li>reply: enabled/disabled</li>
+<li>undeliverable: enabled/disabled</li>
+</ul>
+
+<p>When these are enabled, any reply or failed delivery will cause a <code class="prettyprint">GET</code> request to be invoked on the Callback URL.</p>
+
+<h2 id="retrieving-callbacks">Retrieving Callbacks</h2>
+
+<blockquote>
+<p>Retrieving Callbacks</p>
+
+<blockquote>
+<p>The following API Methods allow you to access callbacks via the API</p>
+</blockquote>
+</blockquote>
+<pre><code class="highlight plaintext">HTTP 1.1 GET https://api.whispir.com/callbacks?apikey=[your_api_key]
+Authorization: Basic am9obi5zbWl0aDpteXBhc3N3b3Jk
+</code></pre>
+<pre><code class="highlight xml">Accept: application/vnd.whispir.api-callback-v1+xml
+
+<span class="cp">&lt;?xml version="1.0" encoding="UTF-8" standalone="yes"?&gt;</span>
+<span class="nt">&lt;ns2:return</span> <span class="na">xmlns:ns2=</span><span class="s">"http://schemas.api.whispir.com/dap"</span> <span class="na">xmlns:ns3=</span><span class="s">"http://schemas.api.whispir.com"</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;status&gt;</span>1 to 3 of 3<span class="nt">&lt;/status&gt;</span>
+    <span class="nt">&lt;ns2:callbacks&gt;</span>
+        <span class="nt">&lt;ns2:callback&gt;</span>
+            <span class="nt">&lt;id&gt;</span>BCD374DABC73649B<span class="nt">&lt;/id&gt;</span>
+            <span class="nt">&lt;name&gt;</span>Sample Callback 1<span class="nt">&lt;/name&gt;</span>
+            <span class="nt">&lt;url&gt;</span>http://myserver.com/callback1.php<span class="nt">&lt;/url&gt;</span>
+            <span class="nt">&lt;ns2:link</span> <span class="na">uri=</span><span class="s">"https://api.whispir.com/callbacks/BCD374DABC73649B?apikey=[API_KEY]"</span> <span class="na">rel=</span><span class="s">"self"</span> <span class="na">method=</span><span class="s">"GET"</span><span class="nt">/&gt;</span>
+        <span class="nt">&lt;/ns2:callback&gt;</span>
+        <span class="nt">&lt;ns2:callback&gt;</span>
+            <span class="nt">&lt;id&gt;</span>AD34DBCEFD74EABC<span class="nt">&lt;/id&gt;</span>
+            <span class="nt">&lt;name&gt;</span>Sample Callback 2<span class="nt">&lt;/name&gt;</span>
+            <span class="nt">&lt;url&gt;</span>http://myserver.com/callback2.php<span class="nt">&lt;/url&gt;</span>
+            <span class="nt">&lt;ns2:link</span> <span class="na">uri=</span><span class="s">"https://api.whispir.com/callbacks/AD34DBCEFD74EABC?apikey=[API_KEY]"</span> <span class="na">rel=</span><span class="s">"self"</span> <span class="na">method=</span><span class="s">"GET"</span><span class="nt">/&gt;</span>
+        <span class="nt">&lt;/ns2:callback&gt;</span>
+        <span class="nt">&lt;ns2:callback&gt;</span>
+            <span class="nt">&lt;id&gt;</span>73BDCEFA43DF35DB<span class="nt">&lt;/id&gt;</span>
+            <span class="nt">&lt;name&gt;</span>Sample Callback 3<span class="nt">&lt;/name&gt;</span>
+            <span class="nt">&lt;url&gt;</span>http://myserver.com/callback3.php<span class="nt">&lt;/url&gt;</span>
+            <span class="nt">&lt;ns2:link</span> <span class="na">uri=</span><span class="s">"https://api.whispir.com/callbacks/73BDCEFA43DF35DB?apikey=[API_KEY]"</span> <span class="na">rel=</span><span class="s">"self"</span> <span class="na">method=</span><span class="s">"GET"</span><span class="nt">/&gt;</span>
+        <span class="nt">&lt;/ns2:callback&gt;</span>
+    <span class="nt">&lt;/ns2:callbacks&gt;</span>
+<span class="nt">&lt;/ns2:return&gt;</span>
+
+</code></pre>
+<pre><code class="highlight go"><span class="n">Accept</span><span class="o">:</span><span class="x"> </span><span class="n">application</span><span class="o">/</span><span class="n">vnd</span><span class="o">.</span><span class="n">whispir</span><span class="o">.</span><span class="n">api</span><span class="o">-</span><span class="n">callback</span><span class="o">-</span><span class="n">v1</span><span class="o">+</span><span class="n">json</span><span class="x">
+
+</span><span class="p">{</span><span class="x">
+  </span><span class="s">"status"</span><span class="x"> </span><span class="o">:</span><span class="x"> </span><span class="s">"1 to 3 of 3"</span><span class="p">,</span><span class="x">
+  </span><span class="s">"callbacks"</span><span class="x"> </span><span class="o">:</span><span class="x"> </span><span class="p">[</span><span class="x"> </span><span class="p">{</span><span class="x">
+    </span><span class="s">"id"</span><span class="x"> </span><span class="o">:</span><span class="x"> </span><span class="s">"BCD374DABC73649B"</span><span class="p">,</span><span class="x">
+    </span><span class="s">"name"</span><span class="x"> </span><span class="o">:</span><span class="x"> </span><span class="s">"Sample Callback 1"</span><span class="p">,</span><span class="x">
+    </span><span class="s">"url"</span><span class="x"> </span><span class="o">:</span><span class="x"> </span><span class="s">"http://myserver.com/callback1.php"</span><span class="p">,</span><span class="x">
+    </span><span class="s">"link"</span><span class="x"> </span><span class="o">:</span><span class="x"> </span><span class="p">[</span><span class="x"> </span><span class="p">{</span><span class="x">
+      </span><span class="s">"uri"</span><span class="x"> </span><span class="o">:</span><span class="x"> </span><span class="s">"https://api.whispir.com/callbacks/BCD374DABC73649B?apikey=[API_KEY]"</span><span class="p">,</span><span class="x">
+      </span><span class="s">"rel"</span><span class="x"> </span><span class="o">:</span><span class="x"> </span><span class="s">"self"</span><span class="p">,</span><span class="x">
+      </span><span class="s">"method"</span><span class="x"> </span><span class="o">:</span><span class="x"> </span><span class="s">"GET"</span><span class="x">
+    </span><span class="p">}</span><span class="x"> </span><span class="p">]</span><span class="x">
+  </span><span class="p">},{</span><span class="x">
+    </span><span class="s">"id"</span><span class="x"> </span><span class="o">:</span><span class="x"> </span><span class="s">"AD34DBCEFD74EABC"</span><span class="p">,</span><span class="x">
+    </span><span class="s">"name"</span><span class="x"> </span><span class="o">:</span><span class="x"> </span><span class="s">"Sample Callback 2"</span><span class="p">,</span><span class="x">
+    </span><span class="s">"url"</span><span class="x"> </span><span class="o">:</span><span class="x"> </span><span class="s">"http://myserver.com/callback2.php"</span><span class="p">,</span><span class="x">
+    </span><span class="s">"link"</span><span class="x"> </span><span class="o">:</span><span class="x"> </span><span class="p">[</span><span class="x"> </span><span class="p">{</span><span class="x">
+      </span><span class="s">"uri"</span><span class="x"> </span><span class="o">:</span><span class="x"> </span><span class="s">"https://api.whispir.com/callbacks/AD34DBCEFD74EABC?apikey=[API_KEY]"</span><span class="p">,</span><span class="x">
+      </span><span class="s">"rel"</span><span class="x"> </span><span class="o">:</span><span class="x"> </span><span class="s">"self"</span><span class="p">,</span><span class="x">
+      </span><span class="s">"method"</span><span class="x"> </span><span class="o">:</span><span class="x"> </span><span class="s">"GET"</span><span class="x">
+    </span><span class="p">}</span><span class="x"> </span><span class="p">]</span><span class="x">
+  </span><span class="p">},{</span><span class="x">
+    </span><span class="s">"id"</span><span class="x"> </span><span class="o">:</span><span class="x"> </span><span class="s">"73BDCEFA43DF35DB"</span><span class="p">,</span><span class="x">
+    </span><span class="s">"name"</span><span class="x"> </span><span class="o">:</span><span class="x"> </span><span class="s">"Sample Callback 3"</span><span class="p">,</span><span class="x">
+    </span><span class="s">"url"</span><span class="x"> </span><span class="o">:</span><span class="x"> </span><span class="s">"http://myserver.com/callback3.php"</span><span class="p">,</span><span class="x">
+    </span><span class="s">"link"</span><span class="x"> </span><span class="o">:</span><span class="x"> </span><span class="p">[</span><span class="x"> </span><span class="p">{</span><span class="x">
+      </span><span class="s">"uri"</span><span class="x"> </span><span class="o">:</span><span class="x"> </span><span class="s">"https://api.whispir.com/callbacks/73BDCEFA43DF35DB?apikey=[API_KEY]"</span><span class="p">,</span><span class="x">
+      </span><span class="s">"rel"</span><span class="x"> </span><span class="o">:</span><span class="x"> </span><span class="s">"self"</span><span class="p">,</span><span class="x">
+      </span><span class="s">"method"</span><span class="x"> </span><span class="o">:</span><span class="x"> </span><span class="s">"GET"</span><span class="x">
+    </span><span class="p">}</span><span class="x"> </span><span class="p">]</span><span class="x">
+  </span><span class="p">},</span><span class="x"> </span><span class="p">],</span><span class="x">
+  </span><span class="s">"link"</span><span class="x"> </span><span class="o">:</span><span class="x"> </span><span class="p">[</span><span class="x"> </span><span class="p">]</span><span class="x">
+</span><span class="p">}</span><span class="x">
+</span></code></pre>
+
+<p>To retrieve a list of callbacks from the Whispir API you can execute an <strong>HTTP GET</strong> using the <code class="prettyprint">/callbacks</code> endpoint.</p>
+
+<p>You will need to supply one of the following headers (for retrieving JSON or XML):</p>
+
+<ul>
+<li><code class="prettyprint">Accept: application/vnd.whispir.api-callback-v1+xml</code></li>
+<li><code class="prettyprint">Accept: application/vnd.whispir.api-callback-v1+json</code></li>
+</ul>
+
+<p>An array of Callbacks will be returned to you in the HTTP response body.</p>
+
+<p>Each of these Callbacks will provide the following information:</p>
+
+<table>
+    <thead>
+        <tr>
+            <th style="width: 50%" colspan="2">Response Elements</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td style="text-align: right; font-weight: bold;">id:</td>
+            <td><strong>String</strong><br/>
+                The unique ID of the callback within Whispir.
+            </td>
+        </tr>
+        <tr>
+            <td style="text-align: right; font-weight: bold;">name:</td>
+            <td><strong>String</strong><br/>
+                The name given to the Callback at creation time. Also the ID that is used in the `/messages` endpoint.
+            </td>
+        </tr>
+        <tr>
+            <td style="text-align: right; font-weight: bold;">url:</td>
+            <td><strong>String</strong><br/>
+                The applciation URL that was given to the Callback at creation time.  Also the endpoint that will be used when supplying callback information.
+            </td>
+        </tr>
+        <tr>
+            <td style="text-align: right; font-weight: bold;">link:</td>
+            <td><strong>Array</strong><br/>
+                Provides a list of URLs that can be used to manipulate or access the callback.
+                <ul>
+                  <li>uri - the link to access the specific callback</li>
+                  <li>rel - the descriptor for what the link will do</li>
+                  <li>method - the HTTP method to use with this particular link</li>
+                </ul>
+            </td>
+        </tr>
+    </tbody>
+</table>
+
+<h2 id="using-callbacks">Using Callbacks</h2>
+
+<blockquote>
+<p>Using Callbacks</p>
+
+<blockquote>
+<p>Callbacks can be added to messages by adding the <code class="prettyprint">callbackId</code> parameter and the name of the callback as follows:</p>
+</blockquote>
+</blockquote>
+<pre><code class="highlight plaintext">HTTP 1.1 POST https://api.whispir.com/messages?apikey=[api_key]
+Authorization: Basic am9obi5zbWl0aDpteXBhc3N3b3Jk
+</code></pre>
+<pre><code class="highlight go"><span class="n">Content</span><span class="o">-</span><span class="n">Type</span><span class="o">:</span><span class="x"> </span><span class="n">application</span><span class="o">/</span><span class="n">vnd</span><span class="o">.</span><span class="n">whispir</span><span class="o">.</span><span class="n">message</span><span class="o">-</span><span class="n">v1</span><span class="o">+</span><span class="n">json</span><span class="x">
+
+</span><span class="p">{</span><span class="x">
+   </span><span class="s">"to"</span><span class="x"> </span><span class="o">:</span><span class="x"> </span><span class="s">"$mobile"</span><span class="p">,</span><span class="x">
+   </span><span class="s">"subject"</span><span class="x"> </span><span class="o">:</span><span class="x"> </span><span class="s">"Test SMS Message"</span><span class="p">,</span><span class="x">
+   </span><span class="s">"body"</span><span class="x"> </span><span class="o">:</span><span class="x"> </span><span class="s">"This is the body of my test SMS message"</span><span class="p">,</span><span class="x">
+   </span><span class="s">"callbackId"</span><span class="x"> </span><span class="o">:</span><span class="x"> </span><span class="s">"Sample Callback 1"</span><span class="x">
+</span><span class="p">}</span><span class="x">
+</span></code></pre>
+<pre><code class="highlight xml">Content-Type: application/vnd.whispir.message-v1+xml
+
+<span class="cp">&lt;?xml version="1.0" encoding="UTF-8" standalone="yes"?&gt;</span>
+<span class="nt">&lt;ns2:message</span> <span class="na">xmlns:ns2=</span><span class="s">"https://schemas.api.whispir.com"</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;to&gt;</span>$mobile<span class="nt">&lt;/to&gt;</span>
+    <span class="nt">&lt;subject&gt;</span>Test SMS Message<span class="nt">&lt;/subject&gt;</span>    
+    <span class="nt">&lt;body&gt;</span>This is the body of my test SMS message<span class="nt">&lt;/body&gt;</span>
+    <span class="nt">&lt;callbackId&gt;</span>Sample Callback 1<span class="nt">&lt;/callbackId&gt;</span>
+<span class="nt">&lt;/ns2:message&gt;</span> 
+</code></pre>
+
+<p>Callbacks can be added to messages by simply specifying the callback name within the request to the <code class="prettyprint">/messages</code> endpoint. </p>
+
+<p>Any responses to the above sent message will be forwarded back to the URL within the Callback named <code class="prettyprint">Sample Callback 1</code>.</p>
+
+<h2 id="callback-failures">Callback Failures</h2>
+
+<blockquote>
+<p>Callback Failures</p>
+
+<blockquote>
+<p>Whispir will automatically send notifications to your nominated email address in the event of a failure to access your callback server.</p>
+</blockquote>
+</blockquote>
+<pre><code class="highlight plaintext">Dear Customer,  
+
+Your callback &lt;callback_id&gt; failed on &lt;date&gt; with response: &lt;response&gt;.  
+
+The callback that failed is as follows:  
+
+URL: https://yourserver/callback.php?auth=12345 
+Location: https://api.whispir.com/messages/ABC4857BCCF484575FCA 
+Name: Fred Waters 
+Mobile: $mobile 
+Email: me@example.com
+Channel: SMS 
+Content: Yes, I accept. Will I need to bring steel cap boots? 
+
+Please take the necessary steps to ensure your callback is configured correctly.  
+
+If this callback URL continues to fail, Whispir may remove this until the service is resolved. 
+
+Regards, 
+Whispir Support
+
+</code></pre>
+
+<p>In the event the provided callback URL could not be reached or the connection to the service times out, Whispir will automatically generate a notification to the nominated email address with the details of the failed attempt.</p>
+
+<p>Whispir will automatically send an email in the following circumstances:</p>
+
+<ul>
+<li>If the Callback Server returns anything other than an HTTP 200 OK.</li>
+<li>If the authorization to the Callback Server fails (e.g. returns an HTTP 400 level error) </li>
+<li>If the Callback Server does not connect within 5 seconds.</li>
+<li>If the Callback Server does not return a response within 60 seconds.</li>
+</ul>
 
         <h1 id="other-resources">Other Resources</h1>
 
