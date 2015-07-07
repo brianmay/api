@@ -1027,7 +1027,7 @@ Content-Type: application/vnd.whispir.contact-v2+xml
 <p>Sample to send an SMS, Email, Voice call, and Web Publishing in one request</p>
 </blockquote>
 </blockquote>
-<pre><code class="highlight plaintext">HTTP 1.1 POST https://api.whispir.com/messages?apikey=&lt;YOUR API KEY&gt;
+<pre><code class="highlight plaintext">HTTP 1.1 POST https://api.whispir.com/messages?apikey=[your_key]
 Authorization: Basic &lt;YOUR AUTH HEADER&gt;
 </code></pre>
 <pre><code class="highlight xml">Content-Type: application/vnd.whispir.message-v1+xml
@@ -1237,7 +1237,7 @@ Authorization: Basic &lt;YOUR AUTH HEADER&gt;
 <p>Sending SMS messages using Whispir is as easy as providing the destination phone number(s), a message subject, and the content of the message.</p>
 </blockquote>
 </blockquote>
-<pre><code class="highlight plaintext">HTTP 1.1 POST https://api.whispir.com/messages?apikey=&lt;yourkey&gt;
+<pre><code class="highlight plaintext">HTTP 1.1 POST https://api.whispir.com/messages?apikey=[your_key]
 Authorization: Basic am9obi5zbWl0aDpteXBhc3N3b3Jk
 </code></pre>
 <pre><code class="highlight xml">Content-Type: application/vnd.whispir.message-v1+xml
@@ -1321,7 +1321,7 @@ Accept: application/vnd.whispir.message-v1+xml
 <p><strong>Sending Plain Text Emails</strong></p>
 </blockquote>
 </blockquote>
-<pre><code class="highlight plaintext">HTTP 1.1 POST https://api.whispir.com/messages?apikey=&lt;yourkey&gt;
+<pre><code class="highlight plaintext">HTTP 1.1 POST https://api.whispir.com/messages?apikey=[your_key]
 Authorization: Basic am9obi5zbWl0aDpteXBhc3N3b3Jk
 </code></pre>
 <pre><code class="highlight xml">Content-Type: application/vnd.whispir.message-v1+xml
@@ -1356,7 +1356,7 @@ Authorization: Basic am9obi5zbWl0aDpteXBhc3N3b3Jk
 <p><strong>Sending Rich Text (HTML) Emails</strong></p>
 </blockquote>
 </blockquote>
-<pre><code class="highlight plaintext">HTTP 1.1 POST https://api.whispir.com/messages?apikey=&lt;yourkey&gt;
+<pre><code class="highlight plaintext">HTTP 1.1 POST https://api.whispir.com/messages?apikey=[your_key]
 Authorization: Basic am9obi5zbWl0aDpteXBhc3N3b3Jk
 </code></pre>
 <pre><code class="highlight xml">Content-Type: application/vnd.whispir.message-v1+xml
@@ -1410,7 +1410,7 @@ Authorization: Basic am9obi5zbWl0aDpteXBhc3N3b3Jk
 <p><strong>Sending Emails with Attachments</strong></p>
 </blockquote>
 </blockquote>
-<pre><code class="highlight plaintext">HTTP 1.1 POST https://api.whispir.com/messages?apikey=&lt;yourkey&gt;
+<pre><code class="highlight plaintext">HTTP 1.1 POST https://api.whispir.com/messages?apikey=[your_key]
 Authorization: Basic am9obi5zbWl0aDpteXBhc3N3b3Jk
 </code></pre>
 <pre><code class="highlight xml">Content-Type: application/vnd.whispir.message-v1+xml
@@ -1522,7 +1522,7 @@ The attachment element in JSON is also an array, so be sure to add the square br
 <p><strong>Sending Voice Calls</strong></p>
 </blockquote>
 </blockquote>
-<pre><code class="highlight plaintext">HTTP 1.1 POST https://api.whispir.com/messages?apikey=&lt;yourkey&gt;
+<pre><code class="highlight plaintext">HTTP 1.1 POST https://api.whispir.com/messages?apikey=[your_key]
 Authorization: Basic am9obi5zbWl0aDpteXBhc3N3b3Jk
 </code></pre>
 <pre><code class="highlight xml">Content-Type: application/vnd.whispir.message-v1+xml
@@ -1565,7 +1565,7 @@ Authorization: Basic am9obi5zbWl0aDpteXBhc3N3b3Jk
 <p><strong>Sending Voice Calls with Teleconferences</strong></p>
 </blockquote>
 </blockquote>
-<pre><code class="highlight plaintext">HTTP 1.1 POST https://api.whispir.com/messages?apikey=&lt;yourkey&gt;
+<pre><code class="highlight plaintext">HTTP 1.1 POST https://api.whispir.com/messages?apikey=[your_key]
 Authorization: Basic am9obi5zbWl0aDpteXBhc3N3b3Jk
 </code></pre>
 <pre><code class="highlight xml">Content-Type: application/vnd.whispir.message-v1+xml
@@ -1667,7 +1667,7 @@ Whispir&rsquo;s Voice Module doesn&rsquo;t include a Conference Call service.  U
 <p>Simple Rich Message using SMS with a Web Link</p>
 </blockquote>
 </blockquote>
-<pre><code class="highlight plaintext">HTTP 1.1 POST https://api.whispir.com/messages?apikey=&lt;yourkey&gt;
+<pre><code class="highlight plaintext">HTTP 1.1 POST https://api.whispir.com/messages?apikey=[your_key]
 Authorization: Basic am9obi5zbWl0aDpteXBhc3N3b3Jk
 </code></pre>
 <pre><code class="highlight xml">Content-Type: application/vnd.whispir.message-v1+xml
@@ -1711,7 +1711,7 @@ Authorization: Basic am9obi5zbWl0aDpteXBhc3N3b3Jk
 The following example uses javascript to personalise the Rich Message</p>
 </blockquote>
 </blockquote>
-<pre><code class="highlight plaintext">HTTP 1.1 POST https://api.whispir.com/messages?apikey=&lt;yourkey&gt;
+<pre><code class="highlight plaintext">HTTP 1.1 POST https://api.whispir.com/messages?apikey=[your_key]
 Authorization: Basic am9obi5zbWl0aDpteXBhc3N3b3Jk
 </code></pre>
 <pre><code class="highlight xml">Content-Type: application/vnd.whispir.message-v1+xml
@@ -1769,7 +1769,7 @@ Authorization: Basic am9obi5zbWl0aDpteXBhc3N3b3Jk
 
 <p><img src="https://developer.whispir.com/files/rpm-iphone-shift.jpg" /></p>
 
-<p>Visit our demo site <a href="https://demo.whispir.com/rich-message.php" target="_blank">here</a> for lots of samples of rich messages.</p>
+<p>Visit our demo site <a href="http://demo.whispir.com/rich-message.php" target="_blank">here</a> for lots of samples of rich messages.</p>
 
 <p>The inclusion of the <code class="prettyprint">@@web_link@@</code> tag anywhere in the body of the SMS or Email will automatically generate a URL and embed any content specified in the web body of the same message.</p>
 
@@ -1825,7 +1825,7 @@ Authorization: Basic am9obi5zbWl0aDpteXBhc3N3b3Jk
 <p>Social Media Request/Response Example</p>
 </blockquote>
 </blockquote>
-<pre><code class="highlight plaintext">HTTP 1.1 POST https://api.whispir.com/messages?apikey=&lt;yourkey&gt;
+<pre><code class="highlight plaintext">HTTP 1.1 POST https://api.whispir.com/messages?apikey=[your_key]
 Authorization: Basic am9obi5zbWl0aDpteXBhc3N3b3Jk
 </code></pre>
 <pre><code class="highlight xml">Content-Type: application/vnd.whispir.message-v1+xml
@@ -1902,7 +1902,7 @@ Authorization: Basic am9obi5zbWl0aDpteXBhc3N3b3Jk
 <p>Demonstration of sending messages with variables (or tags).</p>
 </blockquote>
 </blockquote>
-<pre><code class="highlight plaintext">HTTP 1.1 POST https://api.whispir.com/messages?apikey=&lt;yourkey&gt;
+<pre><code class="highlight plaintext">HTTP 1.1 POST https://api.whispir.com/messages?apikey=[your_key]
 Authorization: Basic am9obi5zbWl0aDpteXBhc3N3b3Jk
 </code></pre>
 <pre><code class="highlight xml">Content-Type: application/vnd.whispir.message-v1+xml
@@ -1997,7 +1997,7 @@ Authorization: Basic am9obi5zbWl0aDpteXBhc3N3b3Jk
 <p>Demonstration of sending messages with system variables (or tags).</p>
 </blockquote>
 </blockquote>
-<pre><code class="highlight plaintext">HTTP 1.1 POST https://api.whispir.com/messages?apikey=&lt;yourkey&gt;
+<pre><code class="highlight plaintext">HTTP 1.1 POST https://api.whispir.com/messages?apikey=[your_key]
 Authorization: Basic am9obi5zbWl0aDpteXBhc3N3b3Jk
 </code></pre>
 <pre><code class="highlight xml">Content-Type: application/vnd.whispir.message-v1+xml
@@ -2129,7 +2129,7 @@ Authorization: Basic am9obi5zbWl0aDpteXBhc3N3b3Jk
 
 <p><br/>
 <strong>Step 1: Upload the Resource file via API</strong></p>
-<pre><code class="highlight plaintext">HTTP 1.1 POST https://api.whispir.com/resources?apikey=&lt;yourkey&gt;
+<pre><code class="highlight plaintext">HTTP 1.1 POST https://api.whispir.com/resources?apikey=[your_key]
 Authorization: Basic am9obi5zbWl0aDpteXBhc3N3b3Jk
 </code></pre>
 <pre><code class="highlight xml">Content-Type: application/vnd.whispir.message-v1+xml
@@ -2173,7 +2173,7 @@ Accept: application/vnd.whispir.message-v1+xml
 <strong>Step 2: Invoke the bulk message with reference to the resource ID and the desired content</strong></p>
 
 <p>Once the resource file has been uploaded and the location of the resource being returned, applications can use this to populate a dynamic message using the <strong>/messages</strong> endpoint.</p>
-<pre><code class="highlight plaintext">HTTP 1.1 POST https://api.whispir.com/messages?apikey=&lt;yourkey&gt;
+<pre><code class="highlight plaintext">HTTP 1.1 POST https://api.whispir.com/messages?apikey=[your_key]
 Authorization: Basic am9obi5zbWl0aDpteXBhc3N3b3Jk
 </code></pre>
 <pre><code class="highlight xml">Content-Type: application/vnd.whispir.bulkmessage-v1+xml
@@ -2593,7 +2593,7 @@ Your request has been accepted for processing.
 <p>Use the API to retrieve a sent Message </p>
 </blockquote>
 </blockquote>
-<pre><code class="highlight plaintext">HTTP 1.1 GET https://api.whispir.com/messages?apikey=&lt;yourkey&gt;
+<pre><code class="highlight plaintext">HTTP 1.1 GET https://api.whispir.com/messages?apikey=[your_key]
 Authorization: Basic am9obi5zbWl0aDpteXBhc3N3b3Jk
 </code></pre>
 <pre><code class="highlight xml">Content-Type: application/vnd.whispir.message-v1+xml
@@ -3004,7 +3004,7 @@ Authorization: Basic am9obi5zbWl0aDpteXBhc3N3b3Jk
 <p>Use the API to retrieve a sent Message </p>
 </blockquote>
 </blockquote>
-<pre><code class="highlight plaintext">HTTP 1.1 GET https://api.whispir.com/messages?apikey=&lt;yourkey&gt;
+<pre><code class="highlight plaintext">HTTP 1.1 GET https://api.whispir.com/messages?apikey=[your_key]
 Authorization: Basic am9obi5zbWl0aDpteXBhc3N3b3Jk
 </code></pre>
 <pre><code class="highlight xml">Content-Type: application/vnd.whispir.message-v1+xml
@@ -3373,7 +3373,7 @@ Authorization: Basic am9obi5zbWl0aDpteXBhc3N3b3Jk
 <p>The following API calls allow users to manage Templates using the Whispir API.</p>
 </blockquote>
 </blockquote>
-<pre><code class="highlight plaintext">HTTP 1.1 POST https://api.whispir.com/templates?apikey=&lt;yourkey&gt;
+<pre><code class="highlight plaintext">HTTP 1.1 POST https://api.whispir.com/templates?apikey=[your_key]
 Authorization: Basic am9obi5zbWl0aDpteXBhc3N3b3Jk
 </code></pre>
 <pre><code class="highlight xml">Content-Type: application/vnd.whispir.template-v1+xml
@@ -3669,7 +3669,7 @@ Authorization: Basic am9obi5zbWl0aDpteXBhc3N3b3Jk
 <p>The following API calls allow users to update Template content using the Whispir API.</p>
 </blockquote>
 </blockquote>
-<pre><code class="highlight plaintext">HTTP 1.1 PUT https://api.whispir.com/templates/C37DCBAEFF73FEDA45?apikey=&lt;yourkey&gt;
+<pre><code class="highlight plaintext">HTTP 1.1 PUT https://api.whispir.com/templates/C37DCBAEFF73FEDA45?apikey=[your_key]
 Authorization: Basic am9obi5zbWl0aDpteXBhc3N3b3Jk
 </code></pre>
 <pre><code class="highlight xml">Content-Type: application/vnd.whispir.template-v1+xml
@@ -3979,6 +3979,179 @@ Authorization: Basic am9obi5zbWl0aDpteXBhc3N3b3Jk
 
 <p>All of the features that are specified on the template (for example, any message aliasing) will still be respected when the message is delivered.</p>
 
+        <h1 id="response-rules">Response Rules</h1>
+
+<p>Using Response Rules in combination with Message Templates allows users to automatically group responses to messages into different response groups for reporting purposes.</p>
+
+<p>Response Rules are useful when users are sending messages with known responses, e.g. Ratings (1-5), Yes/No, or Accept/Decline.</p>
+
+<p>Once the Response Rule has been defined, it can be associated with a Message Template and any responses to messages sent using the template will be automatically categorised.</p>
+
+<p><strong>Note:</strong> Response Rules are sometimes called Response Templates. These names can be used interchangably.</p>
+
+<h2 id="creating-response-rules">Creating Response Rules</h2>
+
+<blockquote>
+<p>Creating Response Rules</p>
+
+<blockquote>
+<p>The following API calls allow users to create new Response Rules using the Whispir API.</p>
+</blockquote>
+</blockquote>
+<pre><code class="highlight plaintext">HTTP 1.1 POST https://api.whispir.com/responserules?apikey=[your_key]
+Authorization: Basic am9obi5zbWl0aDpteXBhc3N3b3Jk
+</code></pre>
+<pre><code class="highlight xml">Content-Type: application/vnd.whispir.responserule-v1+xml
+
+<span class="cp">&lt;?xml version="1.0" encoding="UTF-8" standalone="yes"?&gt;</span>
+<span class="nt">&lt;ns3:responserule</span> <span class="na">xmlns:ns2=</span><span class="s">"http://schemas.api.whispir.com/dap"</span> <span class="na">xmlns:ns3=</span><span class="s">"http://schemas.api.whispir.com"</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;name&gt;</span>Response Rule 1<span class="nt">&lt;/name&gt;</span>
+    <span class="nt">&lt;description&gt;&lt;/description&gt;</span> 
+    <span class="nt">&lt;responseTemplatePatterns&gt;</span>
+        <span class="nt">&lt;responseTemplatePattern&gt;</span>
+            <span class="nt">&lt;name&gt;</span>Yes Rule<span class="nt">&lt;/name&gt;</span>
+            <span class="nt">&lt;textPrompt&gt;</span>YES<span class="nt">&lt;/textPrompt&gt;</span>
+            <span class="nt">&lt;voicePrompt&gt;</span>1<span class="nt">&lt;/voicePrompt&gt;</span>
+            <span class="nt">&lt;spokenVoicePrompt&gt;</span>to select YES<span class="nt">&lt;/spokenVoicePrompt&gt;</span>
+            <span class="nt">&lt;pattern&gt;</span>startswith<span class="nt">&lt;/pattern&gt;</span>
+            <span class="nt">&lt;colour&gt;</span>#00947d<span class="nt">&lt;/colour&gt;</span>
+        <span class="nt">&lt;/responseTemplatePattern&gt;</span>
+    <span class="nt">&lt;/responseTemplatePatterns&gt;</span>
+<span class="nt">&lt;/ns3:responserule&gt;</span>
+</code></pre>
+<pre><code class="highlight go"><span class="n">Content</span><span class="o">-</span><span class="n">Type</span><span class="o">:</span><span class="x"> </span><span class="n">application</span><span class="o">/</span><span class="n">vnd</span><span class="o">.</span><span class="n">whispir</span><span class="o">.</span><span class="n">responserule</span><span class="o">-</span><span class="n">v1</span><span class="o">+</span><span class="n">json</span><span class="x">
+
+</span><span class="p">{</span><span class="x">
+  </span><span class="s">"name"</span><span class="x"> </span><span class="o">:</span><span class="x"> </span><span class="s">"Response Rule 1"</span><span class="p">,</span><span class="x">
+  </span><span class="s">"description"</span><span class="x"> </span><span class="o">:</span><span class="x"> </span><span class="s">""</span><span class="p">,</span><span class="x">
+  </span><span class="s">"responseTemplatePatterns"</span><span class="x"> </span><span class="o">:</span><span class="x"> </span><span class="p">{</span><span class="x">
+    </span><span class="s">"responseTemplatePattern"</span><span class="x"> </span><span class="o">:</span><span class="x"> </span><span class="p">[</span><span class="x"> </span><span class="p">{</span><span class="x">
+      </span><span class="s">"name"</span><span class="x"> </span><span class="o">:</span><span class="x"> </span><span class="s">"Yes Rule"</span><span class="p">,</span><span class="x">
+      </span><span class="s">"textPrompt"</span><span class="x"> </span><span class="o">:</span><span class="x"> </span><span class="s">"YES"</span><span class="p">,</span><span class="x">
+      </span><span class="s">"voicePrompt"</span><span class="x"> </span><span class="o">:</span><span class="x"> </span><span class="s">"1"</span><span class="p">,</span><span class="x">
+      </span><span class="s">"spokenVoicePrompt"</span><span class="x"> </span><span class="o">:</span><span class="x"> </span><span class="s">"to select YES"</span><span class="p">,</span><span class="x">
+      </span><span class="s">"pattern"</span><span class="x"> </span><span class="o">:</span><span class="x"> </span><span class="s">"startswith"</span><span class="p">,</span><span class="x">
+      </span><span class="s">"colour"</span><span class="x"> </span><span class="o">:</span><span class="x"> </span><span class="s">"#00947d"</span><span class="x">
+    </span><span class="p">}</span><span class="x"> </span><span class="p">]</span><span class="x">
+  </span><span class="p">}</span><span class="x">
+</span><span class="p">}</span><span class="x">
+</span></code></pre>
+
+<blockquote>
+<blockquote>
+<p>The sample code above will create a simple Response Rule with a single rule within the default workspace.<br/><br/>
+The expected response to this call is an <strong>HTTP 201 - Created</strong>.</p>
+</blockquote>
+</blockquote>
+
+<p>To create a new Response Rule, you can use the <code class="prettyprint">/responserules</code> endpoint.</p>
+
+<p>The following fields can be utilised within the request:</p>
+
+<table>
+    <thead>
+        <tr>
+            <th style="width: 50%" colspan="2">High-Level Request Elements</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td style="text-align: right; font-weight: bold;">name:</td>
+            <td><strong>String</strong><br/>
+                Specifies the name of the Response Rule.
+            </td>
+        </tr>
+        <tr>
+            <td style="text-align: right; font-weight: bold;">description:</td>
+            <td><strong>String</strong><br/>
+                Specifies the description of the response rule for others to understand it&rsquo;s purpose.
+            </td>
+        </tr>
+        <tr>
+            <td style="text-align: right; font-weight: bold;">responseTemplatePatterns:</td>
+            <td><strong>Object</strong><br/>
+                This object contains the responseTemplatePattern array which contains each of the response rule elements.
+            </td>
+        </tr>
+    </tbody>
+</table>
+
+<h3 id="response-template-patterns">Response Template Patterns</h3>
+
+<p>Each Response Rule has a series of <strong>Patterns</strong> that allow the creator to specify what textual content should be matched in the response SMS or Email, and a number that should be entered when IVR (Voice) is being used.</p>
+
+<p>The patterns specify the following information:</p>
+
+<table>
+    <thead>
+        <tr>
+            <th style="width: 50%" colspan="2">Response Template Pattern Elements</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td style="text-align: right; font-weight: bold;">name:</td>
+            <td><strong>String</strong><br/>
+                The name of the Response Category.
+            </td>
+        </tr>
+        <tr>
+            <td style="text-align: right; font-weight: bold;">pattern:</td>
+            <td><strong>String</strong><br/>
+                Specifies the mechanism for matching the textPrompt.<br/><br/>
+                The following options are available:
+                <ul>
+                    <li>startsWith</li>
+                    <li>contains</li>
+                    <li>exactmatch</li>
+                </ul>
+            </td>
+        </tr>
+        <tr>
+            <td style="text-align: right; font-weight: bold;">textPrompt:</td>
+            <td><strong>String</strong><br/>
+                Specifies the textual string that should be matched using the pattern (specified above) within the Email, SMS or Web response. 
+            </td>
+        </tr>
+        <tr>
+            <td style="text-align: right; font-weight: bold;">voicePrompt:</td>
+            <td><strong>String</strong><br/>
+                The number (from 0-9, * or #) that the recipient of the voice call should enter to select this response category.
+            </td>
+        </tr>
+        <tr>
+            <td style="text-align: right; font-weight: bold;">spokenVoicePrompt:</td>
+            <td><strong>String</strong><br/>
+                The TTS (text-to-speech) that is dynamically read out when describing to the user what this response category is.
+            </td>
+        </tr>
+        <tr>
+            <td style="text-align: right; font-weight: bold;">colour:</td>
+            <td><strong>String</strong><br/>
+                The hexidecimal colour code that is used in the Message Response Report to show this category being used.
+            </td>
+        </tr>
+    </tbody>
+</table>
+
+<p>Each Response Rule can specify as many Response Template Patterns as required.</p>
+
+<p>Each of the Patterns specified will also dynamically create buttons within any Rich Message that is associated with the Response Rule.</p>
+
+<p>This provides an out of the box capability to quickly gather feedback from the field using a Rich User interface, and leveraging SMS as the delivery mechanism.</p>
+
+<p>For more information about using <strong>Rich Messages</strong>, click <a href="#rich-messages">here</a>.</p>
+
+<h2 id="using-response-rules">Using Response Rules</h2>
+
+<p>After creating a Response Rule, you must create a new Message Template (or update an existing one) and associate the Response Rule ID.</p>
+
+<p><strong>Note:</strong> The Response Rule ID will be returned in the <code class="prettyprint">Location</code> header after a successful creation.</p>
+
+<p>This association of Response Rule to Message Template is performed using the <code class="prettyprint">responseTemplateId</code> field within the Message Template.</p>
+
+<p>For more information on Creating Message Templates, click <a href="#creating-templates">here</a>.</p>
+
         <h1 id="callbacks">Callbacks</h1>
 
 <p>Whispir utilises API Callbacks to send simple notifications to different registered services in the event that some change has occurred on the Whispir Platform.</p>
@@ -4051,7 +4224,7 @@ An example callback that your application or service would receive is specified 
 <p>The following API calls allow users to create new Callbacks using the Whispir API.</p>
 </blockquote>
 </blockquote>
-<pre><code class="highlight plaintext">HTTP 1.1 POST https://api.whispir.com/callbacks?apikey=&lt;yourkey&gt;
+<pre><code class="highlight plaintext">HTTP 1.1 POST https://api.whispir.com/callbacks?apikey=[your_key]
 Authorization: Basic am9obi5zbWl0aDpteXBhc3N3b3Jk
 </code></pre>
 <pre><code class="highlight xml">Content-Type: application/vnd.whispir.api-callback-v1+xml
