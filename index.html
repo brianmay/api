@@ -3436,6 +3436,13 @@ The expected response to this call is an <strong>HTTP 201 - Created</strong>.</p
             </td>
         </tr>
         <tr>
+            <td style="text-align: right; font-weight: bold;">responseTemplateId:</td>
+            <td><strong>String</strong><br/>
+                Specifies the ID of the Response Rule that should be associated with this Message Template.<br/><br/>
+                Response Rules are further described later in this documentation.
+            </td>
+        </tr>
+        <tr>
             <td style="text-align: right; font-weight: bold;">subject:</td>
             <td><strong>String</strong><br/>
                 Specifies the first line of the SMS message or Voice call, and the subject of the Email message.
@@ -3652,6 +3659,231 @@ Authorization: Basic am9obi5zbWl0aDpteXBhc3N3b3Jk
         </tr>
     </tbody>
 </table>
+
+<h2 id="updating-templates">Updating Templates</h2>
+
+<blockquote>
+<p>Updating Templates</p>
+
+<blockquote>
+<p>The following API calls allow users to update Template content using the Whispir API.</p>
+</blockquote>
+</blockquote>
+<pre><code class="highlight plaintext">HTTP 1.1 PUT https://api.whispir.com/templates/C37DCBAEFF73FEDA45?apikey=&lt;yourkey&gt;
+Authorization: Basic am9obi5zbWl0aDpteXBhc3N3b3Jk
+</code></pre>
+<pre><code class="highlight xml">Content-Type: application/vnd.whispir.template-v1+xml
+Accept: application/vnd.whispir.template-v1+xml
+
+<span class="cp">&lt;?xml version="1.0" encoding="UTF-8"?&gt;</span>
+<span class="nt">&lt;ns3:template</span> <span class="na">xmlns:ns3=</span><span class="s">"https://schemas.api.whispir.com"</span> 
+              <span class="na">xmlns:ns2=</span><span class="s">"https://schemas.api.whispir.com/dap"</span><span class="nt">&gt;</span>
+  <span class="nt">&lt;messageTemplateName&gt;</span>Sample SMS Template<span class="nt">&lt;/messageTemplateName&gt;</span>
+  <span class="nt">&lt;messageTemplateDescription&gt;</span>
+    Template to provide an example on whispir.io
+  <span class="nt">&lt;/messageTemplateDescription&gt;</span>
+  <span class="nt">&lt;subject&gt;</span>Test SMS Message<span class="nt">&lt;/subject&gt;</span>
+  <span class="nt">&lt;body&gt;</span>This is the body of my test SMS message<span class="nt">&lt;/body&gt;</span>
+  <span class="nt">&lt;email&gt;</span>
+    <span class="nt">&lt;type&gt;</span>text/plain<span class="nt">&lt;/type&gt;</span>
+    <span class="nt">&lt;body&gt;</span>
+      This is the content of my plain text email in the template
+    <span class="nt">&lt;/body&gt;</span>
+  <span class="nt">&lt;/email&gt;</span>
+  <span class="nt">&lt;voice&gt;</span>
+    <span class="c">&lt;!-- Don't put line breaks in this section --&gt;</span>
+    <span class="nt">&lt;type&gt;</span>
+        ConfCall:,
+        ConfAccountNo:,
+        ConfPinNo:,
+        ConfModPinNo:,
+        Pin:
+    <span class="nt">&lt;/type&gt;</span>
+    <span class="nt">&lt;header&gt;</span>This is the intro of my voice call<span class="nt">&lt;/header&gt;</span>
+    <span class="nt">&lt;body&gt;</span>This is the content of my voice call<span class="nt">&lt;/body&gt;</span>
+  <span class="nt">&lt;/voice&gt;</span>
+  <span class="nt">&lt;web&gt;</span> 
+    <span class="nt">&lt;body&gt;</span>This is web body of my test message<span class="nt">&lt;/body&gt;</span> 
+    <span class="nt">&lt;type&gt;</span>text/plain<span class="nt">&lt;/type&gt;</span> 
+  <span class="nt">&lt;/web&gt;</span> 
+  <span class="nt">&lt;social&gt;</span>
+    <span class="nt">&lt;social</span> <span class="na">id=</span><span class="s">"social"</span><span class="nt">&gt;</span>
+        <span class="nt">&lt;body&gt;</span>Twitter Content.<span class="nt">&lt;/body&gt;</span>
+    <span class="nt">&lt;/social&gt;</span>
+    <span class="nt">&lt;social</span> <span class="na">id=</span><span class="s">"social_long"</span><span class="nt">&gt;</span>
+        <span class="nt">&lt;body&gt;</span>Facebook Content.<span class="nt">&lt;/body&gt;</span>
+        <span class="nt">&lt;type&gt;</span>text/plain<span class="nt">&lt;/type&gt;</span>
+    <span class="nt">&lt;/social&gt;</span>
+  <span class="nt">&lt;/social&gt;</span>
+  <span class="nt">&lt;type&gt;</span>defaultNoReply<span class="nt">&lt;/type&gt;</span>
+  <span class="nt">&lt;features&gt;</span>
+    <span class="nt">&lt;pushOptions&gt;</span>
+      <span class="nt">&lt;notifications&gt;</span>enabled<span class="nt">&lt;/notifications&gt;</span>
+      <span class="nt">&lt;escalationMins&gt;</span>3<span class="nt">&lt;/escalationMins&gt;</span>
+    <span class="nt">&lt;/pushOptions&gt;</span>
+  <span class="nt">&lt;/features&gt;</span>
+<span class="nt">&lt;/ns3:template&gt;</span>
+</code></pre>
+<pre><code class="highlight go"><span class="n">Content</span><span class="o">-</span><span class="n">Type</span><span class="o">:</span><span class="x"> </span><span class="n">application</span><span class="o">/</span><span class="n">vnd</span><span class="o">.</span><span class="n">whispir</span><span class="o">.</span><span class="n">template</span><span class="o">-</span><span class="n">v1</span><span class="o">+</span><span class="n">json</span><span class="x">
+</span><span class="n">Accept</span><span class="o">:</span><span class="x"> </span><span class="n">application</span><span class="o">/</span><span class="n">vnd</span><span class="o">.</span><span class="n">whispir</span><span class="o">.</span><span class="n">template</span><span class="o">-</span><span class="n">v1</span><span class="o">+</span><span class="n">json</span><span class="x">
+
+</span><span class="p">{</span><span class="x"> 
+   </span><span class="s">"messageTemplateName"</span><span class="o">:</span><span class="x"> </span><span class="s">"Sample SMS Template"</span><span class="p">,</span><span class="x"> 
+   </span><span class="s">"messageTemplateDescription"</span><span class="o">:</span><span class="x"> </span><span class="s">"Template to provide an example on whispir.io"</span><span class="p">,</span><span class="x">
+   </span><span class="s">"responseTemplateId"</span><span class="o">:</span><span class="x"> </span><span class="s">"Template to provide an example on whispir.io"</span><span class="p">,</span><span class="x">
+   </span><span class="s">"subject"</span><span class="o">:</span><span class="x"> </span><span class="s">"Test SMS Message"</span><span class="p">,</span><span class="x">
+   </span><span class="s">"body"</span><span class="x"> </span><span class="o">:</span><span class="x"> </span><span class="s">"This is the body of my test SMS message"</span><span class="p">,</span><span class="x">
+    </span><span class="s">"email"</span><span class="x"> </span><span class="o">:</span><span class="x"> </span><span class="p">{</span><span class="x">
+        </span><span class="s">"body"</span><span class="x"> </span><span class="o">:</span><span class="x"> </span><span class="s">"This is the body of my test Email message"</span><span class="p">,</span><span class="x">
+        </span><span class="s">"footer"</span><span class="x"> </span><span class="o">:</span><span class="x"> </span><span class="s">"This is the footer of my message 
+                    (generally where a signature would go)"</span><span class="p">,</span><span class="x">
+        </span><span class="s">"type"</span><span class="x"> </span><span class="o">:</span><span class="x"> </span><span class="s">"text/plain"</span><span class="x">
+    </span><span class="p">},</span><span class="x">
+    </span><span class="s">"voice"</span><span class="x"> </span><span class="o">:</span><span class="x"> </span><span class="p">{</span><span class="x">
+        </span><span class="s">"header"</span><span class="x"> </span><span class="o">:</span><span class="x"> </span><span class="s">"This is the introduction, 
+                    read out prior to any key press"</span><span class="p">,</span><span class="x">
+        </span><span class="s">"body"</span><span class="x"> </span><span class="o">:</span><span class="x"> </span><span class="s">"This is the body of the voice call, 
+                  read out after the key press"</span><span class="p">,</span><span class="x">
+        </span><span class="s">"type"</span><span class="x"> </span><span class="o">:</span><span class="x"> </span><span class="s">"ConfCall:,
+                  ConfAccountNo:,
+                  ConfPinNo:,
+                  ConfModPinNo:,
+                  Pin:"</span><span class="x">
+    </span><span class="p">},</span><span class="x">
+    </span><span class="s">"web"</span><span class="x"> </span><span class="o">:</span><span class="x"> </span><span class="p">{</span><span class="x">
+        </span><span class="s">"body"</span><span class="x"> </span><span class="o">:</span><span class="x"> </span><span class="s">"This is the content of my web publishing 
+                 or Rich Push Message"</span><span class="p">,</span><span class="x">
+        </span><span class="s">"type"</span><span class="x"> </span><span class="o">:</span><span class="x"> </span><span class="s">"text/plain"</span><span class="x">
+    </span><span class="p">},</span><span class="x">
+    </span><span class="s">"social"</span><span class="x"> </span><span class="o">:</span><span class="x"> </span><span class="p">{</span><span class="x">
+        </span><span class="s">"social"</span><span class="x"> </span><span class="o">:</span><span class="x"> </span><span class="p">{</span><span class="x">
+            </span><span class="s">"id"</span><span class="x"> </span><span class="o">:</span><span class="x"> </span><span class="s">"social"</span><span class="p">,</span><span class="x">
+            </span><span class="s">"body"</span><span class="x"> </span><span class="o">:</span><span class="x"> </span><span class="s">"Twitter Content."</span><span class="x">
+        </span><span class="p">},</span><span class="x">
+        </span><span class="s">"social"</span><span class="x"> </span><span class="o">:</span><span class="x"> </span><span class="p">{</span><span class="x">
+            </span><span class="s">"id"</span><span class="x"> </span><span class="o">:</span><span class="x"> </span><span class="s">"social_long"</span><span class="p">,</span><span class="x">
+            </span><span class="s">"body"</span><span class="x"> </span><span class="o">:</span><span class="x"> </span><span class="s">"Facebook Content."</span><span class="p">,</span><span class="x">
+            </span><span class="s">"type"</span><span class="x"> </span><span class="o">:</span><span class="x"> </span><span class="s">"text/plain"</span><span class="x">
+        </span><span class="p">}</span><span class="x">
+    </span><span class="p">},</span><span class="x">
+    </span><span class="s">"type"</span><span class="x"> </span><span class="o">:</span><span class="x"> </span><span class="s">"defaultNoReply"</span><span class="p">,</span><span class="x">
+    </span><span class="s">"features"</span><span class="x"> </span><span class="o">:</span><span class="x"> </span><span class="p">{</span><span class="x">
+        </span><span class="s">"pushOptions"</span><span class="x"> </span><span class="o">:</span><span class="x"> </span><span class="p">{</span><span class="x">
+            </span><span class="s">"notifications"</span><span class="x"> </span><span class="o">:</span><span class="x"> </span><span class="s">"enabled"</span><span class="p">,</span><span class="x">
+            </span><span class="s">"escalationMins"</span><span class="x"> </span><span class="o">:</span><span class="x"> </span><span class="s">"3"</span><span class="x">
+        </span><span class="p">}</span><span class="x">
+    </span><span class="p">}</span><span class="x">
+</span><span class="p">}</span><span class="x">
+</span></code></pre>
+
+<blockquote>
+<blockquote>
+<p>The sample code above will update the message template specified by ID: <strong>C37DCBAEFF73FEDA45</strong> within the default workspace.<br/><br/>
+The expected response to this call is an <strong>HTTP 204 - No Content</strong>.</p>
+</blockquote>
+</blockquote>
+
+<p>To update existing message templates, you can use a PUT request the <code class="prettyprint">/templates</code> endpoint.</p>
+
+<p>The following fields are required:</p>
+
+<ol>
+<li>messageTemplateName - the name of the template to be stored</li>
+<li>subject - the first line or identifier of the SMS</li>
+<li>body - At least one of the <strong>Body</strong> fields must be populated (SMS, Email, Voice or Web).</li>
+</ol>
+
+<p><strong>Note:</strong> Currently users cannot update templates with the same name as a template that already exists in Whispir. Users can overcome this by saving the updated template with a new name, then either changing this back in a subsequent save, or retaining the updated name.</p>
+
+<table>
+    <thead>
+        <tr>
+            <th style="width: 50%" colspan="2">High-Level Request Elements</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td style="text-align: right; font-weight: bold;">messageTemplateName:</td>
+            <td><strong>String</strong><br/>
+                Specifies the name of the message template to be used within message requests.
+            </td>
+        </tr>
+        <tr>
+            <td style="text-align: right; font-weight: bold;">messageTemplateDescription:</td>
+            <td><strong>String</strong><br/>
+                Specifies the description of the message template for others to understand it&rsquo;s purpose.
+            </td>
+        </tr>
+        <tr>
+            <td style="text-align: right; font-weight: bold;">responseTemplateId:</td>
+            <td><strong>String</strong><br/>
+                Specifies the ID of the Response Rule that should be associated with this Message Template.<br/><br/>
+                Response Rules are further described later in this documentation.
+            </td>
+        </tr>
+        <tr>
+            <td style="text-align: right; font-weight: bold;">subject:</td>
+            <td><strong>String</strong><br/>
+                Specifies the first line of the SMS message or Voice call, and the subject of the Email message.
+            </td>
+        </tr>
+        <tr>
+            <td style="text-align: right; font-weight: bold;">body:</td>
+            <td><strong>String</strong><br/>
+                Specifies the content of the SMS message.
+            </td>
+        </tr>
+        <tr>
+            <td style="text-align: right; font-weight: bold;">email:</td>
+            <td><strong>Object</strong><br/>
+                Email object described below. Used for sending email messages.
+            </td>
+        </tr>
+        <tr>
+            <td style="text-align: right; font-weight: bold;">voice:</td>
+            <td><strong>Object</strong><br/>
+                Voice object described below. Used for sending voice calls to mobile phones and landlines.
+            </td>
+        </tr>
+        <tr>
+            <td style="text-align: right; font-weight: bold;">web:</td>
+            <td><strong>Object</strong><br/>
+                Web object described below. Used for web publishing and Rich Messages.
+            </td>
+        </tr>
+        <tr>
+            <td style="text-align: right; font-weight: bold;">social:</td>
+            <td><strong>Object</strong><br/>
+                Social object described below. Used for publishing content to social media (Twitter, Facebook, LinkedIn).
+            </td>
+        </tr>
+        <tr>
+            <td style="text-align: right; font-weight: bold;">type:</td>
+            <td><strong>String</strong><br/>
+                Allows the user to modify the message behaviour for replies and DLRs (delivery receipts) e.g.
+                <ul>
+                    <li>defaultNoReply - Used to reject any replies to this message.</li>
+                    <li>noDlr - Used to specify that DLRs should not be enabled for this message.</li>
+                </ul>
+            </td>
+        </tr>
+        <tr>
+            <td style="text-align: right; font-weight: bold;">features:</td>
+            <td><strong>Object</strong><br/>
+                Allows the user to modify the push notifications properties if these are configured in the company.
+                <br/>
+                <br/>
+                <strong>pushOptions:</strong>
+                <ul>
+                    <li>notifications - enabled/disabled</li>
+                    <li>escalationMins - # mins to await a push notifications response</li>
+                </ul>
+            </td>
+        </tr>
+    </tbody>
+</table>
+
+<p><strong>Note:</strong> All of the options above are the same as provided in the <code class="prettyprint">/messages</code> endpoint <a href="#communications">here</a></p>
 
 <h2 id="using-templates">Using Templates</h2>
 
