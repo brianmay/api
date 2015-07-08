@@ -4152,6 +4152,407 @@ The expected response to this call is an <strong>HTTP 201 - Created</strong>.</p
 
 <p>For more information on Creating Message Templates, click <a href="#creating-templates">here</a>.</p>
 
+        <h1 id="distribution-lists">Distribution Lists</h1>
+
+<blockquote>
+<p>Distribution Lists</p>
+
+<blockquote>
+<p>Distribution lists can easily be created by executing a POST request to the <code class="prettyprint">/distributionlists</code> endpoint in Whispir.
+<br/><br/>
+Distribution lists can contain <strong>Contacts</strong>, <strong>Users</strong>, or nested <strong>Distribution Lists</strong> to create any structure that is required within your environment.</p>
+</blockquote>
+</blockquote>
+
+<p>Whispir&rsquo;s API allows users to categorise their contacts into different groups to simplify the distribution of messages. This allows for </p>
+
+<ul>
+<li>Effective management and maintenance of contacts</li>
+<li>Group messaging</li>
+<li>Reporting</li>
+</ul>
+
+<p>These logical groups can help to target specific communications to specific people. A contact can be part of any number of groups.</p>
+
+<p>Distribution lists can easily be created by executing a <code class="prettyprint">POST</code> request to the <code class="prettyprint">/distributionlists</code> endpoint in Whispir.</p>
+
+<p>The following Content-Types are supported:</p>
+
+<ul>
+<li>application/vnd.whispir.distributionlist-v1+xml</li>
+<li>application/vnd.whispir.distributionlist-v1+json</li>
+</ul>
+
+<h2 id="creating-distribution-lists">Creating Distribution lists</h2>
+
+<blockquote>
+<p>Creating Distribution Lists</p>
+
+<blockquote>
+<p>Distribution Lists can contain lists of Contacts, Users or other Distribution Lists</p>
+</blockquote>
+</blockquote>
+<pre><code class="highlight plaintext">POST https://api.whispir.com/distributionlists?apikey=[your api key]
+Authorization: Basic [your basic auth]
+</code></pre>
+<pre><code class="highlight xml">Content-Type: application/vnd.whispir.distributionlist-v1+xml
+
+<span class="cp">&lt;?xml version="1.0" encoding="UTF-8" standalone="yes"?&gt;</span>
+<span class="nt">&lt;ns1:distributionlists</span> <span class="na">xmlns:ns2=</span><span class="s">"https://schemas.api.whispir.com"</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;name&gt;</span>My Distribution List<span class="nt">&lt;/name&gt;</span>
+    <span class="nt">&lt;description&gt;&lt;/description&gt;</span>    
+    <span class="nt">&lt;access&gt;</span>Open<span class="nt">&lt;/access&gt;</span>
+    <span class="nt">&lt;visibility&gt;</span>Public<span class="nt">&lt;/visibility&gt;</span>
+    <span class="nt">&lt;contactIds&gt;&lt;/contactIds&gt;</span>
+    <span class="nt">&lt;userIds&gt;&lt;/userIds&gt;</span>
+    <span class="nt">&lt;distListIds&gt;&lt;/distListIds&gt;</span>
+<span class="nt">&lt;/ns1:distributionlists&gt;</span>
+</code></pre>
+<pre><code class="highlight go"><span class="n">Content</span><span class="o">-</span><span class="n">Type</span><span class="o">:</span><span class="x"> </span><span class="n">application</span><span class="o">/</span><span class="n">vnd</span><span class="o">.</span><span class="n">whispir</span><span class="o">.</span><span class="n">distributionlist</span><span class="o">-</span><span class="n">v1</span><span class="o">+</span><span class="n">json</span><span class="x">
+
+</span><span class="p">{</span><span class="x">
+    </span><span class="s">"name"</span><span class="x"> </span><span class="o">:</span><span class="x"> </span><span class="s">"My Distribution List"</span><span class="p">,</span><span class="x">
+    </span><span class="s">"description"</span><span class="x"> </span><span class="o">:</span><span class="x"> </span><span class="s">""</span><span class="p">,</span><span class="x">
+    </span><span class="s">"access"</span><span class="x"> </span><span class="o">:</span><span class="x"> </span><span class="s">"Open"</span><span class="p">,</span><span class="x">
+    </span><span class="s">"visibility"</span><span class="x"> </span><span class="o">:</span><span class="x"> </span><span class="s">"Public"</span><span class="p">,</span><span class="x">
+    </span><span class="s">"contactIds"</span><span class="x"> </span><span class="o">:</span><span class="x"> </span><span class="s">""</span><span class="p">,</span><span class="x">
+    </span><span class="s">"userIds"</span><span class="x"> </span><span class="o">:</span><span class="x"> </span><span class="s">""</span><span class="p">,</span><span class="x">
+    </span><span class="s">"distListIds"</span><span class="x"> </span><span class="o">:</span><span class="x"> </span><span class="s">""</span><span class="x">
+</span><span class="p">}</span><span class="x">
+</span></code></pre>
+
+<blockquote>
+<blockquote>
+<p>Users should expect a <code class="prettyprint">201 Created</code> response after executing this request.</p>
+</blockquote>
+</blockquote>
+
+<p>Distribution lists can be created within the Default Workspace, or within a Specific Workspace.  More information on Workspaces will be provided later in this documentation. </p>
+
+<p>The MRI value is important here. It is the required unique identifier for any communications that are to be sent out to this distribution list.</p>
+
+<p>To create a new distribution list, you can use the /distributionlists endpoint.</p>
+
+<p>Only <strong>3 fields</strong> are required:</p>
+
+<ol>
+<li>name - the name of the distribution list to be created </li>
+<li>access - Open Or Restricted </li>
+<li>visibility - Private Or Public</li>
+</ol>
+
+<table>
+    <thead>
+        <tr>
+            <th style="width: 50%" colspan="2">High-Level Request Elements</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td style="text-align: right; font-weight: bold;">name</td>
+            <td>
+            <strong>String</strong> <br>
+               Specifies the name of the distribution list. This has to be unique.
+            </td>
+        </tr>
+        <tr>
+            <td style="text-align: right; font-weight: bold;">description</td>
+            <td>
+            <strong>String</strong> <br>
+            Specifies a description for other users to see what this Distribution List should be used for.
+            </td>
+        </tr>
+        <tr>
+            <td style="text-align: right; font-weight: bold;">access</td>
+            <td>
+            <strong>String</strong> <br>
+            Allows the user to specify the access type for this DL. <br>
+            <ol>
+            <li><strong>Open</strong> - Anyone can subscribe to this distribution list via the Whispir Portal</li>
+            <li><strong>ByApproval</strong> - Anyone can subscribe using the Whispir Portal, however they are not officially on the list until their access is approved.</li>
+            <li><strong>Restricted</strong> - The distribution list is not visible in the Whispir Portal</li>
+            </ol>
+            </td>
+        </tr>
+        <tr>
+            <td style="text-align: right; font-weight: bold;">visibility</td>
+            <td>
+            <strong>String</strong> <br>
+            Allows the user to specify the visibility for this DL. <br>
+            
+            <ol>
+                <li><strong>Public</strong> - Any user/contact in any workspace can map themselves to this Distribution List within the Whispir Portal.</li>
+                <li><strong>Private</strong> - Only users/contacts in the current workspace can map themselves to this Distribution List</li>
+             </ol>
+            </td>
+        </tr>
+        <tr>
+            <td style="text-align: right; font-weight: bold;">contactIds</td>
+            <td>
+            <strong>String</strong> <br>
+            Comma separated list of userIds who can have access, visibility on this Distribution list. This information can be provided at the time of the DL creation or also later updated via a PUT request.
+            </td>
+        </tr>
+        <tr>
+            <td style="text-align: right; font-weight: bold;">userIds</td>
+            <td>
+            <strong>String</strong> <br>
+            Comma separated list of userIds who can have access, visibility on this Distribution list. This information can be provided at the time of the DL creation or also later updated via a PUT request.
+            </td>
+        </tr>
+        <tr>
+            <td style="text-align: right; font-weight: bold;">distListIds</td>
+            <td>
+            <strong>String</strong> <br>
+            Comma separated list of Distribution List IDs which can be nested distribution list to this DL.
+            </td>
+        </tr>
+    </tbody>
+</table>
+
+<h2 id="retrieving-distribution-lists">Retrieving Distribution Lists</h2>
+
+<blockquote>
+<p>Retrieving Distribution Lists</p>
+
+<blockquote>
+<p>The following snippets show how you can use the Whispir API to retrieve Distribution List information.</p>
+</blockquote>
+</blockquote>
+<pre><code class="highlight plaintext">HTTP 1.1 GET /distributionlists?apikey=&lt;your_api_key&gt;
+Authorization: Basic [your basic auth]
+</code></pre>
+<pre><code class="highlight xml">Content-Type: application/vnd.whispir.distributionlist-v1+xml
+
+<span class="cp">&lt;?xml version="1.0" encoding="UTF-8" standalone="yes"?&gt;</span>
+<span class="nt">&lt;ns2:return</span> <span class="na">xmlns:ns2=</span><span class="s">"http://schemas.api.whispir.com/dap"</span> <span class="na">xmlns:ns3=</span><span class="s">"http://schemas.api.whispir.com"</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;status&gt;</span>1 to 2 of 2<span class="nt">&lt;/status&gt;</span>
+    <span class="nt">&lt;ns2:distributionLists&gt;</span>
+        <span class="nt">&lt;ns2:distributionList&gt;</span>
+            <span class="nt">&lt;id&gt;</span>CF5AF1AE49ED07A6<span class="nt">&lt;/id&gt;</span>
+            <span class="nt">&lt;name&gt;</span>DL 1<span class="nt">&lt;/name&gt;</span>
+            <span class="nt">&lt;mri&gt;</span>dl1.company_name@list.company.whispir.sg<span class="nt">&lt;/mri&gt;</span>
+            <span class="nt">&lt;description&gt;</span>Distribution list for company 1<span class="nt">&lt;/description&gt;</span>
+            <span class="nt">&lt;memberCount&gt;</span>4<span class="nt">&lt;/memberCount&gt;</span>
+            <span class="nt">&lt;access&gt;</span>ByApproval<span class="nt">&lt;/access&gt;</span>
+            <span class="nt">&lt;visibility&gt;</span>Private<span class="nt">&lt;/visibility&gt;</span>
+            <span class="nt">&lt;ns2:link</span> <span class="na">uri=</span><span class="s">"https://api.whispir.com/distributionlists/CF5AF1AE49ED07A6?apikey=&lt;your_api_key&gt;"</span> <span class="na">rel=</span><span class="s">"self"</span> <span class="na">method=</span><span class="s">"GET"</span><span class="nt">/&gt;</span>
+        <span class="nt">&lt;/ns2:distributionList&gt;</span>
+        <span class="nt">&lt;ns2:distributionList&gt;</span>
+            <span class="nt">&lt;id&gt;</span>9FF7C2B470CCEC1E<span class="nt">&lt;/id&gt;</span>
+            <span class="nt">&lt;name&gt;</span>Docs Distribution List<span class="nt">&lt;/name&gt;</span>
+            <span class="nt">&lt;mri&gt;</span>Docs_Distribution_List.company@list.company.whispir.sg<span class="nt">&lt;/mri&gt;</span>
+            <span class="nt">&lt;description&gt;</span>A Distribution List created while writing the docs<span class="nt">&lt;/description&gt;</span>
+            <span class="nt">&lt;memberCount&gt;</span>2<span class="nt">&lt;/memberCount&gt;</span>
+            <span class="nt">&lt;access&gt;</span>Open<span class="nt">&lt;/access&gt;</span>
+            <span class="nt">&lt;visibility&gt;</span>Public<span class="nt">&lt;/visibility&gt;</span>
+            <span class="nt">&lt;ns2:link</span> <span class="na">uri=</span><span class="s">"https://api.whispir.com/distributionlists/9FF7C2B470CCEC1E?apikey=&lt;your_api_key&gt;"</span> <span class="na">rel=</span><span class="s">"self"</span> <span class="na">method=</span><span class="s">"GET"</span><span class="nt">/&gt;</span>
+        <span class="nt">&lt;/ns2:distributionList&gt;</span>
+    <span class="nt">&lt;/ns2:distributionLists&gt;</span>
+<span class="nt">&lt;/ns2:return&gt;</span>
+</code></pre>
+<pre><code class="highlight go"><span class="n">Content</span><span class="o">-</span><span class="n">Type</span><span class="o">:</span><span class="x"> </span><span class="n">application</span><span class="o">/</span><span class="n">vnd</span><span class="o">.</span><span class="n">whispir</span><span class="o">.</span><span class="n">distributionlist</span><span class="o">-</span><span class="n">v1</span><span class="o">+</span><span class="n">json</span><span class="x">
+
+</span><span class="p">{</span><span class="x">
+  </span><span class="s">"distributionLists"</span><span class="x"> </span><span class="o">:</span><span class="x"> </span><span class="p">[</span><span class="x"> </span><span class="p">{</span><span class="x">
+    </span><span class="s">"id"</span><span class="x"> </span><span class="o">:</span><span class="x"> </span><span class="s">"CF5AF1AE49ED07A6"</span><span class="p">,</span><span class="x">
+    </span><span class="s">"name"</span><span class="x"> </span><span class="o">:</span><span class="x"> </span><span class="s">"DL 1"</span><span class="p">,</span><span class="x">
+    </span><span class="s">"mri"</span><span class="x"> </span><span class="o">:</span><span class="x"> </span><span class="s">"dl1.company_name@list.company.whispir.sg"</span><span class="p">,</span><span class="x">
+    </span><span class="s">"description"</span><span class="x"> </span><span class="o">:</span><span class="x"> </span><span class="s">"test distribution list for company"</span><span class="p">,</span><span class="x">
+    </span><span class="s">"memberCount"</span><span class="x"> </span><span class="o">:</span><span class="x"> </span><span class="s">"4"</span><span class="p">,</span><span class="x">
+    </span><span class="s">"access"</span><span class="x"> </span><span class="o">:</span><span class="x"> </span><span class="s">"ByApproval"</span><span class="p">,</span><span class="x">
+    </span><span class="s">"visibility"</span><span class="x"> </span><span class="o">:</span><span class="x"> </span><span class="s">"Private"</span><span class="p">,</span><span class="x">
+    </span><span class="s">"link"</span><span class="x"> </span><span class="o">:</span><span class="x"> </span><span class="p">[</span><span class="x"> </span><span class="p">{</span><span class="x">
+      </span><span class="s">"uri"</span><span class="x"> </span><span class="o">:</span><span class="x"> </span><span class="s">"https://api.whispir.com/distributionlists/CF5AF1AE49ED07A6?apikey=your_api_key"</span><span class="p">,</span><span class="x">
+      </span><span class="s">"rel"</span><span class="x"> </span><span class="o">:</span><span class="x"> </span><span class="s">"self"</span><span class="p">,</span><span class="x">
+      </span><span class="s">"method"</span><span class="x"> </span><span class="o">:</span><span class="x"> </span><span class="s">"GET"</span><span class="x">
+    </span><span class="p">}</span><span class="x"> </span><span class="p">]</span><span class="x">
+  </span><span class="p">},</span><span class="x"> </span><span class="p">{</span><span class="x">
+    </span><span class="s">"id"</span><span class="x"> </span><span class="o">:</span><span class="x"> </span><span class="s">"9FF7C2B470CCEC1E"</span><span class="p">,</span><span class="x">
+    </span><span class="s">"name"</span><span class="x"> </span><span class="o">:</span><span class="x"> </span><span class="s">"Docs Distribution List"</span><span class="p">,</span><span class="x">
+    </span><span class="s">"mri"</span><span class="x"> </span><span class="o">:</span><span class="x"> </span><span class="s">"Docs_Distribution_List.company@list.company.whispir.sg"</span><span class="p">,</span><span class="x">
+    </span><span class="s">"description"</span><span class="x"> </span><span class="o">:</span><span class="x"> </span><span class="s">"A Distribution List created while writing the docs"</span><span class="p">,</span><span class="x">
+    </span><span class="s">"memberCount"</span><span class="x"> </span><span class="o">:</span><span class="x"> </span><span class="s">"2"</span><span class="p">,</span><span class="x">
+    </span><span class="s">"access"</span><span class="x"> </span><span class="o">:</span><span class="x"> </span><span class="s">"Open"</span><span class="p">,</span><span class="x">
+    </span><span class="s">"visibility"</span><span class="x"> </span><span class="o">:</span><span class="x"> </span><span class="s">"Public"</span><span class="p">,</span><span class="x">
+    </span><span class="s">"link"</span><span class="x"> </span><span class="o">:</span><span class="x"> </span><span class="p">[</span><span class="x"> </span><span class="p">{</span><span class="x">
+      </span><span class="s">"uri"</span><span class="x"> </span><span class="o">:</span><span class="x"> </span><span class="s">"https://api.whispir.com/distributionlists/9FF7C2B470CCEC1E?apikey=your_api_key"</span><span class="p">,</span><span class="x">
+      </span><span class="s">"rel"</span><span class="x"> </span><span class="o">:</span><span class="x"> </span><span class="s">"self"</span><span class="p">,</span><span class="x">
+      </span><span class="s">"method"</span><span class="x"> </span><span class="o">:</span><span class="x"> </span><span class="s">"GET"</span><span class="x">
+    </span><span class="p">}</span><span class="x"> </span><span class="p">]</span><span class="x">
+  </span><span class="p">}],</span><span class="x">
+  </span><span class="s">"status"</span><span class="x"> </span><span class="o">:</span><span class="x"> </span><span class="s">"1 to 2 of 2    "</span><span class="p">,</span><span class="x">
+  </span><span class="s">"link"</span><span class="x"> </span><span class="o">:</span><span class="x"> </span><span class="p">[</span><span class="x"> </span><span class="p">]</span><span class="x">
+</span><span class="p">}</span><span class="x">
+</span></code></pre>
+
+<p>Similar to the creation of distribution list, retrieval of such list too is bound to the workspace it belongs to. So, a distribution list belonging to a workspace cannot be accessed from another workspace. </p>
+
+<p>The code samples on the right describe the methods to retrieve Distribution Lists using the Whispir API.</p>
+
+<blockquote>
+<p>Retrieving a specific Distribution List by ID</p>
+</blockquote>
+<pre><code class="highlight plaintext">HTTP 1.1 GET /distributionlists/E07BA0DA35B0B1EF?apikey=&lt;your_api_key&gt;
+Authorization: Basic [your basic auth]
+</code></pre>
+
+<h2 id="searching-for-distribution-lists">Searching for Distribution Lists</h2>
+
+<blockquote>
+<blockquote>
+<p><strong>Search for a Distribution List by name</strong><br/><br/>
+Users can easily append the <code class="prettyprint">&amp;name=My DL Name</code> query parameter to search the Whispir API for a specific Distribution List.</p>
+</blockquote>
+</blockquote>
+<pre><code class="highlight plaintext">HTTP 1.1 GET /distributionlists?apikey=&lt;your_api_key&gt;&amp;name=My%20Distribution%20List
+Authorization: Basic [your basic auth]
+</code></pre>
+
+<blockquote>
+<blockquote>
+<p><strong>Search for a Distribution List by description</strong><br/><br/>
+Users can easily append the <code class="prettyprint">&amp;description=My DL Description</code> query parameter to search the Whispir API for a specific Distribution List.</p>
+</blockquote>
+</blockquote>
+<pre><code class="highlight plaintext">HTTP 1.1 GET /distributionlists?apikey=&lt;your_api_key&gt;&amp;description=company_name
+Authorization: Basic [your basic auth]
+</code></pre>
+
+<p>The distribution list is usually retrieved by its <code class="prettyprint">id</code>, but one can also search or refer to the distribution list by its name. This feature has to do with the <strong>unique name</strong> requirement for the distribution list.</p>
+
+<p>Apart from the name, the <code class="prettyprint">description</code> field can also be used to search for a distribution list. While name can be directly used to send in messages, the description is solely for the purpose of search. Once search yields the required result, the <code class="prettyprint">mri</code> has to be picked from the selected DL and then used to send the messages.</p>
+
+<p>Both these operations can be performed by passing in the relevant search parameters in the URL - as query params</p>
+
+<ul>
+<li><strong>&amp;name=</strong> - to search for name</li>
+<li><strong>&amp;description=</strong> - to search by description</li>
+</ul>
+
+<h2 id="adding-contacts">Adding Contacts</h2>
+
+<blockquote>
+<p>Adding Contacts</p>
+
+<blockquote>
+<p>Contacts can be added to Distribution Lists when the list is created, or by using a <code class="prettyprint">PUT</code> request at a later stage.</p>
+</blockquote>
+</blockquote>
+<pre><code class="highlight plaintext">POST https://api.whispir.com/distributionlists?apikey=[your api key]
+Authorization: Basic [your basic auth]
+</code></pre>
+<pre><code class="highlight xml">Content-Type: application/vnd.whispir.distributionlist-v1+xml
+
+<span class="cp">&lt;?xml version="1.0" encoding="UTF-8" standalone="yes"?&gt;</span>
+<span class="nt">&lt;ns1:distributionlists</span> <span class="na">xmlns:ns2=</span><span class="s">"https://schemas.api.whispir.com"</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;name&gt;</span>Rockstar Distribution List<span class="nt">&lt;/name&gt;</span>
+    <span class="nt">&lt;description&gt;</span>All the rocks were once stars - astrophysicist inside me<span class="nt">&lt;/description&gt;</span>    
+    <span class="nt">&lt;access&gt;</span>Open<span class="nt">&lt;/access&gt;</span>
+    <span class="nt">&lt;visibility&gt;</span>Public<span class="nt">&lt;/visibility&gt;</span>
+    <span class="nt">&lt;contactIds&gt;</span>7CC205AE17FFDC8A,92XC05AE154FDC8A<span class="nt">&lt;/contactIds&gt;</span>
+    <span class="nt">&lt;userIds&gt;&lt;/userIds&gt;</span>
+    <span class="nt">&lt;distListIds&gt;&lt;/distListIds&gt;</span>
+<span class="nt">&lt;/ns1:distributionlists&gt;</span>
+</code></pre>
+<pre><code class="highlight go"><span class="n">Content</span><span class="o">-</span><span class="n">Type</span><span class="o">:</span><span class="x"> </span><span class="n">application</span><span class="o">/</span><span class="n">vnd</span><span class="o">.</span><span class="n">whispir</span><span class="o">.</span><span class="n">distributionlist</span><span class="o">-</span><span class="n">v1</span><span class="o">+</span><span class="n">json</span><span class="x">
+
+</span><span class="p">{</span><span class="x">
+    </span><span class="s">"name"</span><span class="x"> </span><span class="o">:</span><span class="x"> </span><span class="s">"Rockstar Distribution List"</span><span class="p">,</span><span class="x">
+    </span><span class="s">"description"</span><span class="x"> </span><span class="o">:</span><span class="x"> </span><span class="s">"All the rocks were once stars - astrophysicist inside me"</span><span class="p">,</span><span class="x">
+    </span><span class="s">"access"</span><span class="x"> </span><span class="o">:</span><span class="x"> </span><span class="s">"Open"</span><span class="p">,</span><span class="x">
+    </span><span class="s">"visibility"</span><span class="x"> </span><span class="o">:</span><span class="x"> </span><span class="s">"Public"</span><span class="p">,</span><span class="x">
+    </span><span class="s">"contactIds"</span><span class="x"> </span><span class="o">:</span><span class="x"> </span><span class="s">"7CC205AE17FFDC8A,92XC05AE154FDC8A"</span><span class="p">,</span><span class="x">
+    </span><span class="s">"userIds"</span><span class="x"> </span><span class="o">:</span><span class="x"> </span><span class="s">""</span><span class="p">,</span><span class="x">
+    </span><span class="s">"distListIds"</span><span class="x"> </span><span class="o">:</span><span class="x"> </span><span class="s">""</span><span class="x">
+</span><span class="p">}</span><span class="x">
+</span></code></pre>
+
+<p>A contact can be added to the distribution list in two ways. </p>
+
+<p>While creating the distribution list by passing the following 3 values:</p>
+
+<ul>
+<li><strong>ContactIds</strong> string is a comma separated list of Contact IDs that you would like added to the list.</li>
+<li><strong>UserIds</strong> specifies the Whispir Users that should also be notified when this list is used.</li>
+<li><strong>DistListIds</strong> specifies the nested lists that are contained within this distribution list.</li>
+</ul>
+
+<p>Or, after the distribution list is created by performing these steps:</p>
+
+<ul>
+<li>A <strong>PUT</strong> request is placed with the distribution list ID specified in the URL.</li>
+<li>The contactIds, userIds, distListIds can be passed all together in a single request.</li>
+</ul>
+
+<blockquote>
+<blockquote>
+<p>If an existing contactId is again added, it does neither throws an error, nor create two entries. The contactId is just neglected and only 1 record is maintained.</p>
+</blockquote>
+</blockquote>
+
+<p>If the PUT request was successful, the expected response code is a <code class="prettyprint">204 No Content</code></p>
+
+<h2 id="sending-messages">Sending Messages</h2>
+
+<blockquote>
+<p>Sending Messages to Distribution Lists</p>
+
+<blockquote>
+<p>The API call is a <code class="prettyprint">POST</code> request to the <code class="prettyprint">/messages</code> endpoint.</p>
+</blockquote>
+</blockquote>
+<pre><code class="highlight plaintext">POST https://api.whispir.com/messages?apikey=[your api key]
+Authorization: Basic [your basic auth]
+</code></pre>
+<pre><code class="highlight xml">Content-Type: application/vnd.whispir.message-v1+xml
+
+<span class="cp">&lt;?xml version="1.0" encoding="UTF-8" standalone="yes"?&gt;</span>
+<span class="nt">&lt;ns2:message</span> <span class="na">xmlns:ns2=</span><span class="s">"https://schemas.api.whispir.com"</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;to&gt;</span>Docs_Distribution_List.company@list.company.whispir.sg<span class="nt">&lt;/to&gt;</span>
+    <span class="nt">&lt;subject&gt;</span>Simple SMS to List of contacts in the distribution list<span class="nt">&lt;/subject&gt;</span>    
+    <span class="nt">&lt;body&gt;</span>This is the content of my sample sms message.<span class="nt">&lt;/body&gt;</span>
+<span class="nt">&lt;/ns2:message&gt;</span>
+</code></pre>
+<pre><code class="highlight go"><span class="n">Content</span><span class="o">-</span><span class="n">Type</span><span class="o">:</span><span class="x"> </span><span class="n">application</span><span class="o">/</span><span class="n">vnd</span><span class="o">.</span><span class="n">whispir</span><span class="o">.</span><span class="n">message</span><span class="o">-</span><span class="n">v1</span><span class="o">+</span><span class="n">json</span><span class="x">
+
+</span><span class="p">{</span><span class="x">
+    </span><span class="s">"to"</span><span class="x"> </span><span class="o">:</span><span class="x"> </span><span class="s">"Docs_Distribution_List.company@list.company.whispir.sg"</span><span class="p">,</span><span class="x">
+    </span><span class="s">"subject"</span><span class="x"> </span><span class="o">:</span><span class="x"> </span><span class="s">"Simple SMS to List of contacts in the distribution list"</span><span class="p">,</span><span class="x">
+    </span><span class="s">"body"</span><span class="x"> </span><span class="o">:</span><span class="x"> </span><span class="s">"This is the content of my sample sms message."</span><span class="x">
+</span><span class="p">}</span><span class="x">
+</span></code></pre>
+
+<p>Sending the message via the distribution list is very straight forward. The important key needed here is MRI of the distribution list.</p>
+
+<p>This will result in the response of 202 Accepted and the message will be sent to all distribution list participants.</p>
+
+<h2 id="deleting-distribution-lists">Deleting Distribution Lists</h2>
+
+<blockquote>
+<p>Deleting Distribution Lists</p>
+
+<blockquote>
+<p>The following API requests allow users to remove Distribution Lists from the Whispir API.</p>
+</blockquote>
+</blockquote>
+<pre><code class="highlight xml">DELETE https://api.whispir.com/distributionlists/E07BA0DA35B0B1EF?apikey=[your api key]
+Authorization: Basic [your basic auth]
+</code></pre>
+<pre><code class="highlight go"><span class="n">DELETE</span><span class="x"> </span><span class="n">https</span><span class="o">:</span><span class="c">//api.whispir.com/distributionlists/E07BA0DA35B0B1EF?apikey=[your api key]</span><span class="x">
+</span><span class="n">Authorization</span><span class="o">:</span><span class="x"> </span><span class="n">Basic</span><span class="x"> </span><span class="p">[</span><span class="n">your</span><span class="x"> </span><span class="n">basic</span><span class="x"> </span><span class="n">auth</span><span class="p">]</span><span class="x">
+</span></code></pre>
+
+<blockquote>
+<blockquote>
+<p>After performing the request the expected successful response is <code class="prettyprint">204 No Content</code>.</p>
+</blockquote>
+</blockquote>
+
+<p>Deleting the distribution is done via a <code class="prettyprint">DELETE /distributionlist/{id}</code> endpoint. </p>
+
+<p>You can only delete the distribution list that you have created or a valid userId associated with the specific distribution list.</p>
+
         <h1 id="callbacks">Callbacks</h1>
 
 <p>Whispir utilises API Callbacks to send simple notifications to different registered services in the event that some change has occurred on the Whispir Platform.</p>
