@@ -4152,6 +4152,852 @@ The expected response to this call is an <strong>HTTP 201 - Created</strong>.</p
 
 <p>For more information on Creating Message Templates, click <a href="#creating-templates">here</a>.</p>
 
+        <h1 id="contacts">Contacts</h1>
+
+<p>Contacts form the core of the Whispir offerings. They make up the base data to which and from all the communications are performed.</p>
+
+<p>The Whispir API provides secure cloud based storage for your contact information.  This can then easily be retrieved by any application or device that requires access, and has permission to do so.</p>
+
+<h2 id="creating-new-contacts">Creating new Contacts</h2>
+
+<blockquote>
+<p>Creating new Contacts</p>
+
+<blockquote>
+<p>Users can easily create new contacts by using the following request structure</p>
+</blockquote>
+</blockquote>
+<pre><code class="highlight plaintext">POST https://api.whispir.com/contacts?apikey=[your api key]
+Authorization: Basic am9obi5zbWl0aDpteXBhc3N3b3Jk
+</code></pre>
+<pre><code class="highlight xml">Content-Type: application/vnd.whispir.contact-v1+xml
+
+<span class="cp">&lt;?xml version="1.0" encoding="UTF-8" standalone="yes"?&gt;</span>
+<span class="nt">&lt;ns2:contact</span> <span class="na">xmlns:ns2=</span><span class="s">"http://schemas.api.whispir.com"</span> <span class="na">xmlns:ns3=</span><span class="s">"http://schemas.api.whispir.com/dap"</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;firstName&gt;</span>John<span class="nt">&lt;/firstName&gt;</span>
+    <span class="nt">&lt;lastName&gt;</span>Wick<span class="nt">&lt;/lastName&gt;</span>
+    <span class="nt">&lt;status&gt;</span>A<span class="nt">&lt;/status&gt;</span>
+    <span class="nt">&lt;timezone&gt;</span>Australia/Melbourne<span class="nt">&lt;/timezone&gt;</span>
+    <span class="nt">&lt;workEmailAddress1&gt;</span>jsmith@testcompany.com<span class="nt">&lt;/workEmailAddress1&gt;</span>
+    <span class="nt">&lt;workMobilePhone1&gt;</span>61423456789<span class="nt">&lt;/workMobilePhone1&gt;</span>
+    <span class="nt">&lt;workCountry&gt;</span>Australia<span class="nt">&lt;/workCountry&gt;</span>
+    <span class="nt">&lt;messagingoptions&gt;</span>
+        <span class="nt">&lt;messagingoption</span> <span class="na">channel=</span><span class="s">"sms"</span><span class="nt">&gt;</span>
+            <span class="nt">&lt;enabled&gt;</span>true<span class="nt">&lt;/enabled&gt;</span>
+            <span class="nt">&lt;primary&gt;</span>WorkMobilePhone1<span class="nt">&lt;/primary&gt;</span>
+            <span class="nt">&lt;secondary&gt;&lt;/secondary&gt;</span>
+            <span class="nt">&lt;tertiary&gt;&lt;/tertiary&gt;</span>
+        <span class="nt">&lt;/messagingoption&gt;</span>
+        <span class="nt">&lt;messagingoption</span> <span class="na">channel=</span><span class="s">"email"</span><span class="nt">&gt;</span>
+            <span class="nt">&lt;enabled&gt;</span>true<span class="nt">&lt;/enabled&gt;</span>
+            <span class="nt">&lt;primary&gt;</span>WorkEmailAddress1<span class="nt">&lt;/primary&gt;</span>
+            <span class="nt">&lt;secondary&gt;&lt;/secondary&gt;</span>
+            <span class="nt">&lt;tertiary&gt;&lt;/tertiary&gt;</span>
+        <span class="nt">&lt;/messagingoption&gt;</span>
+        <span class="nt">&lt;messagingoption</span> <span class="na">channel=</span><span class="s">"voice"</span><span class="nt">&gt;</span>
+            <span class="nt">&lt;enabled&gt;</span>true<span class="nt">&lt;/enabled&gt;</span>
+            <span class="nt">&lt;primary&gt;</span>WorkMobilePhone1<span class="nt">&lt;/primary&gt;</span>
+            <span class="nt">&lt;secondary&gt;&lt;/secondary&gt;</span>
+            <span class="nt">&lt;tertiary&gt;&lt;/tertiary&gt;</span>
+        <span class="nt">&lt;/messagingoption&gt;</span>
+    <span class="nt">&lt;/messagingoptions&gt;</span>
+<span class="nt">&lt;/ns2:contact&gt;</span>
+</code></pre>
+<pre><code class="highlight go"><span class="n">Content</span><span class="o">-</span><span class="n">Type</span><span class="o">:</span><span class="x"> </span><span class="n">application</span><span class="o">/</span><span class="n">vnd</span><span class="o">.</span><span class="n">whispir</span><span class="o">.</span><span class="n">contact</span><span class="o">-</span><span class="n">v1</span><span class="o">+</span><span class="n">json</span><span class="x">
+
+</span><span class="p">{</span><span class="x">
+    </span><span class="s">"firstName"</span><span class="o">:</span><span class="x"> </span><span class="s">"John"</span><span class="p">,</span><span class="x">
+    </span><span class="s">"lastName"</span><span class="o">:</span><span class="x"> </span><span class="s">"Wick"</span><span class="p">,</span><span class="x">
+    </span><span class="s">"status"</span><span class="o">:</span><span class="x"> </span><span class="s">"A"</span><span class="p">,</span><span class="x">
+    </span><span class="s">"timezone"</span><span class="o">:</span><span class="x"> </span><span class="s">"Australia/Melbourne"</span><span class="p">,</span><span class="x">
+    </span><span class="s">"workEmailAddress1"</span><span class="o">:</span><span class="x"> </span><span class="s">"jsmith@testcompany.com"</span><span class="p">,</span><span class="x">
+    </span><span class="s">"workMobilePhone1"</span><span class="o">:</span><span class="x"> </span><span class="s">"61423456789"</span><span class="p">,</span><span class="x">
+    </span><span class="s">"workCountry"</span><span class="o">:</span><span class="x"> </span><span class="s">"Australia"</span><span class="p">,</span><span class="x">
+    </span><span class="s">"messagingoptions"</span><span class="o">:</span><span class="x"> </span><span class="p">[{</span><span class="x">
+          </span><span class="s">"channel"</span><span class="o">:</span><span class="x"> </span><span class="s">"sms"</span><span class="p">,</span><span class="x">
+          </span><span class="s">"enabled"</span><span class="o">:</span><span class="x"> </span><span class="s">"true"</span><span class="p">,</span><span class="x">
+          </span><span class="s">"primary"</span><span class="o">:</span><span class="x"> </span><span class="s">"WorkMobilePhone1"</span><span class="x">
+    </span><span class="p">},{</span><span class="x">
+          </span><span class="s">"channel"</span><span class="o">:</span><span class="x"> </span><span class="s">"email"</span><span class="p">,</span><span class="x">
+          </span><span class="s">"enabled"</span><span class="o">:</span><span class="x"> </span><span class="s">"true"</span><span class="p">,</span><span class="x">
+          </span><span class="s">"primary"</span><span class="o">:</span><span class="x"> </span><span class="s">"WorkEmailAddress1"</span><span class="x">
+    </span><span class="p">},{</span><span class="x">
+          </span><span class="s">"channel"</span><span class="o">:</span><span class="x"> </span><span class="s">"voice"</span><span class="p">,</span><span class="x">
+          </span><span class="s">"enabled"</span><span class="o">:</span><span class="x"> </span><span class="s">"true"</span><span class="p">,</span><span class="x">
+          </span><span class="s">"primary"</span><span class="o">:</span><span class="x"> </span><span class="s">"WorkMobilePhone1"</span><span class="x">
+    </span><span class="p">}]</span><span class="x">
+</span><span class="p">}</span><span class="x">
+</span></code></pre>
+
+<blockquote>
+<blockquote>
+<p>The successful response will be a 201 with the details of the contact created and its associated unique <code class="prettyprint">mri</code>.</p>
+</blockquote>
+</blockquote>
+<pre><code class="highlight xml"><span class="cp">&lt;?xml version="1.0" encoding="UTF-8" standalone="yes"?&gt;</span>
+<span class="nt">&lt;ns2:contact</span> <span class="na">xmlns:ns2=</span><span class="s">"http://schemas.api.whispir.com"</span> <span class="na">xmlns:ns3=</span><span class="s">"http://schemas.api.whispir.com/dap"</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;type&gt;</span>COMPANY<span class="nt">&lt;/type&gt;</span>
+    <span class="nt">&lt;firstName&gt;</span>John<span class="nt">&lt;/firstName&gt;</span>
+    <span class="nt">&lt;lastName&gt;</span>Wick<span class="nt">&lt;/lastName&gt;</span>
+    <span class="nt">&lt;locations&gt;</span>
+        <span class="nt">&lt;location&gt;</span>
+            <span class="nt">&lt;latitude&gt;</span>0.0<span class="nt">&lt;/latitude&gt;</span>
+            <span class="nt">&lt;longitude&gt;</span>0.0<span class="nt">&lt;/longitude&gt;</span>
+            <span class="nt">&lt;type&gt;</span>CurrentLocation<span class="nt">&lt;/type&gt;</span>
+        <span class="nt">&lt;/location&gt;</span>
+    <span class="nt">&lt;/locations&gt;</span>
+    <span class="nt">&lt;lastModifiedTime&gt;</span>2015-06-04T17:37:01+10:00<span class="nt">&lt;/lastModifiedTime&gt;</span>
+    <span class="nt">&lt;status&gt;</span>A<span class="nt">&lt;/status&gt;</span>
+    <span class="nt">&lt;timezone&gt;</span>+10<span class="nt">&lt;/timezone&gt;</span>
+    <span class="nt">&lt;workEmailAddress1&gt;</span>jsmith@testcompany.com<span class="nt">&lt;/workEmailAddress1&gt;</span>
+    <span class="nt">&lt;workMobilePhone1&gt;</span>61423456789<span class="nt">&lt;/workMobilePhone1&gt;</span>
+    <span class="nt">&lt;workCountry&gt;</span>Australia<span class="nt">&lt;/workCountry&gt;</span>
+    <span class="nt">&lt;mri&gt;</span>John_Wick.1143139@Contact.whispir.sg<span class="nt">&lt;/mri&gt;</span>
+    <span class="nt">&lt;messagingoptions&gt;</span>
+        <span class="nt">&lt;messagingoption</span> <span class="na">channel=</span><span class="s">"sms"</span><span class="nt">&gt;</span>
+            <span class="nt">&lt;enabled&gt;</span>true<span class="nt">&lt;/enabled&gt;</span>
+            <span class="nt">&lt;primary&gt;</span>WorkMobilePhone1<span class="nt">&lt;/primary&gt;</span>
+            <span class="nt">&lt;secondary&gt;&lt;/secondary&gt;</span>
+            <span class="nt">&lt;tertiary&gt;&lt;/tertiary&gt;</span>
+        <span class="nt">&lt;/messagingoption&gt;</span>
+        <span class="nt">&lt;messagingoption</span> <span class="na">channel=</span><span class="s">"email"</span><span class="nt">&gt;</span>
+            <span class="nt">&lt;enabled&gt;</span>true<span class="nt">&lt;/enabled&gt;</span>
+            <span class="nt">&lt;primary&gt;</span>WorkEmailAddress1<span class="nt">&lt;/primary&gt;</span>
+            <span class="nt">&lt;secondary&gt;&lt;/secondary&gt;</span>
+            <span class="nt">&lt;tertiary&gt;&lt;/tertiary&gt;</span>
+        <span class="nt">&lt;/messagingoption&gt;</span>
+        <span class="nt">&lt;messagingoption</span> <span class="na">channel=</span><span class="s">"voice"</span><span class="nt">&gt;</span>
+            <span class="nt">&lt;enabled&gt;</span>true<span class="nt">&lt;/enabled&gt;</span>
+            <span class="nt">&lt;primary&gt;</span>WorkMobilePhone1<span class="nt">&lt;/primary&gt;</span>
+            <span class="nt">&lt;secondary&gt;&lt;/secondary&gt;</span>
+            <span class="nt">&lt;tertiary&gt;&lt;/tertiary&gt;</span>
+        <span class="nt">&lt;/messagingoption&gt;</span>
+    <span class="nt">&lt;/messagingoptions&gt;</span>
+    <span class="nt">&lt;ns3:link</span> <span class="na">uri=</span><span class="s">"https://api.whispir.com/contacts/CB4558257DD86D09?apikey=[your api key]"</span> <span class="na">rel=</span><span class="s">"self"</span> <span class="na">method=</span><span class="s">"GET"</span><span class="nt">/&gt;</span>
+    <span class="nt">&lt;ns3:link</span> <span class="na">uri=</span><span class="s">"https://api.whispir.com/contacts/CB4558257DD86D09?apikey=[your api key]"</span> <span class="na">rel=</span><span class="s">"updateContact"</span> <span class="na">method=</span><span class="s">"PUT"</span> <span class="na">type=</span><span class="s">"application/vnd.whispir.contact-v1+json,application/vnd.whispir.contact-v1+xml"</span><span class="nt">/&gt;</span>
+    <span class="nt">&lt;ns3:link</span> <span class="na">uri=</span><span class="s">"https://api.whispir.com/contacts/CB4558257DD86D09?apikey=[your api key]"</span> <span class="na">rel=</span><span class="s">"deleteContact"</span> <span class="na">method=</span><span class="s">"DELETE"</span><span class="nt">/&gt;</span>
+</code></pre>
+<pre><code class="highlight go"><span class="p">{</span><span class="x">
+  </span><span class="s">"type"</span><span class="o">:</span><span class="x"> </span><span class="s">"COMPANY"</span><span class="p">,</span><span class="x">
+  </span><span class="s">"firstName"</span><span class="o">:</span><span class="x"> </span><span class="s">"John"</span><span class="p">,</span><span class="x">
+  </span><span class="s">"lastName"</span><span class="o">:</span><span class="x"> </span><span class="s">"Wick"</span><span class="p">,</span><span class="x">
+  </span><span class="s">"locations"</span><span class="o">:</span><span class="x"> </span><span class="p">[</span><span class="x">
+    </span><span class="p">{</span><span class="x">
+      </span><span class="s">"latitude"</span><span class="o">:</span><span class="x"> </span><span class="s">"0.0"</span><span class="p">,</span><span class="x">
+      </span><span class="s">"longitude"</span><span class="o">:</span><span class="x"> </span><span class="s">"0.0"</span><span class="p">,</span><span class="x">
+      </span><span class="s">"type"</span><span class="o">:</span><span class="x"> </span><span class="s">"CurrentLocation"</span><span class="x">
+    </span><span class="p">}</span><span class="x">
+  </span><span class="p">],</span><span class="x">
+  </span><span class="s">"lastModifiedTime"</span><span class="o">:</span><span class="x"> </span><span class="s">"2015-06-04T17:37:01+10:00"</span><span class="p">,</span><span class="x">
+  </span><span class="s">"status"</span><span class="o">:</span><span class="x"> </span><span class="s">"A"</span><span class="p">,</span><span class="x">
+  </span><span class="s">"timezone"</span><span class="o">:</span><span class="x"> </span><span class="s">"+10"</span><span class="p">,</span><span class="x">
+  </span><span class="s">"workEmailAddress1"</span><span class="o">:</span><span class="x"> </span><span class="s">"jsmith@testcompany.com"</span><span class="p">,</span><span class="x">
+  </span><span class="s">"workMobilePhone1"</span><span class="o">:</span><span class="x"> </span><span class="s">"61423456789"</span><span class="p">,</span><span class="x">
+  </span><span class="s">"workCountry"</span><span class="o">:</span><span class="x"> </span><span class="s">"Australia"</span><span class="p">,</span><span class="x">
+  </span><span class="s">"mri"</span><span class="o">:</span><span class="x"> </span><span class="s">"John_Wick.1143139@Contact.whispir.sg"</span><span class="p">,</span><span class="x">
+  </span><span class="s">"messagingoptions"</span><span class="o">:</span><span class="x"> </span><span class="p">[</span><span class="x">
+    </span><span class="p">{</span><span class="x">
+      </span><span class="s">"channel"</span><span class="o">:</span><span class="x"> </span><span class="s">"sms"</span><span class="p">,</span><span class="x">
+      </span><span class="s">"enabled"</span><span class="o">:</span><span class="x"> </span><span class="s">"true"</span><span class="p">,</span><span class="x">
+      </span><span class="s">"primary"</span><span class="o">:</span><span class="x"> </span><span class="s">"WorkMobilePhone1"</span><span class="x">
+    </span><span class="p">},</span><span class="x">
+    </span><span class="p">{</span><span class="x">
+      </span><span class="s">"channel"</span><span class="o">:</span><span class="x"> </span><span class="s">"email"</span><span class="p">,</span><span class="x">
+      </span><span class="s">"enabled"</span><span class="o">:</span><span class="x"> </span><span class="s">"true"</span><span class="p">,</span><span class="x">
+      </span><span class="s">"primary"</span><span class="o">:</span><span class="x"> </span><span class="s">"WorkEmailAddress1"</span><span class="x">
+    </span><span class="p">},</span><span class="x">
+    </span><span class="p">{</span><span class="x">
+      </span><span class="s">"channel"</span><span class="o">:</span><span class="x"> </span><span class="s">"voice"</span><span class="p">,</span><span class="x">
+      </span><span class="s">"enabled"</span><span class="o">:</span><span class="x"> </span><span class="s">"true"</span><span class="p">,</span><span class="x">
+      </span><span class="s">"primary"</span><span class="o">:</span><span class="x"> </span><span class="s">"WorkMobilePhone1"</span><span class="x">
+    </span><span class="p">}</span><span class="x">
+  </span><span class="p">],</span><span class="x">
+  </span><span class="s">"link"</span><span class="o">:</span><span class="x"> </span><span class="p">[</span><span class="x">
+    </span><span class="p">{</span><span class="x">
+      </span><span class="s">"uri"</span><span class="o">:</span><span class="x"> </span><span class="s">"https://api.whispir.com/contacts/CB4558257DD86D09?apikey=[your api key]"</span><span class="p">,</span><span class="x">
+      </span><span class="s">"rel"</span><span class="o">:</span><span class="x"> </span><span class="s">"self"</span><span class="p">,</span><span class="x">
+      </span><span class="s">"method"</span><span class="o">:</span><span class="x"> </span><span class="s">"GET"</span><span class="x">
+    </span><span class="p">},</span><span class="x">
+    </span><span class="p">{</span><span class="x">
+      </span><span class="s">"uri"</span><span class="o">:</span><span class="x"> </span><span class="s">"https://api.whispir.com/contacts/CB4558257DD86D09?apikey=[your api key]"</span><span class="p">,</span><span class="x">
+      </span><span class="s">"rel"</span><span class="o">:</span><span class="x"> </span><span class="s">"updateContact"</span><span class="p">,</span><span class="x">
+      </span><span class="s">"method"</span><span class="o">:</span><span class="x"> </span><span class="s">"PUT"</span><span class="p">,</span><span class="x">
+      </span><span class="s">"type"</span><span class="o">:</span><span class="x"> </span><span class="s">"application/vnd.whispir.contact-v1+json,application/vnd.whispir.contact-v1+xml"</span><span class="x">
+    </span><span class="p">},</span><span class="x">
+    </span><span class="p">{</span><span class="x">
+      </span><span class="s">"uri"</span><span class="o">:</span><span class="x"> </span><span class="s">"https://api.whispir.com/contacts/CB4558257DD86D09?apikey=[your api key]"</span><span class="p">,</span><span class="x">
+      </span><span class="s">"rel"</span><span class="o">:</span><span class="x"> </span><span class="s">"deleteContact"</span><span class="p">,</span><span class="x">
+      </span><span class="s">"method"</span><span class="o">:</span><span class="x"> </span><span class="s">"DELETE"</span><span class="x">
+    </span><span class="p">}</span><span class="x">
+  </span><span class="p">]</span><span class="x">
+</span><span class="p">}</span><span class="x">
+</span></code></pre>
+
+<p>To create a new contact, you can use the <code class="prettyprint">/contacts</code> endpoint. The method is POST. Ensure that the following mandatory fields are provided for.</p>
+
+<p>The following fields are required:</p>
+
+<ul>
+<li>firstName</li>
+<li>lastName</li>
+<li>workEmailAddress1</li>
+<li>workMobilePhone1</li>
+<li>workCountry</li>
+<li>timezone</li>
+</ul>
+
+<table>
+    <thead>
+        <tr>
+            <th style="width: 50%" colspan="2">High-Level Request Elements</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td style="text-align: right; font-weight: bold;">firstName:</td>
+            <td><strong>String</strong><br/>
+                Specifies the firstName of the contact
+            </td>
+        </tr>
+        <tr>
+            <td style="text-align: right; font-weight: bold;">lastName:</td>
+            <td><strong>String</strong><br/>
+                Specifies the lastName of the contact
+            </td>
+        </tr>
+        <tr>
+            <td style="text-align: right; font-weight: bold;">title:</td>
+            <td><strong>String</strong><br/>
+                The title of the name
+            </td>
+        </tr>
+        <tr>
+            <td style="text-align: right; font-weight: bold;">status:</td>
+            <td><strong>String</strong><br/>
+                Specifies the validity status of the contact. The status can be one of - 
+                <ul>
+                    <li>Active (A)</li>
+                    <li>Disabled (D)</li>
+                </ul>
+            </td>
+        </tr>
+        <tr>
+            <td style="text-align: right; font-weight: bold;">companyName:</td>
+            <td><strong>String</strong><br/>
+                Specifies the company name
+            </td>
+        </tr>
+        <tr>
+            <td style="text-align: right; font-weight: bold;">jobTitle:</td>
+            <td><strong>String</strong><br/>
+                Specifies the job title at the company
+            </td>
+        </tr>
+        <tr>
+            <td style="text-align: right; font-weight: bold;">division:</td>
+            <td><strong>String</strong><br/>
+                Specifies the Division in the company to which this contact is associated with
+            </td>
+        </tr>
+        <tr>
+            <td style="text-align: right; font-weight: bold;">businessUnit:</td>
+            <td><strong>String</strong><br/>
+                Specifies the Business Unit in the company to which this contact is associated with
+            </td>
+        </tr>
+        <tr>
+            <td style="text-align: right; font-weight: bold;">department:</td>
+            <td><strong>String</strong><br/>
+                Specifies the Department in the company to which this contact is associated with
+            </td>
+        </tr>
+        <tr>
+            <td style="text-align: right; font-weight: bold;">Teams and Roles:</td>
+            <td><strong>String</strong><br/>
+                Specifies the primary and Secondary values for each respective variable
+                <ul>
+                    <li>teamName1, teamName2</li>
+                    <li>role1, role2</li>
+                </ul>
+            </td>
+        </tr>
+        <tr>
+            <td style="text-align: right; font-weight: bold;">Work Place Address:</td>
+            <td><strong>String</strong><br/>
+                Specifies the primary and Secondary values for each respective type. Of all these the <b>workEmailAddress1</b> > is the mandatory field.
+                <ul>
+                    <li>workEmailAddress1, workEmailAddress2</li>
+                    <li>workAddress1, workAddress2</li>
+                    <li>workSuburb, workState</li>
+                    <li>workPostCode, workCountry</li>
+                    <li>workPostalAddress1, workPostalAddress2</li>
+                    <li>workPostalSuburb, workPostalState</li>
+                    <li>workPostalPostCode, workPostalCountry</li>
+                </ul>
+            </td>
+        </tr>
+        <tr>
+            <td style="text-align: right; font-weight: bold;">Work Place Phones:</td>
+            <td><strong>Number</strong><br/>
+                Specifies the primary and Secondary values for each respective type. Of all these the <b>workMobilePhone1</b> > is the mandatory field.
+                <ul>
+                    <li>workMobilePhone1, workMobilePhone2</li>
+                    <li>workPhoneAreaCode1, workPhone1</li>
+                    <li>workPhoneAreaCode2, workPhone2</li>
+                    <li>workFaxAreaCode1, workFax1</li>
+                    <li>workSetellitePhone, WorkOtherPhone</li>
+                </ul>
+            </td>
+        </tr>
+        <tr>
+            <td style="text-align: right; font-weight: bold;">timezone:</td>
+            <td><strong>String</strong><br/>
+                Specifies the timezone in which the contact lives in. Values in relation to GMT.<br/><br/>
+                Supported values are:
+                <ul>
+                    <li>Offset from GMT in the format `+/-NN` e.g. `+10`</li>
+                    <li>Worldwide Timezone Format in the format `Country/City` e.g. `Australia/Melbourne`</li>
+                </ul> 
+                For a list of available worldwide timezones, click <a href="http://developer.whispir.com/files/Whispir-Timezones-v1.csv" title="Timezone IDs" target="_blank">here</a>.
+            </td>
+        </tr>
+        <tr>
+            <td style="text-align: right; font-weight: bold;">Personal Address:</td>
+            <td><strong>String</strong><br/>
+                Specifies the primary and Secondary values for each respective type
+                <ul>
+                    <li>personalEmailAddress1, personalEmailAddress2</li>
+                    <li>personalAddress1, personalAddress2</li>
+                    <li>personalSuburb, personalState</li>
+                    <li>personalCountry, personalPostCode</li>
+                </ul>
+            </td>
+        </tr>
+        <tr>
+            <td style="text-align: right; font-weight: bold;">Personal Phones:</td>
+            <td><strong>Number</strong><br/>
+                Specifies the primary and Secondary values for each respective type
+                <ul>
+                    <li>personalPhoneAreaCode1, personalPhone1</li>
+                    <li>personalPhoneAreaCode2, personalPhone2</li>
+                    <li>personalFaxAreaCode1, personalFax1</li>
+                    <li>otherPhoneAreaCode1, otherPhone1</li>
+                    <li>otherMobile</li>
+                </ul>
+            </td>
+        </tr>
+        <tr>
+            <td style="text-align: right; font-weight: bold;">Alias Fields:</td>
+            <td><strong>String</strong><br/>
+                The other (alias) name and title fields
+                <ul>
+                    <li>otherFirstName, otherLastName, otherTitle</li>
+                </ul>
+            </td>
+        </tr>
+        <tr>
+            <td style="text-align: right; font-weight: bold;">Messaging Options:</td>
+            <td><strong>Object</strong><br/>
+                Read Format of Messaging Options below.
+            </td>
+        </tr>
+        <tr>
+            <td style="text-align: right; font-weight: bold;">Other Fields :</td>
+            <td><strong>String</strong><br/>
+                Whispir allows external developers to build a &lsquo;Self-Subscription&rsquo; portal to allow their own contacts to self-register for internal systems. To support this feature, the following fields are provided.<br>
+                <ul>
+                    <li>username - must be unique within the company (users and active contacts)</li>
+                    <li>password - mandatory only in conjunction with the username</li>
+                    <li>secretQuestion - mandatory (used for password reset)</li>
+                    <li>secretAnswer - mandatory (used for password reset)</li>
+                </ul>
+            </td>
+        </tr>
+    </tbody>
+</table>
+
+<h3 id="format-of-messaging-options">Format of Messaging Options</h3>
+<pre><code class="highlight xml">    <span class="nt">&lt;messagingoptions&gt;</span>
+        <span class="nt">&lt;messagingoption</span> <span class="na">channel=</span><span class="s">"sms"</span><span class="nt">&gt;</span>
+            <span class="nt">&lt;enabled&gt;</span>true<span class="nt">&lt;/enabled&gt;</span>
+            <span class="nt">&lt;primary&gt;</span>WorkMobilePhone1<span class="nt">&lt;/primary&gt;</span>
+            <span class="nt">&lt;secondary&gt;&lt;/secondary&gt;</span>
+            <span class="nt">&lt;tertiary&gt;&lt;/tertiary&gt;</span>
+        <span class="nt">&lt;/messagingoption&gt;</span>
+        <span class="nt">&lt;messagingoption</span> <span class="na">channel=</span><span class="s">"email"</span><span class="nt">&gt;</span>
+            <span class="nt">&lt;enabled&gt;</span>true<span class="nt">&lt;/enabled&gt;</span>
+            <span class="nt">&lt;primary&gt;</span>WorkEmailAddress1<span class="nt">&lt;/primary&gt;</span>
+            <span class="nt">&lt;secondary&gt;&lt;/secondary&gt;</span>
+            <span class="nt">&lt;tertiary&gt;&lt;/tertiary&gt;</span>
+        <span class="nt">&lt;/messagingoption&gt;</span>
+        <span class="nt">&lt;messagingoption</span> <span class="na">channel=</span><span class="s">"voice"</span><span class="nt">&gt;</span>
+            <span class="nt">&lt;enabled&gt;</span>true<span class="nt">&lt;/enabled&gt;</span>
+            <span class="nt">&lt;primary&gt;</span>WorkMobilePhone1<span class="nt">&lt;/primary&gt;</span>
+            <span class="nt">&lt;secondary&gt;&lt;/secondary&gt;</span>
+            <span class="nt">&lt;tertiary&gt;&lt;/tertiary&gt;</span>
+        <span class="nt">&lt;/messagingoption&gt;</span>
+    <span class="nt">&lt;/messagingoptions&gt;</span>
+</code></pre>
+<pre><code class="highlight go"><span class="s">"messagingoptions"</span><span class="o">:</span><span class="x"> </span><span class="p">[</span><span class="x">
+    </span><span class="p">{</span><span class="x">
+      </span><span class="s">"channel"</span><span class="o">:</span><span class="x"> </span><span class="s">"sms"</span><span class="p">,</span><span class="x">
+      </span><span class="s">"enabled"</span><span class="o">:</span><span class="x"> </span><span class="s">"true"</span><span class="p">,</span><span class="x">
+      </span><span class="s">"primary"</span><span class="o">:</span><span class="x"> </span><span class="s">"WorkMobilePhone1"</span><span class="x">
+    </span><span class="p">},</span><span class="x">
+    </span><span class="p">{</span><span class="x">
+      </span><span class="s">"channel"</span><span class="o">:</span><span class="x"> </span><span class="s">"email"</span><span class="p">,</span><span class="x">
+      </span><span class="s">"enabled"</span><span class="o">:</span><span class="x"> </span><span class="s">"true"</span><span class="p">,</span><span class="x">
+      </span><span class="s">"primary"</span><span class="o">:</span><span class="x"> </span><span class="s">"WorkEmailAddress1"</span><span class="x">
+    </span><span class="p">},</span><span class="x">
+    </span><span class="p">{</span><span class="x">
+      </span><span class="s">"channel"</span><span class="o">:</span><span class="x"> </span><span class="s">"voice"</span><span class="p">,</span><span class="x">
+      </span><span class="s">"enabled"</span><span class="o">:</span><span class="x"> </span><span class="s">"true"</span><span class="p">,</span><span class="x">
+      </span><span class="s">"primary"</span><span class="o">:</span><span class="x"> </span><span class="s">"WorkMobilePhone1"</span><span class="x">
+    </span><span class="p">}</span><span class="x">
+  </span><span class="p">]</span><span class="x">
+</span></code></pre>
+
+<p>Whispir allows to define the different channels that needs to be enabled/used for communication. Using Messaging options, one can define the preferred/allowed channels and the respective primary, secondary, and tertiary contact numbers, emails to be used. These values again are derived from the above specified various personal, work attributes.</p>
+
+<p>Available messaging options -</p>
+
+<ul>
+<li>sms</li>
+<li>email</li>
+<li>voice</li>
+</ul>
+
+<p>Each messaging options allows to specify the following 3 configuration settings</p>
+
+<dl>
+    <dt>enabled</dt>
+    <dd>- true</dd>
+    <dd>- false</dd>
+    <dt>primary</dt>
+    <dd>workMobilePhone1 (Can be any of the valid attribute which has a value in it)</dd>
+    <dt>secondary</dt>
+    <dd> > <i>optional</i> > - workMobilePhone2</dd>
+    <dt>tertiary</dt>
+    <dd> > <i>optional</i> > - personalMobilePhone1</dd>
+</dl>
+
+<h2 id="retrieving-contacts">Retrieving Contacts</h2>
+
+<blockquote>
+<p>Retrieving a list of Contacts</p>
+
+<blockquote>
+<p>Contacts can easily be retrieved from the Whispir API using the following endpoints:</p>
+</blockquote>
+</blockquote>
+<pre><code class="highlight plaintext">HTTP 1.1 GET https://api.whispir.com/contacts?apikey=&lt;your_api_key&gt;
+Authorization: Basic am9obi5zbWl0aDpteXBhc3N3b3Jk
+</code></pre>
+<pre><code class="highlight xml">Accept: application/vnd.whispir.contact-v1+xml
+
+<span class="cp">&lt;?xml version="1.0" encoding="UTF-8" standalone="yes"?&gt;</span>
+<span class="nt">&lt;ns2:return</span> <span class="na">xmlns:ns2=</span><span class="s">"http://schemas.api.whispir.com/dap"</span> <span class="na">xmlns:ns3=</span><span class="s">"http://schemas.api.whispir.com"</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;status&gt;</span>1 to 1 of 1<span class="nt">&lt;/status&gt;</span>
+    <span class="nt">&lt;ns2:contacts&gt;</span>
+        <span class="nt">&lt;ns2:contact&gt;</span>
+            <span class="nt">&lt;id&gt;</span>AF48A9EC3F02E43C<span class="nt">&lt;/id&gt;</span>
+            <span class="nt">&lt;firstName&gt;</span>Fred<span class="nt">&lt;/firstName&gt;</span>
+            <span class="nt">&lt;lastName&gt;</span>Smith<span class="nt">&lt;/lastName&gt;</span>
+            <span class="nt">&lt;status&gt;</span>A<span class="nt">&lt;/status&gt;</span>
+            <span class="nt">&lt;messagingoptions/&gt;</span> &gt; 
+            <span class="nt">&lt;ns2:link</span> <span class="na">method=</span><span class="s">"GET"</span> 
+                      <span class="na">rel=</span><span class="s">"self"</span> 
+                      <span class="na">uri=</span><span class="s">"http://api.whispir.com/contacts/AF48A9EC3F02E43C?apikey=&lt;your_api_key&gt;"</span><span class="nt">/&gt;</span>
+        <span class="nt">&lt;/ns2:contact&gt;</span>
+    <span class="nt">&lt;/ns2:contacts&gt;</span>
+<span class="nt">&lt;/ns2:return&gt;</span>
+</code></pre>
+<pre><code class="highlight go"><span class="n">Accept</span><span class="o">:</span><span class="x"> </span><span class="n">application</span><span class="o">/</span><span class="n">vnd</span><span class="o">.</span><span class="n">whispir</span><span class="o">.</span><span class="n">contact</span><span class="o">-</span><span class="n">v1</span><span class="o">+</span><span class="n">json</span><span class="x">
+
+</span><span class="p">{</span><span class="x">
+  </span><span class="s">"status"</span><span class="o">:</span><span class="x"> </span><span class="s">"1 to 1 of 1"</span><span class="p">,</span><span class="x">
+  </span><span class="s">"contacts"</span><span class="o">:</span><span class="x"> </span><span class="p">[</span><span class="x">
+    </span><span class="p">{</span><span class="x">
+      </span><span class="s">"id"</span><span class="o">:</span><span class="x"> </span><span class="s">"AF48A9EC3F02E43C"</span><span class="p">,</span><span class="x">
+      </span><span class="s">"firstName"</span><span class="o">:</span><span class="x"> </span><span class="s">"Fred"</span><span class="p">,</span><span class="x">
+      </span><span class="s">"lastName"</span><span class="o">:</span><span class="x"> </span><span class="s">"Smith"</span><span class="p">,</span><span class="x">
+      </span><span class="s">"status"</span><span class="o">:</span><span class="x"> </span><span class="s">"A"</span><span class="p">,</span><span class="x">
+      </span><span class="s">"messagingoptions"</span><span class="o">:</span><span class="x"> </span><span class="p">[],</span><span class="x">
+      </span><span class="s">"link"</span><span class="o">:</span><span class="x"> </span><span class="p">{</span><span class="x">
+        </span><span class="s">"method"</span><span class="o">:</span><span class="x"> </span><span class="s">"GET"</span><span class="p">,</span><span class="x">
+        </span><span class="s">"rel"</span><span class="o">:</span><span class="x"> </span><span class="s">"self"</span><span class="p">,</span><span class="x">
+        </span><span class="s">"uri"</span><span class="o">:</span><span class="x"> </span><span class="s">"http://api.whispir.com/contacts/AF48A9EC3F02E43C?apikey=&lt;your_api_key&gt;"</span><span class="x">
+      </span><span class="p">}</span><span class="x">
+    </span><span class="p">}</span><span class="x">
+  </span><span class="p">]</span><span class="x">
+</span><span class="p">}</span><span class="x">
+</span></code></pre>
+
+<p>Contacts can be retrieved quite easily with a GET request to the <code class="prettyprint">/contacts</code>. A simple /contacts will result in all contacts being retrieved with all of their information. No filters are applied.</p>
+
+<p>Once the request is placed, the response will be a list of url&rsquo;s to each of the contacts that the API user has access to/or has requested for via the search criteria.  </p>
+
+<p><strong>Note:</strong> The sample request here shows contacts from the default workspace. If you need to retrieve contacts from a specific workspace, please ensure that the workspace information is passed in the URL.</p>
+
+<dl>
+    <dt>URI for default workspace</dt>
+    <dd>- https://api.whispir.com/contacts?apikey=<your_api_key></dd>
+</dl>
+
+<dl>
+    <dt>URI for a specific workspace with id BC348DC83DF1AB34</dt>
+    <dd> > - https://api.whispir.com/workspaces/BC348DC83DF1AB34/contacts?apikey=<your_api_key></dd>
+</dl>
+
+<h3 id="get-a-specific-contact">Get a specific contact</h3>
+
+<blockquote>
+<p>Retrieving a specific Contact</p>
+
+<blockquote>
+<p>Users can retrieve a specific contact by supplying the Contact ID in the URL.</p>
+</blockquote>
+</blockquote>
+<pre><code class="highlight plaintext">HTTP 1.1 GET https://api.whispir.com/contacts/AF48A9EC3F02E43C?apikey=&lt;your_api_key&gt;
+Authorization: Basic am9obi5zbWl0aDpteXBhc3N3b3Jk
+</code></pre>
+<pre><code class="highlight xml">Accept: application/vnd.whispir.contact-v1+xml
+
+<span class="cp">&lt;?xml version="1.0" encoding="UTF-8" standalone="yes"?&gt;</span>
+<span class="nt">&lt;ns2:contact</span> <span class="na">xmlns:ns2=</span><span class="s">"http://schemas.api.whispir.com/dap"</span> <span class="na">xmlns:ns3=</span><span class="s">"http://schemas.api.whispir.com"</span><span class="nt">&gt;</span>
+   <span class="nt">&lt;id&gt;</span>AF48A9EC3F02E43C<span class="nt">&lt;/id&gt;</span>
+   <span class="nt">&lt;firstName&gt;</span>Fred<span class="nt">&lt;/firstName&gt;</span>
+   <span class="nt">&lt;lastName&gt;</span>Smith<span class="nt">&lt;/lastName&gt;</span>
+   <span class="nt">&lt;status&gt;</span>A<span class="nt">&lt;/status&gt;</span>
+   <span class="nt">&lt;messagingoptions/&gt;</span> &gt; 
+   <span class="nt">&lt;ns2:link</span> <span class="na">method=</span><span class="s">"GET"</span> 
+             <span class="na">rel=</span><span class="s">"self"</span> 
+             <span class="na">uri=</span><span class="s">"http://api.whispir.com/contacts/AF48A9EC3F02E43C?apikey=&lt;your_api_key&gt;"</span><span class="nt">/&gt;</span>
+<span class="nt">&lt;/ns2:contact&gt;</span>
+</code></pre>
+<pre><code class="highlight go"><span class="n">Accept</span><span class="o">:</span><span class="x"> </span><span class="n">application</span><span class="o">/</span><span class="n">vnd</span><span class="o">.</span><span class="n">whispir</span><span class="o">.</span><span class="n">contact</span><span class="o">-</span><span class="n">v1</span><span class="o">+</span><span class="n">json</span><span class="x">
+
+</span><span class="p">{</span><span class="x">
+   </span><span class="s">"id"</span><span class="o">:</span><span class="x"> </span><span class="s">"AF48A9EC3F02E43C"</span><span class="p">,</span><span class="x">
+   </span><span class="s">"firstName"</span><span class="o">:</span><span class="x"> </span><span class="s">"Fred"</span><span class="p">,</span><span class="x">
+   </span><span class="s">"lastName"</span><span class="o">:</span><span class="x"> </span><span class="s">"Smith"</span><span class="p">,</span><span class="x">
+   </span><span class="s">"status"</span><span class="o">:</span><span class="x"> </span><span class="s">"A"</span><span class="p">,</span><span class="x">
+   </span><span class="s">"messagingoptions"</span><span class="o">:</span><span class="x"> </span><span class="p">[],</span><span class="x">
+   </span><span class="s">"link"</span><span class="o">:</span><span class="x"> </span><span class="p">{</span><span class="x">
+     </span><span class="s">"method"</span><span class="o">:</span><span class="x"> </span><span class="s">"GET"</span><span class="p">,</span><span class="x">
+     </span><span class="s">"rel"</span><span class="o">:</span><span class="x"> </span><span class="s">"self"</span><span class="p">,</span><span class="x">
+     </span><span class="s">"uri"</span><span class="o">:</span><span class="x"> </span><span class="s">"http://api.whispir.com/contacts/AF48A9EC3F02E43C?apikey=&lt;your_api_key&gt;"</span><span class="x">
+   </span><span class="p">}</span><span class="x">
+</span><span class="p">}</span><span class="x">
+</span></code></pre>
+
+<p>To get details of a specific contact, the URI must be passed with the ID of the contact. So, the URI shall be:</p>
+
+<p><code class="prettyprint">https://api.whispir.com/contacts/AF48A9EC3F02E43C</code> </p>
+
+<p>Where <code class="prettyprint">AF48A9EC3F02E43C</code> is the contact id.</p>
+
+<h3 id="showing-custom-fields">Showing Custom Fields</h3>
+
+<blockquote>
+<p>Showing Custom Fields on Contacts</p>
+
+<blockquote>
+<p>Within Whispir, contacts can have Custom Fields present to store data that is not supported on the default contact profile.  Users can show this custom data for contacts by adding the <code class="prettyprint">customFields=true</code> query parameter.</p>
+</blockquote>
+</blockquote>
+<pre><code class="highlight plaintext">HTTP 1.1 GET https://api.whispir.com/contacts?apikey=&lt;your_api_key&gt;&amp;customFields=true
+Authorization: Basic am9obi5zbWl0aDpteXBhc3N3b3Jk
+</code></pre>
+<pre><code class="highlight xml">Accept: application/vnd.whispir.contact-v1+xml
+</code></pre>
+<pre><code class="highlight go"><span class="n">Accept</span><span class="o">:</span><span class="x"> </span><span class="n">application</span><span class="o">/</span><span class="n">vnd</span><span class="o">.</span><span class="n">whispir</span><span class="o">.</span><span class="n">contact</span><span class="o">-</span><span class="n">v1</span><span class="o">+</span><span class="n">json</span><span class="x">
+</span></code></pre>
+
+<p>Whispir supports extension of the default Contact Profile through the use of Custom Fields. Custom fields can support other fields that may be required to be stored on your Contacts, such as Staff ID, Internal Billing Codes, or One Up Manager.</p>
+
+<p>These custom fields can be configured on any account through a Change Request to Whispir.</p>
+
+<p>In order to reveal these custom fields on the contact profile, you can use the <code class="prettyprint">customFields=true</code> flag within your API request.</p>
+
+<p><code class="prettyprint">/contacts/AB38CB3EFD38AFDB?customFields=true</code></p>
+
+<h2 id="searching-for-contacts">Searching for Contacts</h2>
+
+<blockquote>
+<p>Searching for Contacts</p>
+
+<blockquote>
+<p>Users can easily use further query parameters to search for specific contacts within Whispir.</p>
+</blockquote>
+</blockquote>
+<pre><code class="highlight plaintext">HTTP 1.1 GET https://api.whispir.com/contacts?apikey=&lt;your_api_key&gt;&amp;firstName=Sam&amp;sortOrder=desc&amp;sortFields=workEmailAddressPrimary
+Authorization: Basic am9obi5zbWl0aDpteXBhc3N3b3Jk
+</code></pre>
+<pre><code class="highlight xml">Accept: application/vnd.whispir.contact-v1+xml
+</code></pre>
+<pre><code class="highlight go"><span class="n">Accept</span><span class="o">:</span><span class="x"> </span><span class="n">application</span><span class="o">/</span><span class="n">vnd</span><span class="o">.</span><span class="n">whispir</span><span class="o">.</span><span class="n">contact</span><span class="o">-</span><span class="n">v1</span><span class="o">+</span><span class="n">json</span><span class="x">
+</span></code></pre>
+
+<p>Contacts can be searched for in a given workspace by passing in valid search criteria. The search criteria usually can be any of the contact elements (field names) and will be sent in as part of the URI as query parameters.</p>
+
+<p>This searching mechanism can be useful to see if any contacts exist in the system with a specific email address, phone number, or job role and so on. Simply to state, the API can help you search based on any attribute associated with the contact.</p>
+
+<p>The key parameters that are required on the URL to facilitate this search are as follows:</p>
+
+<table>
+    <thead>
+        <tr>
+            <th style="width: 50%" colspan="2">URI Request Elements as Query Params</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td style="text-align: right; font-weight: bold;">fieldname:</td>
+            <td><strong>String</strong><br/>
+                Specifies the field name of the contact object. The field name could be any thing as long as it is a valid contact object.
+                <br><br>
+                <b>Ex:</b><br>
+                http://api.whispir.com/contacts?apikey=<your_api_key><b>&firstName=Sam</b>
+            </td>
+        </tr>
+        <tr>
+            <td style="text-align: right; font-weight: bold;">sortOrder:</td>
+            <td><strong>String</strong><br/>
+                The order in which you require the results to be returned. Either `asc` or `desc`.
+            </td>
+        </tr>
+        <tr>
+            <td style="text-align: right; font-weight: bold;">sortFields:</td>
+            <td><strong>String</strong><br/>
+                The fields that you require the ordering to be performed on. Multiple fields can be provided, separated by a comma.
+                <br><br>
+                <b>Ex:</b><br>
+                http://api.whispir.com/contacts?apikey=<your_api_key>&firstName=Sam<b>&sortFields=lastName,jobTitle</b>
+            </td>
+        </tr>
+    </tbody>
+</table>
+
+<p>The search can also be done inside a specific workspace if needed, by adding the workspace information in the URI.</p>
+
+<p><strong>Note:</strong> There is no global search feature available where one can search on all the workspaces present in the system (under allowed user permission). So, When no workspace is provided, the search is performed on the default workspace of the user.</p>
+
+<h3 id="searching-for-contacts-with-custom-fields">Searching for contacts with Custom Fields</h3>
+
+<blockquote>
+<p>Searching for Contacts using Custom Fields</p>
+
+<blockquote>
+<p>Within Whispir, contacts can have Custom Fields present to store data that is not supported on the default contact profile.  Users can search for contacts using this data using the API.</p>
+</blockquote>
+</blockquote>
+<pre><code class="highlight plaintext">HTTP 1.1 GET https://api.whispir.com/contacts?apikey=&lt;your_api_key&gt;&amp;custom_staffID=123456
+Authorization: Basic am9obi5zbWl0aDpteXBhc3N3b3Jk
+</code></pre>
+<pre><code class="highlight xml">Accept: application/vnd.whispir.contact-v1+xml
+</code></pre>
+<pre><code class="highlight go"><span class="n">Accept</span><span class="o">:</span><span class="x"> </span><span class="n">application</span><span class="o">/</span><span class="n">vnd</span><span class="o">.</span><span class="n">whispir</span><span class="o">.</span><span class="n">contact</span><span class="o">-</span><span class="n">v1</span><span class="o">+</span><span class="n">json</span><span class="x">
+</span></code></pre>
+
+<p>As Whispir supports extension of the default Contact Profile through the use of Custom Fields. There may be cases where users want to search for Contacts that contain these specific fields. As such, the Whispir API supports searching for contacts using these custom fields.</p>
+
+<p>Any custom field can be searched by adding the <code class="prettyprint">custom_</code> prepended to the name.</p>
+
+<p>For example, if the field name is <strong>StaffId</strong>, then the URL would search for:</p>
+
+<p><code class="prettyprint">/contacts?custom_StaffId=12345</code></p>
+
+<h2 id="updating-contacts">Updating Contacts</h2>
+
+<blockquote>
+<p>Updating Contacts</p>
+
+<blockquote>
+<p>The following endpoints allow users to update contacts using the Whispir API.</p>
+</blockquote>
+</blockquote>
+<pre><code class="highlight plaintext">HTTP 1.1 PUT https://api.whispir.com/contacts/CB4558257DD86D09?apikey=&lt;your_api_key&gt;
+Authorization: Basic am9obi5zbWl0aDpteXBhc3N3b3Jk
+</code></pre>
+<pre><code class="highlight xml">Content-Type: application/vnd.whispir.contact-v1+xml
+
+<span class="cp">&lt;?xml version="1.0" encoding="UTF-8" standalone="yes"?&gt;</span>
+<span class="nt">&lt;ns2:contact</span> <span class="na">xmlns:ns2=</span><span class="s">"http://schemas.api.whispir.com"</span> <span class="na">xmlns:ns3=</span><span class="s">"http://schemas.api.whispir.com/dap"</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;firstName&gt;</span>John<span class="nt">&lt;/firstName&gt;</span>
+    <span class="nt">&lt;lastName&gt;</span>Wick<span class="nt">&lt;/lastName&gt;</span>
+    <span class="nt">&lt;timeZone&gt;</span>+8<span class="nt">&lt;/timezone&gt;</span>
+    <span class="nt">&lt;jobTitle&gt;&lt;/jobTitle&gt;</span>
+
+    ... remaining of the contact object
+<span class="nt">&lt;/ns2:contact&gt;</span>
+</code></pre>
+<pre><code class="highlight go"><span class="n">Content</span><span class="o">-</span><span class="n">Type</span><span class="o">:</span><span class="x"> </span><span class="n">application</span><span class="o">/</span><span class="n">vnd</span><span class="o">.</span><span class="n">whispir</span><span class="o">.</span><span class="n">contact</span><span class="o">-</span><span class="n">v1</span><span class="o">+</span><span class="n">json</span><span class="x">
+
+</span><span class="p">{</span><span class="x">
+    </span><span class="s">"firstName"</span><span class="o">:</span><span class="x"> </span><span class="s">"John"</span><span class="p">,</span><span class="x">
+    </span><span class="s">"lastName"</span><span class="o">:</span><span class="x"> </span><span class="s">"Wick"</span><span class="p">,</span><span class="x">
+    </span><span class="s">"timeZone"</span><span class="o">:</span><span class="x"> </span><span class="s">"+8"</span><span class="p">,</span><span class="x">
+    </span><span class="s">"jobTitle"</span><span class="o">:</span><span class="x"> </span><span class="s">"Whispir API Specialist"</span><span class="p">,</span><span class="x">
+
+    </span><span class="o">...</span><span class="x"> </span><span class="n">remaining</span><span class="x"> </span><span class="n">of</span><span class="x"> </span><span class="n">the</span><span class="x"> </span><span class="n">contact</span><span class="x"> </span><span class="n">object</span><span class="x">
+</span><span class="p">}</span><span class="x">
+</span></code></pre>
+
+<blockquote>
+<blockquote>
+<p>The response to the PUT request upon success is a <code class="prettyprint">204 No Content</code> with no content being provided.</p>
+</blockquote>
+</blockquote>
+
+<p>Updating a contact can be performed using a PUT request to the <code class="prettyprint">/contacts/{id}</code> endpoint. So, to perform this, one must be knowing the exact “link” associated with the contact.</p>
+
+<p>The application must provide all the fields during the update request, even if they are not being updated. </p>
+
+<p><strong>Any missing fields will be automatically removed from the existing record.</strong></p>
+
+<p>The Content-Type can be -</p>
+
+<ul>
+<li>application/vnd.whispir.contact-v1+xml <strong>or</strong> </li>
+<li>application/vnd.whispir.contact-v1+json</li>
+</ul>
+
+<p><strong>Note:</strong> You cannot selectively update the contact fields needed as this is a PUT request. </p>
+
+<p>So the standard process for updating a contact record is -</p>
+
+<ol>
+<li>GET /contact/{id of contact}</li>
+<li>Update the contact field in the object to the required value</li>
+<li>PUT /contact/{id of contact} the new object</li>
+</ol>
+
+<p>The response to the PUT request upon success is usually a <code class="prettyprint">204</code> with no content being provided.</p>
+
+<h3 id="deleting-a-contact">Deleting a contact</h3>
+
+<blockquote>
+<p>Deleting a contact</p>
+
+<blockquote>
+<p>The following statement allows users to delete contacts using the Whispir API.  Please note, this contact will only be deleted from the current workspace.  Any mappings to other workspaces will need to be deleted there.  There is no <strong>Delete All</strong> support within the Whispir API.</p>
+</blockquote>
+</blockquote>
+<pre><code class="highlight plaintext">HTTP 1.1 DELETE https://api.whispir.com/contacts/124F6B2D46A5A268?apikey=&lt;your_api_key&gt;
+Authorization: Basic am9obi5zbWl0aDpteXBhc3N3b3Jk
+</code></pre>
+
+<p>Updating a contact can be performed using a DELETE request to the /contacts/{id} endpoint. So, to perform this, one must be knowing the exact “link” associated with the contact.</p>
+
+<p>After performing this request, the response does not contain any information other than the headers as it is not necessary.</p>
+
+<p>The user has requested to delete a contact, and when the response of <code class="prettyprint">204 No Content</code> is returned, the contact is successfully deleted.</p>
+
+<h2 id="advanced-options">Advanced Options</h2>
+
+<p>Whispir API provides some advanced options to perform search and data related queries on the contact information. These options can be performed by adding relevant query parameters to the URL.</p>
+
+<h3 id="searching-with-multiple-criteria">Searching with multiple criteria</h3>
+
+<blockquote>
+<p>Searching with multiple search criteria</p>
+
+<blockquote>
+<p>The following query parameters allow users to search with more than one piece of search criteria on the contact profile.</p>
+</blockquote>
+</blockquote>
+<pre><code class="highlight plaintext">HTTP 1.1 GET https://api.whispir.com/contacts?apikey=&lt;your_api_key&gt;&amp;firstName=Sam&amp;lastname=gamjee
+Authorization: Basic am9obi5zbWl0aDpteXBhc3N3b3Jk
+</code></pre>
+
+<p>The API allows to search for a contact based on any attribute/ data element associated with the contact. This is not limited to just one attribute, but multiple attributes can be searched at the same time.</p>
+
+<table>
+    <thead>
+        <tr>
+            <th style="width: 50%" colspan="2">URI Request Elements as Query Params</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td style="text-align: right; font-weight: bold;">fieldname:</td>
+            <td><strong>String</strong><br/>
+                Specifies the field name of the contact object. The field name could be any thing as long as it is a valid contact object.
+                <br><br>
+                <b>Ex:</b><br>
+                http://api.whispir.com/contacts?apikey=<your_api_key><b>&firstName=Sam&lastName=gamjee</b>
+            </td>
+        </tr>
+        <tr>
+            <td style="text-align: right; font-weight: bold;">sortOrder:</td>
+            <td><strong>String</strong><br/>
+                The order in which you require the results to be returned. Either `asc` or `desc`.
+            </td>
+        </tr>
+        <tr>
+            <td style="text-align: right; font-weight: bold;">sortFields:</td>
+            <td><strong>String</strong><br/>
+                The fields that you require the ordering to be performed on. Multiple fields can be provided, separated by a comma.
+                <br><br>
+                <b>Ex:</b><br>
+                http://api.whispir.com/contacts?apikey=<your_api_key>&firstName=Sam<b>&sortFields=lastName,jobTitle</b>
+            </td>
+        </tr>
+    </tbody>
+</table>
+
+<h3 id="choosing-the-data-elements">Choosing the data elements</h3>
+
+<blockquote>
+<p>Choosing specific data elements to return</p>
+
+<blockquote>
+<p>The following query parameters allow users to return data fields from the contact profile that are specifically what they are looking to retrieve.</p>
+</blockquote>
+</blockquote>
+<pre><code class="highlight xml">HTTP 1.1 GET https://api.whispir.com/contacts?apikey=<span class="nt">&lt;your_api_key&gt;</span><span class="err">&amp;</span>fields=workEmailAddress1,workMobilePhone1<span class="err">&amp;</span>firstname=Sam
+Authorization: Basic am9obi5zbWl0aDpteXBhc3N3b3Jk
+Accept: application/vnd.whispir.contact-v1+xml
+
+<span class="cp">&lt;?xml version="1.0" encoding="UTF-8" standalone="yes"?&gt;</span>
+<span class="nt">&lt;ns2:return</span> <span class="na">xmlns:ns2=</span><span class="s">"http://schemas.api.whispir.com/dap"</span> <span class="na">xmlns:ns3=</span><span class="s">"http://schemas.api.whispir.com"</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;status&gt;</span>1 to 1 of 1<span class="nt">&lt;/status&gt;</span>
+    <span class="nt">&lt;ns2:contacts&gt;</span>
+        <span class="nt">&lt;ns2:contact&gt;</span>
+            <span class="nt">&lt;id&gt;</span>DC09CC30243A51D5<span class="nt">&lt;/id&gt;</span>
+            <span class="nt">&lt;workEmailAddress1&gt;</span>sam@gamjee.com<span class="nt">&lt;/workEmailAddress1&gt;</span>
+            <span class="nt">&lt;workMobilePhone1&gt;</span>61423456789<span class="nt">&lt;/workMobilePhone1&gt;</span>
+            <span class="nt">&lt;messagingoptions/&gt;</span>
+            <span class="nt">&lt;ns2:link</span> <span class="na">uri=</span><span class="s">"https://api.whispir.com/contacts/DC09CC30243A51D5?apikey=&lt;your_key_api&gt;"</span> <span class="na">rel=</span><span class="s">"self"</span> <span class="na">method=</span><span class="s">"GET"</span><span class="nt">/&gt;</span>
+        <span class="nt">&lt;/ns2:contact&gt;</span>
+    <span class="nt">&lt;ns2:contacts&gt;</span>
+<span class="nt">&lt;/ns2:return&gt;</span>
+</code></pre>
+<pre><code class="highlight go"><span class="n">HTTP</span><span class="x"> </span><span class="m">1.1</span><span class="x"> </span><span class="n">GET</span><span class="x"> </span><span class="n">https</span><span class="o">:</span><span class="c">//api.whispir.com/contacts?apikey=&lt;your_api_key&gt;&amp;fields=workEmailAddress1,workMobilePhone1&amp;firstname=Sam</span><span class="x">
+</span><span class="n">Authorization</span><span class="o">:</span><span class="x"> </span><span class="n">Basic</span><span class="x"> </span><span class="n">am9obi5zbWl0aDpteXBhc3N3b3Jk</span><span class="x">
+</span><span class="n">Accept</span><span class="o">:</span><span class="x"> </span><span class="n">application</span><span class="o">/</span><span class="n">vnd</span><span class="o">.</span><span class="n">whispir</span><span class="o">.</span><span class="n">contact</span><span class="o">-</span><span class="n">v1</span><span class="o">+</span><span class="n">json</span><span class="x">
+
+</span><span class="p">{</span><span class="x">
+  </span><span class="s">"contacts"</span><span class="o">:</span><span class="x"> </span><span class="p">[{</span><span class="x">
+      </span><span class="s">"id"</span><span class="o">:</span><span class="x"> </span><span class="s">"DC09CC30243A51D5"</span><span class="p">,</span><span class="x">
+        </span><span class="s">"workEmailAddress1"</span><span class="o">:</span><span class="s">"sam@gamjee.com"</span><span class="p">,</span><span class="x">
+        </span><span class="s">"workMobilePhone1"</span><span class="o">:</span><span class="s">"61423456789"</span><span class="x">
+        </span><span class="s">"messagingoptions"</span><span class="o">:</span><span class="x"> </span><span class="p">[],</span><span class="x">
+        </span><span class="s">"link"</span><span class="o">:</span><span class="x"> </span><span class="p">[{</span><span class="x">
+          </span><span class="s">"uri"</span><span class="o">:</span><span class="x"> </span><span class="s">"https://api.whispir.com/contacts/DC09CC30243A51D5?apikey=&lt;your_key_api&gt;"</span><span class="p">,</span><span class="x">
+          </span><span class="s">"rel"</span><span class="o">:</span><span class="x"> </span><span class="s">"self"</span><span class="p">,</span><span class="x">
+          </span><span class="s">"method"</span><span class="o">:</span><span class="x"> </span><span class="s">"GET"</span><span class="x">
+        </span><span class="p">}]</span><span class="x">
+    </span><span class="p">}</span><span class="x">
+</span></code></pre>
+
+<p>When requesting the contact information, a simple GET request on the /contact API gives you the basic details of the contact.</p>
+
+<p>To get all the details or fields other than the ones given by default, you have to follow the <code class="prettyprint">link</code> and do another GET request. This can be easily skipped, by asking the API to give you specific fields and data right away in the first <code class="prettyprint">GET \contact</code> call itself.</p>
+
+<p>This can be done by passing the required fields in the URL via the <code class="prettyprint">fields</code> parameter. You can also use this in conjunction with the search criteria. An Example use could be to get the mobile  number and the email of all contacts with firstname as &#39;Sam&rsquo;.</p>
+
         <h1 id="distribution-lists">Distribution Lists</h1>
 
 <blockquote>
