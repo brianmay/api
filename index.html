@@ -205,8 +205,8 @@ curl -H <span class="s2">"Authorization: Basic am9obi5zbWl0aDpteXBhc3N3b3Jk"</sp
 <span class="c"># If all is correct, the following response should be expected (The API defaults to an XML response)</span>
 
 &lt;?xml <span class="nv">version</span><span class="o">=</span><span class="s2">"1.0"</span> <span class="nv">encoding</span><span class="o">=</span><span class="s2">"UTF-8"</span> <span class="nv">standalone</span><span class="o">=</span><span class="s2">"yes"</span>?&gt;
-&lt;ns2:company <span class="nv">xmlns</span><span class="o">=</span><span class="s2">"https://schemas.api.whispir.com/dap"</span> 
-             xmlns:ns2<span class="o">=</span><span class="s2">"https://schemas.api.whispir.com"</span>&gt;
+&lt;ns2:company <span class="nv">xmlns</span><span class="o">=</span><span class="s2">"http://schemas.api.whispir.com/dap"</span> 
+             xmlns:ns2<span class="o">=</span><span class="s2">"http://schemas.api.whispir.com"</span>&gt;
     &lt;link <span class="nv">method</span><span class="o">=</span><span class="s2">"GET"</span> 
           <span class="nv">rel</span><span class="o">=</span><span class="s2">"retrieveWorkspaces"</span> 
           <span class="nv">uri</span><span class="o">=</span><span class="s2">"https://api.whispir.com/workspaces?apikey=89asdfohasd89023rsd"</span>/&gt;
@@ -370,7 +370,7 @@ Authorization: Basic am9obi5zbWl0aDpteXBhc3N3b3Jk
 Accept: application/vnd.whispir.message-v1+xml
 
 <span class="cp">&lt;?xml version="1.0" encoding="UTF-8" standalone="yes"?&gt;</span>
-<span class="nt">&lt;ns2:message</span> <span class="na">xmlns:ns2=</span><span class="s">"https://schemas.api.whispir.com"</span><span class="nt">&gt;</span>
+<span class="nt">&lt;ns2:message</span> <span class="na">xmlns:ns2=</span><span class="s">"http://schemas.api.whispir.com"</span><span class="nt">&gt;</span>
     <span class="nt">&lt;to&gt;</span>[DESTINATION PHONE NUMBER]<span class="nt">&lt;/to&gt;</span>
     <span class="nt">&lt;subject&gt;</span>This is the first line of my SMS<span class="nt">&lt;/subject&gt;</span>    
     <span class="nt">&lt;body&gt;</span>This is the content of my SMS<span class="nt">&lt;/body&gt;</span>
@@ -1033,7 +1033,7 @@ Authorization: Basic &lt;YOUR AUTH HEADER&gt;
 <pre><code class="highlight xml">Content-Type: application/vnd.whispir.message-v1+xml
 
 <span class="cp">&lt;?xml version="1.0" encoding="UTF-8" standalone="yes"?&gt;</span>
-<span class="nt">&lt;ns2:message</span> <span class="na">xmlns:ns2=</span><span class="s">"https://schemas.api.whispir.com"</span><span class="nt">&gt;</span>
+<span class="nt">&lt;ns2:message</span> <span class="na">xmlns:ns2=</span><span class="s">"http://schemas.api.whispir.com"</span><span class="nt">&gt;</span>
     <span class="nt">&lt;to&gt;</span>$mobile<span class="nt">&lt;/to&gt;</span>
     <span class="nt">&lt;subject&gt;</span>Test Message<span class="nt">&lt;/subject&gt;</span>    
     <span class="nt">&lt;body&gt;</span>This is the body of my test SMS message<span class="nt">&lt;/body&gt;</span>
@@ -1244,7 +1244,7 @@ Authorization: Basic am9obi5zbWl0aDpteXBhc3N3b3Jk
 Accept: application/vnd.whispir.message-v1+xml
 
 <span class="cp">&lt;?xml version="1.0" encoding="UTF-8" standalone="yes"?&gt;</span>
-<span class="nt">&lt;ns2:message</span> <span class="na">xmlns:ns2=</span><span class="s">"https://schemas.api.whispir.com"</span><span class="nt">&gt;</span>
+<span class="nt">&lt;ns2:message</span> <span class="na">xmlns:ns2=</span><span class="s">"http://schemas.api.whispir.com"</span><span class="nt">&gt;</span>
     <span class="nt">&lt;to&gt;</span>$mobile<span class="nt">&lt;/to&gt;</span>
     <span class="nt">&lt;subject&gt;</span>Test SMS Message<span class="nt">&lt;/subject&gt;</span>    
     <span class="nt">&lt;body&gt;</span>This is the body of my test SMS message<span class="nt">&lt;/body&gt;</span>
@@ -1327,7 +1327,7 @@ Authorization: Basic am9obi5zbWl0aDpteXBhc3N3b3Jk
 <pre><code class="highlight xml">Content-Type: application/vnd.whispir.message-v1+xml
 
 <span class="cp">&lt;?xml version="1.0" encoding="UTF-8" standalone="yes"?&gt;</span>
-<span class="nt">&lt;ns2:message</span> <span class="na">xmlns:ns2=</span><span class="s">"https://schemas.api.whispir.com"</span><span class="nt">&gt;</span>
+<span class="nt">&lt;ns2:message</span> <span class="na">xmlns:ns2=</span><span class="s">"http://schemas.api.whispir.com"</span><span class="nt">&gt;</span>
     <span class="nt">&lt;to&gt;</span>john.smith@test.com<span class="nt">&lt;/to&gt;</span>
     <span class="nt">&lt;subject&gt;</span>Test Email Message<span class="nt">&lt;/subject&gt;</span>    
     <span class="nt">&lt;email&gt;</span>
@@ -1362,7 +1362,7 @@ Authorization: Basic am9obi5zbWl0aDpteXBhc3N3b3Jk
 <pre><code class="highlight xml">Content-Type: application/vnd.whispir.message-v1+xml
 
 <span class="cp">&lt;?xml version="1.0" encoding="UTF-8" standalone="yes"?&gt;</span>
-<span class="nt">&lt;ns2:message</span> <span class="na">xmlns:ns2=</span><span class="s">"https://schemas.api.whispir.com"</span><span class="nt">&gt;</span>
+<span class="nt">&lt;ns2:message</span> <span class="na">xmlns:ns2=</span><span class="s">"http://schemas.api.whispir.com"</span><span class="nt">&gt;</span>
     <span class="nt">&lt;to&gt;</span>john.smith@test.com<span class="nt">&lt;/to&gt;</span>
     <span class="nt">&lt;subject&gt;</span>Test Email Message<span class="nt">&lt;/subject&gt;</span>    
     <span class="nt">&lt;email&gt;</span>
@@ -1416,7 +1416,7 @@ Authorization: Basic am9obi5zbWl0aDpteXBhc3N3b3Jk
 <pre><code class="highlight xml">Content-Type: application/vnd.whispir.message-v1+xml
 
 <span class="cp">&lt;?xml version="1.0" encoding="UTF-8" standalone="yes"?&gt;</span>
-<span class="nt">&lt;ns2:message</span> <span class="na">xmlns:ns2=</span><span class="s">"https://schemas.api.whispir.com"</span><span class="nt">&gt;</span>
+<span class="nt">&lt;ns2:message</span> <span class="na">xmlns:ns2=</span><span class="s">"http://schemas.api.whispir.com"</span><span class="nt">&gt;</span>
     <span class="nt">&lt;to&gt;</span>john.smith@test.com<span class="nt">&lt;/to&gt;</span>
     <span class="nt">&lt;subject&gt;</span>Test e-mail message with attachment<span class="nt">&lt;/subject&gt;</span>    
     <span class="nt">&lt;email&gt;</span>
@@ -1528,7 +1528,7 @@ Authorization: Basic am9obi5zbWl0aDpteXBhc3N3b3Jk
 <pre><code class="highlight xml">Content-Type: application/vnd.whispir.message-v1+xml
 
 <span class="cp">&lt;?xml version="1.0" encoding="UTF-8" standalone="yes"?&gt;</span>
-<span class="nt">&lt;ns2:message</span> <span class="na">xmlns:ns2=</span><span class="s">"https://schemas.api.whispir.com"</span><span class="nt">&gt;</span>
+<span class="nt">&lt;ns2:message</span> <span class="na">xmlns:ns2=</span><span class="s">"http://schemas.api.whispir.com"</span><span class="nt">&gt;</span>
     <span class="nt">&lt;to&gt;</span>$mobile<span class="nt">&lt;/to&gt;</span>
     <span class="nt">&lt;subject&gt;</span>Test Voice Call<span class="nt">&lt;/subject&gt;</span>    
     <span class="nt">&lt;voice&gt;</span>
@@ -1571,7 +1571,7 @@ Authorization: Basic am9obi5zbWl0aDpteXBhc3N3b3Jk
 <pre><code class="highlight xml">Content-Type: application/vnd.whispir.message-v1+xml
 
 <span class="cp">&lt;?xml version="1.0" encoding="UTF-8" standalone="yes"?&gt;</span>
-<span class="nt">&lt;ns2:message</span> <span class="na">xmlns:ns2=</span><span class="s">"https://schemas.api.whispir.com"</span><span class="nt">&gt;</span>
+<span class="nt">&lt;ns2:message</span> <span class="na">xmlns:ns2=</span><span class="s">"http://schemas.api.whispir.com"</span><span class="nt">&gt;</span>
     <span class="nt">&lt;to&gt;</span>$mobile<span class="nt">&lt;/to&gt;</span>
     <span class="nt">&lt;subject&gt;</span>Test Voice Call<span class="nt">&lt;/subject&gt;</span>    
     <span class="nt">&lt;voice&gt;</span>
@@ -1673,7 +1673,7 @@ Authorization: Basic am9obi5zbWl0aDpteXBhc3N3b3Jk
 <pre><code class="highlight xml">Content-Type: application/vnd.whispir.message-v1+xml
 
 <span class="cp">&lt;?xml version="1.0" encoding="UTF-8" standalone="yes"?&gt;</span>
-<span class="nt">&lt;ns2:message</span> <span class="na">xmlns:ns2=</span><span class="s">"https://schemas.api.whispir.com"</span><span class="nt">&gt;</span>
+<span class="nt">&lt;ns2:message</span> <span class="na">xmlns:ns2=</span><span class="s">"http://schemas.api.whispir.com"</span><span class="nt">&gt;</span>
     <span class="nt">&lt;to&gt;</span>$mobile<span class="nt">&lt;/to&gt;</span>
     <span class="nt">&lt;subject&gt;</span>Test Rich Message<span class="nt">&lt;/subject&gt;</span>    
     <span class="nt">&lt;body&gt;</span>This is some content followed by the Rich Message link @@web_link@@<span class="nt">&lt;/body&gt;</span>
@@ -1717,7 +1717,7 @@ Authorization: Basic am9obi5zbWl0aDpteXBhc3N3b3Jk
 <pre><code class="highlight xml">Content-Type: application/vnd.whispir.message-v1+xml
 
 <span class="cp">&lt;?xml version="1.0" encoding="UTF-8" standalone="yes"?&gt;</span>
-<span class="nt">&lt;ns2:message</span> <span class="na">xmlns:ns2=</span><span class="s">"https://schemas.api.whispir.com"</span><span class="nt">&gt;</span>
+<span class="nt">&lt;ns2:message</span> <span class="na">xmlns:ns2=</span><span class="s">"http://schemas.api.whispir.com"</span><span class="nt">&gt;</span>
     <span class="nt">&lt;to&gt;</span>$mobile<span class="nt">&lt;/to&gt;</span>
     <span class="nt">&lt;subject&gt;</span>Test Rich Message<span class="nt">&lt;/subject&gt;</span>    
     <span class="nt">&lt;body&gt;</span>This is some content followed by the Rich Message link @@web_link@@<span class="nt">&lt;/body&gt;</span>
@@ -1831,7 +1831,7 @@ Authorization: Basic am9obi5zbWl0aDpteXBhc3N3b3Jk
 <pre><code class="highlight xml">Content-Type: application/vnd.whispir.message-v1+xml
 
 <span class="cp">&lt;?xml version="1.0" encoding="UTF-8" standalone="yes"?&gt;</span>
-<span class="nt">&lt;ns2:message</span> <span class="na">xmlns:ns2=</span><span class="s">"https://schemas.api.whispir.com"</span><span class="nt">&gt;</span>
+<span class="nt">&lt;ns2:message</span> <span class="na">xmlns:ns2=</span><span class="s">"http://schemas.api.whispir.com"</span><span class="nt">&gt;</span>
     <span class="nt">&lt;to&gt;</span>$mobile<span class="nt">&lt;/to&gt;</span>
     <span class="nt">&lt;subject&gt;</span>Test Web Message<span class="nt">&lt;/subject&gt;</span>    
     <span class="nt">&lt;web&gt;</span> 
@@ -1908,7 +1908,7 @@ Authorization: Basic am9obi5zbWl0aDpteXBhc3N3b3Jk
 <pre><code class="highlight xml">Content-Type: application/vnd.whispir.message-v1+xml
 
 <span class="cp">&lt;?xml version="1.0" encoding="UTF-8" standalone="yes"?&gt;</span>
-<span class="nt">&lt;ns2:message</span> <span class="na">xmlns:ns2=</span><span class="s">"https://schemas.api.whispir.com"</span><span class="nt">&gt;</span>
+<span class="nt">&lt;ns2:message</span> <span class="na">xmlns:ns2=</span><span class="s">"http://schemas.api.whispir.com"</span><span class="nt">&gt;</span>
     <span class="nt">&lt;to&gt;</span>$mobile<span class="nt">&lt;/to&gt;</span>
     <span class="nt">&lt;subject&gt;</span>Test SMS Message with tags<span class="nt">&lt;/subject&gt;</span>    
     <span class="nt">&lt;body&gt;</span>Hi @@first_name@@.  This is your message.<span class="nt">&lt;/body&gt;</span>
@@ -2003,7 +2003,7 @@ Authorization: Basic am9obi5zbWl0aDpteXBhc3N3b3Jk
 <pre><code class="highlight xml">Content-Type: application/vnd.whispir.message-v1+xml
 
 <span class="cp">&lt;?xml version="1.0" encoding="UTF-8" standalone="yes"?&gt;</span>
-<span class="nt">&lt;ns2:message</span> <span class="na">xmlns:ns2=</span><span class="s">"https://schemas.api.whispir.com"</span><span class="nt">&gt;</span>
+<span class="nt">&lt;ns2:message</span> <span class="na">xmlns:ns2=</span><span class="s">"http://schemas.api.whispir.com"</span><span class="nt">&gt;</span>
     <span class="nt">&lt;to&gt;</span>$mobile<span class="nt">&lt;/to&gt;</span>
     <span class="nt">&lt;subject&gt;</span>Test SMS Message with tags<span class="nt">&lt;/subject&gt;</span>    
     <span class="nt">&lt;body&gt;</span>Hi @@first_name@@.  The date is @@dd@@ / @@mm@@ / @@yyyy@@.<span class="nt">&lt;/body&gt;</span>
@@ -2179,7 +2179,7 @@ Authorization: Basic am9obi5zbWl0aDpteXBhc3N3b3Jk
 <pre><code class="highlight xml">Content-Type: application/vnd.whispir.bulkmessage-v1+xml
 
 <span class="cp">&lt;?xml version="1.0" encoding="UTF-8" standalone="yes"?&gt;</span>
-<span class="nt">&lt;ns2:message</span> <span class="na">xmlns:ns2=</span><span class="s">"https://schemas.api.whispir.com"</span><span class="nt">&gt;</span>
+<span class="nt">&lt;ns2:message</span> <span class="na">xmlns:ns2=</span><span class="s">"http://schemas.api.whispir.com"</span><span class="nt">&gt;</span>
     <span class="nt">&lt;resource&gt;</span>
       <span class="nt">&lt;resourceId/&gt;</span>
       <span class="nt">&lt;smsMappingField/&gt;</span>
@@ -2599,7 +2599,7 @@ Authorization: Basic am9obi5zbWl0aDpteXBhc3N3b3Jk
 <pre><code class="highlight xml">Content-Type: application/vnd.whispir.message-v1+xml
 
 <span class="cp">&lt;?xml version="1.0" encoding="UTF-8" standalone="yes"?&gt;</span>
-<span class="nt">&lt;ns2:message</span> <span class="na">xmlns:ns2=</span><span class="s">"https://schemas.api.whispir.com"</span> <span class="na">xmlns:ns3=</span><span class="s">"https://schemas.api.whispir.com/dap"</span><span class="nt">&gt;</span>
+<span class="nt">&lt;ns2:message</span> <span class="na">xmlns:ns2=</span><span class="s">"http://schemas.api.whispir.com"</span> <span class="na">xmlns:ns3=</span><span class="s">"http://schemas.api.whispir.com/dap"</span><span class="nt">&gt;</span>
  <span class="nt">&lt;to&gt;</span>$mobile<span class="nt">&lt;/to&gt;</span>
  <span class="nt">&lt;subject&gt;</span>test subject<span class="nt">&lt;/subject&gt;</span>
  <span class="nt">&lt;body&gt;</span>test body<span class="nt">&lt;/body&gt;</span>
@@ -2758,7 +2758,7 @@ Authorization: Basic am9obi5zbWl0aDpteXBhc3N3b3Jk
 </blockquote>
 </blockquote>
 <pre><code class="highlight xml"><span class="cp">&lt;?xml version="1.0" encoding="UTF-8" standalone="yes"?&gt;</span>
-<span class="nt">&lt;ns2:return</span> <span class="na">xmlns:ns2=</span><span class="s">"https://schemas.api.whispir.com/dap"</span> <span class="na">xmlns:ns3=</span><span class="s">"https://schemas.api.whispir.com"</span><span class="nt">&gt;</span>
+<span class="nt">&lt;ns2:return</span> <span class="na">xmlns:ns2=</span><span class="s">"http://schemas.api.whispir.com/dap"</span> <span class="na">xmlns:ns3=</span><span class="s">"http://schemas.api.whispir.com"</span><span class="nt">&gt;</span>
  <span class="nt">&lt;ns2:messageStatuses&gt;</span>
   <span class="nt">&lt;ns2:messageStatus&gt;</span>
     <span class="nt">&lt;ns2:link</span> <span class="na">method=</span><span class="s">"GET"</span> 
@@ -2861,7 +2861,7 @@ Authorization: Basic am9obi5zbWl0aDpteXBhc3N3b3Jk
 <p>Sample Detailed Status Response</p>
 </blockquote>
 <pre><code class="highlight xml"><span class="cp">&lt;?xml version="1.0" encoding="UTF-8" standalone="yes"?&gt;</span>
-<span class="nt">&lt;ns2:return</span> <span class="na">xmlns:ns2=</span><span class="s">"https://schemas.api.whispir.com/dap"</span> <span class="na">xmlns:ns3=</span><span class="s">"https://schemas.api.whispir.com"</span><span class="nt">&gt;</span>
+<span class="nt">&lt;ns2:return</span> <span class="na">xmlns:ns2=</span><span class="s">"http://schemas.api.whispir.com/dap"</span> <span class="na">xmlns:ns3=</span><span class="s">"http://schemas.api.whispir.com"</span><span class="nt">&gt;</span>
   <span class="nt">&lt;status&gt;</span>1 to 2 of 2<span class="nt">&lt;/status&gt;</span>
   <span class="nt">&lt;ns2:messageStatuses&gt;</span>
     <span class="nt">&lt;ns2:messageStatus&gt;</span>
@@ -3010,7 +3010,7 @@ Authorization: Basic am9obi5zbWl0aDpteXBhc3N3b3Jk
 <pre><code class="highlight xml">Content-Type: application/vnd.whispir.message-v1+xml
 
 <span class="cp">&lt;?xml version="1.0" encoding="UTF-8" standalone="yes"?&gt;</span>
-<span class="nt">&lt;ns2:message</span> <span class="na">xmlns:ns2=</span><span class="s">"https://schemas.api.whispir.com"</span> <span class="na">xmlns:ns3=</span><span class="s">"https://schemas.api.whispir.com/dap"</span><span class="nt">&gt;</span>
+<span class="nt">&lt;ns2:message</span> <span class="na">xmlns:ns2=</span><span class="s">"http://schemas.api.whispir.com"</span> <span class="na">xmlns:ns3=</span><span class="s">"http://schemas.api.whispir.com/dap"</span><span class="nt">&gt;</span>
  <span class="nt">&lt;to&gt;</span>$mobile<span class="nt">&lt;/to&gt;</span>
  <span class="nt">&lt;subject&gt;</span>test subject<span class="nt">&lt;/subject&gt;</span>
  <span class="nt">&lt;body&gt;</span>test body<span class="nt">&lt;/body&gt;</span>
@@ -3169,7 +3169,7 @@ Authorization: Basic am9obi5zbWl0aDpteXBhc3N3b3Jk
 </blockquote>
 </blockquote>
 <pre><code class="highlight xml"><span class="cp">&lt;?xml version="1.0" encoding="UTF-8" standalone="yes"?&gt;</span>
-<span class="nt">&lt;ns2:return</span> <span class="na">xmlns:ns2=</span><span class="s">"https://schemas.api.whispir.com/dap"</span> <span class="na">xmlns:ns3=</span><span class="s">"https://schemas.api.whispir.com"</span><span class="nt">&gt;</span>
+<span class="nt">&lt;ns2:return</span> <span class="na">xmlns:ns2=</span><span class="s">"http://schemas.api.whispir.com/dap"</span> <span class="na">xmlns:ns3=</span><span class="s">"http://schemas.api.whispir.com"</span><span class="nt">&gt;</span>
     <span class="nt">&lt;ns2:link</span> <span class="na">method=</span><span class="s">"GET"</span> 
               <span class="na">rel=</span><span class="s">"self"</span> 
               <span class="na">uri=</span><span class="s">"https://api.whispir.com/messages/069BF68E5E0FE99B/messageresponses?view=summary&amp;filter=default&amp;apikey=498nadsasdff09fewdsafjaa90f"</span><span class="nt">/&gt;</span>
@@ -3379,8 +3379,8 @@ Authorization: Basic am9obi5zbWl0aDpteXBhc3N3b3Jk
 <pre><code class="highlight xml">Content-Type: application/vnd.whispir.template-v1+xml
 
 <span class="cp">&lt;?xml version="1.0" encoding="UTF-8"?&gt;</span>
-<span class="nt">&lt;ns3:template</span> <span class="na">xmlns:ns3=</span><span class="s">"https://schemas.api.whispir.com"</span> 
-              <span class="na">xmlns:ns2=</span><span class="s">"https://schemas.api.whispir.com/dap"</span><span class="nt">&gt;</span>
+<span class="nt">&lt;ns3:template</span> <span class="na">xmlns:ns3=</span><span class="s">"http://schemas.api.whispir.com"</span> 
+              <span class="na">xmlns:ns2=</span><span class="s">"http://schemas.api.whispir.com/dap"</span><span class="nt">&gt;</span>
   <span class="nt">&lt;messageTemplateName&gt;</span>Sample SMS Template<span class="nt">&lt;/messageTemplateName&gt;</span>
   <span class="nt">&lt;messageTemplateDescription&gt;</span>
     Template to provide an example on whispir.io
@@ -3521,7 +3521,7 @@ Authorization: Basic am9obi5zbWl0aDpteXBhc3N3b3Jk
 <pre><code class="highlight xml">Accept: application/vnd.whispir.template-v1+xml
 
 <span class="cp">&lt;?xml version="1.0" encoding="UTF-8" standalone="yes"?&gt;</span>
-<span class="nt">&lt;ns2:return</span> <span class="na">xmlns:ns2=</span><span class="s">"https://schemas.api.whispir.com/dap"</span> <span class="na">xmlns:ns3=</span><span class="s">"https://schemas.api.whispir.com"</span><span class="nt">&gt;</span>
+<span class="nt">&lt;ns2:return</span> <span class="na">xmlns:ns2=</span><span class="s">"http://schemas.api.whispir.com/dap"</span> <span class="na">xmlns:ns3=</span><span class="s">"http://schemas.api.whispir.com"</span><span class="nt">&gt;</span>
     <span class="nt">&lt;status&gt;</span>1 to 4 of 4<span class="nt">&lt;/status&gt;</span>
     <span class="nt">&lt;ns2:messagetemplates&gt;</span>
         <span class="nt">&lt;ns2:template&gt;</span>
@@ -3676,8 +3676,8 @@ Authorization: Basic am9obi5zbWl0aDpteXBhc3N3b3Jk
 Accept: application/vnd.whispir.template-v1+xml
 
 <span class="cp">&lt;?xml version="1.0" encoding="UTF-8"?&gt;</span>
-<span class="nt">&lt;ns3:template</span> <span class="na">xmlns:ns3=</span><span class="s">"https://schemas.api.whispir.com"</span> 
-              <span class="na">xmlns:ns2=</span><span class="s">"https://schemas.api.whispir.com/dap"</span><span class="nt">&gt;</span>
+<span class="nt">&lt;ns3:template</span> <span class="na">xmlns:ns3=</span><span class="s">"http://schemas.api.whispir.com"</span> 
+              <span class="na">xmlns:ns2=</span><span class="s">"http://schemas.api.whispir.com/dap"</span><span class="nt">&gt;</span>
   <span class="nt">&lt;messageTemplateName&gt;</span>Sample SMS Template<span class="nt">&lt;/messageTemplateName&gt;</span>
   <span class="nt">&lt;messageTemplateDescription&gt;</span>
     Template to provide an example on whispir.io
@@ -3900,7 +3900,7 @@ Authorization: Basic am9obi5zbWl0aDpteXBhc3N3b3Jk
 <pre><code class="highlight xml">Content-Type: application/vnd.whispir.message-v1+xml
 
 <span class="cp">&lt;?xml version="1.0" encoding="UTF-8" standalone="yes"?&gt;</span>
-<span class="nt">&lt;ns2:message</span> <span class="na">xmlns:ns2=</span><span class="s">"https://schemas.api.whispir.com"</span><span class="nt">&gt;</span>
+<span class="nt">&lt;ns2:message</span> <span class="na">xmlns:ns2=</span><span class="s">"http://schemas.api.whispir.com"</span><span class="nt">&gt;</span>
     <span class="nt">&lt;to&gt;</span>john.smith@test.com<span class="nt">&lt;/to&gt;</span>
     <span class="nt">&lt;messageTemplateId&gt;</span>BACEB8D46BEF5315<span class="nt">&lt;/messageTemplateId&gt;</span>
 <span class="nt">&lt;/ns2:message&gt;</span> 
@@ -3924,7 +3924,7 @@ Authorization: Basic am9obi5zbWl0aDpteXBhc3N3b3Jk
 <pre><code class="highlight xml">Content-Type: application/vnd.whispir.message-v1+xml
 
 <span class="cp">&lt;?xml version="1.0" encoding="UTF-8" standalone="yes"?&gt;</span>
-<span class="nt">&lt;ns2:message</span> <span class="na">xmlns:ns2=</span><span class="s">"https://schemas.api.whispir.com"</span><span class="nt">&gt;</span>
+<span class="nt">&lt;ns2:message</span> <span class="na">xmlns:ns2=</span><span class="s">"http://schemas.api.whispir.com"</span><span class="nt">&gt;</span>
     <span class="nt">&lt;to&gt;</span>$mobile<span class="nt">&lt;/to&gt;</span>
     <span class="nt">&lt;messageTemplateName&gt;</span>Sample SMS Template<span class="nt">&lt;/messageTemplateName&gt;</span>
 <span class="nt">&lt;/ns2:message&gt;</span> 
@@ -3956,7 +3956,7 @@ Authorization: Basic am9obi5zbWl0aDpteXBhc3N3b3Jk
 <pre><code class="highlight xml">Content-Type: application/vnd.whispir.message-v1+xml
 
 <span class="cp">&lt;?xml version="1.0" encoding="UTF-8" standalone="yes"?&gt;</span>
-<span class="nt">&lt;ns2:message</span> <span class="na">xmlns:ns2=</span><span class="s">"https://schemas.api.whispir.com"</span><span class="nt">&gt;</span>
+<span class="nt">&lt;ns2:message</span> <span class="na">xmlns:ns2=</span><span class="s">"http://schemas.api.whispir.com"</span><span class="nt">&gt;</span>
     <span class="nt">&lt;to&gt;</span>$mobile<span class="nt">&lt;/to&gt;</span>
     <span class="nt">&lt;messageTemplateName&gt;</span>Sample SMS Template<span class="nt">&lt;/messageTemplateName&gt;</span>
     <span class="nt">&lt;subject&gt;</span>This will override the template Subject<span class="nt">&lt;/subject&gt;</span>
@@ -5044,7 +5044,7 @@ Authorization: Basic [your basic auth]
 <pre><code class="highlight xml">Content-Type: application/vnd.whispir.distributionlist-v1+xml
 
 <span class="cp">&lt;?xml version="1.0" encoding="UTF-8" standalone="yes"?&gt;</span>
-<span class="nt">&lt;ns1:distributionlists</span> <span class="na">xmlns:ns2=</span><span class="s">"https://schemas.api.whispir.com"</span><span class="nt">&gt;</span>
+<span class="nt">&lt;ns1:distributionlists</span> <span class="na">xmlns:ns2=</span><span class="s">"http://schemas.api.whispir.com"</span><span class="nt">&gt;</span>
     <span class="nt">&lt;name&gt;</span>My Distribution List<span class="nt">&lt;/name&gt;</span>
     <span class="nt">&lt;description&gt;&lt;/description&gt;</span>    
     <span class="nt">&lt;access&gt;</span>Open<span class="nt">&lt;/access&gt;</span>
@@ -5291,7 +5291,7 @@ Authorization: Basic [your basic auth]
 <pre><code class="highlight xml">Content-Type: application/vnd.whispir.distributionlist-v1+xml
 
 <span class="cp">&lt;?xml version="1.0" encoding="UTF-8" standalone="yes"?&gt;</span>
-<span class="nt">&lt;ns1:distributionlists</span> <span class="na">xmlns:ns2=</span><span class="s">"https://schemas.api.whispir.com"</span><span class="nt">&gt;</span>
+<span class="nt">&lt;ns1:distributionlists</span> <span class="na">xmlns:ns2=</span><span class="s">"http://schemas.api.whispir.com"</span><span class="nt">&gt;</span>
     <span class="nt">&lt;name&gt;</span>Rockstar Distribution List<span class="nt">&lt;/name&gt;</span>
     <span class="nt">&lt;description&gt;</span>All the rocks were once stars - astrophysicist inside me<span class="nt">&lt;/description&gt;</span>    
     <span class="nt">&lt;access&gt;</span>Open<span class="nt">&lt;/access&gt;</span>
@@ -5354,7 +5354,7 @@ Authorization: Basic [your basic auth]
 <pre><code class="highlight xml">Content-Type: application/vnd.whispir.message-v1+xml
 
 <span class="cp">&lt;?xml version="1.0" encoding="UTF-8" standalone="yes"?&gt;</span>
-<span class="nt">&lt;ns2:message</span> <span class="na">xmlns:ns2=</span><span class="s">"https://schemas.api.whispir.com"</span><span class="nt">&gt;</span>
+<span class="nt">&lt;ns2:message</span> <span class="na">xmlns:ns2=</span><span class="s">"http://schemas.api.whispir.com"</span><span class="nt">&gt;</span>
     <span class="nt">&lt;to&gt;</span>Docs_Distribution_List.company@list.company.whispir.sg<span class="nt">&lt;/to&gt;</span>
     <span class="nt">&lt;subject&gt;</span>Simple SMS to List of contacts in the distribution list<span class="nt">&lt;/subject&gt;</span>    
     <span class="nt">&lt;body&gt;</span>This is the content of my sample sms message.<span class="nt">&lt;/body&gt;</span>
@@ -5601,7 +5601,7 @@ X-Whispir-Callback-Key: MY_AUTH_TOKEN
 </code></pre>
 <pre><code class="highlight xml">Content-Type: application/xml
 
-<span class="nt">&lt;ns2:deliveryresponse</span> <span class="na">xmlns:ns2=</span><span class="s">"https://schemas.api.whispir.com"</span><span class="nt">&gt;</span>
+<span class="nt">&lt;ns2:deliveryresponse</span> <span class="na">xmlns:ns2=</span><span class="s">"http://schemas.api.whispir.com"</span><span class="nt">&gt;</span>
     <span class="nt">&lt;messageid&gt;</span>ABC4857BCCF484575FCA<span class="nt">&lt;/messageid&gt;</span>
     <span class="nt">&lt;location&gt;</span>https://api.whispir.com/messages/ABC4857BCCF484575FCA<span class="nt">&lt;/location&gt;</span>   
     <span class="nt">&lt;from&gt;</span>
@@ -5648,7 +5648,7 @@ X-Whispir-Callback-Key: MY_AUTH_TOKEN
 </code></pre>
 <pre><code class="highlight xml">Content-Type: application/xml
 
-<span class="nt">&lt;ns2:deliveryresponse</span> <span class="na">xmlns:ns2=</span><span class="s">"https://schemas.api.whispir.com"</span><span class="nt">&gt;</span>
+<span class="nt">&lt;ns2:deliveryresponse</span> <span class="na">xmlns:ns2=</span><span class="s">"http://schemas.api.whispir.com"</span><span class="nt">&gt;</span>
     <span class="nt">&lt;messageid&gt;</span>ABC4857BCCF484575FCA<span class="nt">&lt;/messageid&gt;</span>
     <span class="nt">&lt;location&gt;</span>https://api.whispir.com/messages/ABC4857BCCF484575FCA<span class="nt">&lt;/location&gt;</span>   
     <span class="nt">&lt;from&gt;</span>
@@ -5891,7 +5891,7 @@ Authorization: Basic am9obi5zbWl0aDpteXBhc3N3b3Jk
 <pre><code class="highlight xml">Content-Type: application/vnd.whispir.message-v1+xml
 
 <span class="cp">&lt;?xml version="1.0" encoding="UTF-8" standalone="yes"?&gt;</span>
-<span class="nt">&lt;ns2:message</span> <span class="na">xmlns:ns2=</span><span class="s">"https://schemas.api.whispir.com"</span><span class="nt">&gt;</span>
+<span class="nt">&lt;ns2:message</span> <span class="na">xmlns:ns2=</span><span class="s">"http://schemas.api.whispir.com"</span><span class="nt">&gt;</span>
     <span class="nt">&lt;to&gt;</span>$mobile<span class="nt">&lt;/to&gt;</span>
     <span class="nt">&lt;subject&gt;</span>Test SMS Message<span class="nt">&lt;/subject&gt;</span>    
     <span class="nt">&lt;body&gt;</span>This is the body of my test SMS message<span class="nt">&lt;/body&gt;</span>
@@ -5945,6 +5945,262 @@ Whispir Support
 <li>If the Callback Server does not connect within 5 seconds.</li>
 <li>If the Callback Server does not return a response within 60 seconds.</li>
 </ul>
+
+        <h1 id="workspaces">Workspaces</h1>
+
+<p>Workspace allows application developers to create new work areas for the varying use cases of their application. They provides different functions that can be provided to users of the application, e.g. creating messages, executing scenarios, or viewing distribution lists. </p>
+
+<p>Every account upon creation is given a default workspace. All operations are usually carried out in the default workspace. To separate the concerns, one can create multiple (there is no limit) workspaces suited for each of their application needs. </p>
+
+<p>Each of these work areas are independent from one another and can be governed by user permissions. So, users can be assigned access to these workspaces to restrict the control of information as needed. So, the information, assets, contacts, actions performed in workspace does not or cannot be accessed from another one. This allows the applications to be independent and audited much effectively with proper permissions and keys.</p>
+
+<p>Workspaces can only be created and retrieved. They cannot be updated or deleted via the API.</p>
+
+<h2 id="creating-a-new-workspace">Creating a new workspace</h2>
+<pre><code class="highlight plaintext">HTTP 1.1 POST https://api.whispir.com/workspaces?apikey=[your_api_key]
+Authorization: Basic asdf98nf89asdvasd2r398h8sdf
+</code></pre>
+<pre><code class="highlight xml">Content-Type: application/vnd.whispir.workspace-v1+xml 
+
+
+<span class="cp">&lt;?xml version="1.0" encoding="UTF-8" standalone="yes"?&gt;</span>
+<span class="nt">&lt;ns3:workspace</span> <span class="na">xmlns:ns2=</span><span class="s">http://schemas.api.whispir.com/dap</span>  
+               <span class="na">xmlns:ns3=</span><span class="s">"http://schemas.api.whispir.com"</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;projectName&gt;</span>A Space Odessey<span class="nt">&lt;/projectName&gt;</span>
+    <span class="nt">&lt;projectNumber&gt;</span>2000<span class="nt">&lt;/projectNumber&gt;</span>
+    <span class="nt">&lt;status&gt;</span>A<span class="nt">&lt;/status&gt;</span>
+    <span class="nt">&lt;billingcostcentre&gt;</span>Hollywood<span class="nt">&lt;/billingcostcentre&gt;</span>
+<span class="nt">&lt;/ns3:workspace&gt;</span>
+</code></pre>
+<pre><code class="highlight go"><span class="n">Content</span><span class="o">-</span><span class="n">Type</span><span class="o">:</span><span class="x"> </span><span class="n">application</span><span class="o">/</span><span class="n">vnd</span><span class="o">.</span><span class="n">whispir</span><span class="o">.</span><span class="n">workspace</span><span class="o">-</span><span class="n">v1</span><span class="o">+</span><span class="n">json</span><span class="x">
+
+</span><span class="p">{</span><span class="x">
+  </span><span class="s">"projectName"</span><span class="o">:</span><span class="x"> </span><span class="s">"A Space Odessey"</span><span class="p">,</span><span class="x">
+  </span><span class="s">"projectNumber"</span><span class="o">:</span><span class="x"> </span><span class="s">"2000"</span><span class="p">,</span><span class="x">
+  </span><span class="s">"status"</span><span class="o">:</span><span class="x"> </span><span class="s">"A"</span><span class="p">,</span><span class="x">
+  </span><span class="s">"billingcostcentre"</span><span class="o">:</span><span class="x"> </span><span class="s">"Hollywood"</span><span class="x">
+</span><span class="p">}</span><span class="x">
+</span></code></pre>
+
+<p>To create a new workspace, you can use the /workspaces endpoint.</p>
+
+<p>Only <strong>2 fields</strong> are required:</p>
+
+<ol>
+<li>projectName - The name of the Workspace to be created.</li>
+<li>status - The status of the Workspace being created.  This should be &lsquo;A&rsquo; for &#39;Active&rsquo; when creating new workspaces.</li>
+</ol>
+
+<p>Note: There is no limit to the amount of workspaces each API user can create.</p>
+
+<table>
+    <thead>
+        <tr>
+            <th style="width: 50%" colspan="2">High-Level Request Elements</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td style="text-align: right; font-weight: bold;">projectName :</td>
+            <td><strong>String</strong><br/>
+                Specifies the name of the Workspace to be created.
+            </td>
+        </tr>
+        <tr>
+            <td style="text-align: right; font-weight: bold;">projectNumber:</td>
+            <td><strong>String</strong><br/>
+                Specifies the ID of the workspace, generally not used.
+            </td>
+        </tr>
+        <tr>
+            <td style="text-align: right; font-weight: bold;">status:</td>
+            <td><strong>String</strong><br/>
+                Specifies the status of the Workspace being created. The status can be one of - 
+                <ul>
+                    <li>Active (A)</li>
+                    <li>Disabled (D)</li>
+                </ul>
+            </td>
+        </tr>
+        <tr>
+            <td style="text-align: right; font-weight: bold;">billingcostcentre:</td>
+            <td><strong>String</strong><br/>
+                <strong>Only applicable to customers with the Billing Cost Centre Module enabled.</strong> Allows the user to set a billing cost centre for the Workspace.
+            </td>
+        </tr>
+    </tbody>
+</table>
+
+<h2 id="retrieving-workspaces">Retrieving Workspaces</h2>
+
+<p>To retrieve a list of workspaces from the Whispir.io API you can execute an HTTP GET using the /workspaces endpoint.</p>
+<pre><code class="highlight plaintext">HTTP 1.1 GET https://api.whispir.com/workspaces?apikey=[your_api_key]
+Authorization: Basic asdf98nf89asdvasd2r398h8sdf
+</code></pre>
+<pre><code class="highlight xml">Accept: application/vnd.whispir.workspace-v1+xml
+
+<span class="cp">&lt;?xml version="1.0" encoding="UTF-8" standalone="yes"?&gt;</span>
+<span class="nt">&lt;ns2:return</span> <span class="na">xmlns:ns2=</span><span class="s">"http://schemas.api.whispir.com/dap"</span> <span class="na">xmlns:ns3=</span><span class="s">"http://schemas.api.whispir.com"</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;status&gt;</span>1 to 4 of 4<span class="nt">&lt;/status&gt;</span>
+    <span class="nt">&lt;ns2:workspaces&gt;</span>
+        <span class="nt">&lt;ns2:workspace&gt;</span>
+            <span class="nt">&lt;projectName&gt;</span>Sales Lead Notifications<span class="nt">&lt;/projectName&gt;</span>
+            <span class="nt">&lt;projectNumber&gt;&lt;/projectNumber&gt;</span>
+            <span class="nt">&lt;status&gt;</span>A<span class="nt">&lt;/status&gt;</span>
+            <span class="nt">&lt;billingcostcentre&gt;</span>test<span class="nt">&lt;/billingcostcentre&gt;</span>
+            <span class="nt">&lt;ns2:link</span> <span class="na">uri=</span><span class="s">"https://api.whispir.com/workspaces/BB9ECBE5BA73CD81?apikey=[your_api_key]"</span> <span class="na">rel=</span><span class="s">"self"</span> <span class="na">method=</span><span class="s">"GET"</span><span class="nt">/&gt;</span>
+        <span class="nt">&lt;/ns2:workspace&gt;</span>
+        <span class="nt">&lt;ns2:workspace&gt;</span>
+            <span class="nt">&lt;projectName&gt;</span>Product Release Management<span class="nt">&lt;/projectName&gt;</span>
+            <span class="nt">&lt;projectNumber&gt;&lt;/projectNumber&gt;</span>
+            <span class="nt">&lt;status&gt;</span>A<span class="nt">&lt;/status&gt;</span>
+            <span class="nt">&lt;billingcostcentre&gt;</span>0<span class="nt">&lt;/billingcostcentre&gt;</span>
+            <span class="nt">&lt;ns2:link</span> <span class="na">uri=</span><span class="s">"https://api.whispir.com/workspaces/7311ABEB701E7C60?apikey=[your_api_key]"</span> <span class="na">rel=</span><span class="s">"self"</span> <span class="na">method=</span><span class="s">"GET"</span><span class="nt">/&gt;</span>
+        <span class="nt">&lt;/ns2:workspace&gt;</span>
+        <span class="nt">&lt;ns2:workspace&gt;</span>
+            <span class="nt">&lt;projectName&gt;</span>CAAS<span class="nt">&lt;/projectName&gt;</span>
+            <span class="nt">&lt;projectNumber&gt;&lt;/projectNumber&gt;</span>
+            <span class="nt">&lt;status&gt;</span>A<span class="nt">&lt;/status&gt;</span>
+            <span class="nt">&lt;billingcostcentre&gt;</span>0<span class="nt">&lt;/billingcostcentre&gt;</span>
+            <span class="nt">&lt;ns2:link</span> <span class="na">uri=</span><span class="s">"https://api.whispir.com/workspaces/26B1A09C1FEC20A2?apikey=[your_api_key]"</span> <span class="na">rel=</span><span class="s">"self"</span> <span class="na">method=</span><span class="s">"GET"</span><span class="nt">/&gt;</span>
+        <span class="nt">&lt;/ns2:workspace&gt;</span>
+        <span class="nt">&lt;ns2:workspace&gt;</span>
+            <span class="nt">&lt;projectName&gt;</span>Business Working Group<span class="nt">&lt;/projectName&gt;</span>
+            <span class="nt">&lt;projectNumber&gt;&lt;/projectNumber&gt;</span>
+            <span class="nt">&lt;status&gt;</span>A<span class="nt">&lt;/status&gt;</span>
+            <span class="nt">&lt;billingcostcentre&gt;</span>CLSA<span class="nt">&lt;/billingcostcentre&gt;</span>
+            <span class="nt">&lt;ns2:link</span> <span class="na">uri=</span><span class="s">"https://api.whispir.com/workspaces/A358845BF004C113?apikey=[your_api_key]"</span> <span class="na">rel=</span><span class="s">"self"</span> <span class="na">method=</span><span class="s">"GET"</span><span class="nt">/&gt;</span>
+        <span class="nt">&lt;/ns2:workspace&gt;</span>
+        <span class="nt">&lt;ns2:workspace&gt;</span>
+            <span class="nt">&lt;projectName&gt;</span>Critical Incident Management<span class="nt">&lt;/projectName&gt;</span>
+            <span class="nt">&lt;projectNumber&gt;&lt;/projectNumber&gt;</span>
+            <span class="nt">&lt;status&gt;</span>A<span class="nt">&lt;/status&gt;</span>
+            <span class="nt">&lt;billingcostcentre&gt;&lt;/billingcostcentre&gt;</span>
+            <span class="nt">&lt;ns2:link</span> <span class="na">uri=</span><span class="s">"https://api.whispir.com/workspaces/B7BFEF555F0F7F81?apikey=[your_api_key]"</span> <span class="na">rel=</span><span class="s">"self"</span> <span class="na">method=</span><span class="s">"GET"</span><span class="nt">/&gt;</span>
+       <span class="nt">&lt;/ns2:workspace&gt;</span>
+    <span class="nt">&lt;/ns2:workspaces&gt;</span>
+<span class="nt">&lt;/ns2:return&gt;</span>
+</code></pre>
+<pre><code class="highlight go"><span class="n">Accept</span><span class="o">:</span><span class="x"> </span><span class="n">application</span><span class="o">/</span><span class="n">vnd</span><span class="o">.</span><span class="n">whispir</span><span class="o">.</span><span class="n">workspace</span><span class="o">-</span><span class="n">v1</span><span class="o">+</span><span class="n">json</span><span class="x">
+
+</span><span class="p">{</span><span class="x">
+  </span><span class="s">"workspaces"</span><span class="o">:</span><span class="x"> </span><span class="p">[</span><span class="x">
+    </span><span class="p">{</span><span class="x">
+      </span><span class="s">"projectName"</span><span class="o">:</span><span class="x"> </span><span class="s">"Sales Lead Notifications"</span><span class="p">,</span><span class="x">
+      </span><span class="s">"projectNumber"</span><span class="o">:</span><span class="x"> </span><span class="s">""</span><span class="p">,</span><span class="x">
+      </span><span class="s">"status"</span><span class="o">:</span><span class="x"> </span><span class="s">"A"</span><span class="p">,</span><span class="x">
+      </span><span class="s">"billingcostcentre"</span><span class="o">:</span><span class="x"> </span><span class="s">"0"</span><span class="p">,</span><span class="x">
+      </span><span class="s">"link"</span><span class="o">:</span><span class="x"> </span><span class="p">[</span><span class="x">
+        </span><span class="p">{</span><span class="x">
+          </span><span class="s">"uri"</span><span class="o">:</span><span class="x"> </span><span class="s">"https://api.whispir.com/workspaces/7311ABEB701E7C60?apikey=[your_api_key]"</span><span class="p">,</span><span class="x">
+          </span><span class="s">"rel"</span><span class="o">:</span><span class="x"> </span><span class="s">"self"</span><span class="p">,</span><span class="x">
+          </span><span class="s">"method"</span><span class="o">:</span><span class="x"> </span><span class="s">"GET"</span><span class="x">
+        </span><span class="p">}</span><span class="x">
+      </span><span class="p">]</span><span class="x">
+    </span><span class="p">},</span><span class="x">
+    </span><span class="p">{</span><span class="x">
+      </span><span class="s">"projectName"</span><span class="o">:</span><span class="x"> </span><span class="s">"Product Release Management"</span><span class="p">,</span><span class="x">
+      </span><span class="s">"projectNumber"</span><span class="o">:</span><span class="x"> </span><span class="s">""</span><span class="p">,</span><span class="x">
+      </span><span class="s">"status"</span><span class="o">:</span><span class="x"> </span><span class="s">"A"</span><span class="p">,</span><span class="x">
+      </span><span class="s">"billingcostcentre"</span><span class="o">:</span><span class="x"> </span><span class="s">"0"</span><span class="p">,</span><span class="x">
+      </span><span class="s">"link"</span><span class="o">:</span><span class="x"> </span><span class="p">[</span><span class="x">
+        </span><span class="p">{</span><span class="x">
+          </span><span class="s">"uri"</span><span class="o">:</span><span class="x"> </span><span class="s">"https://api.whispir.com/workspaces/26B1A09C1FEC20A2?apikey=[your_api_key]"</span><span class="p">,</span><span class="x">
+          </span><span class="s">"rel"</span><span class="o">:</span><span class="x"> </span><span class="s">"self"</span><span class="p">,</span><span class="x">
+          </span><span class="s">"method"</span><span class="o">:</span><span class="x"> </span><span class="s">"GET"</span><span class="x">
+        </span><span class="p">}</span><span class="x">
+      </span><span class="p">]</span><span class="x">
+    </span><span class="p">},</span><span class="x">
+    </span><span class="p">{</span><span class="x">
+      </span><span class="s">"projectName"</span><span class="o">:</span><span class="x"> </span><span class="s">"Business Working Group"</span><span class="p">,</span><span class="x">
+      </span><span class="s">"projectNumber"</span><span class="o">:</span><span class="x"> </span><span class="s">""</span><span class="p">,</span><span class="x">
+      </span><span class="s">"status"</span><span class="o">:</span><span class="x"> </span><span class="s">"A"</span><span class="p">,</span><span class="x">
+      </span><span class="s">"billingcostcentre"</span><span class="o">:</span><span class="x"> </span><span class="s">"CLSA"</span><span class="p">,</span><span class="x">
+      </span><span class="s">"link"</span><span class="o">:</span><span class="x"> </span><span class="p">[</span><span class="x">
+        </span><span class="p">{</span><span class="x">
+          </span><span class="s">"uri"</span><span class="o">:</span><span class="x"> </span><span class="s">"https://api.whispir.com/workspaces/A358845BF004C113?apikey=[your_api_key]"</span><span class="p">,</span><span class="x">
+          </span><span class="s">"rel"</span><span class="o">:</span><span class="x"> </span><span class="s">"self"</span><span class="p">,</span><span class="x">
+          </span><span class="s">"method"</span><span class="o">:</span><span class="x"> </span><span class="s">"GET"</span><span class="x">
+        </span><span class="p">}</span><span class="x">
+      </span><span class="p">]</span><span class="x">
+    </span><span class="p">},</span><span class="x">
+    </span><span class="p">{</span><span class="x">
+      </span><span class="s">"projectName"</span><span class="o">:</span><span class="x"> </span><span class="s">"Critical Incident Management"</span><span class="p">,</span><span class="x">
+      </span><span class="s">"projectNumber"</span><span class="o">:</span><span class="x"> </span><span class="s">""</span><span class="p">,</span><span class="x">
+      </span><span class="s">"status"</span><span class="o">:</span><span class="x"> </span><span class="s">"A"</span><span class="p">,</span><span class="x">
+      </span><span class="s">"billingcostcentre"</span><span class="o">:</span><span class="x"> </span><span class="s">""</span><span class="p">,</span><span class="x">
+      </span><span class="s">"link"</span><span class="o">:</span><span class="x"> </span><span class="p">[</span><span class="x">
+        </span><span class="p">{</span><span class="x">
+          </span><span class="s">"uri"</span><span class="o">:</span><span class="x"> </span><span class="s">"https://api.whispir.com/workspaces/B7BFEF555F0F7F81?apikey=[your_api_key]"</span><span class="p">,</span><span class="x">
+          </span><span class="s">"rel"</span><span class="o">:</span><span class="x"> </span><span class="s">"self"</span><span class="p">,</span><span class="x">
+          </span><span class="s">"method"</span><span class="o">:</span><span class="x"> </span><span class="s">"GET"</span><span class="x">
+        </span><span class="p">}</span><span class="x">
+      </span><span class="p">]</span><span class="x">
+    </span><span class="p">}</span><span class="x">
+   </span><span class="p">]</span><span class="x">
+</span><span class="p">}</span><span class="x">
+</span></code></pre>
+
+<p>You will need to supply one of the following headers (for retrieving JSON or XML):</p>
+
+<ul>
+<li>Accept: application/vnd.whispir.workspace-v1+xml</li>
+<li>Accept: application/vnd.whispir.workspace-v1+json</li>
+</ul>
+
+<p>An array of Workspaces will be returned to you in the HTTP response body.</p>
+
+<p>Each of these workspace will provide the following information:</p>
+
+<table>
+    <thead>
+        <tr>
+            <th style="width: 50%" colspan="2">High-Level Request Elements</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td style="text-align: right; font-weight: bold;">projectName :</td>
+            <td><strong>String</strong><br/>
+                Specifies the name of the Workspace to be created.
+            </td>
+        </tr>
+        <tr>
+            <td style="text-align: right; font-weight: bold;">projectNumber:</td>
+            <td><strong>String</strong><br/>
+                Specifies the ID of the workspace, generally not used.
+            </td>
+        </tr>
+        <tr>
+            <td style="text-align: right; font-weight: bold;">status:</td>
+            <td><strong>String</strong><br/>
+                Specifies the status of the Workspace being created. The status can be one of - 
+                <ul>
+                    <li>Active (A)</li>
+                    <li>Disabled (D)</li>
+                </ul>
+            </td>
+        </tr>
+        <tr>
+            <td style="text-align: right; font-weight: bold;">billingcostcentre:</td>
+            <td><strong>String</strong><br/>
+                <strong>Only applicable to customers with the Billing Cost Centre Module enabled.</strong> Allows the user to set a billing cost centre for the Workspace.
+            </td>
+        </tr>
+        <tr>
+            <td style="text-align: right; font-weight: bold;">link:</td>
+            <td><strong>Array</strong><br/>
+                Provides a list of URLs that can be used to manipulate or access the workspace. 
+                <br>
+                <ul>
+                    <li>uri - the link to access the message template</li>
+                    <li>rel - the descriptor for what the link will do</li>
+                    <li>method - the HTTP method to use with this particular link</li>
+                </ul>
+            </td>
+        </tr>
+    </tbody>
+</table>
 
         <h1 id="other-resources">Other Resources</h1>
 
