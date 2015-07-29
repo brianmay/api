@@ -622,7 +622,7 @@ HTTP/1.1 403 Forbidden
 
 <ul>
 <li>The <strong>Company</strong> resource contains many <strong>Workspaces</strong>.  </li>
-<li>The <strong>Workspace</strong> resource contains many <strong>Messages</strong>. <br></li>
+<li>The <strong>Workspace</strong> resource contains many <strong>Messages</strong>.</li>
 <li>Each <strong>Message</strong> resource contains a <strong>MessageStatus</strong>.</li>
 </ul>
 
@@ -985,7 +985,7 @@ Content-Type: application/vnd.whispir.contact-v2+xml
 <p>Request for the first page of messages:</p>
 </blockquote>
 </blockquote>
-<pre><code class="highlight plaintext">HTTP/1.1 GET https://api.whispir.com/?apikey=sbdsfd0sa09fds&amp;limit=20&amp;offset=0
+<pre><code class="highlight plaintext">HTTP/1.1 GET https://api.whispir.com/?apikey=[your-api-key]&amp;limit=20&amp;offset=0
 </code></pre>
 
 <blockquote>
@@ -993,8 +993,25 @@ Content-Type: application/vnd.whispir.contact-v2+xml
 <p>Request for the second page of messages (note the offset is now 20):</p>
 </blockquote>
 </blockquote>
-<pre><code class="highlight plaintext">HTTP/1.1 GET https://api.whispir.com/?apikey=sbdsfd0sa09fds&amp;limit=20&amp;offset=20
+<pre><code class="highlight plaintext">HTTP/1.1 GET https://api.whispir.com/?apikey=[your-api-key]&amp;limit=20&amp;offset=20
 </code></pre>
+
+<blockquote>
+<blockquote>
+<p>Request for the page of messages which does not exist.</p>
+</blockquote>
+</blockquote>
+<pre><code class="highlight plaintext">HTTP/1.1 GET https://api.whispir.com/workspaces/7311ABEB701E7C60/messages?apikey=[your-api-key]&amp;limit=20&amp;offset=20
+</code></pre>
+<pre><code class="highlight xml"><span class="cp">&lt;?xml version="1.0" encoding="UTF-8" standalone="true"?&gt;</span>
+<span class="nt">&lt;ns2:return</span> <span class="na">xmlns:ns3=</span><span class="s">"http://schemas.api.whispir.com"</span> <span class="na">xmlns:ns2=</span><span class="s">"http://schemas.api.whispir.com/dap"</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;status&gt;</span>No records found<span class="nt">&lt;/status&gt;</span>
+<span class="nt">&lt;/ns2:return&gt;</span>
+</code></pre>
+<pre><code class="highlight go"><span class="p">{</span><span class="x">
+    </span><span class="s">"status"</span><span class="x"> </span><span class="o">:</span><span class="x"> </span><span class="s">"No records found"</span><span class="x">
+</span><span class="p">}</span><span class="x">
+</span></code></pre>
 
 <p>Requests that contain multiple items will be paginated by default.</p>
 
@@ -1009,14 +1026,38 @@ Content-Type: application/vnd.whispir.contact-v2+xml
 
 <p>Most resources will provide these links at the end of the response object in a <code class="prettyprint">link</code> array that supplies links with <code class="prettyprint">rel=next</code> and <code class="prettyprint">rel=prev</code> attributes.</p>
 
-<p>This makes programatic pagination easy as you can simply detect for the presence of these attributes.</p>
+<p>This makes programatic pagination easy as you can simply detect for the presence of these attributes. You can loop through the pages until you receive a response of &lsquo;No messages found&rsquo;.</p>
 
 <p><strong>Note:</strong> The following resources aren&rsquo;t paginated for ease of use:</p>
 
 <ul>
 <li>Workspaces</li>
 <li>Scenarios</li>
+<li>Messages</li>
 </ul>
+
+<h3 id="extra-parameters">Extra parameters</h3>
+
+<p>It&rsquo;s also possible that the messages are older than the default filter that is applied.  At present Whispir provides a default of the last 7 days of messages.  You can ask for older messages by using the following 4 parameters:</p>
+
+<blockquote>
+<blockquote>
+<p>Requesting for records from 01/01/2015 00:00 – 01/07/2015 23:59</p>
+</blockquote>
+</blockquote>
+<pre><code class="highlight plaintext">https://api.whispir.com/messages?apikey=[your-api-key]&amp;criteriaFromDate=01/01/2015&amp;criteriaFromTime=00:00&amp;criteriaToDate=01/07/2015&amp;criteriaToTime=23:59
+</code></pre>
+
+<ul>
+<li>criteriaFromDate (format: dd/mm/yyyy)</li>
+<li>criteriaFromTime (format: hh:mm)</li>
+<li>criteriaToDate (format: dd/mm/yyyy)</li>
+<li>criteriaToTime  (format: hh:mm)</li>
+</ul>
+
+<p>All four of these parameters are required for a date search to work e.g.</p>
+
+<p>You can also use the parameter <code class="prettyprint">viewType=shared</code> if the messages you are looking for were sent from other users (not the API user).</p>
 
         <h1 id="messages">Messages</h1>
 
