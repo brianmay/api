@@ -4158,7 +4158,7 @@ The expected response to this call is an <strong>HTTP 201 - Created</strong>.</p
 
 <p>The Whispir API provides secure cloud based storage for your contact information.  This can then easily be retrieved by any application or device that requires access, and has permission to do so.</p>
 
-<h2 id="creating-new-contacts">Creating new Contacts</h2>
+<h2 id="creating-new-contacts`">Creating new Contacts`</h2>
 
 <blockquote>
 <p>Creating new Contacts</p>
@@ -5399,6 +5399,774 @@ Authorization: Basic [your basic auth]
 
 <p>You can only delete the distribution list that you have created or a valid userId associated with the specific distribution list.</p>
 
+        <h1 id="scenarios">Scenarios</h1>
+
+<p>Scenarios allows users to simplify the message delivery processes through automated one click communications. The process involves creating a fixed message Or a message template combined with a contact or a distribution list. When the scenario is executed, the message is sent to the contacts.</p>
+
+<p>Such use cases are widely useful in emergency notification scenarios where time is of essence. Not just messages (text), one can trigger Email, Voice and Social Media posts too suitable for different target audience as part of the scenario process.</p>
+
+<p><strong>Eg:</strong> &ldquo;A fire outbreak evacuation notification with escape path&rdquo; to all members of the office staff can be done much faster if a ready available message text and the handy distribution list of staff is created as a &ldquo;Scenario&rdquo;. A one click approach here shall trigger the evacuation order to all the staff immediately. No time is lost in composing, selecting the contacts etc. </p>
+
+<p>The contacts can be picked as a static distribution list or a rule based dynamic distribution list, or just direct available numbers. This improves the effectiveness of the scenario&rsquo;s target group reach.</p>
+
+<p>Not just an emergency, but any scenario where a fixed content/Rich Message has to be sent to a pool of contacts, Whispir&rsquo;s &ldquo;Scenario&rdquo; comes very handy.</p>
+
+<p>The following Content-Types are supported:</p>
+
+<ul>
+<li>application/vnd.whispir.scenario-v1+xml</li>
+<li>application/vnd.whispir.scenario-v1+json</li>
+</ul>
+
+<h2 id="creating-a-new-scenario">Creating a new Scenario</h2>
+
+<blockquote>
+<p>Creating Scenario</p>
+
+<blockquote>
+<p>The following API calls allow users to create Scenarios using the Whispir API.</p>
+</blockquote>
+</blockquote>
+<pre><code class="highlight plaintext">HTTP 1.1 POST https://api.whispir.com/scenarios?apikey=[your_api_key]
+Authorization: Basic asdf98nf89asdvasd2r398h8sdf
+</code></pre>
+<pre><code class="highlight xml">Content-Type: application/vnd.whispir.scenario-v1+xml 
+
+<span class="cp">&lt;?xml version="1.0" encoding="UTF-8" standalone="yes"?&gt;</span>
+<span class="nt">&lt;ns2:scenario</span> <span class="na">xmlns:ns2=</span><span class="s">"http://schemas.api.whispir.com"</span> <span class="na">xmlns:ns3=</span><span class="s">"http://schemas.api.whispir.com/dap"</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;title&gt;</span>Fire Evacuation Block A<span class="nt">&lt;/title&gt;</span>
+    <span class="nt">&lt;description&gt;</span>Fire evacuation notification for A block residents<span class="nt">&lt;/description&gt;</span>
+    <span class="nt">&lt;message&gt;</span>
+        <span class="nt">&lt;to&gt;</span>$mobile<span class="nt">&lt;/to&gt;</span>
+        <span class="nt">&lt;subject&gt;</span>Fire Evacuation<span class="nt">&lt;/subject&gt;</span>
+        <span class="nt">&lt;body&gt;</span>A fire has been detected at level 55. Please evacuate the building immediately. Please do not use the lifts.<span class="nt">&lt;/body&gt;</span>
+    <span class="nt">&lt;/message&gt;</span>
+<span class="nt">&lt;/ns2:scenario&gt;</span>
+</code></pre>
+<pre><code class="highlight go"><span class="n">Content</span><span class="o">-</span><span class="n">Type</span><span class="o">:</span><span class="x"> </span><span class="n">application</span><span class="o">/</span><span class="n">vnd</span><span class="o">.</span><span class="n">whispir</span><span class="o">.</span><span class="n">scenario</span><span class="o">-</span><span class="n">v1</span><span class="o">+</span><span class="n">json</span><span class="x">
+
+</span><span class="p">{</span><span class="x">
+    </span><span class="s">"title"</span><span class="x"> </span><span class="o">:</span><span class="x"> </span><span class="s">"Fire Evacuation Block A"</span><span class="p">,</span><span class="x">
+    </span><span class="s">"description"</span><span class="x"> </span><span class="o">:</span><span class="x"> </span><span class="s">"Fire evacuation notification for A block residents"</span><span class="p">,</span><span class="x">
+    </span><span class="s">"message"</span><span class="x"> </span><span class="o">:</span><span class="x"> </span><span class="p">{</span><span class="x">
+        </span><span class="s">"to"</span><span class="x"> </span><span class="o">:</span><span class="x"> </span><span class="s">"$mobile"</span><span class="p">,</span><span class="x">
+        </span><span class="s">"subject"</span><span class="x"> </span><span class="o">:</span><span class="x"> </span><span class="s">"Fire Evacuation"</span><span class="p">,</span><span class="x">
+        </span><span class="s">"body"</span><span class="x"> </span><span class="o">:</span><span class="x"> </span><span class="s">"A fire has been detected at level 55. Please evacuate the building immediately. Please do not use the lifts."</span><span class="x">
+    </span><span class="p">}</span><span class="x">
+</span><span class="p">}</span><span class="x">
+</span></code></pre>
+
+<blockquote>
+<blockquote>
+<p>This will give a successful response [201] along with the details of newly created scenario.</p>
+</blockquote>
+</blockquote>
+
+<p>A scenario is a combination of a message and contacts. So, its structure contains section for both message as well as contact information. API currently only supports creation of scenario with SMS as communication mode.</p>
+
+<p>To create a scenario, you can use the /scenarios endpoint.</p>
+
+<p>The following fields are required:</p>
+
+<ol>
+<li>name - name of the scenario</li>
+<li>description - details of the scenario</li>
+<li>message { to, subject, body }</li>
+</ol>
+
+<table>
+    <thead>
+        <tr>
+            <th style="width: 50%" colspan="2">High-Level Request Elements</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td style="text-align: right; font-weight: bold;">name:</td>
+            <td><strong>String</strong><br/>
+                Specifies the name of the scenario
+            </td>
+        </tr>
+        <tr>
+            <td style="text-align: right; font-weight: bold;">description:</td>
+            <td><strong>String</strong><br/>
+                Specifies the description of the scenario
+            </td>
+        </tr>
+        <tr>
+            <td style="text-align: right; font-weight: bold;">allowedUsers:</td>
+            <td><strong>String</strong><br/>
+                Specifies the usage permission - 
+                <ul>
+                    <li>EVERYONE</li>
+                    <li>SELECTEDUSERS</li>
+                </ul>
+                <br>
+                When SELECTEDUSERS is provided, then `allowedUserIds` shall contain the userID of the allowed users.
+            </td>
+        </tr>
+        <tr>
+            <td style="text-align: right; font-weight: bold;">allowedUserIds:</td>
+            <td><strong>String</strong><br/>
+                Specifies the comma separated list of users who can run this scenario.
+                <br>
+                Only contains value when the allowedUsers is set to `SELECTEDUSERS`
+            </td>
+        </tr>
+        <tr>
+            <td style="text-align: right; font-weight: bold;">message:</td>
+            <td><strong>Object</strong><br/>
+                Specifies the messaging options 
+            </td>
+        </tr>
+        <tr>
+            <td style="text-align: right; font-weight: bold;">to:</td>
+            <td><strong>String</strong><br/>
+                Specifies the phone number or mri or distribution list to which the message has to be sent
+            </td>
+        </tr>
+        <tr>
+            <td style="text-align: right; font-weight: bold;">subject:</td>
+            <td><strong>String</strong><br/>
+                Specifies the subject of the message
+            </td>
+        </tr>
+        <tr>
+            <td style="text-align: right; font-weight: bold;">body:</td>
+            <td><strong>String</strong><br/>
+                Specifies the body of the message
+            </td>
+        </tr>
+        <tr>
+            <td style="text-align: right; font-weight: bold;">label:</td>
+            <td><strong>String</strong><br/>
+                Specifies the label for the message (to view during reporting)
+            </td>
+        </tr>
+        
+        <tr>
+            <td style="text-align: right; font-weight: bold;">email:</td>
+            <td><strong>Object</strong><br/>
+                Email message that can be sent as part of this scenario
+                <br>
+                <ul>
+                    <li>body: The main content of the email</li>
+                    <li>footer: footer of the email</li>
+                    <li>type: text/plain or text/html</li>
+                </ul>
+            </td>
+        </tr>
+        <tr>
+            <td style="text-align: right; font-weight: bold;">voice:</td>
+            <td><strong>Object</strong><br/>
+                Similar to a text message, a voice call can also be triggered. This provides the necessary information for the channel.
+                <br>
+                <ul>
+                    <li>header: header for message. This will be played before the subject</li>
+                    <li>body: The main content of the message</li>
+                    <li>footer: footer for the message. Played after the body. Usually contains a thank you note.</li>
+                    <li>type: ConfCall:,ConfAccountNo:,ConfPinNo:,ConfModPinNo:,Pin:</li>
+                </ul>
+            </td>
+        </tr>
+        <tr>
+            <td style="text-align: right; font-weight: bold;">web:</td>
+            <td><strong>Object</strong><br/>
+                Refer to <a href="https://whispir.github.io/api/?xml#web-and-social-messaging" title="web and social media messaging">web messaging</a>.
+                The web message structure remains exactly the same
+            </td>
+        </tr>
+        <tr>
+            <td style="text-align: right; font-weight: bold;">social:</td>
+            <td><strong>Object</strong><br/>
+                Refer to <a href="https://whispir.github.io/api/?xml#web-and-social-messaging" title="web and social media messaging">web messaging</a>
+                The social message structure remains exactly the same
+            </td>
+        </tr>
+    </tbody>
+</table>
+
+<h2 id="retrieving-scenarios">Retrieving Scenarios</h2>
+
+<blockquote>
+<p>Retrieving Scenario</p>
+
+<blockquote>
+<p>The following API calls allow users to retrieve scenarios using the Whispir API.</p>
+</blockquote>
+</blockquote>
+<pre><code class="highlight plaintext">HTTP 1.1 GET https://api.whispir.com/scenarios?apikey=[your_api_key]
+Authorization: Basic am9obi5zbWl0aDpteXBhc3N3b3Jk
+</code></pre>
+<pre><code class="highlight xml">Accept: application/vnd.whispir.scenario-v1+xml
+
+<span class="cp">&lt;?xml version="1.0" encoding="UTF-8" standalone="yes"?&gt;</span>
+<span class="nt">&lt;ns2:return</span> <span class="na">xmlns:ns2=</span><span class="s">"http://schemas.api.whispir.com/dap"</span> <span class="na">xmlns:ns3=</span><span class="s">"http://schemas.api.whispir.com"</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;status&gt;</span>1 to 2 of 2<span class="nt">&lt;/status&gt;</span>
+    <span class="nt">&lt;ns2:scenarios&gt;</span>
+        <span class="nt">&lt;ns2:scenario&gt;</span>
+            <span class="nt">&lt;title&gt;</span>Emergency Comms - Fire<span class="nt">&lt;/title&gt;</span>
+            <span class="nt">&lt;description&gt;</span>Scenario to use during fire evacuation<span class="nt">&lt;/description&gt;</span>
+            <span class="nt">&lt;createdTime&gt;</span>2015-07-20T17:18:58+08:00<span class="nt">&lt;/createdTime&gt;</span>
+            <span class="nt">&lt;ns2:link</span> <span class="na">uri=</span><span class="s">"https://api.whispir.com/scenarios/F0547F6F2E4839F8?apikey=[your_api_key]"</span> <span class="na">rel=</span><span class="s">"self"</span> <span class="na">method=</span><span class="s">"GET"</span><span class="nt">/&gt;</span>
+        <span class="nt">&lt;/ns2:scenario&gt;</span>
+        <span class="nt">&lt;ns2:scenario&gt;</span>
+            <span class="nt">&lt;title&gt;</span>Scenario X<span class="nt">&lt;/title&gt;</span>
+            <span class="nt">&lt;description&gt;</span>This is a scenario where a scenario is created<span class="nt">&lt;/description&gt;</span>
+            <span class="nt">&lt;createdTime&gt;</span>2015-07-20T17:19:41+08:00<span class="nt">&lt;/createdTime&gt;</span>
+            <span class="nt">&lt;ns2:link</span> <span class="na">uri=</span><span class="s">"https://api.whispir.com/scenarios/6EE7F6F2E48B73B4?apikey=[your_api_key]"</span> <span class="na">rel=</span><span class="s">"self"</span> <span class="na">method=</span><span class="s">"GET"</span><span class="nt">/&gt;</span>
+        <span class="nt">&lt;/ns2:scenario&gt;</span>
+    <span class="nt">&lt;/ns2:scenarios&gt;</span>
+<span class="nt">&lt;/ns2:return&gt;</span>
+</code></pre>
+<pre><code class="highlight go"><span class="n">Accept</span><span class="o">:</span><span class="x"> </span><span class="n">application</span><span class="o">/</span><span class="n">vnd</span><span class="o">.</span><span class="n">whispir</span><span class="o">.</span><span class="n">scenario</span><span class="o">-</span><span class="n">v1</span><span class="o">+</span><span class="n">json</span><span class="x">
+
+</span><span class="p">{</span><span class="x">
+  </span><span class="s">"scenarios"</span><span class="o">:</span><span class="x"> </span><span class="p">[</span><span class="x">
+    </span><span class="p">{</span><span class="x">
+      </span><span class="s">"title"</span><span class="o">:</span><span class="x"> </span><span class="s">"Emergency Comms - Fire"</span><span class="p">,</span><span class="x">
+      </span><span class="s">"description"</span><span class="o">:</span><span class="x"> </span><span class="s">"Scenario to use during fire evacuation"</span><span class="p">,</span><span class="x">
+      </span><span class="s">"createdTime"</span><span class="o">:</span><span class="x"> </span><span class="m">1437383938000</span><span class="p">,</span><span class="x">
+      </span><span class="s">"link"</span><span class="o">:</span><span class="x"> </span><span class="p">[</span><span class="x">
+        </span><span class="p">{</span><span class="x">
+          </span><span class="s">"uri"</span><span class="o">:</span><span class="x"> </span><span class="s">"https://api.whispir.com/scenarios/F0547F6F2E4839F8?apikey=[your_api_key]"</span><span class="p">,</span><span class="x">
+          </span><span class="s">"rel"</span><span class="o">:</span><span class="x"> </span><span class="s">"self"</span><span class="p">,</span><span class="x">
+          </span><span class="s">"method"</span><span class="o">:</span><span class="x"> </span><span class="s">"GET"</span><span class="x">
+        </span><span class="p">}</span><span class="x">
+      </span><span class="p">]</span><span class="x">
+    </span><span class="p">},</span><span class="x">
+    </span><span class="p">{</span><span class="x">
+      </span><span class="s">"title"</span><span class="o">:</span><span class="x"> </span><span class="s">"Scenario X"</span><span class="p">,</span><span class="x">
+      </span><span class="s">"description"</span><span class="o">:</span><span class="x"> </span><span class="s">"This is a scenario where a scenario is created"</span><span class="p">,</span><span class="x">
+      </span><span class="s">"createdTime"</span><span class="o">:</span><span class="x"> </span><span class="m">1437383981000</span><span class="p">,</span><span class="x">
+      </span><span class="s">"link"</span><span class="o">:</span><span class="x"> </span><span class="p">[</span><span class="x">
+        </span><span class="p">{</span><span class="x">
+          </span><span class="s">"uri"</span><span class="o">:</span><span class="x"> </span><span class="s">"https://api.whispir.com/scenarios/6EE7F6F2E48B73B4?apikey=[your_api_key]"</span><span class="p">,</span><span class="x">
+          </span><span class="s">"rel"</span><span class="o">:</span><span class="x"> </span><span class="s">"self"</span><span class="p">,</span><span class="x">
+          </span><span class="s">"method"</span><span class="o">:</span><span class="x"> </span><span class="s">"GET"</span><span class="x">
+        </span><span class="p">}</span><span class="x">
+      </span><span class="p">]</span><span class="x">
+    </span><span class="p">}],</span><span class="x">
+  </span><span class="s">"status"</span><span class="o">:</span><span class="x"> </span><span class="s">"1 to 2 of 2"</span><span class="p">,</span><span class="x">
+  </span><span class="s">"link"</span><span class="o">:</span><span class="x"> </span><span class="p">[]</span><span class="x">
+</span><span class="p">}</span><span class="x">
+</span></code></pre>
+
+<p>To retrieve a list of scenarios from the Whispir.io API you can execute an HTTP GET using the /scenarios endpoint.</p>
+
+<p>You will need to supply one of the following headers (for retrieving JSON or XML):</p>
+
+<ul>
+<li>Accept: application/vnd.whispir.sceario-v1+xml</li>
+<li>Accept: application/vnd.whispir.scenario-v1+json</li>
+</ul>
+
+<p>An array of Scenarios will be returned to you in the HTTP response body.</p>
+
+<p>Each of these scenarios will provide the following information:</p>
+
+<table>
+    <thead>
+        <tr>
+            <th style="width: 50%" colspan="2">Response Elements</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td style="text-align: right; font-weight: bold;">name:</td>
+            <td><strong>String</strong><br/>
+                Specifies the name of the scenario.
+            </td>
+        </tr>
+        <tr>
+            <td style="text-align: right; font-weight: bold;">description:</td>
+            <td><strong>String</strong><br/>
+                Specifies the broad description of the scenario.
+            </td>
+        </tr>
+        <tr>
+            <td style="text-align: right; font-weight: bold;">createdTime:</td>
+            <td><strong>Number</strong><br/>
+                Specifies the scenario created time value in Epoch
+            </td>
+        </tr>
+        <tr>
+            <td style="text-align: right; font-weight: bold;">link:</td>
+            <td><strong>Array</strong><br/>
+                Provides a list of URLs that can be used to manipulate or access the scenario.
+                <ul>
+                  <li>uri - the link to access the scenario</li>
+                  <li>rel - the descriptor for what the link will do</li>
+                  <li>method - the HTTP method to use with this particular link</li>
+                </ul>
+            </td>
+        </tr>
+    </tbody>
+</table>
+
+<p>While that specifies the master list, doing a GET on a single scenario provides the following information - </p>
+
+<blockquote>
+<p>Retrieving details of a single Scenario</p>
+
+<blockquote>
+<p>Retrieving a single scenario details needs the ID of the scenario</p>
+</blockquote>
+</blockquote>
+<pre><code class="highlight plaintext">HTTP 1.1 GET https://api.whispir.com/scenarios/F0547F6F2E4839F8?apikey=[your_api_key]
+Authorization: Basic am9obi5zbWl0aDpteXBhc3N3b3Jk
+</code></pre>
+<pre><code class="highlight xml">Accept: application/vnd.whispir.scenario-v1+xml
+
+<span class="cp">&lt;?xml version="1.0" encoding="UTF-8" standalone="yes"?&gt;</span>
+<span class="nt">&lt;ns2:scenario</span> <span class="na">xmlns:ns2=</span><span class="s">"http://schemas.api.whispir.com"</span> <span class="na">xmlns:ns3=</span><span class="s">"http://schemas.api.whispir.com/dap"</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;title&gt;</span>Emergency Comms - Fire<span class="nt">&lt;/title&gt;</span>
+    <span class="nt">&lt;description&gt;</span>Scenario to use during fire evacuation<span class="nt">&lt;/description&gt;</span>
+    <span class="nt">&lt;createdTime&gt;</span>2015-07-20T17:18:58+08:00<span class="nt">&lt;/createdTime&gt;</span>
+    <span class="nt">&lt;allowedUsers&gt;</span>EVERYONE<span class="nt">&lt;/allowedUsers&gt;</span>
+    <span class="nt">&lt;message&gt;</span>
+        <span class="nt">&lt;to&gt;</span>$mobile<span class="nt">&lt;/to&gt;</span>
+        <span class="nt">&lt;subject&gt;</span>Scenario Emergency Comms - Fire<span class="nt">&lt;/subject&gt;</span>
+        <span class="nt">&lt;body&gt;</span>sms test<span class="nt">&lt;/body&gt;</span>
+        <span class="nt">&lt;label&gt;&lt;/label&gt;</span>
+        <span class="nt">&lt;voice/&gt;</span>
+        <span class="nt">&lt;from&gt;</span>joe.bloggs.company@Contact.Melbourne.whispir.au<span class="nt">&lt;/from&gt;</span>
+        <span class="nt">&lt;social&gt;</span>
+            <span class="nt">&lt;social</span> <span class="na">id=</span><span class="s">"socialType"</span><span class="nt">&gt;</span>
+                <span class="nt">&lt;body&gt;</span>text/plain<span class="nt">&lt;/body&gt;</span>
+            <span class="nt">&lt;/social&gt;</span>
+        <span class="nt">&lt;/social&gt;</span>
+        <span class="nt">&lt;createdTime&gt;</span>2015-07-22T20:48:31+08:00<span class="nt">&lt;/createdTime&gt;</span>
+    <span class="nt">&lt;/message&gt;</span>
+    <span class="nt">&lt;ns3:link</span> <span class="na">uri=</span><span class="s">"https://api.whispir.com/scenarios/F0547F6F2E4839F8?apikey=[your_api_key]"</span> <span class="na">rel=</span><span class="s">"self"</span> <span class="na">method=</span><span class="s">"GET"</span><span class="nt">/&gt;</span>
+    <span class="nt">&lt;ns3:link</span> <span class="na">uri=</span><span class="s">"https://api.whispir.com/scenarios/F0547F6F2E4839F8?apikey=[your_api_key]"</span> <span class="na">rel=</span><span class="s">"updateScenario"</span> <span class="na">method=</span><span class="s">"PUT"</span> <span class="na">type=</span><span class="s">"application/vnd.whispir.scenario-v1+json,application/vnd.whispir.scenario-v1+xml"</span><span class="nt">/&gt;</span>
+    <span class="nt">&lt;ns3:link</span> <span class="na">uri=</span><span class="s">"https://api.whispir.com/scenarios/F0547F6F2E4839F8?apikey=[your_api_key]"</span> <span class="na">rel=</span><span class="s">"deleteScenario"</span> <span class="na">method=</span><span class="s">"DELETE"</span> <span class="na">type=</span><span class="s">"application/vnd.whispir.scenario-v1+json,application/vnd.whispir.scenario-v1+xml"</span><span class="nt">/&gt;</span>
+<span class="nt">&lt;/ns2:scenario&gt;</span>
+</code></pre>
+<pre><code class="highlight go"><span class="n">Accept</span><span class="o">:</span><span class="x"> </span><span class="n">application</span><span class="o">/</span><span class="n">vnd</span><span class="o">.</span><span class="n">whispir</span><span class="o">.</span><span class="n">scenario</span><span class="o">-</span><span class="n">v1</span><span class="o">+</span><span class="n">json</span><span class="x">
+
+</span><span class="p">{</span><span class="x">
+  </span><span class="s">"title"</span><span class="o">:</span><span class="x"> </span><span class="s">"Emergency Comms - Fire"</span><span class="p">,</span><span class="x">
+  </span><span class="s">"description"</span><span class="o">:</span><span class="x"> </span><span class="s">"Scenario to use during fire evacuation"</span><span class="p">,</span><span class="x">
+  </span><span class="s">"createdTime"</span><span class="o">:</span><span class="x"> </span><span class="m">1437383938000</span><span class="p">,</span><span class="x">
+  </span><span class="s">"allowedUsers"</span><span class="o">:</span><span class="x"> </span><span class="s">"EVERYONE"</span><span class="p">,</span><span class="x">
+  </span><span class="s">"message"</span><span class="o">:</span><span class="x"> </span><span class="p">{</span><span class="x">
+    </span><span class="s">"to"</span><span class="o">:</span><span class="x"> </span><span class="s">"$mobile"</span><span class="p">,</span><span class="x">
+    </span><span class="s">"subject"</span><span class="o">:</span><span class="x"> </span><span class="s">"Scenario Emergency Comms - Fire"</span><span class="p">,</span><span class="x">
+    </span><span class="s">"body"</span><span class="o">:</span><span class="x"> </span><span class="s">"sms test"</span><span class="p">,</span><span class="x">
+    </span><span class="s">"label"</span><span class="o">:</span><span class="x"> </span><span class="s">""</span><span class="p">,</span><span class="x">
+    </span><span class="s">"voice"</span><span class="o">:</span><span class="x"> </span><span class="p">{},</span><span class="x">
+    </span><span class="s">"from"</span><span class="o">:</span><span class="x"> </span><span class="s">"joe.bloggs.company@Contact.Melbourne.whispir.au"</span><span class="p">,</span><span class="x">
+    </span><span class="s">"social"</span><span class="o">:</span><span class="x"> </span><span class="p">{</span><span class="x">
+      </span><span class="s">"social"</span><span class="o">:</span><span class="x"> </span><span class="p">[</span><span class="x">
+        </span><span class="p">{</span><span class="x">
+          </span><span class="s">"id"</span><span class="o">:</span><span class="x"> </span><span class="s">"socialType"</span><span class="p">,</span><span class="x">
+          </span><span class="s">"body"</span><span class="o">:</span><span class="x"> </span><span class="s">"text/plain"</span><span class="x">
+        </span><span class="p">}</span><span class="x">
+      </span><span class="p">]</span><span class="x">
+    </span><span class="p">},</span><span class="x">
+    </span><span class="s">"createdTime"</span><span class="o">:</span><span class="x"> </span><span class="m">1437569311000</span><span class="p">,</span><span class="x">
+  </span><span class="p">},</span><span class="x">
+  </span><span class="s">"link"</span><span class="o">:</span><span class="x"> </span><span class="p">[</span><span class="x">
+    </span><span class="p">{</span><span class="x">
+      </span><span class="s">"uri"</span><span class="o">:</span><span class="x"> </span><span class="s">"https://api.whispir.com/scenarios/F0547F6F2E4839F8?apikey=[your_api_key]"</span><span class="p">,</span><span class="x">
+      </span><span class="s">"rel"</span><span class="o">:</span><span class="x"> </span><span class="s">"self"</span><span class="p">,</span><span class="x">
+      </span><span class="s">"method"</span><span class="o">:</span><span class="x"> </span><span class="s">"GET"</span><span class="x">
+    </span><span class="p">},</span><span class="x">
+    </span><span class="p">{</span><span class="x">
+      </span><span class="s">"uri"</span><span class="o">:</span><span class="x"> </span><span class="s">"https://api.whispir.com/scenarios/F0547F6F2E4839F8?apikey=[your_api_key]"</span><span class="p">,</span><span class="x">
+      </span><span class="s">"rel"</span><span class="o">:</span><span class="x"> </span><span class="s">"updateScenario"</span><span class="p">,</span><span class="x">
+      </span><span class="s">"method"</span><span class="o">:</span><span class="x"> </span><span class="s">"PUT"</span><span class="p">,</span><span class="x">
+      </span><span class="s">"type"</span><span class="o">:</span><span class="x"> </span><span class="s">"application/vnd.whispir.scenario-v1+json,application/vnd.whispir.scenario-v1+xml"</span><span class="x">
+    </span><span class="p">},</span><span class="x">
+    </span><span class="p">{</span><span class="x">
+      </span><span class="s">"uri"</span><span class="o">:</span><span class="x"> </span><span class="s">"https://api.whispir.com/scenarios/F0547F6F2E4839F8?apikey=[your_api_key]"</span><span class="p">,</span><span class="x">
+      </span><span class="s">"rel"</span><span class="o">:</span><span class="x"> </span><span class="s">"deleteScenario"</span><span class="p">,</span><span class="x">
+      </span><span class="s">"method"</span><span class="o">:</span><span class="x"> </span><span class="s">"DELETE"</span><span class="p">,</span><span class="x">
+      </span><span class="s">"type"</span><span class="o">:</span><span class="x"> </span><span class="s">"application/vnd.whispir.scenario-v1+json,application/vnd.whispir.scenario-v1+xml"</span><span class="x">
+    </span><span class="p">}</span><span class="x">
+  </span><span class="p">]</span><span class="x">
+</span><span class="p">}</span><span class="x">
+</span></code></pre>
+
+<table>
+    <thead>
+        <tr>
+            <th style="width: 50%" colspan="2">Response Elements</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td style="text-align: right; font-weight: bold;">name:</td>
+            <td><strong>String</strong><br/>
+                Specifies the name of the scenario
+            </td>
+        </tr>
+        <tr>
+            <td style="text-align: right; font-weight: bold;">description:</td>
+            <td><strong>String</strong><br/>
+                Specifies the description of the scenario
+            </td>
+        </tr>
+        <tr>
+            <td style="text-align: right; font-weight: bold;">createdTime:</td>
+            <td><strong>Number</strong><br/>
+                Specifies the scenario created time value in Epoch
+            </td>
+        </tr>
+        <tr>
+            <td style="text-align: right; font-weight: bold;">allowedUsers:</td>
+            <td><strong>String</strong><br/>
+                Specifies the usage permission - 
+                <ul>
+                    <li>EVERYONE</li>
+                    <li>SELECTEDUSERS</li>
+                </ul>
+                <br>
+                When SELECTEDUSERS is provided, then `allowedUserIds` shall contain the userID of the allowed users.
+            </td>
+        </tr>
+        <tr>
+            <td style="text-align: right; font-weight: bold;">allowedUserIds:</td>
+            <td><strong>String</strong><br/>
+                Specifies the comma separated list of users who can run this scenario.
+                <br>
+                Only contains value when the allowedUsers is set to `SELECTEDUSERS`
+            </td>
+        </tr>
+        <tr>
+            <td style="text-align: right; font-weight: bold;">message:</td>
+            <td><strong>Object</strong><br/>
+                Specifies the messaging options 
+            </td>
+        </tr>
+        <tr>
+            <td style="text-align: right; font-weight: bold;">to:</td>
+            <td><strong>String</strong><br/>
+                Specifies the phone number or mri or distribution list to which the message has to be sent
+            </td>
+        </tr>
+        <tr>
+            <td style="text-align: right; font-weight: bold;">subject:</td>
+            <td><strong>String</strong><br/>
+                Specifies the subject of the message
+            </td>
+        </tr>
+        <tr>
+            <td style="text-align: right; font-weight: bold;">body:</td>
+            <td><strong>String</strong><br/>
+                Specifies the body of the message
+            </td>
+        </tr>
+        <tr>
+            <td style="text-align: right; font-weight: bold;">label:</td>
+            <td><strong>String</strong><br/>
+                Specifies the label for the message (to view during reporting)
+            </td>
+        </tr>
+        
+        <tr>
+            <td style="text-align: right; font-weight: bold;">email:</td>
+            <td><strong>Object</strong><br/>
+                Email message that can be sent as part of this scenario
+                <br>
+                <ul>
+                    <li>body: The main content of the email</li>
+                    <li>footer: footer of the email</li>
+                    <li>type: text/plain or text/html</li>
+                </ul>
+            </td>
+        </tr>
+        <tr>
+            <td style="text-align: right; font-weight: bold;">voice:</td>
+            <td><strong>Object</strong><br/>
+                Similar to a text message, a voice call can also be triggered. This provides the necessary information for the channel.
+                <br>
+                <ul>
+                    <li>header: header for message. This will be played before the subject</li>
+                    <li>body: The main content of the message</li>
+                    <li>footer: footer for the message. Played after the body. Usually contains a thank you note.</li>
+                    <li>type: ConfCall:,ConfAccountNo:,ConfPinNo:,ConfModPinNo:,Pin:</li>
+                </ul>
+            </td>
+        </tr>
+        <tr>
+            <td style="text-align: right; font-weight: bold;">web:</td>
+            <td><strong>Object</strong><br/>
+                Refer to <a href="https://whispir.github.io/api/?xml#web-and-social-messaging" title="web and social media messaging">web messaging</a>.
+                The web message structure remains exactly the same
+            </td>
+        </tr>
+        <tr>
+            <td style="text-align: right; font-weight: bold;">social:</td>
+            <td><strong>Object</strong><br/>
+                Refer to <a href="https://whispir.github.io/api/?xml#web-and-social-messaging" title="web and social media messaging">web messaging</a>
+                The social message structure remains exactly the same
+            </td>
+        </tr>
+        <tr>
+            <td style="text-align: right; font-weight: bold;">from:</td>
+            <td><strong>String</strong><br/>
+                The user/contact from whom this communication will be sent out when the scenario is run. <br>
+                <b>Eg: </b> joe.bloggs.company@Contact.Melbourne.whispir.au
+            </td>
+        </tr>
+        <tr>
+            <td style="text-align: right; font-weight: bold;">link:</td>
+            <td><strong>Array</strong><br/>
+                Provides a list of URLs that can be used to manipulate or access the scenario.
+                <ul>
+                  <li>uri - the link to access the scenario</li>
+                  <li>rel - the descriptor for what the link will do</li>
+                  <li>method - the HTTP method to use with this particular link</li>
+                </ul>
+            </td>
+        </tr>
+    </tbody>
+</table>
+
+<h2 id="running-a-scenario">Running a Scenario</h2>
+
+<blockquote>
+<p>Running a Scenario</p>
+
+<blockquote>
+<p>A simple POST call to the scenarios endpoint with the scenario ID triggers the scenario execution</p>
+</blockquote>
+</blockquote>
+<pre><code class="highlight plaintext">HTTP 1.1 POST https://api.whispir.com/scenarios/F0547F6F2E4839F8?apikey=[your_api_key]
+Authorization: Basic asdf98nf89asdvasd2r398h8sdf
+
+&gt; &gt; The expected response to this call is an HTTP 204 - No Content.
+</code></pre>
+
+<p>Running a Scenario , in other words, invoking a scenario triggers the communication to the intended recipients. The message (static or dynamic) will be sent on all the provided channels.</p>
+
+<p>Running a scenario is very simple to do. The specific scenario has to called via a /POST request.</p>
+
+<p>Step wise example -</p>
+
+<ol>
+<li>Get all the scenarios</li>
+<li>Pick the required scenario&rsquo;s link attribute</li>
+<li>Make a /POST call</li>
+</ol>
+
+<p>From the retrieving scenarios call above, we can get all the scenarios in the workspace. Choosing the <code class="prettyprint">Emergency Comms - Fire</code> named Scenario, the link provided is <code class="prettyprint">https://api.whispir.com/scenarios/F0547F6F2E4839F8?apikey=[your_api_key]</code></p>
+
+<p>Now invoking this scenario is just making a /POST call.  There is no need for a <code class="prettyprint">Content-type</code> header as the payload is empty.</p>
+
+<h2 id="updating-scenario">Updating Scenario</h2>
+
+<p>To update existing scenario, you can use a PUT request the /scenarios endpoint.</p>
+
+<blockquote>
+<p>Updating a Scenario</p>
+
+<blockquote>
+<p>The following API calls allow users to update Scenarios using the Whispir API.</p>
+</blockquote>
+</blockquote>
+<pre><code class="highlight plaintext">HTTP 1.1 PUT https://api.whispir.com/scenarios/F0547F6F2E4839F8?apikey=[your_api_key]
+Authorization: Basic am9obi5zbWl0aDpteXBhc3N3b3Jk
+</code></pre>
+<pre><code class="highlight xml">Accept: application/vnd.whispir.scenario-v1+xml
+
+<span class="cp">&lt;?xml version="1.0" encoding="UTF-8" standalone="yes"?&gt;</span>
+<span class="nt">&lt;ns2:scenario</span> <span class="na">xmlns:ns2=</span><span class="s">"http://schemas.api.whispir.com"</span> <span class="na">xmlns:ns3=</span><span class="s">"http://schemas.api.whispir.com/dap"</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;title&gt;</span>Emergency Comms - Fire<span class="nt">&lt;/title&gt;</span>
+    <span class="nt">&lt;description&gt;</span>Scenario to use during fire evacuation<span class="nt">&lt;/description&gt;</span>
+    <span class="nt">&lt;allowedUsers&gt;</span>EVERYONE<span class="nt">&lt;/allowedUsers&gt;</span>
+    <span class="nt">&lt;message&gt;</span>
+        <span class="nt">&lt;to&gt;</span>$mobile<span class="nt">&lt;/to&gt;</span>
+        <span class="nt">&lt;subject&gt;</span>Scenario Emergency Comms - Fire<span class="nt">&lt;/subject&gt;</span>
+        <span class="nt">&lt;body&gt;</span>Evacuate the building Immediately. Do not use the lifts.<span class="nt">&lt;/body&gt;</span>
+        <span class="nt">&lt;label&gt;&lt;/label&gt;</span>
+        <span class="nt">&lt;voice/&gt;</span>
+        <span class="nt">&lt;from&gt;</span>joe.bloggs.company@Contact.Melbourne.whispir.au<span class="nt">&lt;/from&gt;</span>
+        <span class="nt">&lt;social&gt;</span>
+            <span class="nt">&lt;social</span> <span class="na">id=</span><span class="s">"socialType"</span><span class="nt">&gt;</span>
+                <span class="nt">&lt;body&gt;</span>text/plain<span class="nt">&lt;/body&gt;</span>
+            <span class="nt">&lt;/social&gt;</span>
+        <span class="nt">&lt;/social&gt;</span>
+    <span class="nt">&lt;/message&gt;</span>
+<span class="nt">&lt;/ns2:scenario&gt;</span>
+</code></pre>
+<pre><code class="highlight go"><span class="n">Accept</span><span class="o">:</span><span class="x"> </span><span class="n">application</span><span class="o">/</span><span class="n">vnd</span><span class="o">.</span><span class="n">whispir</span><span class="o">.</span><span class="n">scenario</span><span class="o">-</span><span class="n">v1</span><span class="o">+</span><span class="n">json</span><span class="x">
+
+</span><span class="p">{</span><span class="x">
+  </span><span class="s">"title"</span><span class="o">:</span><span class="x"> </span><span class="s">"Emergency Comms - Fire"</span><span class="p">,</span><span class="x">
+  </span><span class="s">"description"</span><span class="o">:</span><span class="x"> </span><span class="s">"Scenario to use during fire evacuation"</span><span class="p">,</span><span class="x">
+  </span><span class="s">"allowedUsers"</span><span class="o">:</span><span class="x"> </span><span class="s">"EVERYONE"</span><span class="p">,</span><span class="x">
+  </span><span class="s">"message"</span><span class="o">:</span><span class="x"> </span><span class="p">{</span><span class="x">
+    </span><span class="s">"to"</span><span class="o">:</span><span class="x"> </span><span class="s">"$mobile"</span><span class="p">,</span><span class="x">
+    </span><span class="s">"subject"</span><span class="o">:</span><span class="x"> </span><span class="s">"Scenario Emergency Comms - Fire"</span><span class="p">,</span><span class="x">
+    </span><span class="s">"body"</span><span class="o">:</span><span class="x"> </span><span class="s">"Evacuate the building Immediately. Do not use the lifts."</span><span class="p">,</span><span class="x">
+    </span><span class="s">"label"</span><span class="o">:</span><span class="x"> </span><span class="s">""</span><span class="p">,</span><span class="x">
+    </span><span class="s">"voice"</span><span class="o">:</span><span class="x"> </span><span class="p">{},</span><span class="x">
+    </span><span class="s">"from"</span><span class="o">:</span><span class="x"> </span><span class="s">"joe.bloggs.company@Contact.Melbourne.whispir.au"</span><span class="p">,</span><span class="x">
+    </span><span class="s">"social"</span><span class="o">:</span><span class="x"> </span><span class="p">{</span><span class="x">
+      </span><span class="s">"social"</span><span class="o">:</span><span class="x"> </span><span class="p">[</span><span class="x">
+        </span><span class="p">{</span><span class="x">
+          </span><span class="s">"id"</span><span class="o">:</span><span class="x"> </span><span class="s">"socialType"</span><span class="p">,</span><span class="x">
+          </span><span class="s">"body"</span><span class="o">:</span><span class="x"> </span><span class="s">"text/plain"</span><span class="x">
+        </span><span class="p">}</span><span class="x">
+      </span><span class="p">]</span><span class="x">
+    </span><span class="p">}</span><span class="x">
+  </span><span class="p">}</span><span class="x">
+</span><span class="p">}</span><span class="x">
+</span></code></pre>
+
+<p>The following fields are required:</p>
+
+<ol>
+<li>name - name of the scenario</li>
+<li>description - details of the scenario</li>
+<li>message { to, subject, body }</li>
+</ol>
+
+<table>
+    <thead>
+        <tr>
+            <th style="width: 50%" colspan="2">High-Level Request Elements</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td style="text-align: right; font-weight: bold;">name:</td>
+            <td><strong>String</strong><br/>
+                Specifies the name of the scenario
+            </td>
+        </tr>
+        <tr>
+            <td style="text-align: right; font-weight: bold;">description:</td>
+            <td><strong>String</strong><br/>
+                Specifies the description of the scenario
+            </td>
+        </tr>
+        <tr>
+            <td style="text-align: right; font-weight: bold;">createdTime:</td>
+            <td><strong>Number</strong><br/>
+                Specifies the scenario created time value in Epoch
+            </td>
+        </tr>
+        <tr>
+            <td style="text-align: right; font-weight: bold;">allowedUsers:</td>
+            <td><strong>String</strong><br/>
+                Specifies the usage permission - 
+                <ul>
+                    <li>EVERYONE</li>
+                    <li>SELECTEDUSERS</li>
+                </ul>
+                <br>
+                When SELECTEDUSERS is provided, then `allowedUserIds` shall contain the userID of the allowed users.
+            </td>
+        </tr>
+        <tr>
+            <td style="text-align: right; font-weight: bold;">allowedUserIds:</td>
+            <td><strong>String</strong><br/>
+                Specifies the comma separated list of users who can run this scenario.
+                <br>
+                Only contains value when the allowedUsers is set to `SELECTEDUSERS`
+            </td>
+        </tr>
+        <tr>
+            <td style="text-align: right; font-weight: bold;">message:</td>
+            <td><strong>Object</strong><br/>
+                Specifies the messaging options 
+            </td>
+        </tr>
+        <tr>
+            <td style="text-align: right; font-weight: bold;">to:</td>
+            <td><strong>String</strong><br/>
+                Specifies the phone number or mri or distribution list to which the message has to be sent
+            </td>
+        </tr>
+        <tr>
+            <td style="text-align: right; font-weight: bold;">subject:</td>
+            <td><strong>String</strong><br/>
+                Specifies the subject of the message
+            </td>
+        </tr>
+        <tr>
+            <td style="text-align: right; font-weight: bold;">body:</td>
+            <td><strong>String</strong><br/>
+                Specifies the body of the message
+            </td>
+        </tr>
+        <tr>
+            <td style="text-align: right; font-weight: bold;">label:</td>
+            <td><strong>String</strong><br/>
+                Specifies the label for the message (to view during reporting)
+            </td>
+        </tr>
+        
+        <tr>
+            <td style="text-align: right; font-weight: bold;">email:</td>
+            <td><strong>Object</strong><br/>
+                Email message that can be sent as part of this scenario
+                <br>
+                <ul>
+                    <li>body: The main content of the email</li>
+                    <li>footer: footer of the email</li>
+                    <li>type: text/plain or text/html</li>
+                </ul>
+            </td>
+        </tr>
+        <tr>
+            <td style="text-align: right; font-weight: bold;">voice:</td>
+            <td><strong>Object</strong><br/>
+                Similar to a text message, a voice call can also be triggered. This provides the necessary information for the channel.
+                <br>
+                <ul>
+                    <li>header: header for message. This will be played before the subject</li>
+                    <li>body: The main content of the message</li>
+                    <li>footer: footer for the message. Played after the body. Usually contains a thank you note.</li>
+                    <li>type: ConfCall:,ConfAccountNo:,ConfPinNo:,ConfModPinNo:,Pin:</li>
+                </ul>
+            </td>
+        </tr>
+        <tr>
+            <td style="text-align: right; font-weight: bold;">web:</td>
+            <td><strong>Object</strong><br/>
+                Refer to <a href="https://whispir.github.io/api/?xml#web-and-social-messaging" title="web and social media messaging">web messaging</a>.
+                The web message structure remains exactly the same
+            </td>
+        </tr>
+        <tr>
+            <td style="text-align: right; font-weight: bold;">social:</td>
+            <td><strong>Object</strong><br/>
+                Refer to <a href="https://whispir.github.io/api/?xml#web-and-social-messaging" title="web and social media messaging">web messaging</a>
+                The social message structure remains exactly the same
+            </td>
+        </tr>
+        <tr>
+            <td style="text-align: right; font-weight: bold;">from:</td>
+            <td><strong>String</strong><br/>
+                The user/contact from whom this communication will be sent out when the scenario is run. <br>
+                <b>Eg: </b> joe.bloggs.company@Contact.Melbourne.whispir.au
+            </td>
+        </tr>
+    </tbody>
+</table>
+
+<h2 id="deleting-scenario">Deleting Scenario</h2>
+
+<blockquote>
+<p>Deleting a Scenario</p>
+
+<blockquote>
+<p>The following API calls allow users to delete Scenarios using the Whispir API.</p>
+</blockquote>
+</blockquote>
+<pre><code class="highlight plaintext">HTTP 1.1 DELETE https://api.whispir.com/scenarios/6EE7F6F2E48B73B4?apikey=[your_api_key]
+Authorization: Basic asdf98nf89asdvasd2r398h8sdf
+
+&gt; &gt; The expected response to this call is an HTTP 204 - No Content.
+</code></pre>
+
+<p>Deleting a Scenario can be done via a DELETE call to the /scenarios endpoint. The request has to be targeted at a particular Scenario with the Scenario ID in the URI.</p>
+
         <h1 id="callbacks">Callbacks</h1>
 
 <p>Whispir utilises API Callbacks to send simple notifications to different registered services in the event that some change has occurred on the Whispir Platform.</p>
@@ -6200,774 +6968,6 @@ Authorization: Basic asdf98nf89asdvasd2r398h8sdf
         </tr>
     </tbody>
 </table>
-
-        <h1 id="scenarios">Scenarios</h1>
-
-<p>Scenarios allows users to simplify the message delivery processes through automated one click communications. The process involves creating a fixed message Or a message template combined with a contact or a distribution list. When the scenario is executed, the message is sent to the contacts.</p>
-
-<p>Such use cases are widely useful in emergency notification scenarios where time is of essence. Not just messages (text), one can trigger Email, Voice and Social Media posts too suitable for different target audience as part of the scenario process.</p>
-
-<p><strong>Eg:</strong> &ldquo;A fire outbreak evacuation notification with escape path&rdquo; to all members of the office staff can be done much faster if a ready available message text and the handy distribution list of staff is created as a &ldquo;Scenario&rdquo;. A one click approach here shall trigger the evacuation order to all the staff immediately. No time is lost in composing, selecting the contacts etc. </p>
-
-<p>The contacts can be picked as a static distribution list or a rule based dynamic distribution list, or just direct available numbers. This improves the effectiveness of the scenario&rsquo;s target group reach.</p>
-
-<p>Not just an emergency, but any scenario where a fixed content/Rich Message has to be sent to a pool of contacts, Whispir&rsquo;s &ldquo;Scenario&rdquo; comes very handy.</p>
-
-<p>The following Content-Types are supported:</p>
-
-<ul>
-<li>application/vnd.whispir.scenario-v1+xml</li>
-<li>application/vnd.whispir.scenario-v1+json</li>
-</ul>
-
-<h2 id="creating-a-new-scenario">Creating a new Scenario</h2>
-
-<blockquote>
-<p>Creating Scenario</p>
-
-<blockquote>
-<p>The following API calls allow users to create Scenarios using the Whispir API.</p>
-</blockquote>
-</blockquote>
-<pre><code class="highlight plaintext">HTTP 1.1 POST https://api.whispir.com/scenarios?apikey=[your_api_key]
-Authorization: Basic asdf98nf89asdvasd2r398h8sdf
-</code></pre>
-<pre><code class="highlight xml">Content-Type: application/vnd.whispir.scenario-v1+xml 
-
-<span class="cp">&lt;?xml version="1.0" encoding="UTF-8" standalone="yes"?&gt;</span>
-<span class="nt">&lt;ns2:scenario</span> <span class="na">xmlns:ns2=</span><span class="s">"http://schemas.api.whispir.com"</span> <span class="na">xmlns:ns3=</span><span class="s">"http://schemas.api.whispir.com/dap"</span><span class="nt">&gt;</span>
-    <span class="nt">&lt;title&gt;</span>Fire Evacuation Block A<span class="nt">&lt;/title&gt;</span>
-    <span class="nt">&lt;description&gt;</span>Fire evacuation notification for A block residents<span class="nt">&lt;/description&gt;</span>
-    <span class="nt">&lt;message&gt;</span>
-        <span class="nt">&lt;to&gt;</span>$mobile<span class="nt">&lt;/to&gt;</span>
-        <span class="nt">&lt;subject&gt;</span>Fire Evacuation<span class="nt">&lt;/subject&gt;</span>
-        <span class="nt">&lt;body&gt;</span>A fire has been detected at level 55. Please evacuate the building immediately. Please do not use the lifts.<span class="nt">&lt;/body&gt;</span>
-    <span class="nt">&lt;/message&gt;</span>
-<span class="nt">&lt;/ns2:scenario&gt;</span>
-</code></pre>
-<pre><code class="highlight go"><span class="n">Content</span><span class="o">-</span><span class="n">Type</span><span class="o">:</span><span class="x"> </span><span class="n">application</span><span class="o">/</span><span class="n">vnd</span><span class="o">.</span><span class="n">whispir</span><span class="o">.</span><span class="n">scenario</span><span class="o">-</span><span class="n">v1</span><span class="o">+</span><span class="n">json</span><span class="x">
-
-</span><span class="p">{</span><span class="x">
-    </span><span class="s">"title"</span><span class="x"> </span><span class="o">:</span><span class="x"> </span><span class="s">"Fire Evacuation Block A"</span><span class="p">,</span><span class="x">
-    </span><span class="s">"description"</span><span class="x"> </span><span class="o">:</span><span class="x"> </span><span class="s">"Fire evacuation notification for A block residents"</span><span class="p">,</span><span class="x">
-    </span><span class="s">"message"</span><span class="x"> </span><span class="o">:</span><span class="x"> </span><span class="p">{</span><span class="x">
-        </span><span class="s">"to"</span><span class="x"> </span><span class="o">:</span><span class="x"> </span><span class="s">"$mobile"</span><span class="p">,</span><span class="x">
-        </span><span class="s">"subject"</span><span class="x"> </span><span class="o">:</span><span class="x"> </span><span class="s">"Fire Evacuation"</span><span class="p">,</span><span class="x">
-        </span><span class="s">"body"</span><span class="x"> </span><span class="o">:</span><span class="x"> </span><span class="s">"A fire has been detected at level 55. Please evacuate the building immediately. Please do not use the lifts."</span><span class="x">
-    </span><span class="p">}</span><span class="x">
-</span><span class="p">}</span><span class="x">
-</span></code></pre>
-
-<blockquote>
-<blockquote>
-<p>This will give a successful response [201] along with the details of newly created scenario.</p>
-</blockquote>
-</blockquote>
-
-<p>A scenario is a combination of a message and contacts. So, its structure contains section for both message as well as contact information. API currently only supports creation of scenario with SMS as communication mode.</p>
-
-<p>To create a scenario, you can use the /scenarios endpoint.</p>
-
-<p>The following fields are required:</p>
-
-<ol>
-<li>name - name of the scenario</li>
-<li>description - details of the scenario</li>
-<li>message { to, subject, body }</li>
-</ol>
-
-<table>
-    <thead>
-        <tr>
-            <th style="width: 50%" colspan="2">High-Level Request Elements</th>
-        </tr>
-    </thead>
-    <tbody>
-        <tr>
-            <td style="text-align: right; font-weight: bold;">name:</td>
-            <td><strong>String</strong><br/>
-                Specifies the name of the scenario
-            </td>
-        </tr>
-        <tr>
-            <td style="text-align: right; font-weight: bold;">description:</td>
-            <td><strong>String</strong><br/>
-                Specifies the description of the scenario
-            </td>
-        </tr>
-        <tr>
-            <td style="text-align: right; font-weight: bold;">allowedUsers:</td>
-            <td><strong>String</strong><br/>
-                Specifies the usage permission - 
-                <ul>
-                    <li>EVERYONE</li>
-                    <li>SELECTEDUSERS</li>
-                </ul>
-                <br>
-                When SELECTEDUSERS is provided, then `allowedUserIds` shall contain the userID of the allowed users.
-            </td>
-        </tr>
-        <tr>
-            <td style="text-align: right; font-weight: bold;">allowedUserIds:</td>
-            <td><strong>String</strong><br/>
-                Specifies the comma separated list of users who can run this scenario.
-                <br>
-                Only contains value when the allowedUsers is set to `SELECTEDUSERS`
-            </td>
-        </tr>
-        <tr>
-            <td style="text-align: right; font-weight: bold;">message:</td>
-            <td><strong>Object</strong><br/>
-                Specifies the messaging options 
-            </td>
-        </tr>
-        <tr>
-            <td style="text-align: right; font-weight: bold;">to:</td>
-            <td><strong>String</strong><br/>
-                Specifies the phone number or mri or distribution list to which the message has to be sent
-            </td>
-        </tr>
-        <tr>
-            <td style="text-align: right; font-weight: bold;">subject:</td>
-            <td><strong>String</strong><br/>
-                Specifies the subject of the message
-            </td>
-        </tr>
-        <tr>
-            <td style="text-align: right; font-weight: bold;">body:</td>
-            <td><strong>String</strong><br/>
-                Specifies the body of the message
-            </td>
-        </tr>
-        <tr>
-            <td style="text-align: right; font-weight: bold;">label:</td>
-            <td><strong>String</strong><br/>
-                Specifies the label for the message (to view during reporting)
-            </td>
-        </tr>
-        
-        <tr>
-            <td style="text-align: right; font-weight: bold;">email:</td>
-            <td><strong>Object</strong><br/>
-                Email message that can be sent as part of this scenario
-                <br>
-                <ul>
-                    <li>body: The main content of the email</li>
-                    <li>footer: footer of the email</li>
-                    <li>type: text/plain or text/html</li>
-                </ul>
-            </td>
-        </tr>
-        <tr>
-            <td style="text-align: right; font-weight: bold;">voice:</td>
-            <td><strong>Object</strong><br/>
-                Similar to a text message, a voice call can also be triggered. This provides the necessary information for the channel.
-                <br>
-                <ul>
-                    <li>header: header for message. This will be played before the subject</li>
-                    <li>body: The main content of the message</li>
-                    <li>footer: footer for the message. Played after the body. Usually contains a thank you note.</li>
-                    <li>type: ConfCall:,ConfAccountNo:,ConfPinNo:,ConfModPinNo:,Pin:</li>
-                </ul>
-            </td>
-        </tr>
-        <tr>
-            <td style="text-align: right; font-weight: bold;">web:</td>
-            <td><strong>Object</strong><br/>
-                Refer to <a href="https://whispir.github.io/api/?xml#web-and-social-messaging" title="web and social media messaging">web messaging</a>.
-                The web message structure remains exactly the same
-            </td>
-        </tr>
-        <tr>
-            <td style="text-align: right; font-weight: bold;">social:</td>
-            <td><strong>Object</strong><br/>
-                Refer to <a href="https://whispir.github.io/api/?xml#web-and-social-messaging" title="web and social media messaging">web messaging</a>
-                The social message structure remains exactly the same
-            </td>
-        </tr>
-    </tbody>
-</table>
-
-<h2 id="retrieving-scenarios">Retrieving Scenarios</h2>
-
-<blockquote>
-<p>Retrieving Scenario</p>
-
-<blockquote>
-<p>The following API calls allow users to retrieve scenarios using the Whispir API.</p>
-</blockquote>
-</blockquote>
-<pre><code class="highlight plaintext">HTTP 1.1 GET https://api.whispir.com/scenarios?apikey=[your_api_key]
-Authorization: Basic am9obi5zbWl0aDpteXBhc3N3b3Jk
-</code></pre>
-<pre><code class="highlight xml">Accept: application/vnd.whispir.scenario-v1+xml
-
-<span class="cp">&lt;?xml version="1.0" encoding="UTF-8" standalone="yes"?&gt;</span>
-<span class="nt">&lt;ns2:return</span> <span class="na">xmlns:ns2=</span><span class="s">"http://schemas.api.whispir.com/dap"</span> <span class="na">xmlns:ns3=</span><span class="s">"http://schemas.api.whispir.com"</span><span class="nt">&gt;</span>
-    <span class="nt">&lt;status&gt;</span>1 to 2 of 2<span class="nt">&lt;/status&gt;</span>
-    <span class="nt">&lt;ns2:scenarios&gt;</span>
-        <span class="nt">&lt;ns2:scenario&gt;</span>
-            <span class="nt">&lt;title&gt;</span>Emergency Comms - Fire<span class="nt">&lt;/title&gt;</span>
-            <span class="nt">&lt;description&gt;</span>Scenario to use during fire evacuation<span class="nt">&lt;/description&gt;</span>
-            <span class="nt">&lt;createdTime&gt;</span>2015-07-20T17:18:58+08:00<span class="nt">&lt;/createdTime&gt;</span>
-            <span class="nt">&lt;ns2:link</span> <span class="na">uri=</span><span class="s">"https://api.whispir.com/scenarios/F0547F6F2E4839F8?apikey=[your_api_key]"</span> <span class="na">rel=</span><span class="s">"self"</span> <span class="na">method=</span><span class="s">"GET"</span><span class="nt">/&gt;</span>
-        <span class="nt">&lt;/ns2:scenario&gt;</span>
-        <span class="nt">&lt;ns2:scenario&gt;</span>
-            <span class="nt">&lt;title&gt;</span>Scenario X<span class="nt">&lt;/title&gt;</span>
-            <span class="nt">&lt;description&gt;</span>This is a scenario where a scenario is created<span class="nt">&lt;/description&gt;</span>
-            <span class="nt">&lt;createdTime&gt;</span>2015-07-20T17:19:41+08:00<span class="nt">&lt;/createdTime&gt;</span>
-            <span class="nt">&lt;ns2:link</span> <span class="na">uri=</span><span class="s">"https://api.whispir.com/scenarios/6EE7F6F2E48B73B4?apikey=[your_api_key]"</span> <span class="na">rel=</span><span class="s">"self"</span> <span class="na">method=</span><span class="s">"GET"</span><span class="nt">/&gt;</span>
-        <span class="nt">&lt;/ns2:scenario&gt;</span>
-    <span class="nt">&lt;/ns2:scenarios&gt;</span>
-<span class="nt">&lt;/ns2:return&gt;</span>
-</code></pre>
-<pre><code class="highlight go"><span class="n">Accept</span><span class="o">:</span><span class="x"> </span><span class="n">application</span><span class="o">/</span><span class="n">vnd</span><span class="o">.</span><span class="n">whispir</span><span class="o">.</span><span class="n">scenario</span><span class="o">-</span><span class="n">v1</span><span class="o">+</span><span class="n">json</span><span class="x">
-
-</span><span class="p">{</span><span class="x">
-  </span><span class="s">"scenarios"</span><span class="o">:</span><span class="x"> </span><span class="p">[</span><span class="x">
-    </span><span class="p">{</span><span class="x">
-      </span><span class="s">"title"</span><span class="o">:</span><span class="x"> </span><span class="s">"Emergency Comms - Fire"</span><span class="p">,</span><span class="x">
-      </span><span class="s">"description"</span><span class="o">:</span><span class="x"> </span><span class="s">"Scenario to use during fire evacuation"</span><span class="p">,</span><span class="x">
-      </span><span class="s">"createdTime"</span><span class="o">:</span><span class="x"> </span><span class="m">1437383938000</span><span class="p">,</span><span class="x">
-      </span><span class="s">"link"</span><span class="o">:</span><span class="x"> </span><span class="p">[</span><span class="x">
-        </span><span class="p">{</span><span class="x">
-          </span><span class="s">"uri"</span><span class="o">:</span><span class="x"> </span><span class="s">"https://api.whispir.com/scenarios/F0547F6F2E4839F8?apikey=[your_api_key]"</span><span class="p">,</span><span class="x">
-          </span><span class="s">"rel"</span><span class="o">:</span><span class="x"> </span><span class="s">"self"</span><span class="p">,</span><span class="x">
-          </span><span class="s">"method"</span><span class="o">:</span><span class="x"> </span><span class="s">"GET"</span><span class="x">
-        </span><span class="p">}</span><span class="x">
-      </span><span class="p">]</span><span class="x">
-    </span><span class="p">},</span><span class="x">
-    </span><span class="p">{</span><span class="x">
-      </span><span class="s">"title"</span><span class="o">:</span><span class="x"> </span><span class="s">"Scenario X"</span><span class="p">,</span><span class="x">
-      </span><span class="s">"description"</span><span class="o">:</span><span class="x"> </span><span class="s">"This is a scenario where a scenario is created"</span><span class="p">,</span><span class="x">
-      </span><span class="s">"createdTime"</span><span class="o">:</span><span class="x"> </span><span class="m">1437383981000</span><span class="p">,</span><span class="x">
-      </span><span class="s">"link"</span><span class="o">:</span><span class="x"> </span><span class="p">[</span><span class="x">
-        </span><span class="p">{</span><span class="x">
-          </span><span class="s">"uri"</span><span class="o">:</span><span class="x"> </span><span class="s">"https://api.whispir.com/scenarios/6EE7F6F2E48B73B4?apikey=[your_api_key]"</span><span class="p">,</span><span class="x">
-          </span><span class="s">"rel"</span><span class="o">:</span><span class="x"> </span><span class="s">"self"</span><span class="p">,</span><span class="x">
-          </span><span class="s">"method"</span><span class="o">:</span><span class="x"> </span><span class="s">"GET"</span><span class="x">
-        </span><span class="p">}</span><span class="x">
-      </span><span class="p">]</span><span class="x">
-    </span><span class="p">}],</span><span class="x">
-  </span><span class="s">"status"</span><span class="o">:</span><span class="x"> </span><span class="s">"1 to 2 of 2"</span><span class="p">,</span><span class="x">
-  </span><span class="s">"link"</span><span class="o">:</span><span class="x"> </span><span class="p">[]</span><span class="x">
-</span><span class="p">}</span><span class="x">
-</span></code></pre>
-
-<p>To retrieve a list of scenarios from the Whispir.io API you can execute an HTTP GET using the /scenarios endpoint.</p>
-
-<p>You will need to supply one of the following headers (for retrieving JSON or XML):</p>
-
-<ul>
-<li>Accept: application/vnd.whispir.sceario-v1+xml</li>
-<li>Accept: application/vnd.whispir.scenario-v1+json</li>
-</ul>
-
-<p>An array of Scenarios will be returned to you in the HTTP response body.</p>
-
-<p>Each of these scenarios will provide the following information:</p>
-
-<table>
-    <thead>
-        <tr>
-            <th style="width: 50%" colspan="2">Response Elements</th>
-        </tr>
-    </thead>
-    <tbody>
-        <tr>
-            <td style="text-align: right; font-weight: bold;">name:</td>
-            <td><strong>String</strong><br/>
-                Specifies the name of the scenario.
-            </td>
-        </tr>
-        <tr>
-            <td style="text-align: right; font-weight: bold;">description:</td>
-            <td><strong>String</strong><br/>
-                Specifies the broad description of the scenario.
-            </td>
-        </tr>
-        <tr>
-            <td style="text-align: right; font-weight: bold;">createdTime:</td>
-            <td><strong>Number</strong><br/>
-                Specifies the scenario created time value in Epoch
-            </td>
-        </tr>
-        <tr>
-            <td style="text-align: right; font-weight: bold;">link:</td>
-            <td><strong>Array</strong><br/>
-                Provides a list of URLs that can be used to manipulate or access the scenario.
-                <ul>
-                  <li>uri - the link to access the scenario</li>
-                  <li>rel - the descriptor for what the link will do</li>
-                  <li>method - the HTTP method to use with this particular link</li>
-                </ul>
-            </td>
-        </tr>
-    </tbody>
-</table>
-
-<p>While that specifies the master list, doing a GET on a single scenario provides the following information - </p>
-
-<blockquote>
-<p>Retrieving details of a single Scenario</p>
-
-<blockquote>
-<p>Retrieving a single scenario details needs the ID of the scenario</p>
-</blockquote>
-</blockquote>
-<pre><code class="highlight plaintext">HTTP 1.1 GET https://api.whispir.com/scenarios/F0547F6F2E4839F8?apikey=[your_api_key]
-Authorization: Basic am9obi5zbWl0aDpteXBhc3N3b3Jk
-</code></pre>
-<pre><code class="highlight xml">Accept: application/vnd.whispir.scenario-v1+xml
-
-<span class="cp">&lt;?xml version="1.0" encoding="UTF-8" standalone="yes"?&gt;</span>
-<span class="nt">&lt;ns2:scenario</span> <span class="na">xmlns:ns2=</span><span class="s">"http://schemas.api.whispir.com"</span> <span class="na">xmlns:ns3=</span><span class="s">"http://schemas.api.whispir.com/dap"</span><span class="nt">&gt;</span>
-    <span class="nt">&lt;title&gt;</span>Emergency Comms - Fire<span class="nt">&lt;/title&gt;</span>
-    <span class="nt">&lt;description&gt;</span>Scenario to use during fire evacuation<span class="nt">&lt;/description&gt;</span>
-    <span class="nt">&lt;createdTime&gt;</span>2015-07-20T17:18:58+08:00<span class="nt">&lt;/createdTime&gt;</span>
-    <span class="nt">&lt;allowedUsers&gt;</span>EVERYONE<span class="nt">&lt;/allowedUsers&gt;</span>
-    <span class="nt">&lt;message&gt;</span>
-        <span class="nt">&lt;to&gt;</span>$mobile<span class="nt">&lt;/to&gt;</span>
-        <span class="nt">&lt;subject&gt;</span>Scenario Emergency Comms - Fire<span class="nt">&lt;/subject&gt;</span>
-        <span class="nt">&lt;body&gt;</span>sms test<span class="nt">&lt;/body&gt;</span>
-        <span class="nt">&lt;label&gt;&lt;/label&gt;</span>
-        <span class="nt">&lt;voice/&gt;</span>
-        <span class="nt">&lt;from&gt;</span>joe.bloggs.company@Contact.Melbourne.whispir.au<span class="nt">&lt;/from&gt;</span>
-        <span class="nt">&lt;social&gt;</span>
-            <span class="nt">&lt;social</span> <span class="na">id=</span><span class="s">"socialType"</span><span class="nt">&gt;</span>
-                <span class="nt">&lt;body&gt;</span>text/plain<span class="nt">&lt;/body&gt;</span>
-            <span class="nt">&lt;/social&gt;</span>
-        <span class="nt">&lt;/social&gt;</span>
-        <span class="nt">&lt;createdTime&gt;</span>2015-07-22T20:48:31+08:00<span class="nt">&lt;/createdTime&gt;</span>
-    <span class="nt">&lt;/message&gt;</span>
-    <span class="nt">&lt;ns3:link</span> <span class="na">uri=</span><span class="s">"https://api.whispir.com/scenarios/F0547F6F2E4839F8?apikey=[your_api_key]"</span> <span class="na">rel=</span><span class="s">"self"</span> <span class="na">method=</span><span class="s">"GET"</span><span class="nt">/&gt;</span>
-    <span class="nt">&lt;ns3:link</span> <span class="na">uri=</span><span class="s">"https://api.whispir.com/scenarios/F0547F6F2E4839F8?apikey=[your_api_key]"</span> <span class="na">rel=</span><span class="s">"updateScenario"</span> <span class="na">method=</span><span class="s">"PUT"</span> <span class="na">type=</span><span class="s">"application/vnd.whispir.scenario-v1+json,application/vnd.whispir.scenario-v1+xml"</span><span class="nt">/&gt;</span>
-    <span class="nt">&lt;ns3:link</span> <span class="na">uri=</span><span class="s">"https://api.whispir.com/scenarios/F0547F6F2E4839F8?apikey=[your_api_key]"</span> <span class="na">rel=</span><span class="s">"deleteScenario"</span> <span class="na">method=</span><span class="s">"DELETE"</span> <span class="na">type=</span><span class="s">"application/vnd.whispir.scenario-v1+json,application/vnd.whispir.scenario-v1+xml"</span><span class="nt">/&gt;</span>
-<span class="nt">&lt;/ns2:scenario&gt;</span>
-</code></pre>
-<pre><code class="highlight go"><span class="n">Accept</span><span class="o">:</span><span class="x"> </span><span class="n">application</span><span class="o">/</span><span class="n">vnd</span><span class="o">.</span><span class="n">whispir</span><span class="o">.</span><span class="n">scenario</span><span class="o">-</span><span class="n">v1</span><span class="o">+</span><span class="n">json</span><span class="x">
-
-</span><span class="p">{</span><span class="x">
-  </span><span class="s">"title"</span><span class="o">:</span><span class="x"> </span><span class="s">"Emergency Comms - Fire"</span><span class="p">,</span><span class="x">
-  </span><span class="s">"description"</span><span class="o">:</span><span class="x"> </span><span class="s">"Scenario to use during fire evacuation"</span><span class="p">,</span><span class="x">
-  </span><span class="s">"createdTime"</span><span class="o">:</span><span class="x"> </span><span class="m">1437383938000</span><span class="p">,</span><span class="x">
-  </span><span class="s">"allowedUsers"</span><span class="o">:</span><span class="x"> </span><span class="s">"EVERYONE"</span><span class="p">,</span><span class="x">
-  </span><span class="s">"message"</span><span class="o">:</span><span class="x"> </span><span class="p">{</span><span class="x">
-    </span><span class="s">"to"</span><span class="o">:</span><span class="x"> </span><span class="s">"$mobile"</span><span class="p">,</span><span class="x">
-    </span><span class="s">"subject"</span><span class="o">:</span><span class="x"> </span><span class="s">"Scenario Emergency Comms - Fire"</span><span class="p">,</span><span class="x">
-    </span><span class="s">"body"</span><span class="o">:</span><span class="x"> </span><span class="s">"sms test"</span><span class="p">,</span><span class="x">
-    </span><span class="s">"label"</span><span class="o">:</span><span class="x"> </span><span class="s">""</span><span class="p">,</span><span class="x">
-    </span><span class="s">"voice"</span><span class="o">:</span><span class="x"> </span><span class="p">{},</span><span class="x">
-    </span><span class="s">"from"</span><span class="o">:</span><span class="x"> </span><span class="s">"joe.bloggs.company@Contact.Melbourne.whispir.au"</span><span class="p">,</span><span class="x">
-    </span><span class="s">"social"</span><span class="o">:</span><span class="x"> </span><span class="p">{</span><span class="x">
-      </span><span class="s">"social"</span><span class="o">:</span><span class="x"> </span><span class="p">[</span><span class="x">
-        </span><span class="p">{</span><span class="x">
-          </span><span class="s">"id"</span><span class="o">:</span><span class="x"> </span><span class="s">"socialType"</span><span class="p">,</span><span class="x">
-          </span><span class="s">"body"</span><span class="o">:</span><span class="x"> </span><span class="s">"text/plain"</span><span class="x">
-        </span><span class="p">}</span><span class="x">
-      </span><span class="p">]</span><span class="x">
-    </span><span class="p">},</span><span class="x">
-    </span><span class="s">"createdTime"</span><span class="o">:</span><span class="x"> </span><span class="m">1437569311000</span><span class="p">,</span><span class="x">
-  </span><span class="p">},</span><span class="x">
-  </span><span class="s">"link"</span><span class="o">:</span><span class="x"> </span><span class="p">[</span><span class="x">
-    </span><span class="p">{</span><span class="x">
-      </span><span class="s">"uri"</span><span class="o">:</span><span class="x"> </span><span class="s">"https://api.whispir.com/scenarios/F0547F6F2E4839F8?apikey=[your_api_key]"</span><span class="p">,</span><span class="x">
-      </span><span class="s">"rel"</span><span class="o">:</span><span class="x"> </span><span class="s">"self"</span><span class="p">,</span><span class="x">
-      </span><span class="s">"method"</span><span class="o">:</span><span class="x"> </span><span class="s">"GET"</span><span class="x">
-    </span><span class="p">},</span><span class="x">
-    </span><span class="p">{</span><span class="x">
-      </span><span class="s">"uri"</span><span class="o">:</span><span class="x"> </span><span class="s">"https://api.whispir.com/scenarios/F0547F6F2E4839F8?apikey=[your_api_key]"</span><span class="p">,</span><span class="x">
-      </span><span class="s">"rel"</span><span class="o">:</span><span class="x"> </span><span class="s">"updateScenario"</span><span class="p">,</span><span class="x">
-      </span><span class="s">"method"</span><span class="o">:</span><span class="x"> </span><span class="s">"PUT"</span><span class="p">,</span><span class="x">
-      </span><span class="s">"type"</span><span class="o">:</span><span class="x"> </span><span class="s">"application/vnd.whispir.scenario-v1+json,application/vnd.whispir.scenario-v1+xml"</span><span class="x">
-    </span><span class="p">},</span><span class="x">
-    </span><span class="p">{</span><span class="x">
-      </span><span class="s">"uri"</span><span class="o">:</span><span class="x"> </span><span class="s">"https://api.whispir.com/scenarios/F0547F6F2E4839F8?apikey=[your_api_key]"</span><span class="p">,</span><span class="x">
-      </span><span class="s">"rel"</span><span class="o">:</span><span class="x"> </span><span class="s">"deleteScenario"</span><span class="p">,</span><span class="x">
-      </span><span class="s">"method"</span><span class="o">:</span><span class="x"> </span><span class="s">"DELETE"</span><span class="p">,</span><span class="x">
-      </span><span class="s">"type"</span><span class="o">:</span><span class="x"> </span><span class="s">"application/vnd.whispir.scenario-v1+json,application/vnd.whispir.scenario-v1+xml"</span><span class="x">
-    </span><span class="p">}</span><span class="x">
-  </span><span class="p">]</span><span class="x">
-</span><span class="p">}</span><span class="x">
-</span></code></pre>
-
-<table>
-    <thead>
-        <tr>
-            <th style="width: 50%" colspan="2">Response Elements</th>
-        </tr>
-    </thead>
-    <tbody>
-        <tr>
-            <td style="text-align: right; font-weight: bold;">name:</td>
-            <td><strong>String</strong><br/>
-                Specifies the name of the scenario
-            </td>
-        </tr>
-        <tr>
-            <td style="text-align: right; font-weight: bold;">description:</td>
-            <td><strong>String</strong><br/>
-                Specifies the description of the scenario
-            </td>
-        </tr>
-        <tr>
-            <td style="text-align: right; font-weight: bold;">createdTime:</td>
-            <td><strong>Number</strong><br/>
-                Specifies the scenario created time value in Epoch
-            </td>
-        </tr>
-        <tr>
-            <td style="text-align: right; font-weight: bold;">allowedUsers:</td>
-            <td><strong>String</strong><br/>
-                Specifies the usage permission - 
-                <ul>
-                    <li>EVERYONE</li>
-                    <li>SELECTEDUSERS</li>
-                </ul>
-                <br>
-                When SELECTEDUSERS is provided, then `allowedUserIds` shall contain the userID of the allowed users.
-            </td>
-        </tr>
-        <tr>
-            <td style="text-align: right; font-weight: bold;">allowedUserIds:</td>
-            <td><strong>String</strong><br/>
-                Specifies the comma separated list of users who can run this scenario.
-                <br>
-                Only contains value when the allowedUsers is set to `SELECTEDUSERS`
-            </td>
-        </tr>
-        <tr>
-            <td style="text-align: right; font-weight: bold;">message:</td>
-            <td><strong>Object</strong><br/>
-                Specifies the messaging options 
-            </td>
-        </tr>
-        <tr>
-            <td style="text-align: right; font-weight: bold;">to:</td>
-            <td><strong>String</strong><br/>
-                Specifies the phone number or mri or distribution list to which the message has to be sent
-            </td>
-        </tr>
-        <tr>
-            <td style="text-align: right; font-weight: bold;">subject:</td>
-            <td><strong>String</strong><br/>
-                Specifies the subject of the message
-            </td>
-        </tr>
-        <tr>
-            <td style="text-align: right; font-weight: bold;">body:</td>
-            <td><strong>String</strong><br/>
-                Specifies the body of the message
-            </td>
-        </tr>
-        <tr>
-            <td style="text-align: right; font-weight: bold;">label:</td>
-            <td><strong>String</strong><br/>
-                Specifies the label for the message (to view during reporting)
-            </td>
-        </tr>
-        
-        <tr>
-            <td style="text-align: right; font-weight: bold;">email:</td>
-            <td><strong>Object</strong><br/>
-                Email message that can be sent as part of this scenario
-                <br>
-                <ul>
-                    <li>body: The main content of the email</li>
-                    <li>footer: footer of the email</li>
-                    <li>type: text/plain or text/html</li>
-                </ul>
-            </td>
-        </tr>
-        <tr>
-            <td style="text-align: right; font-weight: bold;">voice:</td>
-            <td><strong>Object</strong><br/>
-                Similar to a text message, a voice call can also be triggered. This provides the necessary information for the channel.
-                <br>
-                <ul>
-                    <li>header: header for message. This will be played before the subject</li>
-                    <li>body: The main content of the message</li>
-                    <li>footer: footer for the message. Played after the body. Usually contains a thank you note.</li>
-                    <li>type: ConfCall:,ConfAccountNo:,ConfPinNo:,ConfModPinNo:,Pin:</li>
-                </ul>
-            </td>
-        </tr>
-        <tr>
-            <td style="text-align: right; font-weight: bold;">web:</td>
-            <td><strong>Object</strong><br/>
-                Refer to <a href="https://whispir.github.io/api/?xml#web-and-social-messaging" title="web and social media messaging">web messaging</a>.
-                The web message structure remains exactly the same
-            </td>
-        </tr>
-        <tr>
-            <td style="text-align: right; font-weight: bold;">social:</td>
-            <td><strong>Object</strong><br/>
-                Refer to <a href="https://whispir.github.io/api/?xml#web-and-social-messaging" title="web and social media messaging">web messaging</a>
-                The social message structure remains exactly the same
-            </td>
-        </tr>
-        <tr>
-            <td style="text-align: right; font-weight: bold;">from:</td>
-            <td><strong>String</strong><br/>
-                The user/contact from whom this communication will be sent out when the scenario is run. <br>
-                <b>Eg: </b> joe.bloggs.company@Contact.Melbourne.whispir.au
-            </td>
-        </tr>
-        <tr>
-            <td style="text-align: right; font-weight: bold;">link:</td>
-            <td><strong>Array</strong><br/>
-                Provides a list of URLs that can be used to manipulate or access the scenario.
-                <ul>
-                  <li>uri - the link to access the scenario</li>
-                  <li>rel - the descriptor for what the link will do</li>
-                  <li>method - the HTTP method to use with this particular link</li>
-                </ul>
-            </td>
-        </tr>
-    </tbody>
-</table>
-
-<h2 id="running-a-scenario">Running a Scenario</h2>
-
-<blockquote>
-<p>Running a Scenario</p>
-
-<blockquote>
-<p>A simple POST call to the scenarios endpoint with the scenario ID triggers the scenario execution</p>
-</blockquote>
-</blockquote>
-<pre><code class="highlight plaintext">HTTP 1.1 POST https://api.whispir.com/scenarios/F0547F6F2E4839F8?apikey=[your_api_key]
-Authorization: Basic asdf98nf89asdvasd2r398h8sdf
-
-&gt;&gt; The expected response to this call is an HTTP 204 - No Content.
-</code></pre>
-
-<p>Running a Scenario , in other words, invoking a scenario triggers the communication to the intended recipients. The message (static or dynamic) will be sent on all the provided channels.</p>
-
-<p>Running a scenario is very simple to do. The specific scenario has to called via a /POST request.</p>
-
-<p>Step wise example -</p>
-
-<ol>
-<li>Get all the scenarios</li>
-<li>Pick the required scenario&rsquo;s link attribute</li>
-<li>Make a /POST call</li>
-</ol>
-
-<p>From the retrieving scenarios call above, we can get all the scenarios in the workspace. Choosing the <code class="prettyprint">Emergency Comms - Fire</code> named Scenario, the link provided is <code class="prettyprint">https://api.whispir.com/scenarios/F0547F6F2E4839F8?apikey=[your_api_key]</code></p>
-
-<p>Now invoking this scenario is just making a /POST call.  There is no need for a <code class="prettyprint">Content-type</code> header as the payload is empty.</p>
-
-<h2 id="updating-scenario">Updating Scenario</h2>
-
-<p>To update existing scenario, you can use a PUT request the /scenarios endpoint.</p>
-
-<blockquote>
-<p>Updating a Scenario</p>
-
-<blockquote>
-<p>The following API calls allow users to update Scenarios using the Whispir API.</p>
-</blockquote>
-</blockquote>
-<pre><code class="highlight plaintext">HTTP 1.1 PUT https://api.whispir.com/scenarios/F0547F6F2E4839F8?apikey=[your_api_key]
-Authorization: Basic am9obi5zbWl0aDpteXBhc3N3b3Jk
-</code></pre>
-<pre><code class="highlight xml">Accept: application/vnd.whispir.scenario-v1+xml
-
-<span class="cp">&lt;?xml version="1.0" encoding="UTF-8" standalone="yes"?&gt;</span>
-<span class="nt">&lt;ns2:scenario</span> <span class="na">xmlns:ns2=</span><span class="s">"http://schemas.api.whispir.com"</span> <span class="na">xmlns:ns3=</span><span class="s">"http://schemas.api.whispir.com/dap"</span><span class="nt">&gt;</span>
-    <span class="nt">&lt;title&gt;</span>Emergency Comms - Fire<span class="nt">&lt;/title&gt;</span>
-    <span class="nt">&lt;description&gt;</span>Scenario to use during fire evacuation<span class="nt">&lt;/description&gt;</span>
-    <span class="nt">&lt;allowedUsers&gt;</span>EVERYONE<span class="nt">&lt;/allowedUsers&gt;</span>
-    <span class="nt">&lt;message&gt;</span>
-        <span class="nt">&lt;to&gt;</span>$mobile<span class="nt">&lt;/to&gt;</span>
-        <span class="nt">&lt;subject&gt;</span>Scenario Emergency Comms - Fire<span class="nt">&lt;/subject&gt;</span>
-        <span class="nt">&lt;body&gt;</span>Evacuate the building Immediately. Do not use the lifts.<span class="nt">&lt;/body&gt;</span>
-        <span class="nt">&lt;label&gt;&lt;/label&gt;</span>
-        <span class="nt">&lt;voice/&gt;</span>
-        <span class="nt">&lt;from&gt;</span>joe.bloggs.company@Contact.Melbourne.whispir.au<span class="nt">&lt;/from&gt;</span>
-        <span class="nt">&lt;social&gt;</span>
-            <span class="nt">&lt;social</span> <span class="na">id=</span><span class="s">"socialType"</span><span class="nt">&gt;</span>
-                <span class="nt">&lt;body&gt;</span>text/plain<span class="nt">&lt;/body&gt;</span>
-            <span class="nt">&lt;/social&gt;</span>
-        <span class="nt">&lt;/social&gt;</span>
-    <span class="nt">&lt;/message&gt;</span>
-<span class="nt">&lt;/ns2:scenario&gt;</span>
-</code></pre>
-<pre><code class="highlight go"><span class="n">Accept</span><span class="o">:</span><span class="x"> </span><span class="n">application</span><span class="o">/</span><span class="n">vnd</span><span class="o">.</span><span class="n">whispir</span><span class="o">.</span><span class="n">scenario</span><span class="o">-</span><span class="n">v1</span><span class="o">+</span><span class="n">json</span><span class="x">
-
-</span><span class="p">{</span><span class="x">
-  </span><span class="s">"title"</span><span class="o">:</span><span class="x"> </span><span class="s">"Emergency Comms - Fire"</span><span class="p">,</span><span class="x">
-  </span><span class="s">"description"</span><span class="o">:</span><span class="x"> </span><span class="s">"Scenario to use during fire evacuation"</span><span class="p">,</span><span class="x">
-  </span><span class="s">"allowedUsers"</span><span class="o">:</span><span class="x"> </span><span class="s">"EVERYONE"</span><span class="p">,</span><span class="x">
-  </span><span class="s">"message"</span><span class="o">:</span><span class="x"> </span><span class="p">{</span><span class="x">
-    </span><span class="s">"to"</span><span class="o">:</span><span class="x"> </span><span class="s">"$mobile"</span><span class="p">,</span><span class="x">
-    </span><span class="s">"subject"</span><span class="o">:</span><span class="x"> </span><span class="s">"Scenario Emergency Comms - Fire"</span><span class="p">,</span><span class="x">
-    </span><span class="s">"body"</span><span class="o">:</span><span class="x"> </span><span class="s">"Evacuate the building Immediately. Do not use the lifts."</span><span class="p">,</span><span class="x">
-    </span><span class="s">"label"</span><span class="o">:</span><span class="x"> </span><span class="s">""</span><span class="p">,</span><span class="x">
-    </span><span class="s">"voice"</span><span class="o">:</span><span class="x"> </span><span class="p">{},</span><span class="x">
-    </span><span class="s">"from"</span><span class="o">:</span><span class="x"> </span><span class="s">"joe.bloggs.company@Contact.Melbourne.whispir.au"</span><span class="p">,</span><span class="x">
-    </span><span class="s">"social"</span><span class="o">:</span><span class="x"> </span><span class="p">{</span><span class="x">
-      </span><span class="s">"social"</span><span class="o">:</span><span class="x"> </span><span class="p">[</span><span class="x">
-        </span><span class="p">{</span><span class="x">
-          </span><span class="s">"id"</span><span class="o">:</span><span class="x"> </span><span class="s">"socialType"</span><span class="p">,</span><span class="x">
-          </span><span class="s">"body"</span><span class="o">:</span><span class="x"> </span><span class="s">"text/plain"</span><span class="x">
-        </span><span class="p">}</span><span class="x">
-      </span><span class="p">]</span><span class="x">
-    </span><span class="p">}</span><span class="x">
-  </span><span class="p">}</span><span class="x">
-</span><span class="p">}</span><span class="x">
-</span></code></pre>
-
-<p>The following fields are required:</p>
-
-<ol>
-<li>name - name of the scenario</li>
-<li>description - details of the scenario</li>
-<li>message { to, subject, body }</li>
-</ol>
-
-<table>
-    <thead>
-        <tr>
-            <th style="width: 50%" colspan="2">High-Level Request Elements</th>
-        </tr>
-    </thead>
-    <tbody>
-        <tr>
-            <td style="text-align: right; font-weight: bold;">name:</td>
-            <td><strong>String</strong><br/>
-                Specifies the name of the scenario
-            </td>
-        </tr>
-        <tr>
-            <td style="text-align: right; font-weight: bold;">description:</td>
-            <td><strong>String</strong><br/>
-                Specifies the description of the scenario
-            </td>
-        </tr>
-        <tr>
-            <td style="text-align: right; font-weight: bold;">createdTime:</td>
-            <td><strong>Number</strong><br/>
-                Specifies the scenario created time value in Epoch
-            </td>
-        </tr>
-        <tr>
-            <td style="text-align: right; font-weight: bold;">allowedUsers:</td>
-            <td><strong>String</strong><br/>
-                Specifies the usage permission - 
-                <ul>
-                    <li>EVERYONE</li>
-                    <li>SELECTEDUSERS</li>
-                </ul>
-                <br>
-                When SELECTEDUSERS is provided, then `allowedUserIds` shall contain the userID of the allowed users.
-            </td>
-        </tr>
-        <tr>
-            <td style="text-align: right; font-weight: bold;">allowedUserIds:</td>
-            <td><strong>String</strong><br/>
-                Specifies the comma separated list of users who can run this scenario.
-                <br>
-                Only contains value when the allowedUsers is set to `SELECTEDUSERS`
-            </td>
-        </tr>
-        <tr>
-            <td style="text-align: right; font-weight: bold;">message:</td>
-            <td><strong>Object</strong><br/>
-                Specifies the messaging options 
-            </td>
-        </tr>
-        <tr>
-            <td style="text-align: right; font-weight: bold;">to:</td>
-            <td><strong>String</strong><br/>
-                Specifies the phone number or mri or distribution list to which the message has to be sent
-            </td>
-        </tr>
-        <tr>
-            <td style="text-align: right; font-weight: bold;">subject:</td>
-            <td><strong>String</strong><br/>
-                Specifies the subject of the message
-            </td>
-        </tr>
-        <tr>
-            <td style="text-align: right; font-weight: bold;">body:</td>
-            <td><strong>String</strong><br/>
-                Specifies the body of the message
-            </td>
-        </tr>
-        <tr>
-            <td style="text-align: right; font-weight: bold;">label:</td>
-            <td><strong>String</strong><br/>
-                Specifies the label for the message (to view during reporting)
-            </td>
-        </tr>
-        
-        <tr>
-            <td style="text-align: right; font-weight: bold;">email:</td>
-            <td><strong>Object</strong><br/>
-                Email message that can be sent as part of this scenario
-                <br>
-                <ul>
-                    <li>body: The main content of the email</li>
-                    <li>footer: footer of the email</li>
-                    <li>type: text/plain or text/html</li>
-                </ul>
-            </td>
-        </tr>
-        <tr>
-            <td style="text-align: right; font-weight: bold;">voice:</td>
-            <td><strong>Object</strong><br/>
-                Similar to a text message, a voice call can also be triggered. This provides the necessary information for the channel.
-                <br>
-                <ul>
-                    <li>header: header for message. This will be played before the subject</li>
-                    <li>body: The main content of the message</li>
-                    <li>footer: footer for the message. Played after the body. Usually contains a thank you note.</li>
-                    <li>type: ConfCall:,ConfAccountNo:,ConfPinNo:,ConfModPinNo:,Pin:</li>
-                </ul>
-            </td>
-        </tr>
-        <tr>
-            <td style="text-align: right; font-weight: bold;">web:</td>
-            <td><strong>Object</strong><br/>
-                Refer to <a href="https://whispir.github.io/api/?xml#web-and-social-messaging" title="web and social media messaging">web messaging</a>.
-                The web message structure remains exactly the same
-            </td>
-        </tr>
-        <tr>
-            <td style="text-align: right; font-weight: bold;">social:</td>
-            <td><strong>Object</strong><br/>
-                Refer to <a href="https://whispir.github.io/api/?xml#web-and-social-messaging" title="web and social media messaging">web messaging</a>
-                The social message structure remains exactly the same
-            </td>
-        </tr>
-        <tr>
-            <td style="text-align: right; font-weight: bold;">from:</td>
-            <td><strong>String</strong><br/>
-                The user/contact from whom this communication will be sent out when the scenario is run. <br>
-                <b>Eg: </b> joe.bloggs.company@Contact.Melbourne.whispir.au
-            </td>
-        </tr>
-    </tbody>
-</table>
-
-<h2 id="deleting-scenario">Deleting Scenario</h2>
-
-<blockquote>
-<p>Deleting a Scenario</p>
-
-<blockquote>
-<p>The following API calls allow users to delete Scenarios using the Whispir API.</p>
-</blockquote>
-</blockquote>
-<pre><code class="highlight plaintext">HTTP 1.1 DELETE https://api.whispir.com/scenarios/6EE7F6F2E48B73B4?apikey=[your_api_key]
-Authorization: Basic asdf98nf89asdvasd2r398h8sdf
-
-&gt;&gt; The expected response to this call is an HTTP 204 - No Content.
-</code></pre>
-
-<p>Deleting a Scenario can be done via a DELETE call to the /scenarios endpoint. The request has to be targeted at a particular Scenario with the Scenario ID in the URI.</p>
 
         <h1 id="other-resources">Other Resources</h1>
 
