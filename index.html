@@ -714,7 +714,11 @@ HTTP/1.1 403 Forbidden
         <tr>
             <td style="text-align: right; font-weight: bold;">403 Forbidden:</td>
             <td><strong>Authorization credentials passed and accepted but account does not have permission</strong><br/>
-                Inspect the authorisation header and ensure that a valid authentication has been provided.
+                <ul>
+                <li>Inspect the authorisation header and ensure that a valid authentication has been provided.</li>
+                <li>returned when HTTP is used instead of HTTPS</li>
+        <li>returned when invalid API Key is used</li>
+                <li>returned when you have tried to make API calls more than your allowed Quota (QPS). refer to <a href="https://whispir.github.io/api/#api-rate-limits" title="api rate limiting">API Rate Limits</a></li>
             </td>
         </tr>
         <tr>
@@ -7013,7 +7017,7 @@ Authorization: Basic asdf98nf89asdvasd2r398h8sdf
         <h1 id="other-resources">Other Resources</h1>
 
 <aside class="notice">
-    Updated 7 July 2015
+    Updated 31 July 2015
 </aside>
 
 <p>This API documentation is being migrated from <a href="https://developer.whispir.com/docs">https://developer.whispir.com/docs</a>.</p>
