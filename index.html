@@ -2230,30 +2230,27 @@ Authorization: Basic am9obi5zbWl0aDpteXBhc3N3b3Jk
       <span class="nt">&lt;smsMappingField/&gt;</span>
       <span class="nt">&lt;emailMappingField/&gt;</span>
       <span class="nt">&lt;voiceMappingField&gt;</span>
-   <span class="nt">&lt;/resource&gt;</span>
-   <span class="nt">&lt;messageTemplateId&gt;</span>  
-   <span class="nt">&lt;messageContent&gt;</span>
-      <span class="nt">&lt;subject&gt;&lt;/subject&gt;</span>
-      <span class="nt">&lt;body&gt;&lt;/body&gt;</span>
-      <span class="nt">&lt;email&gt;</span>
-         <span class="nt">&lt;body&gt;&lt;/body&gt;</span>
-         <span class="nt">&lt;footer&gt;&lt;/footer&gt;</span>
-         <span class="nt">&lt;type&gt;&lt;/type&gt;</span>
-      <span class="nt">&lt;/email&gt;</span>
-      <span class="nt">&lt;voice&gt;</span>
-         <span class="nt">&lt;header&gt;&lt;/header&gt;</span>
-         <span class="nt">&lt;body&gt;&lt;/body&gt;</span>
-         <span class="nt">&lt;footer&gt;&lt;/footer&gt;</span>
-         <span class="nt">&lt;other&gt;&lt;/other&gt;</span>
-         <span class="nt">&lt;type&gt;&lt;/type&gt;</span>
-      <span class="nt">&lt;/voice&gt;</span>
-      <span class="nt">&lt;web&gt;</span>
-         <span class="nt">&lt;body&gt;&lt;/body&gt;</span>
-         <span class="nt">&lt;type&gt;&lt;/type&gt;</span>
-      <span class="nt">&lt;/web&gt;</span>
-   <span class="nt">&lt;/messageContent&gt;</span>
-   <span class="nt">&lt;callbackId/&gt;</span>
-
+    <span class="nt">&lt;/resource&gt;</span>
+    <span class="nt">&lt;messageTemplateId&gt;</span>  
+    <span class="nt">&lt;subject&gt;&lt;/subject&gt;</span>
+    <span class="nt">&lt;body&gt;&lt;/body&gt;</span>
+    <span class="nt">&lt;email&gt;</span>
+        <span class="nt">&lt;body&gt;&lt;/body&gt;</span>
+        <span class="nt">&lt;footer&gt;&lt;/footer&gt;</span>
+        <span class="nt">&lt;type&gt;&lt;/type&gt;</span>
+    <span class="nt">&lt;/email&gt;</span>
+    <span class="nt">&lt;voice&gt;</span>
+        <span class="nt">&lt;header&gt;&lt;/header&gt;</span>
+        <span class="nt">&lt;body&gt;&lt;/body&gt;</span>
+        <span class="nt">&lt;footer&gt;&lt;/footer&gt;</span>
+        <span class="nt">&lt;other&gt;&lt;/other&gt;</span>
+        <span class="nt">&lt;type&gt;&lt;/type&gt;</span>
+    <span class="nt">&lt;/voice&gt;</span>
+    <span class="nt">&lt;web&gt;</span>
+        <span class="nt">&lt;body&gt;&lt;/body&gt;</span>
+        <span class="nt">&lt;type&gt;&lt;/type&gt;</span>
+    <span class="nt">&lt;/web&gt;</span>
+    <span class="nt">&lt;callbackId/&gt;</span>
 <span class="nt">&lt;/ns2:message&gt;</span> 
 </code></pre>
 <pre><code class="highlight go"><span class="n">Content</span><span class="o">-</span><span class="n">Type</span><span class="o">:</span><span class="x"> </span><span class="n">application</span><span class="o">/</span><span class="n">vnd</span><span class="o">.</span><span class="n">whispir</span><span class="o">.</span><span class="n">bulkmessage</span><span class="o">-</span><span class="n">v1</span><span class="o">+</span><span class="n">json</span><span class="x">
@@ -2266,25 +2263,23 @@ Authorization: Basic am9obi5zbWl0aDpteXBhc3N3b3Jk
         </span><span class="s">"voiceMappingField"</span><span class="x"> </span><span class="o">:</span><span class="x"> </span><span class="s">""</span><span class="x">
     </span><span class="p">},</span><span class="x">
     </span><span class="s">"messageTemplateId"</span><span class="x"> </span><span class="o">:</span><span class="x"> </span><span class="s">""</span><span class="p">,</span><span class="x">
-    </span><span class="s">"messageContent"</span><span class="x"> </span><span class="o">:</span><span class="x"> </span><span class="p">{</span><span class="x">
-        </span><span class="s">"subject"</span><span class="x"> </span><span class="o">:</span><span class="x"> </span><span class="s">""</span><span class="p">,</span><span class="x">
+    </span><span class="s">"subject"</span><span class="x"> </span><span class="o">:</span><span class="x"> </span><span class="s">""</span><span class="p">,</span><span class="x">
+    </span><span class="s">"body"</span><span class="x"> </span><span class="o">:</span><span class="x"> </span><span class="s">""</span><span class="p">,</span><span class="x">
+    </span><span class="s">"email"</span><span class="x"> </span><span class="o">:</span><span class="x"> </span><span class="p">{</span><span class="x">
         </span><span class="s">"body"</span><span class="x"> </span><span class="o">:</span><span class="x"> </span><span class="s">""</span><span class="p">,</span><span class="x">
-        </span><span class="s">"email"</span><span class="x"> </span><span class="o">:</span><span class="x"> </span><span class="p">{</span><span class="x">
-            </span><span class="s">"body"</span><span class="x"> </span><span class="o">:</span><span class="x"> </span><span class="s">""</span><span class="p">,</span><span class="x">
-            </span><span class="s">"footer"</span><span class="x"> </span><span class="o">:</span><span class="x"> </span><span class="s">""</span><span class="p">,</span><span class="x">
-            </span><span class="s">"type"</span><span class="x"> </span><span class="o">:</span><span class="x"> </span><span class="s">""</span><span class="x">
-        </span><span class="p">},</span><span class="x">
-        </span><span class="s">"voice"</span><span class="x"> </span><span class="o">:</span><span class="x"> </span><span class="p">{</span><span class="x">
-            </span><span class="s">"header"</span><span class="x"> </span><span class="o">:</span><span class="x"> </span><span class="s">""</span><span class="p">,</span><span class="x">
-            </span><span class="s">"body"</span><span class="x"> </span><span class="o">:</span><span class="x"> </span><span class="s">""</span><span class="p">,</span><span class="x">
-            </span><span class="s">"footer"</span><span class="x"> </span><span class="o">:</span><span class="x"> </span><span class="s">""</span><span class="p">,</span><span class="x">
-            </span><span class="s">"other"</span><span class="x"> </span><span class="o">:</span><span class="x"> </span><span class="s">""</span><span class="p">,</span><span class="x">
-            </span><span class="s">"type"</span><span class="x"> </span><span class="o">:</span><span class="x"> </span><span class="s">""</span><span class="x">
-        </span><span class="p">},</span><span class="x">
-        </span><span class="s">"web"</span><span class="x"> </span><span class="o">:</span><span class="x"> </span><span class="p">{</span><span class="x">
-            </span><span class="s">"body"</span><span class="x"> </span><span class="o">:</span><span class="x"> </span><span class="s">""</span><span class="p">,</span><span class="x">
-            </span><span class="s">"type"</span><span class="x"> </span><span class="o">:</span><span class="x"> </span><span class="s">""</span><span class="x">
-        </span><span class="p">}</span><span class="x">
+        </span><span class="s">"footer"</span><span class="x"> </span><span class="o">:</span><span class="x"> </span><span class="s">""</span><span class="p">,</span><span class="x">
+        </span><span class="s">"type"</span><span class="x"> </span><span class="o">:</span><span class="x"> </span><span class="s">""</span><span class="x">
+    </span><span class="p">},</span><span class="x">
+    </span><span class="s">"voice"</span><span class="x"> </span><span class="o">:</span><span class="x"> </span><span class="p">{</span><span class="x">
+        </span><span class="s">"header"</span><span class="x"> </span><span class="o">:</span><span class="x"> </span><span class="s">""</span><span class="p">,</span><span class="x">
+        </span><span class="s">"body"</span><span class="x"> </span><span class="o">:</span><span class="x"> </span><span class="s">""</span><span class="p">,</span><span class="x">
+        </span><span class="s">"footer"</span><span class="x"> </span><span class="o">:</span><span class="x"> </span><span class="s">""</span><span class="p">,</span><span class="x">
+        </span><span class="s">"other"</span><span class="x"> </span><span class="o">:</span><span class="x"> </span><span class="s">""</span><span class="p">,</span><span class="x">
+        </span><span class="s">"type"</span><span class="x"> </span><span class="o">:</span><span class="x"> </span><span class="s">""</span><span class="x">
+    </span><span class="p">},</span><span class="x">
+    </span><span class="s">"web"</span><span class="x"> </span><span class="o">:</span><span class="x"> </span><span class="p">{</span><span class="x">
+        </span><span class="s">"body"</span><span class="x"> </span><span class="o">:</span><span class="x"> </span><span class="s">""</span><span class="p">,</span><span class="x">
+        </span><span class="s">"type"</span><span class="x"> </span><span class="o">:</span><span class="x"> </span><span class="s">""</span><span class="x">
     </span><span class="p">},</span><span class="x">
     </span><span class="s">"callbackId"</span><span class="x"> </span><span class="o">:</span><span class="x"> </span><span class="s">""</span><span class="x">
 </span><span class="p">}</span><span class="x">
