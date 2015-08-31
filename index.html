@@ -3427,6 +3427,9 @@ Authorization: Basic am9obi5zbWl0aDpteXBhc3N3b3Jk
   <span class="nt">&lt;/messageTemplateDescription&gt;</span>
   <span class="nt">&lt;subject&gt;</span>Test SMS Message<span class="nt">&lt;/subject&gt;</span>
   <span class="nt">&lt;body&gt;</span>This is the body of my test SMS message<span class="nt">&lt;/body&gt;</span>
+  <span class="nt">&lt;email&gt;&lt;/email&gt;</span>
+  <span class="nt">&lt;voice&gt;&lt;/voice&gt;</span>
+  <span class="nt">&lt;web&gt;&lt;/web&gt;</span>
 <span class="nt">&lt;/ns3:template&gt;</span>
 </code></pre>
 <pre><code class="highlight go"><span class="n">Content</span><span class="o">-</span><span class="n">Type</span><span class="o">:</span><span class="x"> </span><span class="n">application</span><span class="o">/</span><span class="n">vnd</span><span class="o">.</span><span class="n">whispir</span><span class="o">.</span><span class="n">template</span><span class="o">-</span><span class="n">v1</span><span class="o">+</span><span class="n">json</span><span class="x">
@@ -3434,8 +3437,11 @@ Authorization: Basic am9obi5zbWl0aDpteXBhc3N3b3Jk
 </span><span class="p">{</span><span class="x"> 
    </span><span class="s">"messageTemplateName"</span><span class="o">:</span><span class="x"> </span><span class="s">"Sample SMS Template"</span><span class="p">,</span><span class="x"> 
    </span><span class="s">"messageTemplateDescription"</span><span class="o">:</span><span class="x"> </span><span class="s">"Template to provide an example on whispir.io"</span><span class="p">,</span><span class="x">
-   </span><span class="s">"subject"</span><span class="o">:</span><span class="x"> </span><span class="s">"Test SMS Message"</span><span class="p">,</span><span class="x">
-   </span><span class="s">"body"</span><span class="o">:</span><span class="x"> </span><span class="s">"This is the body of my test SMS message"</span><span class="x">
+   </span><span class="s">"subject"</span><span class="x"> </span><span class="o">:</span><span class="x"> </span><span class="s">"Test SMS Message"</span><span class="p">,</span><span class="x">
+   </span><span class="s">"body"</span><span class="x"> </span><span class="o">:</span><span class="x"> </span><span class="s">"This is the body of my test SMS message"</span><span class="x">
+   </span><span class="s">"email"</span><span class="x"> </span><span class="o">:</span><span class="x"> </span><span class="p">{},</span><span class="x">
+   </span><span class="s">"voice"</span><span class="x"> </span><span class="o">:</span><span class="x"> </span><span class="p">{},</span><span class="x">
+   </span><span class="s">"web"</span><span class="x"> </span><span class="o">:</span><span class="x"> </span><span class="p">{}</span><span class="x">
 </span><span class="p">}</span><span class="x">
 </span></code></pre>
 
@@ -3448,12 +3454,15 @@ The expected response to this call is an <strong>HTTP 201 - Created</strong>.</p
 
 <p>To create a new message template, you can use the <code class="prettyprint">/templates</code> endpoint.</p>
 
-<p>Only <strong>3 fields</strong> are required:</p>
+<p>The following fields are required:</p>
 
 <ol>
 <li>messageTemplateName - the name of the template to be stored</li>
 <li>subject - the first line or identifier of the SMS</li>
 <li>body - At least one of the <strong>Body</strong> fields must be populated (SMS, Email, Voice or Web).</li>
+<li>email - The email content for the message. If no email is required, an empty object must be presented.</li>
+<li>voice - The voice content for the message. If no voice call is required, an empty object must be presented.</li>
+<li>web - The web content for the message. If no web content is required, an empty object must be presented.</li>
 </ol>
 
 <table>
@@ -9920,14 +9929,14 @@ Authorization: Basic am9obi5zbWl0aDpteXBhc3N3b3Jk
         <h1 id="other-resources">Other Resources</h1>
 
 <aside class="notice">
-    Updated 31 July 2015
+    Updated 31 August 2015
 </aside>
 
 <p>This API documentation is being migrated from <a href="https://developer.whispir.com/docs">https://developer.whispir.com/docs</a>.</p>
 
 <p>If the information about the resource you are looking for is not yet listed here, please check the previous documentation.</p>
 
-<p>If you still cannot find the information you&rsquo;re after, please send us an email at <a href="mailto:support@whispir.io">support@whispir.io</a></p>
+<p>If you still cannot find the information you&rsquo;re after, please send us an email at <a href="mailto:support@whispir.io">support@whispir.io</a>.</p>
 
       </div>
       <div class="dark-box">
