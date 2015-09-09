@@ -1066,6 +1066,48 @@ Content-Type: application/vnd.whispir.contact-v2+xml
         <h1 id="messages">Messages</h1>
 
 <blockquote>
+<p>API Endpoint</p>
+
+<blockquote>
+<ul>
+<li>generic</li>
+</ul>
+</blockquote>
+</blockquote>
+<pre><code class="highlight xml">https://api.whispir.com/messages/?apikey=<span class="nt">&lt;your_api_key&gt;</span>
+Content-Type: application/vnd.whispir.message-v1+xml
+</code></pre>
+<pre><code class="highlight go"><span class="n">https</span><span class="o">:</span><span class="c">//api.whispir.com/messages/?apikey=&lt;your_api_key&gt;</span><span class="x">
+</span><span class="n">Content</span><span class="o">-</span><span class="n">Type</span><span class="o">:</span><span class="x"> </span><span class="n">application</span><span class="o">/</span><span class="n">vnd</span><span class="o">.</span><span class="n">whispir</span><span class="o">.</span><span class="n">message</span><span class="o">-</span><span class="n">v1</span><span class="o">+</span><span class="n">json</span><span class="x">
+</span></code></pre>
+
+<blockquote>
+<blockquote>
+<ul>
+<li>limited to a workspace</li>
+</ul>
+</blockquote>
+</blockquote>
+<pre><code class="highlight xml">https://api.whispir.com/workspaces/{:id}/messages/?apikey=<span class="nt">&lt;your_api_key&gt;</span>
+Content-Type: application/vnd.whispir.message-v1+xml
+</code></pre>
+<pre><code class="highlight go"><span class="n">https</span><span class="o">:</span><span class="c">//api.whispir.com/workspaces/{:id}/messages/?apikey=&lt;your_api_key&gt;</span><span class="x">
+</span><span class="n">Content</span><span class="o">-</span><span class="n">Type</span><span class="o">:</span><span class="x"> </span><span class="n">application</span><span class="o">/</span><span class="n">vnd</span><span class="o">.</span><span class="n">whispir</span><span class="o">.</span><span class="n">message</span><span class="o">-</span><span class="n">v1</span><span class="o">+</span><span class="n">json</span><span class="x">
+</span></code></pre>
+<pre><code class="highlight plaintext">&gt; Resource type
+
+- application/vnd.whispir.message-v1+xml
+- application/vnd.whispir.message-v1+json
+
+
+&gt; Methods supported
+
+- GET
+- POST
+- DELETE
+</code></pre>
+
+<blockquote>
 <p>Messages</p>
 
 <blockquote>
@@ -2212,7 +2254,7 @@ Accept: application/vnd.whispir.message-v1+xml
 
 <p><strong>Note:</strong> The types of files allowed are - CSV, JSON, XML, Images [JPEG, PNG], and WAV.</p>
 
-<p>Information about the resources endpoint is documented in the <strong>Resources</strong> section of the documentation.</p>
+<p>Information about the resources endpoint is documented in the <a href="https://whispir.github.io/api/#resources">Resources</a> section of the documentation.</p>
 
 <p><br/>
 <strong>Step 2: Invoke the bulk message with reference to the resource ID and the desired content</strong></p>
@@ -2287,7 +2329,7 @@ Authorization: Basic am9obi5zbWl0aDpteXBhc3N3b3Jk
 
 <h3 id="dynamic-messaging">Dynamic Messaging</h3>
 
-<h3 id="method-definition-and-descriptions">Method Definition and Descriptions</h3>
+<h4 id="method-definition-and-descriptions">Method Definition and Descriptions</h4>
 
 <table>
     <thead>
@@ -2382,8 +2424,7 @@ Authorization: Basic am9obi5zbWl0aDpteXBhc3N3b3Jk
                 The id of the callback to be used for responses to this message.<br/>
                 Sample Value: SampleCallback
                 <br/><br/>
-                **Note:** callback IDs are configured by Administrators within the Whispir Platform. 
-
+                <b>Note:</b> callback IDs are configured by Administrators within the Whispir Platform. 
             </td>
         </tr>
     </tbody>
@@ -2563,9 +2604,49 @@ Your request has been accepted for processing.
 
 <p>The outcome of this message will be a complete message with placeholder variables @@ replaced with the supplied values.</p>
 
-<p>For more information about sending messages, please consult the documentation under Messaging.</p>
+<p>For more information about retrieving the responses and status of the sent message, refer to <a href="https://whispir.github.io/api/#message-status">message status</a> below.</p>
 
         <h1 id="message-status">Message Status</h1>
+
+<blockquote>
+<p>API Endpoint</p>
+
+<blockquote>
+<ul>
+<li>generic</li>
+</ul>
+</blockquote>
+</blockquote>
+<pre><code class="highlight xml">https://api.whispir.com/messages/{:messageId}/messagestatus/?apikey=<span class="nt">&lt;your_api_key&gt;</span>
+Content-Type: application/vnd.whispir.messagestatus-v1+xml
+</code></pre>
+<pre><code class="highlight go"><span class="n">https</span><span class="o">:</span><span class="c">//api.whispir.com/messages/{:messageId}/messagestatus/?apikey=&lt;your_api_key&gt;</span><span class="x">
+</span><span class="n">Content</span><span class="o">-</span><span class="n">Type</span><span class="o">:</span><span class="x"> </span><span class="n">application</span><span class="o">/</span><span class="n">vnd</span><span class="o">.</span><span class="n">whispir</span><span class="o">.</span><span class="n">messagestatus</span><span class="o">-</span><span class="n">v1</span><span class="o">+</span><span class="n">json</span><span class="x">
+</span></code></pre>
+
+<blockquote>
+<blockquote>
+<ul>
+<li>limited to a workspace</li>
+</ul>
+</blockquote>
+</blockquote>
+<pre><code class="highlight xml">https://api.whispir.com/workspaces/{:id}/messages/{:messageId}/messagestatus/?apikey=<span class="nt">&lt;your_api_key&gt;</span>
+Content-Type: application/vnd.whispir.messagestatus-v1+xml
+</code></pre>
+<pre><code class="highlight go"><span class="n">https</span><span class="o">:</span><span class="c">//api.whispir.com/workspaces/{:id}/messages/{:messageId}/messagestatus/?apikey=&lt;your_api_key&gt;</span><span class="x">
+</span><span class="n">Content</span><span class="o">-</span><span class="n">Type</span><span class="o">:</span><span class="x"> </span><span class="n">application</span><span class="o">/</span><span class="n">vnd</span><span class="o">.</span><span class="n">whispir</span><span class="o">.</span><span class="n">messagestatus</span><span class="o">-</span><span class="n">v1</span><span class="o">+</span><span class="n">json</span><span class="x">
+</span></code></pre>
+<pre><code class="highlight plaintext">&gt; Resource type
+
+- application/vnd.whispir.messagestatus-v1+xml
+- application/vnd.whispir.messagestatus-v1+json
+
+
+&gt; Methods supported
+
+- GET
+</code></pre>
 
 <p>Whispir will automatically monitor the status of each message after it has been sent to each recipient.  Using the message status information, you are able to determine who received the message, what exact time they received it, on what message channel (SMS, Email, Voice, Web, Push Notification), whether they replied to the message, what time they replied, and on what messaging channel.</p>
 
@@ -3027,6 +3108,46 @@ Authorization: Basic am9obi5zbWl0aDpteXBhc3N3b3Jk
 
         <h1 id="message-responses">Message Responses</h1>
 
+<blockquote>
+<p>API Endpoint</p>
+
+<blockquote>
+<ul>
+<li>generic</li>
+</ul>
+</blockquote>
+</blockquote>
+<pre><code class="highlight xml">https://api.whispir.com/messages/{:messageId}/messageresponses/?apikey=<span class="nt">&lt;your_api_key&gt;</span>
+Content-Type: application/vnd.whispir.messageresponse-v1+xml
+</code></pre>
+<pre><code class="highlight go"><span class="n">https</span><span class="o">:</span><span class="c">//api.whispir.com/messages/{:messageId}/messageresponses/?apikey=&lt;your_api_key&gt;</span><span class="x">
+</span><span class="n">Content</span><span class="o">-</span><span class="n">Type</span><span class="o">:</span><span class="x"> </span><span class="n">application</span><span class="o">/</span><span class="n">vnd</span><span class="o">.</span><span class="n">whispir</span><span class="o">.</span><span class="n">messageresponse</span><span class="o">-</span><span class="n">v1</span><span class="o">+</span><span class="n">json</span><span class="x">
+</span></code></pre>
+
+<blockquote>
+<blockquote>
+<ul>
+<li>limited to a workspace</li>
+</ul>
+</blockquote>
+</blockquote>
+<pre><code class="highlight xml">https://api.whispir.com/workspaces/{:id}/messages/{:messageId}/messageresponses/?apikey=<span class="nt">&lt;your_api_key&gt;</span>
+Content-Type: application/vnd.whispir.messageresponse-v1+xml
+</code></pre>
+<pre><code class="highlight go"><span class="n">https</span><span class="o">:</span><span class="c">//api.whispir.com/workspaces/{:id}/messages/{:messageId}/messageresponses/?apikey=&lt;your_api_key&gt;</span><span class="x">
+</span><span class="n">Content</span><span class="o">-</span><span class="n">Type</span><span class="o">:</span><span class="x"> </span><span class="n">application</span><span class="o">/</span><span class="n">vnd</span><span class="o">.</span><span class="n">whispir</span><span class="o">.</span><span class="n">messageresponse</span><span class="o">-</span><span class="n">v1</span><span class="o">+</span><span class="n">json</span><span class="x">
+</span></code></pre>
+<pre><code class="highlight plaintext">&gt; Resource type
+
+- application/vnd.whispir.messageresponse-v1+xml
+- application/vnd.whispir.messageresponse-v1+json
+
+
+&gt; Methods supported
+
+- GET
+</code></pre>
+
 <p>Recipients of Whispir Messages have the ability to respond directly to the message via the channels that they received the message on.  </p>
 
 <p>If they received the message via SMS, they can respond directly to the SMS message, and this will be visible through the Whispir.io API.</p>
@@ -3396,6 +3517,49 @@ Authorization: Basic am9obi5zbWl0aDpteXBhc3N3b3Jk
 
         <h1 id="templates">Templates</h1>
 
+<blockquote>
+<p>API Endpoint</p>
+
+<blockquote>
+<ul>
+<li>generic</li>
+</ul>
+</blockquote>
+</blockquote>
+<pre><code class="highlight xml">https://api.whispir.com/templates/?apikey=<span class="nt">&lt;your_api_key&gt;</span>
+Content-Type: application/vnd.whispir.template-v1+xml
+</code></pre>
+<pre><code class="highlight go"><span class="n">https</span><span class="o">:</span><span class="c">//api.whispir.com/templates/?apikey=&lt;your_api_key&gt;</span><span class="x">
+</span><span class="n">Content</span><span class="o">-</span><span class="n">Type</span><span class="o">:</span><span class="x"> </span><span class="n">application</span><span class="o">/</span><span class="n">vnd</span><span class="o">.</span><span class="n">whispir</span><span class="o">.</span><span class="n">template</span><span class="o">-</span><span class="n">v1</span><span class="o">+</span><span class="n">json</span><span class="x">
+</span></code></pre>
+
+<blockquote>
+<blockquote>
+<ul>
+<li>limited to a workspace</li>
+</ul>
+</blockquote>
+</blockquote>
+<pre><code class="highlight xml">https://api.whispir.com/workspaces/{:id}/templates/?apikey=<span class="nt">&lt;your_api_key&gt;</span>
+Content-Type: application/vnd.whispir.template-v1+xml
+</code></pre>
+<pre><code class="highlight go"><span class="n">https</span><span class="o">:</span><span class="c">//api.whispir.com/workspaces/{:id}/templates/?apikey=&lt;your_api_key&gt;</span><span class="x">
+</span><span class="n">Content</span><span class="o">-</span><span class="n">Type</span><span class="o">:</span><span class="x"> </span><span class="n">application</span><span class="o">/</span><span class="n">vnd</span><span class="o">.</span><span class="n">whispir</span><span class="o">.</span><span class="n">template</span><span class="o">-</span><span class="n">v1</span><span class="o">+</span><span class="n">json</span><span class="x">
+</span></code></pre>
+<pre><code class="highlight plaintext">&gt; Resource type
+
+- application/vnd.whispir.template-v1+xml
+- application/vnd.whispir.template-v1+json
+
+
+&gt; Methods supported
+
+- GET
+- POST
+- PUT
+- DELETE
+</code></pre>
+
 <p>Using the Whispir.io API, messages can be stored as Message Templates that can be easily referenced within your API calls.</p>
 
 <p>The purpose of using a Message Template rather than including your content directly into your messages API call is to ensure a separation of message content/design and application code.</p>
@@ -3438,7 +3602,7 @@ Authorization: Basic am9obi5zbWl0aDpteXBhc3N3b3Jk
    </span><span class="s">"messageTemplateName"</span><span class="o">:</span><span class="x"> </span><span class="s">"Sample SMS Template"</span><span class="p">,</span><span class="x"> 
    </span><span class="s">"messageTemplateDescription"</span><span class="o">:</span><span class="x"> </span><span class="s">"Template to provide an example on whispir.io"</span><span class="p">,</span><span class="x">
    </span><span class="s">"subject"</span><span class="x"> </span><span class="o">:</span><span class="x"> </span><span class="s">"Test SMS Message"</span><span class="p">,</span><span class="x">
-   </span><span class="s">"body"</span><span class="x"> </span><span class="o">:</span><span class="x"> </span><span class="s">"This is the body of my test SMS message"</span><span class="x">
+   </span><span class="s">"body"</span><span class="x"> </span><span class="o">:</span><span class="x"> </span><span class="s">"This is the body of my test SMS message"</span><span class="p">,</span><span class="x">
    </span><span class="s">"email"</span><span class="x"> </span><span class="o">:</span><span class="x"> </span><span class="p">{},</span><span class="x">
    </span><span class="s">"voice"</span><span class="x"> </span><span class="o">:</span><span class="x"> </span><span class="p">{},</span><span class="x">
    </span><span class="s">"web"</span><span class="x"> </span><span class="o">:</span><span class="x"> </span><span class="p">{}</span><span class="x">
@@ -3934,6 +4098,23 @@ The expected response to this call is an <strong>HTTP 204 - No Content</strong>.
 
 <p><strong>Note:</strong> All of the options above are the same as provided in the <code class="prettyprint">/messages</code> endpoint <a href="#communications">here</a></p>
 
+<h2 id="deleting-template">Deleting Template</h2>
+<pre><code class="highlight plaintext">&gt; Deleting a template
+
+&gt; &gt; Exact URI of the template has to be provided. 
+
+HTTP 1.1 DELETE https://api.whispir.com/templates/C37DCBAEFF73FEDA45?apikey=[your_key]
+Authorization: Basic am9obi5zbWl0aDpteXBhc3N3b3Jk
+</code></pre>
+<pre><code class="highlight plaintext">&gt; Response
+
+&gt; &gt; 204 No Content
+</code></pre>
+
+<p>Deleting a template is done via the <code class="prettyprint">DELETE</code> method. The exact link url of the specific template has to be used as the end point. To get it, one can perform a <code class="prettyprint">GET /templates</code> which returns the list of all templates and their link url. If the template is within a workspace, ensure that the workspace is included in the URI.</p>
+
+<p><strong>Note:</strong> When a template is DELETED, all the associated Scenarios, events, and references of template use in other endpoints will fail. So, ensure that the template is not used anywhere before it is deleted. Whispir <strong>will not</strong> do that check before it deletes the template.</p>
+
 <h2 id="using-templates">Using Templates</h2>
 
 <blockquote>
@@ -4029,6 +4210,49 @@ Authorization: Basic am9obi5zbWl0aDpteXBhc3N3b3Jk
 <p>All of the features that are specified on the template (for example, any message aliasing) will still be respected when the message is delivered.</p>
 
         <h1 id="response-rules">Response Rules</h1>
+
+<blockquote>
+<p>API Endpoint</p>
+
+<blockquote>
+<ul>
+<li>generic</li>
+</ul>
+</blockquote>
+</blockquote>
+<pre><code class="highlight xml">https://api.whispir.com/responserules/?apikey=<span class="nt">&lt;your_api_key&gt;</span>
+Content-Type: application/vnd.whispir.responserule-v1+xml
+</code></pre>
+<pre><code class="highlight go"><span class="n">https</span><span class="o">:</span><span class="c">//api.whispir.com/responserules/?apikey=&lt;your_api_key&gt;</span><span class="x">
+</span><span class="n">Content</span><span class="o">-</span><span class="n">Type</span><span class="o">:</span><span class="x"> </span><span class="n">application</span><span class="o">/</span><span class="n">vnd</span><span class="o">.</span><span class="n">whispir</span><span class="o">.</span><span class="n">responserule</span><span class="o">-</span><span class="n">v1</span><span class="o">+</span><span class="n">json</span><span class="x">
+</span></code></pre>
+
+<blockquote>
+<blockquote>
+<ul>
+<li>limited to a workspace</li>
+</ul>
+</blockquote>
+</blockquote>
+<pre><code class="highlight xml">https://api.whispir.com/workspaces/{:id}/responserules/?apikey=<span class="nt">&lt;your_api_key&gt;</span>
+Content-Type: application/vnd.whispir.responserule-v1+xml
+</code></pre>
+<pre><code class="highlight go"><span class="n">https</span><span class="o">:</span><span class="c">//api.whispir.com/workspaces/{:id}/responserules/?apikey=&lt;your_api_key&gt;</span><span class="x">
+</span><span class="n">Content</span><span class="o">-</span><span class="n">Type</span><span class="o">:</span><span class="x"> </span><span class="n">application</span><span class="o">/</span><span class="n">vnd</span><span class="o">.</span><span class="n">whispir</span><span class="o">.</span><span class="n">responserule</span><span class="o">-</span><span class="n">v1</span><span class="o">+</span><span class="n">json</span><span class="x">
+</span></code></pre>
+<pre><code class="highlight plaintext">&gt; Resource type
+
+- application/vnd.whispir.responserule-v1+xml
+- application/vnd.whispir.responserule-v1+json
+
+
+&gt; Methods supported
+
+- GET
+- POST
+- PUT
+- DELETE
+</code></pre>
 
 <p>Using Response Rules in combination with Message Templates allows users to automatically group responses to messages into different response groups for reporting purposes.</p>
 
@@ -4202,6 +4426,49 @@ The expected response to this call is an <strong>HTTP 201 - Created</strong>.</p
 <p>For more information on Creating Message Templates, click <a href="#creating-templates">here</a>.</p>
 
         <h1 id="contacts">Contacts</h1>
+
+<blockquote>
+<p>API Endpoint</p>
+
+<blockquote>
+<ul>
+<li>generic</li>
+</ul>
+</blockquote>
+</blockquote>
+<pre><code class="highlight xml">https://api.whispir.com/contacts/?apikey=<span class="nt">&lt;your_api_key&gt;</span>
+Content-Type: application/vnd.whispir.contact-v1+xml
+</code></pre>
+<pre><code class="highlight go"><span class="n">https</span><span class="o">:</span><span class="c">//api.whispir.com/contacts/?apikey=&lt;your_api_key&gt;</span><span class="x">
+</span><span class="n">Content</span><span class="o">-</span><span class="n">Type</span><span class="o">:</span><span class="x"> </span><span class="n">application</span><span class="o">/</span><span class="n">vnd</span><span class="o">.</span><span class="n">whispir</span><span class="o">.</span><span class="n">contact</span><span class="o">-</span><span class="n">v1</span><span class="o">+</span><span class="n">json</span><span class="x">
+</span></code></pre>
+
+<blockquote>
+<blockquote>
+<ul>
+<li>limited to a workspace</li>
+</ul>
+</blockquote>
+</blockquote>
+<pre><code class="highlight xml">https://api.whispir.com/workspaces/{:id}/contacts/?apikey=<span class="nt">&lt;your_api_key&gt;</span>
+Content-Type: application/vnd.whispir.contact-v1+xml
+</code></pre>
+<pre><code class="highlight go"><span class="n">https</span><span class="o">:</span><span class="c">//api.whispir.com/workspaces/{:id}/contacts/?apikey=&lt;your_api_key&gt;</span><span class="x">
+</span><span class="n">Content</span><span class="o">-</span><span class="n">Type</span><span class="o">:</span><span class="x"> </span><span class="n">application</span><span class="o">/</span><span class="n">vnd</span><span class="o">.</span><span class="n">whispir</span><span class="o">.</span><span class="n">contact</span><span class="o">-</span><span class="n">v1</span><span class="o">+</span><span class="n">json</span><span class="x">
+</span></code></pre>
+<pre><code class="highlight plaintext">&gt; Resource type
+
+- application/vnd.whispir.contact-v1+xml
+- application/vnd.whispir.contact-v1+json
+
+
+&gt; Methods supported
+
+- GET
+- POST
+- PUT
+- DELETE
+</code></pre>
 
 <p>Contacts form the core of the Whispir offerings. They make up the base data to which and from all the communications are performed.</p>
 
@@ -5050,14 +5317,47 @@ Accept: application/vnd.whispir.contact-v1+xml
         <h1 id="distribution-lists">Distribution Lists</h1>
 
 <blockquote>
-<p>Distribution Lists</p>
+<p>API Endpoint</p>
 
 <blockquote>
-<p>Distribution lists can easily be created by executing a POST request to the <code class="prettyprint">/distributionlists</code> endpoint in Whispir.
-<br/><br/>
-Distribution lists can contain <strong>Contacts</strong>, <strong>Users</strong>, or nested <strong>Distribution Lists</strong> to create any structure that is required within your environment.</p>
+<ul>
+<li>generic</li>
+</ul>
 </blockquote>
 </blockquote>
+<pre><code class="highlight xml">https://api.whispir.com/distributionlists/?apikey=<span class="nt">&lt;your_api_key&gt;</span>
+Content-Type: application/vnd.whispir.distributionlist-v1+xml
+</code></pre>
+<pre><code class="highlight go"><span class="n">https</span><span class="o">:</span><span class="c">//api.whispir.com/distributionlists/?apikey=&lt;your_api_key&gt;</span><span class="x">
+</span><span class="n">Content</span><span class="o">-</span><span class="n">Type</span><span class="o">:</span><span class="x"> </span><span class="n">application</span><span class="o">/</span><span class="n">vnd</span><span class="o">.</span><span class="n">whispir</span><span class="o">.</span><span class="n">distributionlist</span><span class="o">-</span><span class="n">v1</span><span class="o">+</span><span class="n">json</span><span class="x">
+</span></code></pre>
+
+<blockquote>
+<blockquote>
+<ul>
+<li>limited to a workspace</li>
+</ul>
+</blockquote>
+</blockquote>
+<pre><code class="highlight xml">https://api.whispir.com/workspaces/{:id}/distributionlists/?apikey=<span class="nt">&lt;your_api_key&gt;</span>
+Content-Type: application/vnd.whispir.distributionlist-v1+xml
+</code></pre>
+<pre><code class="highlight go"><span class="n">https</span><span class="o">:</span><span class="c">//api.whispir.com/workspaces/{:id}/distributionlists/?apikey=&lt;your_api_key&gt;</span><span class="x">
+</span><span class="n">Content</span><span class="o">-</span><span class="n">Type</span><span class="o">:</span><span class="x"> </span><span class="n">application</span><span class="o">/</span><span class="n">vnd</span><span class="o">.</span><span class="n">whispir</span><span class="o">.</span><span class="n">distributionlist</span><span class="o">-</span><span class="n">v1</span><span class="o">+</span><span class="n">json</span><span class="x">
+</span></code></pre>
+<pre><code class="highlight plaintext">&gt; Resource type
+
+- application/vnd.whispir.distributionlist-v1+xml
+- application/vnd.whispir.distributionlist-v1+json
+
+
+&gt; Methods supported
+
+- GET
+- POST
+- PUT
+- DELETE
+</code></pre>
 
 <p>Whispir&rsquo;s API allows users to categorise their contacts into different groups to simplify the distribution of messages. This allows for </p>
 
@@ -5071,14 +5371,7 @@ Distribution lists can contain <strong>Contacts</strong>, <strong>Users</strong>
 
 <p>Distribution lists can easily be created by executing a <code class="prettyprint">POST</code> request to the <code class="prettyprint">/distributionlists</code> endpoint in Whispir.</p>
 
-<p>The following Content-Types are supported:</p>
-
-<ul>
-<li>application/vnd.whispir.distributionlist-v1+xml</li>
-<li>application/vnd.whispir.distributionlist-v1+json</li>
-</ul>
-
-<h2 id="creating-distribution-lists">Creating Distribution lists</h2>
+<p>Distribution lists can contain <strong>Contacts</strong>, <strong>Users</strong>, or nested <strong>Distribution Lists</strong> to create any structure that is required within your environment.##Creating Distribution lists</p>
 
 <blockquote>
 <p>Creating Distribution Lists</p>
@@ -5450,6 +5743,49 @@ Authorization: Basic [your basic auth]
 
         <h1 id="scenarios">Scenarios</h1>
 
+<blockquote>
+<p>API Endpoint</p>
+
+<blockquote>
+<ul>
+<li>generic</li>
+</ul>
+</blockquote>
+</blockquote>
+<pre><code class="highlight xml">https://api.whispir.com/scenarios/?apikey=<span class="nt">&lt;your_api_key&gt;</span>
+Content-Type: application/vnd.whispir.scenario-v1+xml
+</code></pre>
+<pre><code class="highlight go"><span class="n">https</span><span class="o">:</span><span class="c">//api.whispir.com/scenarios/?apikey=&lt;your_api_key&gt;</span><span class="x">
+</span><span class="n">Content</span><span class="o">-</span><span class="n">Type</span><span class="o">:</span><span class="x"> </span><span class="n">application</span><span class="o">/</span><span class="n">vnd</span><span class="o">.</span><span class="n">whispir</span><span class="o">.</span><span class="n">scenario</span><span class="o">-</span><span class="n">v1</span><span class="o">+</span><span class="n">json</span><span class="x">
+</span></code></pre>
+
+<blockquote>
+<blockquote>
+<ul>
+<li>limited to a workspace</li>
+</ul>
+</blockquote>
+</blockquote>
+<pre><code class="highlight xml">https://api.whispir.com/workspaces/{:id}/scenarios/?apikey=<span class="nt">&lt;your_api_key&gt;</span>
+Content-Type: application/vnd.whispir.scenario-v1+xml
+</code></pre>
+<pre><code class="highlight go"><span class="n">https</span><span class="o">:</span><span class="c">//api.whispir.com/workspaces/{:id}/scenarios/?apikey=&lt;your_api_key&gt;</span><span class="x">
+</span><span class="n">Content</span><span class="o">-</span><span class="n">Type</span><span class="o">:</span><span class="x"> </span><span class="n">application</span><span class="o">/</span><span class="n">vnd</span><span class="o">.</span><span class="n">whispir</span><span class="o">.</span><span class="n">scenario</span><span class="o">-</span><span class="n">v1</span><span class="o">+</span><span class="n">json</span><span class="x">
+</span></code></pre>
+<pre><code class="highlight plaintext">&gt; Resource type
+
+- application/vnd.whispir.scenario-v1+xml
+- application/vnd.whispir.scenario-v1+json
+
+
+&gt; Methods supported
+
+- GET
+- POST
+- PUT
+- DELETE
+</code></pre>
+
 <p>Scenarios allows users to simplify the message delivery processes through automated one click communications. The process involves creating a fixed message Or a message template combined with a contact or a distribution list. When the scenario is executed, the message is sent to the contacts.</p>
 
 <p>Such use cases are widely useful in emergency notification scenarios where time is of essence. Not just messages (text), one can trigger Email, Voice and Social Media posts too suitable for different target audience as part of the scenario process.</p>
@@ -5459,13 +5795,6 @@ Authorization: Basic [your basic auth]
 <p>The contacts can be picked as a static distribution list or a rule based dynamic distribution list, or just direct available numbers. This improves the effectiveness of the scenario&rsquo;s target group reach.</p>
 
 <p>Not just an emergency, but any scenario where a fixed content/Rich Message has to be sent to a pool of contacts, Whispir&rsquo;s &ldquo;Scenario&rdquo; comes very handy.</p>
-
-<p>The following Content-Types are supported:</p>
-
-<ul>
-<li>application/vnd.whispir.scenario-v1+xml</li>
-<li>application/vnd.whispir.scenario-v1+json</li>
-</ul>
 
 <h2 id="creating-a-new-scenario">Creating a new Scenario</h2>
 
@@ -6765,6 +7094,33 @@ Whispir Support
 
         <h1 id="workspaces">Workspaces</h1>
 
+<blockquote>
+<p>API Endpoint</p>
+
+<blockquote>
+<ul>
+<li>generic</li>
+</ul>
+</blockquote>
+</blockquote>
+<pre><code class="highlight xml">https://api.whispir.com/workspaces/?apikey=<span class="nt">&lt;your_api_key&gt;</span>
+Content-Type: application/vnd.whispir.workspace-v1+xml
+</code></pre>
+<pre><code class="highlight go"><span class="n">https</span><span class="o">:</span><span class="c">//api.whispir.com/workspaces/?apikey=&lt;your_api_key&gt;</span><span class="x">
+</span><span class="n">Content</span><span class="o">-</span><span class="n">Type</span><span class="o">:</span><span class="x"> </span><span class="n">application</span><span class="o">/</span><span class="n">vnd</span><span class="o">.</span><span class="n">whispir</span><span class="o">.</span><span class="n">workspace</span><span class="o">-</span><span class="n">v1</span><span class="o">+</span><span class="n">json</span><span class="x">
+</span></code></pre>
+<pre><code class="highlight plaintext">&gt; Resource type
+
+- application/vnd.whispir.workspace-v1+xml
+- application/vnd.whispir.workspace-v1+json
+
+
+&gt; Methods supported
+
+- GET
+- POST
+</code></pre>
+
 <p>Workspace allows application developers to create new work areas for the varying use cases of their application. They provides different functions that can be provided to users of the application, e.g. creating messages, executing scenarios, or viewing distribution lists. </p>
 
 <p>Every account upon creation is given a default workspace. All operations are usually carried out in the default workspace. To separate the concerns, one can create multiple (there is no limit) workspaces suited for each of their application needs. </p>
@@ -7024,6 +7380,47 @@ Authorization: Basic asdf98nf89asdvasd2r398h8sdf
 
         <h1 id="activities">Activities</h1>
 
+<blockquote>
+<p>API Endpoint</p>
+
+<blockquote>
+<ul>
+<li>generic</li>
+</ul>
+</blockquote>
+</blockquote>
+<pre><code class="highlight xml">https://api.whispir.com/activities/?apikey=<span class="nt">&lt;your_api_key&gt;</span>
+Content-Type: application/vnd.whispir.activity-v1+xml
+</code></pre>
+<pre><code class="highlight go"><span class="n">https</span><span class="o">:</span><span class="c">//api.whispir.com/activities/?apikey=&lt;your_api_key&gt;</span><span class="x">
+</span><span class="n">Content</span><span class="o">-</span><span class="n">Type</span><span class="o">:</span><span class="x"> </span><span class="n">application</span><span class="o">/</span><span class="n">vnd</span><span class="o">.</span><span class="n">whispir</span><span class="o">.</span><span class="n">activity</span><span class="o">-</span><span class="n">v1</span><span class="o">+</span><span class="n">json</span><span class="x">
+</span></code></pre>
+
+<blockquote>
+<blockquote>
+<ul>
+<li>limited to a workspace</li>
+</ul>
+</blockquote>
+</blockquote>
+<pre><code class="highlight xml">https://api.whispir.com/workspaces/{:id}/activities/?apikey=<span class="nt">&lt;your_api_key&gt;</span>
+Content-Type: application/vnd.whispir.activity-v1+xml
+</code></pre>
+<pre><code class="highlight go"><span class="n">https</span><span class="o">:</span><span class="c">//api.whispir.com/workspaces/{:id}/activities/?apikey=&lt;your_api_key&gt;</span><span class="x">
+</span><span class="n">Content</span><span class="o">-</span><span class="n">Type</span><span class="o">:</span><span class="x"> </span><span class="n">application</span><span class="o">/</span><span class="n">vnd</span><span class="o">.</span><span class="n">whispir</span><span class="o">.</span><span class="n">activity</span><span class="o">-</span><span class="n">v1</span><span class="o">+</span><span class="n">json</span><span class="x">
+</span></code></pre>
+<pre><code class="highlight plaintext">&gt; Resource type
+
+- application/vnd.whispir.activity-v1+xml
+- application/vnd.whispir.activity-v1+json
+
+
+&gt; Methods supported
+
+- GET
+- POST
+</code></pre>
+
 <p>Activities are all the individual changes, tasks, calls, messages.. just about everything performed in a given company workspaces. Each Activity log entry contains information about the workspace, the module(message, email, IVR..), the user who performed it, time stamps, description of the activity, and its status (success, fail) etc.</p>
 
 <p>All of these helps in fulfilling the auditing, standards compliance and also change tracking. For example -</p>
@@ -7056,8 +7453,6 @@ Authorization: Basic asdf98nf89asdvasd2r398h8sdf
     <span class="nt">&lt;status&gt;</span>Successful<span class="nt">&lt;/status&gt;</span>
     <span class="nt">&lt;description&gt;</span>Message sent via the Whispir's Java library<span class="nt">&lt;/description&gt;</span>
 <span class="nt">&lt;/ns3:activity&gt;</span>
-
-&gt; Response will be `201 Created`
 </code></pre>
 <pre><code class="highlight go"><span class="n">Content</span><span class="o">-</span><span class="n">Type</span><span class="o">:</span><span class="x"> </span><span class="n">application</span><span class="o">/</span><span class="n">vnd</span><span class="o">.</span><span class="n">whispir</span><span class="o">.</span><span class="n">activity</span><span class="o">-</span><span class="n">v1</span><span class="o">+</span><span class="n">json</span><span class="x">
 
@@ -7067,9 +7462,9 @@ Authorization: Basic asdf98nf89asdvasd2r398h8sdf
   </span><span class="s">"status"</span><span class="x"> </span><span class="o">:</span><span class="x"> </span><span class="s">"Successful"</span><span class="p">,</span><span class="x">
   </span><span class="s">"description"</span><span class="x"> </span><span class="o">:</span><span class="x"> </span><span class="s">"Message sent via the Whispir's Java library"</span><span class="x">
 </span><span class="p">}</span><span class="x">
-
-</span><span class="o">&gt;</span><span class="x"> </span><span class="n">Response</span><span class="x"> </span><span class="n">will</span><span class="x"> </span><span class="n">be</span><span class="x"> </span><span class="m">201</span><span class="x"> </span><span class="n">Created</span><span class="x">
 </span></code></pre>
+<pre><code class="highlight plaintext">&gt; Response will be `201 Created`
+</code></pre>
 
 <p>To create a new workspace, you can use the /activities endpoint.</p>
 
@@ -7511,6 +7906,46 @@ Authorization: Basic asdf98nf89asdvasd2r398h8sdf
 <p>Activities can only be created and retrieved. They <strong>cannot</strong> be updated or deleted.</p>
 
         <h1 id="custom-lists">Custom Lists</h1>
+
+<blockquote>
+<p>API Endpoint</p>
+
+<blockquote>
+<ul>
+<li>generic</li>
+</ul>
+</blockquote>
+</blockquote>
+<pre><code class="highlight xml">https://api.whispir.com/customlists/?apikey=<span class="nt">&lt;your_api_key&gt;</span>
+Content-Type: application/vnd.whispir.customlist-v1+xml
+</code></pre>
+<pre><code class="highlight go"><span class="n">https</span><span class="o">:</span><span class="c">//api.whispir.com/customlists/?apikey=&lt;your_api_key&gt;</span><span class="x">
+</span><span class="n">Content</span><span class="o">-</span><span class="n">Type</span><span class="o">:</span><span class="x"> </span><span class="n">application</span><span class="o">/</span><span class="n">vnd</span><span class="o">.</span><span class="n">whispir</span><span class="o">.</span><span class="n">customlist</span><span class="o">-</span><span class="n">v1</span><span class="o">+</span><span class="n">json</span><span class="x">
+</span></code></pre>
+
+<blockquote>
+<blockquote>
+<ul>
+<li>limited to a workspace</li>
+</ul>
+</blockquote>
+</blockquote>
+<pre><code class="highlight xml">https://api.whispir.com/workspaces/{:id}/customlists/?apikey=<span class="nt">&lt;your_api_key&gt;</span>
+Content-Type: application/vnd.whispir.customlist-v1+xml
+</code></pre>
+<pre><code class="highlight go"><span class="n">https</span><span class="o">:</span><span class="c">//api.whispir.com/workspaces/{:id}/customlists/?apikey=&lt;your_api_key&gt;</span><span class="x">
+</span><span class="n">Content</span><span class="o">-</span><span class="n">Type</span><span class="o">:</span><span class="x"> </span><span class="n">application</span><span class="o">/</span><span class="n">vnd</span><span class="o">.</span><span class="n">whispir</span><span class="o">.</span><span class="n">customlist</span><span class="o">-</span><span class="n">v1</span><span class="o">+</span><span class="n">json</span><span class="x">
+</span></code></pre>
+<pre><code class="highlight plaintext">&gt; Resource type
+
+- application/vnd.whispir.customlist-v1+xml
+- application/vnd.whispir.customlist-v1+json
+
+
+&gt; Methods supported
+
+- GET
+</code></pre>
 
 <p>Custom Lists are user specific translations or preferred options in the various list controls used in the platform tool. These provide the freedom for the user to customize the list options in various modules like Messages, Events. These custom list either can complement or completely overwrite the existing list items.</p>
 
@@ -7977,6 +8412,19 @@ Content-Type: application/vnd.whispir.user-v1+xml
 <pre><code class="highlight go"><span class="n">https</span><span class="o">:</span><span class="c">//api.whispir.com/workspaces/{:id}/users/?apikey=&lt;your_api_key&gt;</span><span class="x">
 </span><span class="n">Content</span><span class="o">-</span><span class="n">Type</span><span class="o">:</span><span class="x"> </span><span class="n">application</span><span class="o">/</span><span class="n">vnd</span><span class="o">.</span><span class="n">whispir</span><span class="o">.</span><span class="n">user</span><span class="o">-</span><span class="n">v1</span><span class="o">+</span><span class="n">json</span><span class="x">
 </span></code></pre>
+<pre><code class="highlight plaintext">&gt; Resource type
+
+- application/vnd.whispir.user-v1+xml
+- application/vnd.whispir.user-v1+json
+
+
+&gt; Methods supported
+
+- GET
+- POST
+- PUT
+- DELETE
+</code></pre>
 
 <p>Access to use the Whispir API, Platform and its features is strictly limited to user permission set. One needs to have 
 proper permissions to access all the features provided by the platform, and when using the API, have appropriate permissions to modify the user attributes of themselves or others in their company workspaces.</p>
@@ -8846,6 +9294,19 @@ Content-Type: application/vnd.whispir.event-v1+xml
 <pre><code class="highlight go"><span class="n">https</span><span class="o">:</span><span class="c">//api.whispir.com/workspaces/{:id}/events/?apikey=&lt;your_api_key&gt;</span><span class="x">
 </span><span class="n">Content</span><span class="o">-</span><span class="n">Type</span><span class="o">:</span><span class="x"> </span><span class="n">application</span><span class="o">/</span><span class="n">vnd</span><span class="o">.</span><span class="n">whispir</span><span class="o">.</span><span class="n">event</span><span class="o">-</span><span class="n">v1</span><span class="o">+</span><span class="n">json</span><span class="x">
 </span></code></pre>
+<pre><code class="highlight plaintext">&gt; Resource type
+
+- application/vnd.whispir.event-v1+xml
+- application/vnd.whispir.event-v1+json
+
+
+&gt; Methods supported
+
+- GET
+- POST
+- PUT
+- DELETE
+</code></pre>
 
 <p>Whispir’s Events API allows users to capture, create and manage Events (including Incidents, Issues, Places, and Assets). Link multi-channel communications to each event to track report and disseminate information textually and Geo-spatially.</p>
 
@@ -9926,10 +10387,1452 @@ Authorization: Basic am9obi5zbWl0aDpteXBhc3N3b3Jk
 
 <p>The delete an event if successful shall respond with a <code class="prettyprint">204 No Content</code>.</p>
 
+        <h1 id="resources">Resources</h1>
+
+<blockquote>
+<p>API Endpoint</p>
+
+<blockquote>
+<ul>
+<li>generic</li>
+</ul>
+</blockquote>
+</blockquote>
+<pre><code class="highlight xml">https://api.whispir.com/resources/?apikey=<span class="nt">&lt;your_api_key&gt;</span>
+Content-Type: application/vnd.whispir.resource-v1+xml
+</code></pre>
+<pre><code class="highlight go"><span class="n">https</span><span class="o">:</span><span class="c">//api.whispir.com/resources/?apikey=&lt;your_api_key&gt;</span><span class="x">
+</span><span class="n">Content</span><span class="o">-</span><span class="n">Type</span><span class="o">:</span><span class="x"> </span><span class="n">application</span><span class="o">/</span><span class="n">vnd</span><span class="o">.</span><span class="n">whispir</span><span class="o">.</span><span class="n">resource</span><span class="o">-</span><span class="n">v1</span><span class="o">+</span><span class="n">json</span><span class="x">
+</span></code></pre>
+
+<blockquote>
+<blockquote>
+<ul>
+<li>limited to a workspace</li>
+</ul>
+</blockquote>
+</blockquote>
+<pre><code class="highlight xml">https://api.whispir.com/workspaces/{:id}/resources/?apikey=<span class="nt">&lt;your_api_key&gt;</span>
+Content-Type: application/vnd.whispir.resource-v1+xml
+</code></pre>
+<pre><code class="highlight go"><span class="n">https</span><span class="o">:</span><span class="c">//api.whispir.com/workspaces/{:id}/resources/?apikey=&lt;your_api_key&gt;</span><span class="x">
+</span><span class="n">Content</span><span class="o">-</span><span class="n">Type</span><span class="o">:</span><span class="x"> </span><span class="n">application</span><span class="o">/</span><span class="n">vnd</span><span class="o">.</span><span class="n">whispir</span><span class="o">.</span><span class="n">resource</span><span class="o">-</span><span class="n">v1</span><span class="o">+</span><span class="n">json</span><span class="x">
+</span></code></pre>
+<pre><code class="highlight plaintext">&gt; Methods supported
+
+- GET
+- POST
+- PUT
+- DELETE
+</code></pre>
+
+<p>Using Whispir’s API, one can submit data payloads to be stored by Whispir and used in various API calls. These files are uploaded through the <code class="prettyprint">/resources</code> endpoint.</p>
+
+<p>Using the  Resources endpoint, application developers can submit, retrieve, update, and delete resources. These resources can be used as part of either Whispir Bulk (Dynamic) Messages, or to be used for importing Contacts.  </p>
+
+<table>
+    <thead>
+        <tr>
+            <th style="width: 50%" colspan="2">Method Description</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td style="text-align: right; font-weight: bold;">GET</td>
+            <td>
+                /resources
+                <ul>
+                    <li>
+                    Provides a List of all the currently saved resources in the company (URIs), sorted by most recently updated
+                    </li>
+                </ul>
+                /resources/{:id}
+                <ul>
+                    <li>
+                    Retrieves the representation of the requested resource. (this does not allow users to download the resource, only the representation)
+                    </li>
+                </ul>
+                /workspaces/(id)/resources
+                <ul>
+                    <li>
+                    Provides a List of all the currently saved resources in the specified workspace(URIs), sorted by most recently updated
+                    </li>
+                </ul>
+                /workspaces/(id)/resources/(id)
+                <ul>
+                    <li>
+                    Retrieves the representation of the requested resource. (this does not allow users to download the resource, only the representation)
+                    </li>
+                </ul>
+            </td>
+        </tr>
+        <tr>
+            <td style="text-align: right; font-weight: bold;">POST</td>
+            <td>
+                /resources
+                <ul>
+                    <li>
+                    Creates a new resource for use in the API
+                    </li>
+                </ul>
+                /resources/{:id}
+                <ul>
+                    <li>
+                    METHOD not supported
+                    </li>
+                </ul>
+                /workspaces/(id)/resources
+                <ul>
+                    <li>
+                    Creates a new resource for use in the API under the particular workspace
+                    </li>
+                </ul>
+                /workspaces/(id)/resources/{:id}
+                <ul>
+                    <li>
+                    METHOD not supported
+                    </li>
+                </ul>
+            </td>
+        </tr>
+        <tr>
+            <td style="text-align: right; font-weight: bold;">PUT</td>
+            <td>
+                /resources
+                <ul>
+                    <li>
+                    METHOD not supported
+                    </li>
+                </ul>
+                /resources/{:id}
+                <ul>
+                    <li>
+                    Update the specified resource with the one supplied in the request.
+                    </li>
+                </ul>
+                /workspaces/(id)/resources
+                <ul>
+                    <li>
+                    METHOD not supported
+                    </li>
+                </ul>
+                /workspaces/(id)/resources/{:id}
+                <ul>
+                    <li>
+                    Update the specified resource with the one supplied in the request under the particular workspace
+                    </li>
+                </ul>
+            </td>
+        </tr>
+        <tr>
+            <td style="text-align: right; font-weight: bold;">DELETE</td>
+            <td>
+                /resources
+                <ul>
+                    <li>
+                    METHOD not supported
+                    </li>
+                </ul>
+                /resources/{:id}
+                <ul>
+                    <li>
+                    Delete the specified resource from the Whispir Platform.
+                    </li>
+                </ul>
+                /workspaces/(id)/resources
+                <ul>
+                    <li>
+                    METHOD not supported
+                    </li>
+                </ul>
+                /workspaces/(id)/resources/{:id}
+                <ul>
+                    <li>
+                    Delete the specified resource from the Whispir Platform under the particular workspace
+                    </li>
+                </ul>
+            </td>
+        </tr>
+    </tbody>
+</table>
+
+<h2 id="creating-a-resource">Creating a resource</h2>
+<pre><code class="highlight plaintext">HTTP 1.1 POST https://api.whispir.com/resources?apikey=[your_api_key]
+Authorization: Basic asdf98nf89asdvasd2r398h8sdf
+</code></pre>
+<pre><code class="highlight xml">Content-Type: application/vnd.whispir.resource-v1+xml 
+
+
+<span class="cp">&lt;?xml version="1.0" encoding="UTF-8" standalone="yes"?&gt;</span>
+<span class="nt">&lt;ns3:resource</span> <span class="na">xmlns:ns2=</span><span class="s">"http://schemas.api.whispir.com/dap"</span> <span class="na">xmlns:ns3=</span><span class="s">"http://schemas.api.whispir.com"</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;name&gt;</span>test.csv<span class="nt">&lt;/name&gt;</span>
+    <span class="nt">&lt;scope&gt;</span>private<span class="nt">&lt;/scope&gt;</span>
+    <span class="nt">&lt;mimeType&gt;</span>text/csv<span class="nt">&lt;/mimeType&gt;</span>
+    <span class="nt">&lt;derefUri&gt;</span>
+     ...base64 representation...
+    <span class="nt">&lt;/derefUri&gt;</span>
+<span class="nt">&lt;/ns3:resource&gt;</span>
+
+</code></pre>
+<pre><code class="highlight go"><span class="n">Content</span><span class="o">-</span><span class="n">Type</span><span class="o">:</span><span class="x"> </span><span class="n">application</span><span class="o">/</span><span class="n">vnd</span><span class="o">.</span><span class="n">whispir</span><span class="o">.</span><span class="n">resource</span><span class="o">-</span><span class="n">v1</span><span class="o">+</span><span class="n">json</span><span class="x">
+
+</span><span class="p">{</span><span class="x">
+  </span><span class="s">"name"</span><span class="x"> </span><span class="o">:</span><span class="x"> </span><span class="s">"test.csv"</span><span class="p">,</span><span class="x">
+  </span><span class="s">"scope"</span><span class="x"> </span><span class="o">:</span><span class="x"> </span><span class="s">"private"</span><span class="p">,</span><span class="x">
+  </span><span class="s">"mimeType"</span><span class="x"> </span><span class="o">:</span><span class="x"> </span><span class="s">"text/csv"</span><span class="p">,</span><span class="x">
+  </span><span class="s">"derefUri"</span><span class="x"> </span><span class="o">:</span><span class="x"> </span><span class="s">"...base64 representation..."</span><span class="x">
+</span><span class="p">}</span><span class="x">   
+
+</span></code></pre>
+<pre><code class="highlight plaintext">&gt; &gt; Response 
+
+HTTP 1.1 201 Created
+...
+Location: http://api.whispir.com/resources/4FBBC384BCE3DAABFE3
+...
+
+</code></pre>
+
+<p>Creating a resource is very easy. To create a new resource we should use the <code class="prettyprint">/resources</code> end point. </p>
+
+<p>The following are the mandatory fields needed to create a resource -</p>
+
+<ul>
+<li>Name</li>
+<li>Scope</li>
+<li>mimeType</li>
+<li>deferUri</li>
+</ul>
+
+<table>
+    <thead>
+        <tr>
+            <th style="width: 50%" colspan="2">High-Level Response Elements</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td style="text-align: right; font-weight: bold;">name:</td>
+            <td><strong>String</strong><br/>
+                Specifies the name of the file being uploaded. The extension of the file too is allowed to be present in the name. <b>Eg:</b> australia-contacts.csv
+<br><br>
+<b>Note:</b> It is advised that names should not contain spaces or special characters other than `-` and `.`. This helps for easier search and also for a valid URL link (especially) in case of public scoped files. <br><b>Eg:</b> `australia-contacts.csv` is better name convention than `australia contacts.csv` as the latter converts into `australia%20contacts.csv`.
+            </td>
+        </tr>
+        <tr>
+            <td style="text-align: right; font-weight: bold;">scope:</td>
+            <td><strong>String</strong><br/>
+                Specifies the permission scope of the file being uploaded. The scope defines the access restriction of the resource. It can be only one of - 
+            <ul>
+                <li><b>Public</b> - Public files have an addressable URL and are available publicly</li>
+                <li><b>Private</b> - Private files have no URL and are only available for bulk messaging purposes and for importing contacts.</li>
+            </ul>
+            </td>
+        </tr>
+        <tr>
+            <td style="text-align: right; font-weight: bold;">mimeType:</td>
+            <td><strong>String</strong><br/>
+                The mime type of the file that is being uploaded. The type is dependent on the scope of the resource.
+            <ul>
+                <li><b>Public</b> - Public files can be of any mimetype. text/html; text/csv</li>
+                <li><b>Private</b> - Private files are restricted to CSV, JSON, and XML.</li>
+            </ul>
+            </td>
+        </tr>
+        <tr>
+            <td style="text-align: right; font-weight: bold;">derefUri:</td>
+            <td><strong>String</strong><br/>
+                The base64 representation of the file being submitted.
+            </td>
+        </tr>
+    </tbody>
+</table>
+
+<p><strong>Note:</strong> When creating a resource, the following conditions apply -</p>
+
+<ul>
+<li>Maximum of 10MB per file being uploaded.</li>
+<li>Transactions will have an enforced timeout.</li>
+<li>Resources will be available in the Whispir Platform for a limited timeframe (30 days). These will then be automatically cleaned. This will be a configurable setting for Whispir Administrators.</li>
+</ul>
+
+<h3 id="example-resources">Example resources</h3>
+
+<p>The following are all equivalent representations of the same data structure, across the three supported formats. </p>
+
+<h3 id="csv-format">CSV format</h3>
+
+<p>As the CSV file format does not support structured objects, they have been omitted from the dataset.</p>
+<pre><code class="highlight plaintext">&gt; &gt; CSV 
+
+fullname,email,mobile,streetaddress,suburb,manifest.name,manifest.value.timestamp
+Franco Himboli,fhimboli@gmail.com,0410509001,123 Auburn Rd,Hawthorn,Delivery Manifest,20-10-2014 10:24
+Jordan Windsor,jwindsor@yahoo.com,0410509002,360 Walsh Rd,North Melbourne,Delivery Manifest,20-10-2014 10:24
+</code></pre>
+
+<h3 id="json-format">JSON Format</h3>
+<pre><code class="highlight go"><span class="x">
+</span><span class="o">&gt;</span><span class="x"> </span><span class="o">&gt;</span><span class="x"> </span><span class="n">JSON</span><span class="x">
+
+</span><span class="p">[{</span><span class="x">
+ </span><span class="s">"fullname"</span><span class="o">:</span><span class="x"> </span><span class="s">"Franco Himboli"</span><span class="p">,</span><span class="x">
+ </span><span class="s">"email"</span><span class="o">:</span><span class="x"> </span><span class="s">"ftrimboli@gmail.com"</span><span class="p">,</span><span class="x">
+ </span><span class="s">"mobile"</span><span class="o">:</span><span class="x"> </span><span class="s">"0410509001"</span><span class="p">,</span><span class="x">
+ </span><span class="s">"streetaddress"</span><span class="o">:</span><span class="x"> </span><span class="s">"123 Auburn Rd"</span><span class="p">,</span><span class="x">
+ </span><span class="s">"suburb"</span><span class="o">:</span><span class="x"> </span><span class="s">"Hawthorn"</span><span class="p">,</span><span class="x">
+ </span><span class="s">"Reference"</span><span class="o">:</span><span class="x"> </span><span class="s">"Xpress Mail"</span><span class="p">,</span><span class="x">
+ </span><span class="s">"MsgData"</span><span class="x"> </span><span class="o">:</span><span class="x"> </span><span class="p">{</span><span class="x"> 
+    </span><span class="s">"POBDetail"</span><span class="o">:</span><span class="x"> </span><span class="p">{</span><span class="x">
+        </span><span class="s">"DateAndTime"</span><span class="x"> </span><span class="o">:</span><span class="x"> </span><span class="s">"09-Sep-2015 12:15 PM"</span><span class="p">,</span><span class="x">
+        </span><span class="s">"Message"</span><span class="x"> </span><span class="o">:</span><span class="x"> </span><span class="s">"Please let us know if the time slot is acceptable. Respond with a 'No' to get alternative time slot"</span><span class="x">
+    </span><span class="p">}</span><span class="x">
+  </span><span class="p">}</span><span class="x">
+</span><span class="p">},</span><span class="x">
+</span><span class="p">{</span><span class="x">
+ </span><span class="s">"fullname"</span><span class="o">:</span><span class="x"> </span><span class="s">"Jordan Windsor"</span><span class="p">,</span><span class="x">
+ </span><span class="s">"email"</span><span class="o">:</span><span class="x"> </span><span class="s">"jwindsor@yahoo.com"</span><span class="p">,</span><span class="x">
+ </span><span class="s">"mobile"</span><span class="o">:</span><span class="x"> </span><span class="s">"0410509002"</span><span class="p">,</span><span class="x">
+ </span><span class="s">"streetaddress"</span><span class="o">:</span><span class="x"> </span><span class="s">"360 Walsh Rd"</span><span class="p">,</span><span class="x">
+ </span><span class="s">"suburb"</span><span class="o">:</span><span class="x"> </span><span class="s">"North Melbourne"</span><span class="p">,</span><span class="x">
+ </span><span class="s">"Reference"</span><span class="o">:</span><span class="x"> </span><span class="s">"Xpress Mail"</span><span class="p">,</span><span class="x">
+ </span><span class="s">"MsgData"</span><span class="x"> </span><span class="o">:</span><span class="x"> </span><span class="p">{</span><span class="x"> 
+    </span><span class="s">"POBDetail"</span><span class="o">:</span><span class="x"> </span><span class="p">{</span><span class="x">
+        </span><span class="s">"DateAndTime"</span><span class="x"> </span><span class="o">:</span><span class="x"> </span><span class="s">"09-Sep-2015 12:30 PM"</span><span class="p">,</span><span class="x">
+        </span><span class="s">"Message"</span><span class="x"> </span><span class="o">:</span><span class="x"> </span><span class="s">"Please let us know if the time slot is acceptable. Respond with a 'No' to get alternative time slot"</span><span class="x">
+    </span><span class="p">}</span><span class="x">
+  </span><span class="p">}</span><span class="x">
+</span><span class="p">}]</span><span class="x">
+</span></code></pre>
+
+<h3 id="xml">XML</h3>
+<pre><code class="highlight xml"><span class="cp">&lt;?xml version="1.0" encoding="UTF-8"?&gt;</span>
+<span class="nt">&lt;recipients&gt;</span>
+   <span class="nt">&lt;recipient&gt;</span>
+      <span class="nt">&lt;name&gt;</span>Franco<span class="nt">&lt;/name&gt;</span>
+      <span class="nt">&lt;surname&gt;</span>Himboli<span class="nt">&lt;/surname&gt;</span>
+      <span class="nt">&lt;email&gt;</span>ftrimboli@gmail.com<span class="nt">&lt;/email&gt;</span>
+      <span class="nt">&lt;mobile&gt;</span>0410509001<span class="nt">&lt;/mobile&gt;</span>
+      <span class="nt">&lt;streetaddress&gt;</span>123 Auburn Rd<span class="nt">&lt;/streetaddress&gt;</span>
+      <span class="nt">&lt;suburb&gt;</span>Hawthorn<span class="nt">&lt;/suburb&gt;</span>
+      <span class="nt">&lt;Reference&gt;</span>Xpress Mail<span class="nt">&lt;/Reference&gt;</span>
+      <span class="nt">&lt;MsgData&gt;</span>
+        <span class="nt">&lt;POBDetail&gt;</span>
+            <span class="nt">&lt;DateAndTime&gt;</span>09-Sep-2015 12:15 PM<span class="nt">&lt;/DateAndTime&gt;</span>
+            <span class="nt">&lt;Message&gt;</span>Please let us know if the time slot is acceptable. Respond with a 'No' to get alternative time slot<span class="err">&lt;</span>/Message
+        <span class="nt">&lt;/POBDetail&gt;</span>
+      <span class="nt">&lt;/MsgData&gt;</span>
+   <span class="nt">&lt;/recipient&gt;</span>
+   <span class="nt">&lt;recipient&gt;</span>
+      <span class="nt">&lt;name&gt;</span>Jordan<span class="nt">&lt;/name&gt;</span>
+      <span class="nt">&lt;surname&gt;</span>Windsor<span class="nt">&lt;/surname&gt;</span>
+      <span class="nt">&lt;email&gt;</span>jwindsor@yahoo.com<span class="nt">&lt;/email&gt;</span>
+      <span class="nt">&lt;mobile&gt;</span>0410509002<span class="nt">&lt;/mobile&gt;</span>
+      <span class="nt">&lt;streetaddress&gt;</span>360 Walsh Rd<span class="nt">&lt;/streetaddress&gt;</span>
+      <span class="nt">&lt;suburb&gt;</span>North Melbourne<span class="nt">&lt;/suburb&gt;</span>
+      <span class="nt">&lt;Reference&gt;</span>Xpress Mail<span class="nt">&lt;/Reference&gt;</span>
+      <span class="nt">&lt;MsgData&gt;</span>
+        <span class="nt">&lt;POBDetail&gt;</span>
+            <span class="nt">&lt;DateAndTime&gt;</span>09-Sep-2015 12:30 PM<span class="nt">&lt;/DateAndTime&gt;</span>
+            <span class="nt">&lt;Message&gt;</span>Please let us know if the time slot is acceptable. Respond with a 'No' to get alternative time slot<span class="err">&lt;</span>/Message
+        <span class="nt">&lt;/POBDetail&gt;</span>
+      <span class="nt">&lt;/MsgData&gt;</span>
+   <span class="nt">&lt;/recipient&gt;</span>
+<span class="nt">&lt;/recipients&gt;</span>
+</code></pre>
+
+<p>Once you have your data in one of the above 3 formats, you need to <strong>convert it into Base64</strong> format, but before we do that, let&rsquo;s create our Message Template to determine what we actually want to send to these recipients.</p>
+
+<h2 id="encode-the-json,-csv-or-xml-into-base64">Encode the JSON, CSV or XML into Base64</h2>
+
+<p>In order to prepare the file to be uploaded to Whispir, it needs to be endcoded from it&rsquo;s textual representation into a Base64 encoded version.  Base64 is a common method of encoding binary data in ASCII format. Whispir uses it as a common method of exchange of file data.  It is also used when uploading attachments to messages in Whispir, or specifing custom WAV files for outbound voice calls.  More information about Base64 can be found <a href="https://en.wikipedia.org/wiki/Base64">here</a> . </p>
+
+<p>Most programming languages will provide a facility to convert text into Base64.  A simple internet search for &lsquo;base 64 encode java&rsquo;, or &#39;base 64 encode PHP&rsquo; will yeild results on how to accomplish this task.</p>
+
+<h3 id="json-file-encoded-to-base64">JSON file encoded to Base64</h3>
+
+<p>The output after encoding the JSON Sample File into Base64 will look as follows:</p>
+<pre><code class="highlight plaintext">W3sNCiAiZnVsbG5hbWUiOiAiRnJhbmNvIEhpbWJvbGkiLA0KICJlbWFpbCI6ICJmdHJpbWJvbGlAZ21haWwuY29tIiwNCiAibW9iaWxlIjogIjA0MTA1MDkwMDEiLA0KICJzdHJlZXRhZGRyZXNzIjogIjEyMyBBdWJ1cm4gUmQiLA0KICJzdWJ1cmIiOiAiSGF3dGhvcm4iLA0KICJSZWZlcmVuY2UiOiAiWHByZXNzIE1haWwiLA0KICJNc2dEYXRhIiA6IHsgDQoJIlBPQkRldGFpbCI6IHsNCgkJIkRhdGVBbmRUaW1lIiA6ICIwOS1TZXAtMjAxNSAxMjoxNSBQTSIsDQoJCSJNZXNzYWdlIiA6ICJQbGVhc2UgbGV0IHVzIGtub3cgaWYgdGhlIHRpbWUgc2xvdCBpcyBhY2NlcHRhYmxlLiBSZXNwb25kIHdpdGggYSAnTm8nIHRvIGdldCBhbHRlcm5hdGl2ZSB0aW1lIHNsb3QiDQoJfQ0KICB9DQp9LA0Kew0KICJmdWxsbmFtZSI6ICJKb3JkYW4gV2luZHNvciIsDQogImVtYWlsIjogImp3aW5kc29yQHlhaG9vLmNvbSIsDQogIm1vYmlsZSI6ICIwNDEwNTA5MDAyIiwNCiAic3RyZWV0YWRkcmVzcyI6ICIzNjAgV2Fsc2ggUmQiLA0KICJzdWJ1cmIiOiAiTm9ydGggTWVsYm91cm5lIiwNCiAiUmVmZXJlbmNlIjogIlhwcmVzcyBNYWlsIiwNCiAiTXNnRGF0YSIgOiB7IA0KCSJQT0JEZXRhaWwiOiB7DQoJCSJEYXRlQW5kVGltZSIgOiAiMDktU2VwLTIwMTUgMTI6MzAgUE0iLA0KCQkiTWVzc2FnZSIgOiAiUGxlYXNlIGxldCB1cyBrbm93IGlmIHRoZSB0aW1lIHNsb3QgaXMgYWNjZXB0YWJsZS4gUmVzcG9uZCB3aXRoIGEgJ05vJyB0byBnZXQgYWx0ZXJuYXRpdmUgdGltZSBzbG90Ig0KCX0NCiAgfQ0KfV0=
+</code></pre>
+
+<p>This is now ready to be uploaded to Whispir.</p>
+
+<h3 id="upload-the-encoded-file-to-whispir-using-the-api">Upload the encoded file to Whispir using the API</h3>
+<pre><code class="highlight plaintext">HTTP 1.1 POST https://api.whispir.com/resources?apikey=[your_api_key]
+Authorization: Basic asdf98nf89asdvasd2r398h8sdf
+</code></pre>
+<pre><code class="highlight xml">Content-Type: application/vnd.whispir.resource-v1+xml 
+
+
+<span class="cp">&lt;?xml version="1.0" encoding="UTF-8" standalone="yes"?&gt;</span>
+<span class="nt">&lt;ns3:resource</span> <span class="na">xmlns:ns2=</span><span class="s">"http://schemas.api.whispir.com/dap"</span> <span class="na">xmlns:ns3=</span><span class="s">"http://schemas.api.whispir.com"</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;name&gt;</span>test.json<span class="nt">&lt;/name&gt;</span>
+    <span class="nt">&lt;scope&gt;</span>private<span class="nt">&lt;/scope&gt;</span>
+    <span class="nt">&lt;mimeType&gt;</span>application/json<span class="nt">&lt;/mimeType&gt;</span>
+ <span class="nt">&lt;derefUri&gt;</span>W3sNCiAiZnVsbG5hbWUiOiAiRnJhbmNvIEhpbWJvbGkiLA0KICJlbWFpbCI6ICJmdHJpbWJvbGlAZ21haWwuY29tIiwNCiAibW9iaWxlIjogIjA0MTA1MDkwMDEiLA0KICJzdHJlZXRhZGRyZXNzIjogIjEyMyBBdWJ1cm4gUmQiLA0KICJzdWJ1cmIiOiAiSGF3dGhvcm4iLA0KICJSZWZlcmVuY2UiOiAiWHByZXNzIE1haWwiLA0KICJNc2dEYXRhIiA6IHsgDQoJIlBPQkRldGFpbCI6IHsNCgkJIkRhdGVBbmRUaW1lIiA6ICIwOS1TZXAtMjAxNSAxMjoxNSBQTSIsDQoJCSJNZXNzYWdlIiA6ICJQbGVhc2UgbGV0IHVzIGtub3cgaWYgdGhlIHRpbWUgc2xvdCBpcyBhY2NlcHRhYmxlLiBSZXNwb25kIHdpdGggYSAnTm8nIHRvIGdldCBhbHRlcm5hdGl2ZSB0aW1lIHNsb3QiDQoJfQ0KICB9DQp9LA0Kew0KICJmdWxsbmFtZSI6ICJKb3JkYW4gV2luZHNvciIsDQogImVtYWlsIjogImp3aW5kc29yQHlhaG9vLmNvbSIsDQogIm1vYmlsZSI6ICIwNDEwNTA5MDAyIiwNCiAic3RyZWV0YWRkcmVzcyI6ICIzNjAgV2Fsc2ggUmQiLA0KICJzdWJ1cmIiOiAiTm9ydGggTWVsYm91cm5lIiwNCiAiUmVmZXJlbmNlIjogIlhwcmVzcyBNYWlsIiwNCiAiTXNnRGF0YSIgOiB7IA0KCSJQT0JEZXRhaWwiOiB7DQoJCSJEYXRlQW5kVGltZSIgOiAiMDktU2VwLTIwMTUgMTI6MzAgUE0iLA0KCQkiTWVzc2FnZSIgOiAiUGxlYXNlIGxldCB1cyBrbm93IGlmIHRoZSB0aW1lIHNsb3QgaXMgYWNjZXB0YWJsZS4gUmVzcG9uZCB3aXRoIGEgJ05vJyB0byBnZXQgYWx0ZXJuYXRpdmUgdGltZSBzbG90Ig0KCX0NCiAgfQ0KfV0=<span class="nt">&lt;/derefUri&gt;</span>
+<span class="nt">&lt;/ns3:resource&gt;</span>
+
+</code></pre>
+<pre><code class="highlight go"><span class="n">Content</span><span class="o">-</span><span class="n">Type</span><span class="o">:</span><span class="x"> </span><span class="n">application</span><span class="o">/</span><span class="n">vnd</span><span class="o">.</span><span class="n">whispir</span><span class="o">.</span><span class="n">resource</span><span class="o">-</span><span class="n">v1</span><span class="o">+</span><span class="n">json</span><span class="x">
+
+</span><span class="p">{</span><span class="x">
+  </span><span class="s">"name"</span><span class="x"> </span><span class="o">:</span><span class="x"> </span><span class="s">"test.json"</span><span class="p">,</span><span class="x">
+  </span><span class="s">"scope"</span><span class="x"> </span><span class="o">:</span><span class="x"> </span><span class="s">"private"</span><span class="p">,</span><span class="x">
+  </span><span class="s">"mimeType"</span><span class="x"> </span><span class="o">:</span><span class="x"> </span><span class="s">"application/json"</span><span class="p">,</span><span class="x">
+  </span><span class="s">"derefUri"</span><span class="x"> </span><span class="o">:</span><span class="x"> </span><span class="s">"W3sNCiAiZnVsbG5hbWUiOiAiRnJhbmNvIEhpbWJvbGkiLA0KICJlbWFpbCI6ICJmdHJpbWJvbGlAZ21haWwuY29tIiwNCiAibW9iaWxlIjogIjA0MTA1MDkwMDEiLA0KICJzdHJlZXRhZGRyZXNzIjogIjEyMyBBdWJ1cm4gUmQiLA0KICJzdWJ1cmIiOiAiSGF3dGhvcm4iLA0KICJSZWZlcmVuY2UiOiAiWHByZXNzIE1haWwiLA0KICJNc2dEYXRhIiA6IHsgDQoJIlBPQkRldGFpbCI6IHsNCgkJIkRhdGVBbmRUaW1lIiA6ICIwOS1TZXAtMjAxNSAxMjoxNSBQTSIsDQoJCSJNZXNzYWdlIiA6ICJQbGVhc2UgbGV0IHVzIGtub3cgaWYgdGhlIHRpbWUgc2xvdCBpcyBhY2NlcHRhYmxlLiBSZXNwb25kIHdpdGggYSAnTm8nIHRvIGdldCBhbHRlcm5hdGl2ZSB0aW1lIHNsb3QiDQoJfQ0KICB9DQp9LA0Kew0KICJmdWxsbmFtZSI6ICJKb3JkYW4gV2luZHNvciIsDQogImVtYWlsIjogImp3aW5kc29yQHlhaG9vLmNvbSIsDQogIm1vYmlsZSI6ICIwNDEwNTA5MDAyIiwNCiAic3RyZWV0YWRkcmVzcyI6ICIzNjAgV2Fsc2ggUmQiLA0KICJzdWJ1cmIiOiAiTm9ydGggTWVsYm91cm5lIiwNCiAiUmVmZXJlbmNlIjogIlhwcmVzcyBNYWlsIiwNCiAiTXNnRGF0YSIgOiB7IA0KCSJQT0JEZXRhaWwiOiB7DQoJCSJEYXRlQW5kVGltZSIgOiAiMDktU2VwLTIwMTUgMTI6MzAgUE0iLA0KCQkiTWVzc2FnZSIgOiAiUGxlYXNlIGxldCB1cyBrbm93IGlmIHRoZSB0aW1lIHNsb3QgaXMgYWNjZXB0YWJsZS4gUmVzcG9uZCB3aXRoIGEgJ05vJyB0byBnZXQgYWx0ZXJuYXRpdmUgdGltZSBzbG90Ig0KCX0NCiAgfQ0KfV0="</span><span class="x">
+</span><span class="p">}</span><span class="x">   
+
+</span></code></pre>
+<pre><code class="highlight plaintext">&gt; &gt; Response 
+
+&gt; &gt; Once the resource is created, you can now use this in Whispir to send a message to each of the recipients using the data within the resource.
+
+HTTP 1.1 201 Created
+...
+Location: http://api.whispir.com/resources/ABD435DBFCD663DEDEFF?apikey=&lt;your_api_key&gt;
+...
+
+</code></pre>
+
+<h2 id="sending-messages-using-template-&amp;-resources">Sending Messages using template &amp; resources</h2>
+
+<p>Apart from use in the <a href="https://whispir.github.io/api/#dynamic-messages">Dynamic Messages</a>, resources can be equally used sending dynamic messages with or without a template.</p>
+
+<p>Assuming there is a template that has already been created with stencil as -</p>
+<pre><code class="highlight plaintext">&gt; &gt; TemplateID: BCD384BC3847CD3484CD
+
+{ 
+  "messageTemplateName" : "Delivery Plan", 
+  "subject" : "Delivery Plan:", 
+  "body" : "Hi @@name@@ @@surname@@, Your planned mail delivery is at @@MsgData.POBDetail.DateAndTime@@. @@MsgData.POBDetail.Message@@. Any questions, please call 1300 WHISPIR."
+}
+</code></pre>
+
+<p>Now we have the templateId(for content) with the resourceID (for recipients). Using these two key pieces of information, developers can submit an API request to kick off the Dynamic Messaging process.</p>
+
+<p>The <code class="prettyprint">smsMappingField</code> should be mapped to the column or key that holds the number to which the SMS has to sent to; and the <code class="prettyprint">emailMappingField</code> to the email to which the message has to be sent to. refer to <a href="https://whispir.github.io/api/#dynamic-messages">Dynamic Messages</a> for more details on the mapping.</p>
+<pre><code class="highlight plaintext">&gt; Sending the Bulk Message
+
+&gt; &gt; the resource type here is application/vnd.whispir.bulkmessage-v1+xml, application/vnd.whispir.bulkmessage-v1+json. Not the usual application/vnd.whispir.message-v1+xml, application/vnd.whispir.message-v1+json.
+
+HTTP 1.1 POST https://api.whispir.com/messages?apikey=[your_api_key]
+Authorization: Basic asdf98nf89asdvasd2r398h8sdf
+</code></pre>
+<pre><code class="highlight xml">Content-Type: application/vnd.whispir.bulkmessage-v1+xml
+
+<span class="cp">&lt;?xml version="1.0" encoding="UTF-8" standalone="yes"?&gt;</span>
+<span class="nt">&lt;ns2:message</span> <span class="na">xmlns:ns2=</span><span class="s">"http://schemas.api.whispir.com"</span><span class="nt">&gt;</span>
+   <span class="nt">&lt;resource&gt;</span>
+      <span class="nt">&lt;resourceId&gt;</span>ABD435DBFCD663DEDEFF<span class="nt">&lt;/resourceId&gt;</span>
+      <span class="nt">&lt;smsMappingField&gt;</span>mobile<span class="nt">&lt;/smsMappingField&gt;</span>
+      <span class="nt">&lt;emailMappingField&gt;</span>email<span class="nt">&lt;/emailMappingField&gt;</span>
+   <span class="nt">&lt;/resource&gt;</span>
+   <span class="nt">&lt;messageTemplateId&gt;</span>BCD384BC3847CD3484CD<span class="nt">&lt;/messageTemplateId&gt;</span>
+<span class="nt">&lt;/ns2:message&gt;</span>
+</code></pre>
+<pre><code class="highlight go"><span class="n">Content</span><span class="o">-</span><span class="n">Type</span><span class="o">:</span><span class="x"> </span><span class="n">application</span><span class="o">/</span><span class="n">vnd</span><span class="o">.</span><span class="n">whispir</span><span class="o">.</span><span class="n">bulkmessage</span><span class="o">-</span><span class="n">v1</span><span class="o">+</span><span class="n">json</span><span class="x">
+
+</span><span class="p">{</span><span class="x">
+    </span><span class="s">"resource"</span><span class="x"> </span><span class="o">:</span><span class="p">{</span><span class="x">
+        </span><span class="s">"resourceId"</span><span class="x"> </span><span class="o">:</span><span class="x"> </span><span class="s">"ABD435DBFCD663DEDEFF"</span><span class="p">,</span><span class="x">
+        </span><span class="s">"smsMappingField"</span><span class="x"> </span><span class="o">:</span><span class="x"> </span><span class="s">"mobile"</span><span class="p">,</span><span class="x">
+        </span><span class="s">"emailMappingField"</span><span class="x"> </span><span class="o">:</span><span class="x"> </span><span class="s">"email"</span><span class="p">,</span><span class="x">
+        </span><span class="s">"voiceMappingField"</span><span class="x"> </span><span class="o">:</span><span class="x"> </span><span class="s">""</span><span class="x">
+    </span><span class="p">},</span><span class="x">
+    </span><span class="s">"messageTemplateId"</span><span class="o">:</span><span class="x"> </span><span class="s">"BCD384BC3847CD3484CD"</span><span class="x">
+</span><span class="p">}</span><span class="x">
+</span></code></pre>
+<pre><code class="highlight plaintext">&gt; Final Message delivered to Customer (Individually)
+
+&gt; &gt; The message when combined with the data will be -
+
+Hi Franco Thimboli, Your planned mail delivery is at 09-Sep-2015 12:15 PM. Please let us know if the time slot is acceptable. Respond with a 'No' to get alternative time slot. Any questions, please call 1300 WHISPIR.
+
+Hi Jordan Windsor, Your planned mail delivery is at 09-Sep-2015 12:30 PM. Please let us know if the time slot is acceptable. Respond with a 'No' to get alternative time slot. Any questions, please call 1300 WHISPIR.
+</code></pre>
+<pre><code class="highlight plaintext">&gt; Response
+
+HTTP 1.1 202 Accepted
+Location: http://api.whispir.com/messages/CDB938478CD6DBC3784C?apikey=[your_api_key]
+</code></pre>
+
+<h2 id="error-in-creating-a-resource">Error in creating a resource</h2>
+
+<p>The API may report error in the resource processing. The reason would be part of the response to the POST call.The standard reasons are -</p>
+
+<table>
+    <thead>
+        <tr>
+            <th style="width: 50%" colspan="2">Standard Error Scenarios</th>
+        </tr>
+        <tr>
+            <th style="width: 50%">Error Condition</th>
+            <th style="width: 50%">Details</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td style="text-align: right; font-weight: bold;">Request a URI that doesn&rsquo;t exist</td>
+            <td>
+                Response Code
+                <ul>
+                    <li>
+                    404 Not Found
+                    </li>
+                </ul>
+                Description
+                <ul>
+                    <li>
+                    The requested URI does not exist
+                    </li>
+                </ul>
+                Actions for application client
+                <ul>
+                    <li>
+                    Resource does not exist. Incorrect resource identifier, or resource has been removed.
+                    </li>
+                </ul>
+            </td>
+        </tr>
+        <tr>
+            <td style="text-align: right; font-weight: bold;">Provide an attachment that is bigger than 10 MB</td>
+            <td>
+                Response Code
+                <ul>
+                    <li>
+                    422 Unprocessable Entity
+                    </li>
+                </ul>
+                Description
+                <ul>
+                    <li>
+                    The POST request entity exceeds allowed size 
+                    </li>
+                </ul>
+                Actions for application client
+                <ul>
+                    <li>
+                    Ensure the size of the resource does not exceed 10MiB.
+                    </li>
+                </ul>
+            </td>
+        </tr>
+        <tr>
+            <td style="text-align: right; font-weight: bold;">Provide a mime type that is not json, xml or csv</td>
+            <td>
+                Response Code
+                <ul>
+                    <li>
+                    422 Unprocessable Entity
+                    </li>
+                </ul>
+                Description
+                <ul>
+                    <li>
+                    The request was unsuccessful because the requested content type is not supported by the API.
+                    </li>
+                </ul>
+                Actions for application client
+                <ul>
+                    <li>
+                    Incorrect mime type. Only text/csv, application/xml, application/json are supported as bulk message resources.
+                    </li>
+                </ul>
+            </td>
+        </tr>
+        <tr>
+            <td style="text-align: right; font-weight: bold;">Malformed XML or JSON passed</td>
+            <td>
+                Response Code
+                <ul>
+                    <li>
+                    422 Unprocessable Entity
+                    </li>
+                </ul>
+                Description
+                <ul>
+                    <li>
+                    An error occurred when processing entity in the request.
+                    </li>
+                </ul>
+                Actions for application client
+                <ul>
+                    <li>
+                     Likely to be a malformed CSV, XML, or JSON file. Verify the data structure. 
+                    </li>
+                </ul>
+            </td>
+        </tr>
+    </tbody>
+</table>
+
+<h2 id="retrieving-existing-resources">Retrieving existing resources</h2>
+
+<p>Existing resources can be easily retrieved via the GET /resources API call. The response lists all of the existing public and private resources available in the system.</p>
+<pre><code class="highlight plaintext">&gt; Retrieving resources
+
+&gt; &gt; The resources contain the id, and url link of the resource (only public)
+
+</code></pre>
+<pre><code class="highlight plaintext">HTTP 1.1 GET https://api.whispir.com/resources/?apikey=&lt;your_api_key&gt;
+Authorization: Basic asdf98nf89asdvasd2r398h8sdf
+</code></pre>
+<pre><code class="highlight xml">Accept: application/vnd.whispir.resource-v1+xml
+
+<span class="cp">&lt;?xml version="1.0" encoding="UTF-8" standalone="yes"?&gt;</span>
+<span class="nt">&lt;ns2:return</span> <span class="na">xmlns:ns2=</span><span class="s">"http://schemas.api.whispir.com/dap"</span> <span class="na">xmlns:ns3=</span><span class="s">"http://schemas.api.whispir.com"</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;status&gt;</span>1 to 7 of 7    <span class="nt">&lt;/status&gt;</span>
+    <span class="nt">&lt;ns2:resources&gt;</span>
+        <span class="nt">&lt;ns2:resource&gt;</span>
+            <span class="nt">&lt;name&gt;</span>singapore.csv<span class="nt">&lt;/name&gt;</span>
+            <span class="nt">&lt;scope&gt;</span>private<span class="nt">&lt;/scope&gt;</span>
+            <span class="nt">&lt;mimeType&gt;</span>application/json<span class="nt">&lt;/mimeType&gt;</span>
+            <span class="nt">&lt;ns2:link</span> <span class="na">uri=</span><span class="s">"https://api.whispir.com/resources/D9A8DC34EDRSD7E4?apikey=&lt;your_api_key&gt;"</span> <span class="na">rel=</span><span class="s">"self"</span> <span class="na">method=</span><span class="s">"GET"</span><span class="nt">/&gt;</span>
+        <span class="nt">&lt;/ns2:resource&gt;</span>
+        <span class="nt">&lt;ns2:resource&gt;</span>
+            <span class="nt">&lt;name&gt;</span>australia.json<span class="nt">&lt;/name&gt;</span>
+            <span class="nt">&lt;scope&gt;</span>private<span class="nt">&lt;/scope&gt;</span>
+            <span class="nt">&lt;mimeType&gt;</span>application/json<span class="nt">&lt;/mimeType&gt;</span>
+            <span class="nt">&lt;ns2:link</span> <span class="na">uri=</span><span class="s">"https://api.whispir.com/resources/D3E2XCDF3WS4859?apikey=&lt;your_api_key&gt;"</span> <span class="na">rel=</span><span class="s">"self"</span> <span class="na">method=</span><span class="s">"GET"</span><span class="nt">/&gt;</span>
+        <span class="nt">&lt;/ns2:resource&gt;</span>
+        <span class="nt">&lt;ns2:resource&gt;</span>
+            <span class="nt">&lt;name&gt;</span>usa.csv<span class="nt">&lt;/name&gt;</span>
+            <span class="nt">&lt;scope&gt;</span>private<span class="nt">&lt;/scope&gt;</span>
+            <span class="nt">&lt;mimeType&gt;</span>text/csv<span class="nt">&lt;/mimeType&gt;</span>
+            <span class="nt">&lt;ns2:link</span> <span class="na">uri=</span><span class="s">"https://api.whispir.com/resources/3E2F6E72642F949?apikey=&lt;your_api_key&gt;"</span> <span class="na">rel=</span><span class="s">"self"</span> <span class="na">method=</span><span class="s">"GET"</span><span class="nt">/&gt;</span>
+        <span class="nt">&lt;/ns2:resource&gt;</span>
+        <span class="nt">&lt;ns2:resource&gt;</span>
+            <span class="nt">&lt;name&gt;</span>users.json<span class="nt">&lt;/name&gt;</span>
+            <span class="nt">&lt;scope&gt;</span>public<span class="nt">&lt;/scope&gt;</span>
+            <span class="nt">&lt;mimeType&gt;</span>application.json<span class="nt">&lt;/mimeType&gt;</span>
+            <span class="nt">&lt;url&gt;</span>https://cdn-ap.whispir.com/public/resources/216asdfgjgedf1sdf56fd472360cd.json<span class="nt">&lt;/url&gt;</span>
+            <span class="nt">&lt;ns2:link</span> <span class="na">uri=</span><span class="s">"https://api.whispir.com/resources/F1212CF334EDR68?apikey=&lt;your_api_key&gt;"</span> <span class="na">rel=</span><span class="s">"self"</span> <span class="na">method=</span><span class="s">"GET"</span><span class="nt">/&gt;</span>
+        <span class="nt">&lt;/ns2:resource&gt;</span>
+        <span class="nt">&lt;ns2:resource&gt;</span>
+            <span class="nt">&lt;name&gt;</span>whispir-example-bulk-message-1.csv<span class="nt">&lt;/name&gt;</span>
+            <span class="nt">&lt;scope&gt;</span>private<span class="nt">&lt;/scope&gt;</span>
+            <span class="nt">&lt;mimeType&gt;</span>text/csv<span class="nt">&lt;/mimeType&gt;</span>
+            <span class="nt">&lt;ns2:link</span> <span class="na">uri=</span><span class="s">"https://api.whispir.com/resources/32SDF43ED6829B2?apikey=&lt;your_api_key&gt;"</span> <span class="na">rel=</span><span class="s">"self"</span> <span class="na">method=</span><span class="s">"GET"</span><span class="nt">/&gt;</span>
+        <span class="nt">&lt;/ns2:resource&gt;</span>
+        <span class="nt">&lt;ns2:resource&gt;</span>
+            <span class="nt">&lt;name&gt;</span>whispir-example-bulk-message-2.csv<span class="nt">&lt;/name&gt;</span>
+            <span class="nt">&lt;scope&gt;</span>private<span class="nt">&lt;/scope&gt;</span>
+            <span class="nt">&lt;mimeType&gt;</span>text/csv<span class="nt">&lt;/mimeType&gt;</span>
+            <span class="nt">&lt;ns2:link</span> <span class="na">uri=</span><span class="s">"https://api.whispir.com/resources/C708D712EDRB0?apikey=&lt;your_api_key&gt;"</span> <span class="na">rel=</span><span class="s">"self"</span> <span class="na">method=</span><span class="s">"GET"</span><span class="nt">/&gt;</span>
+        <span class="nt">&lt;/ns2:resource&gt;</span>
+        <span class="nt">&lt;ns2:resource&gt;</span>
+            <span class="nt">&lt;name&gt;</span>whispir-example-bulk-message-3.csv<span class="nt">&lt;/name&gt;</span>
+            <span class="nt">&lt;scope&gt;</span>private<span class="nt">&lt;/scope&gt;</span>
+            <span class="nt">&lt;mimeType&gt;</span>text/csv<span class="nt">&lt;/mimeType&gt;</span>
+            <span class="nt">&lt;ns2:link</span> <span class="na">uri=</span><span class="s">"https://api.whispir.com/resources/2FEED897U46E2?apikey=&lt;your_api_key&gt;"</span> <span class="na">rel=</span><span class="s">"self"</span> <span class="na">method=</span><span class="s">"GET"</span><span class="nt">/&gt;</span>
+        <span class="nt">&lt;/ns2:resource&gt;</span>
+    <span class="nt">&lt;/ns2:resources&gt;</span>
+<span class="nt">&lt;/ns2:return&gt;</span>
+</code></pre>
+<pre><code class="highlight go"><span class="n">Accept</span><span class="o">:</span><span class="x"> </span><span class="n">application</span><span class="o">/</span><span class="n">vnd</span><span class="o">.</span><span class="n">whispir</span><span class="o">.</span><span class="n">resource</span><span class="o">-</span><span class="n">v1</span><span class="o">+</span><span class="n">json</span><span class="x">
+
+</span><span class="p">{</span><span class="x">
+  </span><span class="s">"resources"</span><span class="o">:</span><span class="x"> </span><span class="p">[</span><span class="x">
+    </span><span class="p">{</span><span class="x">
+      </span><span class="s">"name"</span><span class="o">:</span><span class="x"> </span><span class="s">"singapore.csv"</span><span class="p">,</span><span class="x">
+      </span><span class="s">"scope"</span><span class="o">:</span><span class="x"> </span><span class="s">"private"</span><span class="p">,</span><span class="x">
+      </span><span class="s">"mimeType"</span><span class="o">:</span><span class="x"> </span><span class="s">"application/json"</span><span class="p">,</span><span class="x">
+      </span><span class="s">"link"</span><span class="o">:</span><span class="x"> </span><span class="p">[</span><span class="x">
+        </span><span class="p">{</span><span class="x">
+          </span><span class="s">"uri"</span><span class="o">:</span><span class="x"> </span><span class="s">"https://api.whispir.com/resources/D9A8DC34EDRSD7E4?apikey=&lt;your_api_key&gt;"</span><span class="p">,</span><span class="x">
+          </span><span class="s">"rel"</span><span class="o">:</span><span class="x"> </span><span class="s">"self"</span><span class="p">,</span><span class="x">
+          </span><span class="s">"method"</span><span class="o">:</span><span class="x"> </span><span class="s">"GET"</span><span class="x">
+        </span><span class="p">}</span><span class="x">
+      </span><span class="p">]</span><span class="x">
+    </span><span class="p">},</span><span class="x">
+    </span><span class="p">{</span><span class="x">
+      </span><span class="s">"name"</span><span class="o">:</span><span class="x"> </span><span class="s">"australia.json"</span><span class="p">,</span><span class="x">
+      </span><span class="s">"scope"</span><span class="o">:</span><span class="x"> </span><span class="s">"private"</span><span class="p">,</span><span class="x">
+      </span><span class="s">"mimeType"</span><span class="o">:</span><span class="x"> </span><span class="s">"application/json"</span><span class="p">,</span><span class="x">
+      </span><span class="s">"link"</span><span class="o">:</span><span class="x"> </span><span class="p">[</span><span class="x">
+        </span><span class="p">{</span><span class="x">
+          </span><span class="s">"uri"</span><span class="o">:</span><span class="x"> </span><span class="s">"https://api.whispir.com/resources/D3E2XCDF3WS4859?apikey=&lt;your_api_key&gt;"</span><span class="p">,</span><span class="x">
+          </span><span class="s">"rel"</span><span class="o">:</span><span class="x"> </span><span class="s">"self"</span><span class="p">,</span><span class="x">
+          </span><span class="s">"method"</span><span class="o">:</span><span class="x"> </span><span class="s">"GET"</span><span class="x">
+        </span><span class="p">}</span><span class="x">
+      </span><span class="p">]</span><span class="x">
+    </span><span class="p">},</span><span class="x">
+    </span><span class="p">{</span><span class="x">
+      </span><span class="s">"name"</span><span class="o">:</span><span class="x"> </span><span class="s">"usa.csv"</span><span class="p">,</span><span class="x">
+      </span><span class="s">"scope"</span><span class="o">:</span><span class="x"> </span><span class="s">"private"</span><span class="p">,</span><span class="x">
+      </span><span class="s">"mimeType"</span><span class="o">:</span><span class="x"> </span><span class="s">"text/csv"</span><span class="p">,</span><span class="x">
+      </span><span class="s">"link"</span><span class="o">:</span><span class="x"> </span><span class="p">[</span><span class="x">
+        </span><span class="p">{</span><span class="x">
+          </span><span class="s">"uri"</span><span class="o">:</span><span class="x"> </span><span class="s">"https://api.whispir.com/resources/3E2F6E72642F949?apikey=&lt;your_api_key&gt;"</span><span class="p">,</span><span class="x">
+          </span><span class="s">"rel"</span><span class="o">:</span><span class="x"> </span><span class="s">"self"</span><span class="p">,</span><span class="x">
+          </span><span class="s">"method"</span><span class="o">:</span><span class="x"> </span><span class="s">"GET"</span><span class="x">
+        </span><span class="p">}</span><span class="x">
+      </span><span class="p">]</span><span class="x">
+    </span><span class="p">},</span><span class="x">
+    </span><span class="p">{</span><span class="x">
+      </span><span class="s">"name"</span><span class="o">:</span><span class="x"> </span><span class="s">"users.json"</span><span class="p">,</span><span class="x">
+      </span><span class="s">"scope"</span><span class="o">:</span><span class="x"> </span><span class="s">"public"</span><span class="p">,</span><span class="x">
+      </span><span class="s">"mimeType"</span><span class="o">:</span><span class="x"> </span><span class="s">"application/json"</span><span class="p">,</span><span class="x">
+      </span><span class="s">"url"</span><span class="o">:</span><span class="x"> </span><span class="s">"https://cdn-ap.whispir.com/public/resources/2163b29d4edf1bd77d71a36210d472360cd.json"</span><span class="p">,</span><span class="x">
+      </span><span class="s">"link"</span><span class="o">:</span><span class="x"> </span><span class="p">[</span><span class="x">
+        </span><span class="p">{</span><span class="x">
+          </span><span class="s">"uri"</span><span class="o">:</span><span class="x"> </span><span class="s">"https://api.whispir.com/resources/F1212CF334EDR68?apikey=&lt;your_api_key&gt;"</span><span class="p">,</span><span class="x">
+          </span><span class="s">"rel"</span><span class="o">:</span><span class="x"> </span><span class="s">"self"</span><span class="p">,</span><span class="x">
+          </span><span class="s">"method"</span><span class="o">:</span><span class="x"> </span><span class="s">"GET"</span><span class="x">
+        </span><span class="p">}</span><span class="x">
+      </span><span class="p">]</span><span class="x">
+    </span><span class="p">},</span><span class="x">
+    </span><span class="p">{</span><span class="x">
+      </span><span class="s">"name"</span><span class="o">:</span><span class="x"> </span><span class="s">"whispir-example-bulk-message-1.csv"</span><span class="p">,</span><span class="x">
+      </span><span class="s">"scope"</span><span class="o">:</span><span class="x"> </span><span class="s">"private"</span><span class="p">,</span><span class="x">
+      </span><span class="s">"mimeType"</span><span class="o">:</span><span class="x"> </span><span class="s">"text/csv"</span><span class="p">,</span><span class="x">
+      </span><span class="s">"link"</span><span class="o">:</span><span class="x"> </span><span class="p">[</span><span class="x">
+        </span><span class="p">{</span><span class="x">
+          </span><span class="s">"uri"</span><span class="o">:</span><span class="x"> </span><span class="s">"https://api.whispir.com/resources/32SDF43ED6829B2?apikey=&lt;your_api_key&gt;"</span><span class="p">,</span><span class="x">
+          </span><span class="s">"rel"</span><span class="o">:</span><span class="x"> </span><span class="s">"self"</span><span class="p">,</span><span class="x">
+          </span><span class="s">"method"</span><span class="o">:</span><span class="x"> </span><span class="s">"GET"</span><span class="x">
+        </span><span class="p">}</span><span class="x">
+      </span><span class="p">]</span><span class="x">
+    </span><span class="p">},</span><span class="x">
+    </span><span class="p">{</span><span class="x">
+      </span><span class="s">"name"</span><span class="o">:</span><span class="x"> </span><span class="s">"whispir-example-bulk-message-2.csv"</span><span class="p">,</span><span class="x">
+      </span><span class="s">"scope"</span><span class="o">:</span><span class="x"> </span><span class="s">"private"</span><span class="p">,</span><span class="x">
+      </span><span class="s">"mimeType"</span><span class="o">:</span><span class="x"> </span><span class="s">"text/csv"</span><span class="p">,</span><span class="x">
+      </span><span class="s">"link"</span><span class="o">:</span><span class="x"> </span><span class="p">[</span><span class="x">
+        </span><span class="p">{</span><span class="x">
+          </span><span class="s">"uri"</span><span class="o">:</span><span class="x"> </span><span class="s">"https://api.whispir.com/resources/C708D712EDRB0?apikey=&lt;your_api_key&gt;"</span><span class="p">,</span><span class="x">
+          </span><span class="s">"rel"</span><span class="o">:</span><span class="x"> </span><span class="s">"self"</span><span class="p">,</span><span class="x">
+          </span><span class="s">"method"</span><span class="o">:</span><span class="x"> </span><span class="s">"GET"</span><span class="x">
+        </span><span class="p">}</span><span class="x">
+      </span><span class="p">]</span><span class="x">
+    </span><span class="p">},</span><span class="x">
+    </span><span class="p">{</span><span class="x">
+      </span><span class="s">"name"</span><span class="o">:</span><span class="x"> </span><span class="s">"whispir-example-bulk-message-3.csv"</span><span class="p">,</span><span class="x">
+      </span><span class="s">"scope"</span><span class="o">:</span><span class="x"> </span><span class="s">"private"</span><span class="p">,</span><span class="x">
+      </span><span class="s">"mimeType"</span><span class="o">:</span><span class="x"> </span><span class="s">"text/csv"</span><span class="p">,</span><span class="x">
+      </span><span class="s">"link"</span><span class="o">:</span><span class="x"> </span><span class="p">[</span><span class="x">
+        </span><span class="p">{</span><span class="x">
+          </span><span class="s">"uri"</span><span class="o">:</span><span class="x"> </span><span class="s">"https://api.whispir.com/resources/2FEED897U46E2?apikey=&lt;your_api_key&gt;"</span><span class="p">,</span><span class="x">
+          </span><span class="s">"rel"</span><span class="o">:</span><span class="x"> </span><span class="s">"self"</span><span class="p">,</span><span class="x">
+          </span><span class="s">"method"</span><span class="o">:</span><span class="x"> </span><span class="s">"GET"</span><span class="x">
+        </span><span class="p">}</span><span class="x">
+      </span><span class="p">]</span><span class="x">
+    </span><span class="p">}</span><span class="x">
+  </span><span class="p">],</span><span class="x">
+  </span><span class="s">"status"</span><span class="o">:</span><span class="x"> </span><span class="s">"1 to 7 of 7    "</span><span class="p">,</span><span class="x">
+  </span><span class="s">"link"</span><span class="o">:</span><span class="x"> </span><span class="p">[]</span><span class="x">
+</span><span class="p">}</span><span class="x">
+</span></code></pre>
+
+<h3 id="retrieving-a-single-resource">Retrieving a single resource</h3>
+
+<p>A single resource (public|private) can be retrieved from the available resource by using the resource&rsquo;s specific link uri.</p>
+<pre><code class="highlight plaintext">&gt; Retrieving a single resource
+
+&gt; &gt; use the resource's link uri for private scope file
+
+</code></pre>
+<pre><code class="highlight plaintext">HTTP 1.1 GET https://api.whispir.com/resources/D3E2XCDF3WS4859?apikey=&lt;your_api_key&gt;
+Authorization: Basic asdf98nf89asdvasd2r398h8sdf
+</code></pre>
+<pre><code class="highlight xml">Accept: application/vnd.whispir.resource-v1+xml
+
+<span class="cp">&lt;?xml version="1.0" encoding="UTF-8" standalone="yes"?&gt;</span>
+<span class="nt">&lt;ns3:resource</span> <span class="na">xmlns:ns2=</span><span class="s">"http://schemas.api.whispir.com/dap"</span> <span class="na">xmlns:ns3=</span><span class="s">"http://schemas.api.whispir.com"</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;name&gt;</span>australia.json<span class="nt">&lt;/name&gt;</span>
+    <span class="nt">&lt;scope&gt;</span>private<span class="nt">&lt;/scope&gt;</span>
+    <span class="nt">&lt;mimeType&gt;</span>application/json<span class="nt">&lt;/mimeType&gt;</span>
+    <span class="nt">&lt;ns2:link</span> <span class="na">uri=</span><span class="s">"https://api.whispir.com/resources/D3E2XCDF3WS4859?apikey=&lt;your_api_key&gt;"</span> <span class="na">rel=</span><span class="s">"self"</span> <span class="na">method=</span><span class="s">"GET"</span><span class="nt">/&gt;</span>
+    <span class="nt">&lt;ns2:link</span> <span class="na">uri=</span><span class="s">"https://api.whispir.com/resources/D3E2XCDF3WS4859?apikey=&lt;your_api_key&gt;"</span> <span class="na">rel=</span><span class="s">"updateResource"</span> <span class="na">method=</span><span class="s">"PUT"</span> <span class="na">type=</span><span class="s">"application/vnd.whispir.resource-v1+json,application/vnd.whispir.resource-v1+xml"</span><span class="nt">/&gt;</span>
+    <span class="nt">&lt;ns2:link</span> <span class="na">uri=</span><span class="s">"https://api.whispir.com/resources/D3E2XCDF3WS4859?apikey=&lt;your_api_key&gt;"</span> <span class="na">rel=</span><span class="s">"deleteResource"</span> <span class="na">method=</span><span class="s">"DELETE"</span><span class="nt">/&gt;</span>
+<span class="nt">&lt;/ns3:resource&gt;</span>
+
+</code></pre>
+<pre><code class="highlight go"><span class="n">Accept</span><span class="o">:</span><span class="x"> </span><span class="n">application</span><span class="o">/</span><span class="n">vnd</span><span class="o">.</span><span class="n">whispir</span><span class="o">.</span><span class="n">resource</span><span class="o">-</span><span class="n">v1</span><span class="o">+</span><span class="n">json</span><span class="x">
+
+</span><span class="p">{</span><span class="x">
+  </span><span class="s">"name"</span><span class="o">:</span><span class="x"> </span><span class="s">"australia.json"</span><span class="p">,</span><span class="x">
+  </span><span class="s">"scope"</span><span class="o">:</span><span class="x"> </span><span class="s">"private"</span><span class="p">,</span><span class="x">
+  </span><span class="s">"mimeType"</span><span class="o">:</span><span class="x"> </span><span class="s">"application/json"</span><span class="p">,</span><span class="x">
+  </span><span class="s">"link"</span><span class="o">:</span><span class="x"> </span><span class="p">[</span><span class="x">
+    </span><span class="p">{</span><span class="x">
+      </span><span class="s">"uri"</span><span class="o">:</span><span class="x"> </span><span class="s">"https://api.whispir.com/resources/D3E2XCDF3WS4859?apikey=&lt;your_api_key&gt;"</span><span class="p">,</span><span class="x">
+      </span><span class="s">"rel"</span><span class="o">:</span><span class="x"> </span><span class="s">"self"</span><span class="p">,</span><span class="x">
+      </span><span class="s">"method"</span><span class="o">:</span><span class="x"> </span><span class="s">"GET"</span><span class="x">
+    </span><span class="p">},</span><span class="x">
+    </span><span class="p">{</span><span class="x">
+      </span><span class="s">"uri"</span><span class="o">:</span><span class="x"> </span><span class="s">"https://api.whispir.com/resources/D3E2XCDF3WS4859?apikey=&lt;your_api_key&gt;"</span><span class="p">,</span><span class="x">
+      </span><span class="s">"rel"</span><span class="o">:</span><span class="x"> </span><span class="s">"updateResource"</span><span class="p">,</span><span class="x">
+      </span><span class="s">"method"</span><span class="o">:</span><span class="x"> </span><span class="s">"PUT"</span><span class="p">,</span><span class="x">
+      </span><span class="s">"type"</span><span class="o">:</span><span class="x"> </span><span class="s">"application/vnd.whispir.resource-v1+json,application/vnd.whispir.resource-v1+xml"</span><span class="x">
+    </span><span class="p">},</span><span class="x">
+    </span><span class="p">{</span><span class="x">
+      </span><span class="s">"uri"</span><span class="o">:</span><span class="x"> </span><span class="s">"https://api.whispir.com/resources/D3E2XCDF3WS4859?apikey=&lt;your_api_key&gt;"</span><span class="p">,</span><span class="x">
+      </span><span class="s">"rel"</span><span class="o">:</span><span class="x"> </span><span class="s">"deleteResource"</span><span class="p">,</span><span class="x">
+      </span><span class="s">"method"</span><span class="o">:</span><span class="x"> </span><span class="s">"DELETE"</span><span class="x">
+    </span><span class="p">}</span><span class="x">
+  </span><span class="p">]</span><span class="x">
+</span><span class="p">}</span><span class="x">
+</span></code></pre>
+<pre><code class="highlight plaintext">&gt; &gt; use the resource's link uri for public scope file
+
+</code></pre>
+<pre><code class="highlight plaintext">HTTP 1.1 GET https://api.whispir.com/resources/F1212CF334EDR68?apikey=&lt;your_api_key&gt;
+Authorization: Basic asdf98nf89asdvasd2r398h8sdf
+</code></pre>
+<pre><code class="highlight xml">Accept: application/vnd.whispir.resource-v1+xml
+
+<span class="cp">&lt;?xml version="1.0" encoding="UTF-8" standalone="yes"?&gt;</span>
+<span class="nt">&lt;ns3:resource</span> <span class="na">xmlns:ns2=</span><span class="s">"http://schemas.api.whispir.com/dap"</span> <span class="na">xmlns:ns3=</span><span class="s">"http://schemas.api.whispir.com"</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;name&gt;</span>users.json<span class="nt">&lt;/name&gt;</span>
+    <span class="nt">&lt;scope&gt;</span>public<span class="nt">&lt;/scope&gt;</span>
+    <span class="nt">&lt;mimeType&gt;</span>application/json<span class="nt">&lt;/mimeType&gt;</span>
+    <span class="nt">&lt;url&gt;</span>https://cdn-ap.whispir.com/public/resources/2163b29d4edf1bd77d71a36210d472360cd.json<span class="nt">&lt;/url&gt;</span>
+    <span class="nt">&lt;ns2:link</span> <span class="na">uri=</span><span class="s">"https://api.whispir.com/resources/F1212CF334EDR68?apikey=&lt;your_api_key&gt;"</span> <span class="na">rel=</span><span class="s">"self"</span> <span class="na">method=</span><span class="s">"GET"</span><span class="nt">/&gt;</span>
+    <span class="nt">&lt;ns2:link</span> <span class="na">uri=</span><span class="s">"https://api.whispir.com/resources/F1212CF334EDR68?apikey=&lt;your_api_key&gt;"</span> <span class="na">rel=</span><span class="s">"updateResource"</span> <span class="na">method=</span><span class="s">"PUT"</span> <span class="na">type=</span><span class="s">"application/vnd.whispir.resource-v1+json,application/vnd.whispir.resource-v1+xml"</span><span class="nt">/&gt;</span>
+    <span class="nt">&lt;ns2:link</span> <span class="na">uri=</span><span class="s">"https://api.whispir.com/resources/F1212CF334EDR68?apikey=&lt;your_api_key&gt;"</span> <span class="na">rel=</span><span class="s">"deleteResource"</span> <span class="na">method=</span><span class="s">"DELETE"</span><span class="nt">/&gt;</span>
+<span class="nt">&lt;/ns3:resource&gt;</span>
+
+</code></pre>
+<pre><code class="highlight go"><span class="n">Accept</span><span class="o">:</span><span class="x"> </span><span class="n">application</span><span class="o">/</span><span class="n">vnd</span><span class="o">.</span><span class="n">whispir</span><span class="o">.</span><span class="n">resource</span><span class="o">-</span><span class="n">v1</span><span class="o">+</span><span class="n">json</span><span class="x">
+
+</span><span class="p">{</span><span class="x">
+  </span><span class="s">"name"</span><span class="o">:</span><span class="x"> </span><span class="s">"users.json"</span><span class="p">,</span><span class="x">
+  </span><span class="s">"scope"</span><span class="o">:</span><span class="x"> </span><span class="s">"public"</span><span class="p">,</span><span class="x">
+  </span><span class="s">"mimeType"</span><span class="o">:</span><span class="x"> </span><span class="s">"application/json"</span><span class="p">,</span><span class="x">
+  </span><span class="s">"url"</span><span class="o">:</span><span class="x"> </span><span class="s">"https://cdn-ap.whispir.com/public/resources/2163b29d4edf1bd77d71a36210d472360cd.json"</span><span class="p">,</span><span class="x">
+  </span><span class="s">"link"</span><span class="o">:</span><span class="x"> </span><span class="p">[</span><span class="x">
+    </span><span class="p">{</span><span class="x">
+      </span><span class="s">"uri"</span><span class="o">:</span><span class="x"> </span><span class="s">"https://api.whispir.com/resources/F1212CF334EDR68?apikey=&lt;your_api_key&gt;"</span><span class="p">,</span><span class="x">
+      </span><span class="s">"rel"</span><span class="o">:</span><span class="x"> </span><span class="s">"self"</span><span class="p">,</span><span class="x">
+      </span><span class="s">"method"</span><span class="o">:</span><span class="x"> </span><span class="s">"GET"</span><span class="x">
+    </span><span class="p">},</span><span class="x">
+    </span><span class="p">{</span><span class="x">
+      </span><span class="s">"uri"</span><span class="o">:</span><span class="x"> </span><span class="s">"https://api.whispir.com/resources/F1212CF334EDR68?apikey=&lt;your_api_key&gt;"</span><span class="p">,</span><span class="x">
+      </span><span class="s">"rel"</span><span class="o">:</span><span class="x"> </span><span class="s">"updateResource"</span><span class="p">,</span><span class="x">
+      </span><span class="s">"method"</span><span class="o">:</span><span class="x"> </span><span class="s">"PUT"</span><span class="p">,</span><span class="x">
+      </span><span class="s">"type"</span><span class="o">:</span><span class="x"> </span><span class="s">"application/vnd.whispir.resource-v1+json,application/vnd.whispir.resource-v1+xml"</span><span class="x">
+    </span><span class="p">},</span><span class="x">
+    </span><span class="p">{</span><span class="x">
+      </span><span class="s">"uri"</span><span class="o">:</span><span class="x"> </span><span class="s">"https://api.whispir.com/resources/F1212CF334EDR68?apikey=&lt;your_api_key&gt;"</span><span class="p">,</span><span class="x">
+      </span><span class="s">"rel"</span><span class="o">:</span><span class="x"> </span><span class="s">"deleteResource"</span><span class="p">,</span><span class="x">
+      </span><span class="s">"method"</span><span class="o">:</span><span class="x"> </span><span class="s">"DELETE"</span><span class="x">
+    </span><span class="p">}</span><span class="x">
+  </span><span class="p">]</span><span class="x">
+</span><span class="p">}</span><span class="x">
+</span></code></pre>
+
+<table>
+    <thead>
+        <tr>
+            <th style="width: 50%" colspan="2">High-Level Response Elements</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td style="text-align: right; font-weight: bold;">name:</td>
+            <td><strong>String</strong><br/>
+                Specifies the name of the resource. The name is given during creation.
+            </td>
+        </tr>
+        <tr>
+            <td style="text-align: right; font-weight: bold;">scope:</td>
+            <td><strong>String</strong><br/>
+                Specifies the permission scope of the file being uploaded.
+            </ul>
+            </td>
+        </tr>
+        <tr>
+            <td style="text-align: right; font-weight: bold;">mimeType:</td>
+            <td><strong>String</strong><br/>
+                The mime type of the file that is being uploaded. 
+            </td>
+        </tr>
+        <tr>
+            <td style="text-align: right; font-weight: bold;">url:</td>
+            <td><strong>String</strong><br/>
+                The downloaded link to the resource location. Browsing this link results in a download of the resource.
+                <br><br>
+                <b>Note:</b> Only available for Public scoped resources.
+            </td>
+        </tr>
+        <tr>
+            <td style="text-align: right; font-weight: bold;">link:</td>
+            <td><strong>Array</strong><br/>
+                Provides a list of URLs that can be used to manipulate or access the message template.
+                <ul>
+                  <li>uri - the link to access the message template</li>
+                  <li>rel - the descriptor for what the link will do</li>
+                  <li>method - the HTTP method to use with this particular link</li>
+                </ul>
+            </td>
+        </tr>
+    </tbody>
+</table>
+
+<h3 id="filtering-search-results">Filtering search results</h3>
+
+<h4 id="filtering-by-scope">Filtering By scope</h4>
+
+<p>Resources can be filtered by their scope. This can be achieved by sending in the required scope type in the URL as query parameter. The scope can be one of the allowed scope types.</p>
+
+<ul>
+<li>Public - <code class="prettyprint">&amp;scope=public</code></li>
+<li>Private - <code class="prettyprint">&amp;scope=private</code> </li>
+</ul>
+<pre><code class="highlight plaintext">&gt; Filtering resources by scope
+
+&gt; &gt; Only get the public resources
+
+HTTP 1.1 GET https://api.whispir.com/resources/?apikey=&lt;your_api_key&gt;&amp;scope=public
+Authorization: Basic asdf98nf89asdvasd2r398h8sdf
+
+&gt; &gt; Only get the private resources
+
+HTTP 1.1 GET https://api.whispir.com/resources/?apikey=&lt;your_api_key&gt;&amp;scope=private
+Authorization: Basic asdf98nf89asdvasd2r398h8sdf
+</code></pre>
+
+<h4 id="filtering-by-name">Filtering By name</h4>
+<pre><code class="highlight plaintext">&gt; Filtering resources by scope
+
+&gt; &gt; With extension of file type
+
+HTTP 1.1 GET https://api.whispir.com/resources/?apikey=&lt;your_api_key&gt;&amp;name=australia.csv
+Authorization: Basic asdf98nf89asdvasd2r398h8sdf
+
+&gt; &gt; Response will be array of records that match exactly the whole name given in the query
+</code></pre>
+<pre><code class="highlight plaintext">&gt; &gt; Only part of name
+
+HTTP 1.1 GET https://api.whispir.com/resources/?apikey=&lt;your_api_key&gt;&amp;name=au
+Authorization: Basic asdf98nf89asdvasd2r398h8sdf
+
+&gt; &gt; Response will match all records that have `au` in their file name. So, multiple records are returned.
+</code></pre>
+
+<p>Resources can be filtered by their name. This can be achieved by sending in the name in the URL as query parameter.</p>
+
+<p><strong>Note:</strong> The name including the file extension makes it a unique search. </p>
+
+<p>Eg: - <code class="prettyprint">&amp;name=australia.csv</code> </p>
+
+<h2 id="updating-a-resource">Updating a resource</h2>
+<pre><code class="highlight plaintext">HTTP 1.1 PUT https://api.whispir.com/resources/ABD435DBFCD663DEDEFF?apikey=[your_api_key]
+Authorization: Basic asdf98nf89asdvasd2r398h8sdf
+</code></pre>
+<pre><code class="highlight xml">Content-Type: application/vnd.whispir.resource-v1+xml 
+
+
+<span class="cp">&lt;?xml version="1.0" encoding="UTF-8" standalone="yes"?&gt;</span>
+<span class="nt">&lt;ns3:resource</span> <span class="na">xmlns:ns2=</span><span class="s">"http://schemas.api.whispir.com/dap"</span> <span class="na">xmlns:ns3=</span><span class="s">"http://schemas.api.whispir.com"</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;name&gt;</span>australia.json<span class="nt">&lt;/name&gt;</span>
+    <span class="nt">&lt;scope&gt;</span>private<span class="nt">&lt;/scope&gt;</span>
+    <span class="nt">&lt;mimeType&gt;</span>application/json<span class="nt">&lt;/mimeType&gt;</span>
+ <span class="nt">&lt;derefUri&gt;</span>W3sNCiAiZnVsbG5hbWUiOiAiRnJhbmNvIEhpbWJvbGkiLA0KICJlbWFpbCI6ICJmdHJpbWJvbGlAZ21haWwuY29tIiwNCiAibW9iaWxlIjogIjA0MTA1MDkwMDEiLA0KICJzdHJlZXRhZGRyZXNzIjogIjEyMyBBdWJ1cm4gUmQiLA0KICJzdWJ1cmIiOiAiSGF3dGhvcm4iLA0KICJSZWZlcmVuY2UiOiAiWHByZXNzIE1haWwiLA0KICJNc2dEYXRhIiA6IHsgDQoJIlBPQkRldGFpbCI6IHsNCgkJIkRhdGVBbmRUaW1lIiA6ICIwOS1TZXAtMjAxNSAxMjoxNSBQTSIsDQoJCSJNZXNzYWdlIiA6ICJQbGVhc2UgbGV0IHVzIGtub3cgaWYgdGhlIHRpbWUgc2xvdCBpcyBhY2NlcHRhYmxlLiBSZXNwb25kIHdpdGggYSAnTm8nIHRvIGdldCBhbHRlcm5hdGl2ZSB0aW1lIHNsb3QiDQoJfQ0KICB9DQp9LA0Kew0KICJmdWxsbmFtZSI6ICJKb3JkYW4gV2luZHNvciIsDQogImVtYWlsIjogImp3aW5kc29yQHlhaG9vLmNvbSIsDQogIm1vYmlsZSI6ICIwNDEwNTA5MDAyIiwNCiAic3RyZWV0YWRkcmVzcyI6ICIzNjAgV2Fsc2ggUmQiLA0KICJzdWJ1cmIiOiAiTm9ydGggTWVsYm91cm5lIiwNCiAiUmVmZXJlbmNlIjogIlhwcmVzcyBNYWlsIiwNCiAiTXNnRGF0YSIgOiB7IA0KCSJQT0JEZXRhaWwiOiB7DQoJCSJEYXRlQW5kVGltZSIgOiAiMDktU2VwLTIwMTUgMTI6MzAgUE0iLA0KCQkiTWVzc2FnZSIgOiAiUGxlYXNlIGxldCB1cyBrbm93IGlmIHRoZSB0aW1lIHNsb3QgaXMgYWNjZXB0YWJsZS4gUmVzcG9uZCB3aXRoIGEgJ05vJyB0byBnZXQgYWx0ZXJuYXRpdmUgdGltZSBzbG90Ig0KCX0NCiAgfQ0KfV0=<span class="nt">&lt;/derefUri&gt;</span>
+<span class="nt">&lt;/ns3:resource&gt;</span>
+
+</code></pre>
+<pre><code class="highlight go"><span class="n">Content</span><span class="o">-</span><span class="n">Type</span><span class="o">:</span><span class="x"> </span><span class="n">application</span><span class="o">/</span><span class="n">vnd</span><span class="o">.</span><span class="n">whispir</span><span class="o">.</span><span class="n">resource</span><span class="o">-</span><span class="n">v1</span><span class="o">+</span><span class="n">json</span><span class="x">
+
+</span><span class="p">{</span><span class="x">
+  </span><span class="s">"name"</span><span class="x"> </span><span class="o">:</span><span class="x"> </span><span class="s">"australia.json"</span><span class="p">,</span><span class="x">
+  </span><span class="s">"scope"</span><span class="x"> </span><span class="o">:</span><span class="x"> </span><span class="s">"private"</span><span class="p">,</span><span class="x">
+  </span><span class="s">"mimeType"</span><span class="x"> </span><span class="o">:</span><span class="x"> </span><span class="s">"application/json"</span><span class="p">,</span><span class="x">
+  </span><span class="s">"derefUri"</span><span class="x"> </span><span class="o">:</span><span class="x"> </span><span class="s">"W3sNCiAiZnVsbG5hbWUiOiAiRnJhbmNvIEhpbWJvbGkiLA0KICJlbWFpbCI6ICJmdHJpbWJvbGlAZ21haWwuY29tIiwNCiAibW9iaWxlIjogIjA0MTA1MDkwMDEiLA0KICJzdHJlZXRhZGRyZXNzIjogIjEyMyBBdWJ1cm4gUmQiLA0KICJzdWJ1cmIiOiAiSGF3dGhvcm4iLA0KICJSZWZlcmVuY2UiOiAiWHByZXNzIE1haWwiLA0KICJNc2dEYXRhIiA6IHsgDQoJIlBPQkRldGFpbCI6IHsNCgkJIkRhdGVBbmRUaW1lIiA6ICIwOS1TZXAtMjAxNSAxMjoxNSBQTSIsDQoJCSJNZXNzYWdlIiA6ICJQbGVhc2UgbGV0IHVzIGtub3cgaWYgdGhlIHRpbWUgc2xvdCBpcyBhY2NlcHRhYmxlLiBSZXNwb25kIHdpdGggYSAnTm8nIHRvIGdldCBhbHRlcm5hdGl2ZSB0aW1lIHNsb3QiDQoJfQ0KICB9DQp9LA0Kew0KICJmdWxsbmFtZSI6ICJKb3JkYW4gV2luZHNvciIsDQogImVtYWlsIjogImp3aW5kc29yQHlhaG9vLmNvbSIsDQogIm1vYmlsZSI6ICIwNDEwNTA5MDAyIiwNCiAic3RyZWV0YWRkcmVzcyI6ICIzNjAgV2Fsc2ggUmQiLA0KICJzdWJ1cmIiOiAiTm9ydGggTWVsYm91cm5lIiwNCiAiUmVmZXJlbmNlIjogIlhwcmVzcyBNYWlsIiwNCiAiTXNnRGF0YSIgOiB7IA0KCSJQT0JEZXRhaWwiOiB7DQoJCSJEYXRlQW5kVGltZSIgOiAiMDktU2VwLTIwMTUgMTI6MzAgUE0iLA0KCQkiTWVzc2FnZSIgOiAiUGxlYXNlIGxldCB1cyBrbm93IGlmIHRoZSB0aW1lIHNsb3QgaXMgYWNjZXB0YWJsZS4gUmVzcG9uZCB3aXRoIGEgJ05vJyB0byBnZXQgYWx0ZXJuYXRpdmUgdGltZSBzbG90Ig0KCX0NCiAgfQ0KfV0="</span><span class="x">
+</span><span class="p">}</span><span class="x">   
+
+</span></code></pre>
+<pre><code class="highlight plaintext">&gt; &gt; Response 
+
+&gt; &gt; Once the resource is updated, the older version is technically removed. The new resource data will be used in all the references of the resource (via the ID)
+
+HTTP 1.1 204 No Content
+</code></pre>
+
+<p>Updating a resource involves the same process as in creating a resource. The process of using one of the format (CSV, JSON, XML) for private and any format for public -&gt; converting to base64 encoded data is the same.</p>
+
+<p>The change is doing a <code class="prettyprint">PUT</code> to the existing resource URL that needs to be updated. Please be careful that doing an update overwrites the previous resource. There is no versioning available in Whispir for the resources.</p>
+
+<p>Any or all of the 4 values can be changed. <strong>i.e,</strong> name, scope, mimeType, deferUri, but all 4 are mandatory values to be sent.</p>
+
+<h2 id="deleting-a-resource">Deleting a resource</h2>
+<pre><code class="highlight plaintext">&gt; Deleting a resource
+
+&gt; &gt; Exact URI of the resource has to be provided.
+
+HTTP 1.1 DELETE https://api.whispir.com/resources/F1212CF334EDR68?apikey=[your_key]
+Authorization: Basic am9obi5zbWl0aDpteXBhc3N3b3Jk
+</code></pre>
+<pre><code class="highlight plaintext">&gt; Response
+
+&gt; &gt; 204 No Content
+</code></pre>
+
+<p>Resources can be deleted after use. These can be both public and private in scope.</p>
+
+<p><strong>Note:</strong> Deleting a public resource may result in <code class="prettyprint">404 File Not Found</code> error for any sites or material referencing to it. So, ensure that DELETE is only executed when the reference to all material is removed or the content has to be removed for other purposes immediately.</p>
+
+        <h1 id="imports">Imports</h1>
+
+<blockquote>
+<p>API Endpoint</p>
+
+<blockquote>
+<ul>
+<li>generic</li>
+</ul>
+</blockquote>
+</blockquote>
+<pre><code class="highlight xml">https://api.whispir.com/imports/?apikey=<span class="nt">&lt;your_api_key&gt;</span>
+Content-Type: application/vnd.whispir.import-v1+xml
+</code></pre>
+<pre><code class="highlight go"><span class="n">https</span><span class="o">:</span><span class="c">//api.whispir.com/imports/?apikey=&lt;your_api_key&gt;</span><span class="x">
+</span><span class="n">Content</span><span class="o">-</span><span class="n">Type</span><span class="o">:</span><span class="x"> </span><span class="n">application</span><span class="o">/</span><span class="n">vnd</span><span class="o">.</span><span class="n">whispir</span><span class="o">.</span><span class="k">import</span><span class="o">-</span><span class="n">v1</span><span class="o">+</span><span class="n">json</span><span class="x">
+</span></code></pre>
+
+<blockquote>
+<blockquote>
+<ul>
+<li>limited to a workspace</li>
+</ul>
+</blockquote>
+</blockquote>
+<pre><code class="highlight xml">https://api.whispir.com/workspaces/{:id}/imports/?apikey=<span class="nt">&lt;your_api_key&gt;</span>
+Content-Type: application/vnd.whispir.import-v1+xml
+</code></pre>
+<pre><code class="highlight go"><span class="n">https</span><span class="o">:</span><span class="c">//api.whispir.com/workspaces/{:id}/imports/?apikey=&lt;your_api_key&gt;</span><span class="x">
+</span><span class="n">Content</span><span class="o">-</span><span class="n">Type</span><span class="o">:</span><span class="x"> </span><span class="n">application</span><span class="o">/</span><span class="n">vnd</span><span class="o">.</span><span class="n">whispir</span><span class="o">.</span><span class="k">import</span><span class="o">-</span><span class="n">v1</span><span class="o">+</span><span class="n">json</span><span class="x">
+</span></code></pre>
+<pre><code class="highlight plaintext">&gt; Methods supported
+
+- POST
+</code></pre>
+
+<p>The imports endpoint allows users to import a CSV/JSON/XML file of contacts (via /resources) to be added to the contacts database. </p>
+
+<p>This is slightly different from the contact API as it doesn&rsquo;t support the deleting of contacts. It will only add and update.</p>
+
+<table>
+    <thead>
+        <tr>
+            <th style="width: 50%" colspan="2">Method Description</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td style="text-align: right; font-weight: bold;">GET</td>
+            <td>
+                METHOD not supported
+            </td>
+        </tr>
+        <tr>
+            <td style="text-align: right; font-weight: bold;">POST</td>
+            <td>
+                /imports
+                <ul>
+                    <li>
+                    Invokes the import process into the My Company workspace with the specified resource
+                    </li>
+                </ul>
+                /imports/{:id}
+                <ul>
+                    <li>
+                    METHOD not supported
+                    </li>
+                </ul>
+                /workspaces/(id)/imports
+                <ul>
+                    <li>
+                    Invokes the import process into the specified workspace with the specified resource.
+                    </li>
+                </ul>
+                /workspaces/(id)/imports/{:id}
+                <ul>
+                    <li>
+                    METHOD not supported
+                    </li>
+                </ul>
+            </td>
+        </tr>
+        <tr>
+            <td style="text-align: right; font-weight: bold;">PUT</td>
+            <td>
+                METHOD not supported
+            </td>
+        </tr>
+        <tr>
+            <td style="text-align: right; font-weight: bold;">DELETE</td>
+            <td>
+                METHOD not supported
+            </td>
+        </tr>
+    </tbody>
+</table> 
+
+<h2 id="bulk-contact-import">Bulk contact import</h2>
+
+<p>The Whispir API will expose this functionality as a two stage process:
+ 1. Submit contact data within a CSV, JSON, XML payload using the /resource endpoint – which will return a resource ID,
+ 2. Create a new import resource by submitting a POST to the /imports endpoint referencing the resource ID created in step 1.</p>
+
+<p>These two stages are further explained below.</p>
+
+<h3 id="create-a-resource-specifying-the-contact-information">Create a resource specifying the contact information</h3>
+
+<p>Applications can upload a valid CSV, XML or JSON resource containing the contact information that will be imported into the Whispir Platform. Whispir will return the resource ID which can be used to import or update contacts within a workspace through the imports endpoint as described below.</p>
+
+<h4 id="request-structure">Request Structure</h4>
+<pre><code class="highlight xml"><span class="cp">&lt;?xml version="1.0" encoding="UTF-8" standalone="yes"?&gt;</span>
+<span class="nt">&lt;ns2:import</span> <span class="na">xmlns:ns2=</span><span class="s">"http://schemas.api.whispir.com"</span> 
+             <span class="na">xmlns:ns3=</span><span class="s">"http://schemas.api.whispir.com/dap"</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;ns2:contacts&gt;</span>
+        <span class="nt">&lt;ns2:contact&gt;</span>
+            <span class="nt">&lt;firstName&gt;</span>John<span class="nt">&lt;/firstName&gt;</span>
+            <span class="nt">&lt;lastName&gt;</span>Smith<span class="nt">&lt;/lastName&gt;</span>
+            <span class="nt">&lt;workEmailAddress1&gt;</span>john.smith@testcompany.com<span class="nt">&lt;/workEmailAddress1&gt;</span>
+            <span class="nt">&lt;workMobilePhone1&gt;</span>61423456789<span class="nt">&lt;/workMobilePhone1&gt;</span>
+            <span class="nt">&lt;workCountry&gt;</span>Australia<span class="nt">&lt;/workCountry&gt;</span>
+            <span class="nt">&lt;timezone&gt;</span>+10<span class="nt">&lt;/timezone&gt;</span>
+        <span class="nt">&lt;/ns2:contact&gt;</span>
+        <span class="nt">&lt;ns2:contact&gt;</span>
+            <span class="nt">&lt;firstName&gt;</span>Jane<span class="nt">&lt;/firstName&gt;</span>
+            <span class="nt">&lt;lastName&gt;</span>Smith<span class="nt">&lt;/lastName&gt;</span>
+            <span class="nt">&lt;workEmailAddress1&gt;</span>jane.smith@testcompany.com<span class="nt">&lt;/workEmailAddress1&gt;</span>
+            <span class="nt">&lt;workMobilePhone1&gt;</span>61498765432<span class="nt">&lt;/workMobilePhone1&gt;</span>
+            <span class="nt">&lt;workCountry&gt;</span>Australia<span class="nt">&lt;/workCountry&gt;</span>
+            <span class="nt">&lt;timezone&gt;</span>+10<span class="nt">&lt;/timezone&gt;</span>
+        <span class="nt">&lt;/ns2:contact&gt;</span>
+   <span class="nt">&lt;/ns2:contacts&gt;</span>
+<span class="nt">&lt;/ns2:import&gt;</span>
+</code></pre>
+<pre><code class="highlight go"><span class="p">{</span><span class="x">
+  </span><span class="s">"contacts"</span><span class="x"> </span><span class="o">:</span><span class="x"> </span><span class="p">[{</span><span class="x">
+    </span><span class="s">"firstName"</span><span class="o">:</span><span class="x"> </span><span class="s">"John"</span><span class="p">,</span><span class="x">
+    </span><span class="s">"lastName"</span><span class="o">:</span><span class="x"> </span><span class="s">"Smith"</span><span class="p">,</span><span class="x">
+    </span><span class="s">"workEmailAddress1"</span><span class="o">:</span><span class="x"> </span><span class="s">"john.smith@testcompany.com"</span><span class="p">,</span><span class="x">
+    </span><span class="s">"workMobilePhone1"</span><span class="o">:</span><span class="x"> </span><span class="s">"61423456789"</span><span class="p">,</span><span class="x">
+    </span><span class="s">"workCountry"</span><span class="o">:</span><span class="x"> </span><span class="s">"Australia"</span><span class="p">,</span><span class="x">
+    </span><span class="s">"timezone"</span><span class="o">:</span><span class="x"> </span><span class="s">"+10"</span><span class="x">
+  </span><span class="p">},{</span><span class="x">
+    </span><span class="s">"firstName"</span><span class="o">:</span><span class="x"> </span><span class="s">"Jane"</span><span class="p">,</span><span class="x">
+    </span><span class="s">"lastName"</span><span class="o">:</span><span class="x"> </span><span class="s">"Smith"</span><span class="p">,</span><span class="x">
+    </span><span class="s">"workEmailAddress1"</span><span class="o">:</span><span class="x"> </span><span class="s">"jane.smith@testcompany.com"</span><span class="p">,</span><span class="x">
+    </span><span class="s">"workMobilePhone1"</span><span class="o">:</span><span class="x"> </span><span class="s">"61498765432"</span><span class="p">,</span><span class="x">
+    </span><span class="s">"workCountry"</span><span class="o">:</span><span class="x"> </span><span class="s">"Australia"</span><span class="p">,</span><span class="x">
+    </span><span class="s">"timezone"</span><span class="o">:</span><span class="x"> </span><span class="s">"+10"</span><span class="x">
+  </span><span class="p">}]</span><span class="x">
+</span><span class="p">}</span><span class="x">
+</span></code></pre>
+
+<p>Firstly, the application needs to upload a resource using the Creating Resources.</p>
+
+<p>The resource that needs to be provided for contact importing should be in one the following format:</p>
+
+<ul>
+<li>XML</li>
+<li>JSON</li>
+<li>CSV</li>
+</ul>
+<pre><code class="highlight plaintext">&gt; &gt; CSV format
+
+firstName,lastName,workEmailAddress1,workMobilePhone1,workCountry,timezone
+John,Smith,john.smith@testcompany.com,61423456789,Australia,+10
+Jane,Smith,jane.smith@testcompany,com,61498765432,Australia,+10
+</code></pre>
+
+<p>Once this resource has been imported with the appropriate mime type, the application can reference this resource within the import request.</p>
+
+<h3 id="import-a-resource-using-the-imports-endpoint">Import a resource using the imports endpoint</h3>
+<pre><code class="highlight plaintext">&gt; Import
+
+&gt; &gt; Doing an import by mapping the respective data columns to contact fields
+
+HTTP 1.1 POST https://api.whispir.com/imports?apikey=DFD0FD90u809SDF90832FDS
+Authorization: Basic asdf98nf89asdvasd2r398h8sdf
+Accept: application/vnd.whispir.import-v1+json
+
+{
+    "resourceId": "4FBBC384BCE3DAABFE3",
+    "importType" : "contact",
+    "importOptions": {
+        "fieldMapping" : {
+            "firstName": "name",
+            "lastName": "surname",
+            "workMobilePhone1": "work_mobile",
+            "country": "Australia",
+            "timezone": "+10"
+        },
+        "importMode" : "replace"
+    }
+
+}
+</code></pre>
+<pre><code class="highlight plaintext">&gt; &gt; If the request was successful, the response contains the information for the calling application to retrieve information about the import process that has been started.
+
+...
+HTTP 1.1 202 Accepted
+...
+</code></pre>
+
+<p>After receiving a valid resource ID, applications can make a request to the imports endpoint within a workspace and reference the appropriate resource ID. Whispir will then create an import process that will import the specified data into the workspace.</p>
+
+<p>Once the application has an appropriate resource ID to use within the import endpoint, the following request can be used to begin the import process.</p>
+
+<p><strong>Note:</strong> Import processes take place asynchronously. Any contacts will be created once the import process starts, and users will be able to utilise imported contacts as soon as each is completed.</p>
+
+<table>
+    <thead>
+        <tr>
+            <th style="width: 50%" colspan="2">High Level Request Elements</th>
+        </tr>
+        <tr>
+            <th style="width: 50%">Field</th>
+            <th style="width: 50%">Details</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td style="text-align: right; font-weight: bold;">resourceId:</td>
+            <td>
+                Description
+                <ul>
+                    <li>
+                    The resource identifier returned from the POST to /resources. Resource referred to must be a valid CSV, XML, or JSON file.
+                    </li>
+                </ul>
+                Required
+                <ul>
+                    <li>
+                    Both Tag and Value
+                    </li>
+                </ul>
+                Sample Value
+                <ul>
+                    <li>
+                    4FBBC384BCE3DAABFE3
+                    </li>
+                </ul>
+            </td>
+        </tr>
+        <tr>
+            <td style="text-align: right; font-weight: bold;">importType:</td>
+            <td>
+                Description
+                <ul>
+                    <li>
+                    This defines the resource that will be created through this import process.
+                    </li>
+                </ul>
+                Required
+                <ul>
+                    <li>
+                    Both Tag and Value
+                    </li>
+                </ul>
+                Available Values
+                <ul>
+                    <li>
+                    <b>Contact</b> is the only supported importType at this stage.
+                    </li>
+                </ul>
+            </td>
+        </tr>
+        <tr>
+            <td style="text-align: right; font-weight: bold;">importOptions</td>
+            <td>
+                Description
+                <ul>
+                    <li>
+                    The list of options that are passed through to the import engine.
+                    </li>
+                </ul>
+                Required
+                <ul>
+                    <li>
+                    Both Tag and Value
+                    </li>
+                </ul>
+                Available Values
+                <ul>
+                    <li>fieldMapping</li>
+                    <li>importMode</li>
+                </ul>
+            </td>
+        </tr>
+        <tr>
+            <td style="text-align: left; font-weight: bold;" colspan="2">importMode</td>
+        </tr>
+        <tr>
+            <td colspan="2">
+                Description
+                <ul>
+                    <li>
+                    The type of contact import that is occurring.
+                    </li>
+                </ul>
+                Required
+                <ul>
+                    <li>
+                    Both Tag and Value
+                    </li>
+                </ul>
+                One of three options available: 
+                <ul>
+                    <li>replace</li>
+                    <li>duplicate</li>
+                    <li>ignore</li>
+                </ul>
+            </td>
+        </tr>
+        <tr>
+            <td style="text-align: left; font-weight: bold;" colspan="2">fieldMapping</td>
+        </tr>
+        <tr>
+            <td colspan="2">
+                Description
+                <ul>
+                    <li>
+                    Mapping the data column in your resource file to the contact field value. 
+                    </li>
+                </ul>
+                Required
+                <ul>
+                    <li>
+                    Both Tag and Value
+                    </li>
+                </ul>
+                The following are the mandatory fields to be present and also to be mapped from the resource file: 
+                <ul>
+                    <li>firstName</li>
+                    <li>lastName</li>
+                    <li>workMobilePhone1</li>
+                    <li>workCountry</li>
+                    <li>timezone</li>
+                </ul>
+                The fieldMapping section is used to map field/value pairs within a resource to the field/value pairs within a Whispir contact profile
+
+- fieldMapping elements must use fields that exist within the resource payload. Any incorrect resource field will return a blank value.
+- fieldMapping elements must be valid Whispir Contact fields, ie; &ldquo;firstName&rdquo;.
+
+The complete listing of Contact fields are defined within the [contacts](https://whispir.github.io/api/#creating-new-contacts) API documentation:
+
+- fieldMapping can include custom contact fields previously setup within your organisations Contact profile.
+
+- The minimum requirement must be fulfilled for a contact to be created, this includes firstName, lastName, and one of personalEmailAddress1, workEmailAddress1, workMobilePhone1, personalMobilePhone1, workCountry and timezone.
+            </td>
+        </tr>
+        <tr>
+            <td style="text-align: right; font-weight: bold;">firstName</td>
+            <td>
+                Description
+                <ul>
+                    <li>
+                    First Name of the Contact. Value of this field is used to map the field within the resource.
+                    </li>
+                </ul>
+                Required
+                <ul>
+                    <li>
+                    Both Tag and Value
+                    </li>
+                </ul>
+                Sample value
+                <ul>
+                    <li>name</li>
+                </ul>
+            </td>
+        </tr>
+        <tr>
+            <td style="text-align: right; font-weight: bold;">lastName</td>
+            <td>
+                Description
+                <ul>
+                    <li>
+                    Last Name of the Contact. Value of this field is used to map the field within the resource.
+                    </li>
+                </ul>
+                Required
+                <ul>
+                    <li>
+                    Both Tag and Value
+                    </li>
+                </ul>
+                Sample value
+                <ul>
+                    <li>surname</li>
+                </ul>
+            </td>
+        </tr>
+        <tr>
+            <td style="text-align: right; font-weight: bold;">workMobilePhone1</td>
+            <td>
+                Description
+                <ul>
+                    <li>
+                    The mobile phone number of the Contact. Value of this field is used to map the field within the newly created resource.
+                    </li>
+                </ul>
+                Required
+                <ul>
+                    <li>
+                    Both Tag and Value
+                    </li>
+                </ul>
+                Sample value
+                <ul>
+                    <li>Mobile</li>
+                </ul>
+            </td>
+        </tr>
+        <tr>
+            <td style="text-align: right; font-weight: bold;">workCountry</td>
+            <td>
+                Description
+                <ul>
+                    <li>
+                    The country field of the contact. The value of this field is used to map to the field within the newly created contact.
+                    </li>
+                </ul>
+                Required
+                <ul>
+                    <li>
+                    Both Tag and Value
+                    </li>
+                </ul>
+                Sample value
+                <ul>
+                    <li>Australia</li>
+                </ul>
+            </td>
+        </tr>
+        <tr>
+            <td style="text-align: right; font-weight: bold;">timezone</td>
+            <td>
+                Description
+                <ul>
+                    <li>
+                    The timezone field of the contact. The value of this field is used to map to the timezone field within the newly created contact.
+                    </li>
+                </ul>
+                Required
+                <ul>
+                    <li>
+                    Both Tag and Value
+                    </li>
+                </ul>
+                Sample value
+                <ul>
+                    <li> +10 </li>
+                </ul>
+            </td>
+        </tr>
+    </tbody>
+</table>
+
         <h1 id="other-resources">Other Resources</h1>
 
 <aside class="notice">
-    Updated 31 August 2015
+    Updated 9 September 2015
 </aside>
 
 <p>This API documentation is being migrated from <a href="https://developer.whispir.com/docs">https://developer.whispir.com/docs</a>.</p>
