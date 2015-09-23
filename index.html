@@ -6566,7 +6566,7 @@ An example callback that your application or service would receive is specified 
 
 <span class="nt">&lt;ns2:deliveryresponse</span> <span class="na">xmlns:ns2=</span><span class="s">"http://schemas.api.whispir.com"</span><span class="nt">&gt;</span>
     <span class="nt">&lt;messageid&gt;</span>ABC4857BCCF484575FCA<span class="nt">&lt;/messageid&gt;</span>
-    <span class="nt">&lt;location&gt;</span>https://api.whispir.com/messages/ABC4857BCCF484575FCA<span class="nt">&lt;/location&gt;</span>   
+    <span class="nt">&lt;location&gt;</span>https://api.whispir.com/messages/ABC4857BCCF484575FCA<span class="nt">&lt;/location&gt;</span>
     <span class="nt">&lt;from&gt;</span>
         <span class="nt">&lt;name&gt;</span>Fred Waters<span class="nt">&lt;/name&gt;</span> 
         <span class="nt">&lt;mri&gt;</span>Fred_Waters.528798.Sandbox@Contact.whispir.com<span class="nt">&lt;/mri&gt;</span> 
@@ -6604,9 +6604,17 @@ An example callback that your application or service would receive is specified 
 
 <p><br/><img src="http://developer.whispir.com/files/Whispir_API_diagram.png"/><br/></p>
 
-<p>Whispir&rsquo;s Callback Service will forward the content of each message response, along with some associated metadata to a URL that the user has pre-registered to receive this information.  </p>
+<p>Whispir&rsquo;s Callback Service will forward the content of each message response, along with some associated metadata to a URL that the user has pre-registered to receive this information.</p>
 
-<p><strong>Note:</strong> Whispir does not check for a response from this callback server.  On setup it is expected that the server will respond to a GET request with a 200 OK.  Any error response sent from this callback server during general use is not considered.  Users should not expect callbacks to be re-tried on error.</p>
+<p><strong>Note:</strong> Whispir does not check for a response from this callback server. On setup, it is expected that the callback server will respond with a 200 OK to a GET request. Any error response sent from this callback server during general use is not considered. Users should not expect callbacks to be re-tried on error.</p>
+
+<p>Some other points to follow -</p>
+
+<ol>
+<li>Always use a domain name for the callback. Do not use an IP.</li>
+<li>Limit the port to 80 or 443. Do no use any other ports.</li>
+<li>Depending on the type chosen &lsquo;json&rsquo; or &#39;xml&rsquo; for the Content-Type, whispir would make a similar GET (and subequently POST) calls. So, please ensure that your your web server is configured to handle such MIME type. </li>
+</ol>
 
 <h2 id="creating-new-callbacks">Creating new Callbacks</h2>
 
@@ -6749,7 +6757,7 @@ X-Whispir-Callback-Key: MY_AUTH_TOKEN
 
 <span class="nt">&lt;ns2:deliveryresponse</span> <span class="na">xmlns:ns2=</span><span class="s">"http://schemas.api.whispir.com"</span><span class="nt">&gt;</span>
     <span class="nt">&lt;messageid&gt;</span>ABC4857BCCF484575FCA<span class="nt">&lt;/messageid&gt;</span>
-    <span class="nt">&lt;location&gt;</span>https://api.whispir.com/messages/ABC4857BCCF484575FCA<span class="nt">&lt;/location&gt;</span>   
+    <span class="nt">&lt;location&gt;</span>https://api.whispir.com/messages/ABC4857BCCF484575FCA<span class="nt">&lt;/location&gt;</span>
     <span class="nt">&lt;from&gt;</span>
         <span class="nt">&lt;name&gt;</span>Fred Waters<span class="nt">&lt;/name&gt;</span> 
         <span class="nt">&lt;mri&gt;</span>Fred_Waters.528798.Sandbox@Contact.whispir.com<span class="nt">&lt;/mri&gt;</span> 
@@ -6796,7 +6804,7 @@ X-Whispir-Callback-Key: MY_AUTH_TOKEN
 
 <span class="nt">&lt;ns2:deliveryresponse</span> <span class="na">xmlns:ns2=</span><span class="s">"http://schemas.api.whispir.com"</span><span class="nt">&gt;</span>
     <span class="nt">&lt;messageid&gt;</span>ABC4857BCCF484575FCA<span class="nt">&lt;/messageid&gt;</span>
-    <span class="nt">&lt;location&gt;</span>https://api.whispir.com/messages/ABC4857BCCF484575FCA<span class="nt">&lt;/location&gt;</span>   
+    <span class="nt">&lt;location&gt;</span>https://api.whispir.com/messages/ABC4857BCCF484575FCA<span class="nt">&lt;/location&gt;</span>
     <span class="nt">&lt;from&gt;</span>
         <span class="nt">&lt;name&gt;</span>Fred Waters<span class="nt">&lt;/name&gt;</span> 
         <span class="nt">&lt;mri&gt;</span>Fred_Waters.528798.Sandbox@Contact.whispir.com<span class="nt">&lt;/mri&gt;</span> 
@@ -6831,7 +6839,7 @@ X-Whispir-Callback-Key: MY_AUTH_TOKEN
 </span><span class="p">}</span><span class="x">
 </span></code></pre>
 
-<p>Whispir Callbacks have been designed to be simple, yet secure.  </p>
+<p>Whispir Callbacks have been designed to be simple, yet secure.</p>
 
 <p>In order to make your Callback Server processing much safer, whispir recommends the following security measures:</p>
 
@@ -6859,7 +6867,7 @@ X-Whispir-Callback-Key: MY_AUTH_TOKEN
 
 <h4 id="url-query-parameter">URL Query Parameter</h4>
 
-<p>In this method, the Authorization will be passed to the callback server on the query string using an &lsquo;Auth&rsquo; parameter as follows:</p>
+<p>In this method, the Authorization will be passed to the callback server on the query string using an &#39;Auth&rsquo; parameter as follows:</p>
 
 <p><code class="prettyprint">&quot;auth&quot; : { &quot;type&quot; : &quot;querystring&quot;, &quot;key&quot; : &quot;MY_AUTH_TOKEN&quot; }</code></p>
 
@@ -6966,8 +6974,8 @@ Authorization: Basic am9obi5zbWl0aDpteXBhc3N3b3Jk
 <p>You will need to supply one of the following headers (for retrieving JSON or XML):</p>
 
 <ul>
-<li><code class="prettyprint">Accept: application/vnd.whispir.api-callback-v1+xml</code></li>
-<li><code class="prettyprint">Accept: application/vnd.whispir.api-callback-v1+json</code></li>
+<li>Accept: application/vnd.whispir.api-callback-v1+xml</li>
+<li>Accept: application/vnd.whispir.api-callback-v1+json</li>
 </ul>
 
 <p>An array of Callbacks will be returned to you in the HTTP response body.</p>
@@ -7039,7 +7047,7 @@ Authorization: Basic am9obi5zbWl0aDpteXBhc3N3b3Jk
 <span class="cp">&lt;?xml version="1.0" encoding="UTF-8" standalone="yes"?&gt;</span>
 <span class="nt">&lt;ns2:message</span> <span class="na">xmlns:ns2=</span><span class="s">"http://schemas.api.whispir.com"</span><span class="nt">&gt;</span>
     <span class="nt">&lt;to&gt;</span>$mobile<span class="nt">&lt;/to&gt;</span>
-    <span class="nt">&lt;subject&gt;</span>Test SMS Message<span class="nt">&lt;/subject&gt;</span>    
+    <span class="nt">&lt;subject&gt;</span>Test SMS Message<span class="nt">&lt;/subject&gt;</span>
     <span class="nt">&lt;body&gt;</span>This is the body of my test SMS message<span class="nt">&lt;/body&gt;</span>
     <span class="nt">&lt;callbackId&gt;</span>Sample Callback 1<span class="nt">&lt;/callbackId&gt;</span>
 <span class="nt">&lt;/ns2:message&gt;</span> 
@@ -7058,11 +7066,11 @@ Authorization: Basic am9obi5zbWl0aDpteXBhc3N3b3Jk
 <p>Whispir will automatically send notifications to your nominated email address in the event of a failure to access your callback server.</p>
 </blockquote>
 </blockquote>
-<pre><code class="highlight plaintext">Dear Customer,  
+<pre><code class="highlight plaintext">Dear Customer,
 
-Your callback &lt;callback_id&gt; failed on &lt;date&gt; with response: &lt;response&gt;.  
+Your callback &lt;callback_id&gt; failed on &lt;date&gt; with response: &lt;response&gt;.
 
-The callback that failed is as follows:  
+The callback that failed is as follows:
 
 URL: https://yourserver/callback.php?auth=12345 
 Location: https://api.whispir.com/messages/ABC4857BCCF484575FCA 
@@ -7072,7 +7080,7 @@ Email: me@example.com
 Channel: SMS 
 Content: Yes, I accept. Will I need to bring steel cap boots? 
 
-Please take the necessary steps to ensure your callback is configured correctly.  
+Please take the necessary steps to ensure your callback is configured correctly.
 
 If this callback URL continues to fail, Whispir may remove this until the service is resolved. 
 
