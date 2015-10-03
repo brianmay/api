@@ -488,15 +488,15 @@ HTTP/1.1 401 Unauthorized
 HTTP/1.1 403 Forbidden
 </code></pre>
 
-<p>The Whispir.io API supports multiple methods of authentication to cater for varying client needs.  Authentication is necessary for users of the API to ensure that only valid and legal requests are processed by the Whispir messaging engine.</p>
+<p>The Whispir.io API supports multiple methods of authentication to cater for varying client needs. Authentication is necessary for users of the API to ensure that only valid and legal requests are processed by the Whispir messaging engine.</p>
 
 <h3 id="basic-authentication-over-https">Basic Authentication over HTTPS</h3>
 
 <p>The basic authentication process is offered for use with clients that already have an ‘up and running’ application, and would like to integrate Whispir as a messaging provider in a quick and simple fashion.</p>
 
-<p>Basic access authentication over HTTPS involves the application client sending an encoded Username and Password with when requesting resources from the server.</p>
+<p>Basic access authentication over HTTPS involves the application client sending an encoded Username and Password when requesting resources from the server.</p>
 
-<p>Clients will also be required to provide the API Key that is provided when the application is registered within Mashery.  This API Key is used to determine the application that is making the request, and whether it is allowed to make requests, it is still within the request thresholds, and is a valid API Key. </p>
+<p>Clients will also be required to provide the API Key that is provided when the application is registered within Mashery. This API Key is used to determine the application that is making the request, and whether it is allowed to make requests, it is still within the request thresholds, and is a valid API Key. </p>
 
 <p>Once this has been confirmed, the request is forwarded on to Whispir for Basic authentication processing.</p>
 
@@ -1122,7 +1122,7 @@ Authorization: Basic &lt;YOUR AUTH HEADER&gt;
 <span class="cp">&lt;?xml version="1.0" encoding="UTF-8" standalone="yes"?&gt;</span>
 <span class="nt">&lt;ns2:message</span> <span class="na">xmlns:ns2=</span><span class="s">"http://schemas.api.whispir.com"</span><span class="nt">&gt;</span>
     <span class="nt">&lt;to&gt;</span>$mobile<span class="nt">&lt;/to&gt;</span>
-    <span class="nt">&lt;subject&gt;</span>Test Message<span class="nt">&lt;/subject&gt;</span>    
+    <span class="nt">&lt;subject&gt;</span>Test Message<span class="nt">&lt;/subject&gt;</span>
     <span class="nt">&lt;body&gt;</span>This is the body of my test SMS message<span class="nt">&lt;/body&gt;</span>
     <span class="nt">&lt;email&gt;</span>
         <span class="nt">&lt;body&gt;</span>This is the body of my test Email message<span class="nt">&lt;/body&gt;</span>
@@ -1333,7 +1333,7 @@ Accept: application/vnd.whispir.message-v1+xml
 <span class="cp">&lt;?xml version="1.0" encoding="UTF-8" standalone="yes"?&gt;</span>
 <span class="nt">&lt;ns2:message</span> <span class="na">xmlns:ns2=</span><span class="s">"http://schemas.api.whispir.com"</span><span class="nt">&gt;</span>
     <span class="nt">&lt;to&gt;</span>$mobile<span class="nt">&lt;/to&gt;</span>
-    <span class="nt">&lt;subject&gt;</span>Test SMS Message<span class="nt">&lt;/subject&gt;</span>    
+    <span class="nt">&lt;subject&gt;</span>Test SMS Message<span class="nt">&lt;/subject&gt;</span>
     <span class="nt">&lt;body&gt;</span>This is the body of my test SMS message<span class="nt">&lt;/body&gt;</span>
 <span class="nt">&lt;/ns2:message&gt;</span> 
 </code></pre>
@@ -1416,7 +1416,7 @@ Authorization: Basic am9obi5zbWl0aDpteXBhc3N3b3Jk
 <span class="cp">&lt;?xml version="1.0" encoding="UTF-8" standalone="yes"?&gt;</span>
 <span class="nt">&lt;ns2:message</span> <span class="na">xmlns:ns2=</span><span class="s">"http://schemas.api.whispir.com"</span><span class="nt">&gt;</span>
     <span class="nt">&lt;to&gt;</span>john.smith@test.com<span class="nt">&lt;/to&gt;</span>
-    <span class="nt">&lt;subject&gt;</span>Test Email Message<span class="nt">&lt;/subject&gt;</span>    
+    <span class="nt">&lt;subject&gt;</span>Test Email Message<span class="nt">&lt;/subject&gt;</span>
     <span class="nt">&lt;email&gt;</span>
         <span class="nt">&lt;body&gt;</span>Email Body goes here.<span class="nt">&lt;/body&gt;</span>
         <span class="nt">&lt;footer&gt;</span>Email signature goes here.<span class="nt">&lt;/footer&gt;</span>
@@ -5191,7 +5191,7 @@ Authorization: Basic am9obi5zbWl0aDpteXBhc3N3b3Jk
 
 <p>The response to the PUT request upon success is usually a <code class="prettyprint">204</code> with no content being provided.</p>
 
-<h3 id="deleting-a-contact">Deleting a contact</h3>
+<h2 id="deleting-a-contact">Deleting a contact</h2>
 
 <blockquote>
 <p>Deleting a contact</p>
