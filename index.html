@@ -6586,7 +6586,7 @@ An example callback that your application or service would receive is specified 
 <pre><code class="highlight go"><span class="n">Content</span><span class="o">-</span><span class="n">Type</span><span class="o">:</span><span class="x"> </span><span class="n">application</span><span class="o">/</span><span class="n">json</span><span class="x">
 </span><span class="p">{</span><span class="x">
     </span><span class="s">"messageId"</span><span class="o">:</span><span class="s">"ABC4857BCCF484575FCA"</span><span class="p">,</span><span class="x">
-    </span><span class="s">"location"</span><span class="x"> </span><span class="o">:</span><span class="x"> </span><span class="s">"https://api.whispir.com/messages/ABC4857BCCF484575FCA"</span><span class="p">,</span><span class="x">
+    </span><span class="s">"messageLocation"</span><span class="x"> </span><span class="o">:</span><span class="x"> </span><span class="s">"https://api.whispir.com/messages/ABC4857BCCF484575FCA"</span><span class="p">,</span><span class="x">
     </span><span class="s">"from"</span><span class="o">:</span><span class="p">{</span><span class="x">
           </span><span class="s">"name"</span><span class="o">:</span><span class="s">"Fred Waters"</span><span class="p">,</span><span class="x">
           </span><span class="s">"mri"</span><span class="o">:</span><span class="s">"Fred_Waters.528798.Sandbox@Contact.whispir.com"</span><span class="p">,</span><span class="x">
@@ -6759,7 +6759,7 @@ X-Whispir-Callback-Key: MY_AUTH_TOKEN
 
 <span class="nt">&lt;ns2:deliveryresponse</span> <span class="na">xmlns:ns2=</span><span class="s">"http://schemas.api.whispir.com"</span><span class="nt">&gt;</span>
     <span class="nt">&lt;messageid&gt;</span>ABC4857BCCF484575FCA<span class="nt">&lt;/messageid&gt;</span>
-    <span class="nt">&lt;location&gt;</span>https://api.whispir.com/messages/ABC4857BCCF484575FCA<span class="nt">&lt;/location&gt;</span>
+    <span class="nt">&lt;messageLocation&gt;</span>https://api.whispir.com/messages/ABC4857BCCF484575FCA<span class="nt">&lt;/messageLocation&gt;</span>
     <span class="nt">&lt;from&gt;</span>
         <span class="nt">&lt;name&gt;</span>Fred Waters<span class="nt">&lt;/name&gt;</span> 
         <span class="nt">&lt;mri&gt;</span>Fred_Waters.528798.Sandbox@Contact.whispir.com<span class="nt">&lt;/mri&gt;</span> 
@@ -6778,7 +6778,7 @@ X-Whispir-Callback-Key: MY_AUTH_TOKEN
 
 </span><span class="p">{</span><span class="x">
   </span><span class="s">"messageid"</span><span class="x"> </span><span class="o">:</span><span class="x"> </span><span class="s">"ABC4857BCCF484575FCA"</span><span class="p">,</span><span class="x">
-  </span><span class="s">"location"</span><span class="x"> </span><span class="o">:</span><span class="x"> </span><span class="s">"https://api.whispir.com/messages/ABC4857BCCF484575FCA"</span><span class="p">,</span><span class="x">
+  </span><span class="s">"messagelocation"</span><span class="x"> </span><span class="o">:</span><span class="x"> </span><span class="s">"https://api.whispir.com/messages/ABC4857BCCF484575FCA"</span><span class="p">,</span><span class="x">
   </span><span class="s">"from"</span><span class="x"> </span><span class="o">:</span><span class="x"> </span><span class="p">{</span><span class="x">
     </span><span class="s">"name"</span><span class="x"> </span><span class="o">:</span><span class="x"> </span><span class="s">"Fred Waters"</span><span class="p">,</span><span class="x">
     </span><span class="s">"mri"</span><span class="x"> </span><span class="o">:</span><span class="x"> </span><span class="s">"Fred_Waters.528798.Sandbox@Contact.whispir.com"</span><span class="p">,</span><span class="x">
@@ -6806,7 +6806,7 @@ X-Whispir-Callback-Key: MY_AUTH_TOKEN
 
 <span class="nt">&lt;ns2:deliveryresponse</span> <span class="na">xmlns:ns2=</span><span class="s">"http://schemas.api.whispir.com"</span><span class="nt">&gt;</span>
     <span class="nt">&lt;messageid&gt;</span>ABC4857BCCF484575FCA<span class="nt">&lt;/messageid&gt;</span>
-    <span class="nt">&lt;location&gt;</span>https://api.whispir.com/messages/ABC4857BCCF484575FCA<span class="nt">&lt;/location&gt;</span>
+    <span class="nt">&lt;messageLocation&gt;</span>https://api.whispir.com/messages/ABC4857BCCF484575FCA<span class="nt">&lt;/messageLocation&gt;</span>
     <span class="nt">&lt;from&gt;</span>
         <span class="nt">&lt;name&gt;</span>Fred Waters<span class="nt">&lt;/name&gt;</span> 
         <span class="nt">&lt;mri&gt;</span>Fred_Waters.528798.Sandbox@Contact.whispir.com<span class="nt">&lt;/mri&gt;</span> 
@@ -6825,7 +6825,7 @@ X-Whispir-Callback-Key: MY_AUTH_TOKEN
 
 </span><span class="p">{</span><span class="x">
   </span><span class="s">"messageid"</span><span class="x"> </span><span class="o">:</span><span class="x"> </span><span class="s">"ABC4857BCCF484575FCA"</span><span class="p">,</span><span class="x">
-  </span><span class="s">"location"</span><span class="x"> </span><span class="o">:</span><span class="x"> </span><span class="s">"https://api.whispir.com/messages/ABC4857BCCF484575FCA"</span><span class="p">,</span><span class="x">
+  </span><span class="s">"messageLocation"</span><span class="x"> </span><span class="o">:</span><span class="x"> </span><span class="s">"https://api.whispir.com/messages/ABC4857BCCF484575FCA"</span><span class="p">,</span><span class="x">
   </span><span class="s">"from"</span><span class="x"> </span><span class="o">:</span><span class="x"> </span><span class="p">{</span><span class="x">
     </span><span class="s">"name"</span><span class="x"> </span><span class="o">:</span><span class="x"> </span><span class="s">"Fred Waters"</span><span class="p">,</span><span class="x">
     </span><span class="s">"mri"</span><span class="x"> </span><span class="o">:</span><span class="x"> </span><span class="s">"Fred_Waters.528798.Sandbox@Contact.whispir.com"</span><span class="p">,</span><span class="x">
@@ -7100,6 +7100,110 @@ Whispir Support
 <li>If the authorization to the Callback Server fails (e.g. returns an HTTP 400 level error) </li>
 <li>If the Callback Server does not connect within 5 seconds.</li>
 <li>If the Callback Server does not return a response within 60 seconds.</li>
+</ul>
+
+<h2 id="example-flow">Example Flow</h2>
+
+<p>Imagine a workflow where the same user gets more than 1 message in a quick time frame, how does whispir know &ldquo;to which message did this user respond to ?&rdquo;. </p>
+
+<p>Explanation -</p>
+
+<ul>
+<li><p>For communications sent via Email, or web, Whispir has a clear 1:1 relationship, ensuring each outbound communication is unique, with any reply to that communication (regardless of the order of response, or length of time between message send and response) be threaded against the original outbound message.</p></li>
+<li><p>For communications sent via SMS, things get slightly more complex.  Whispir uses a pool of mobile numbers, with Whispir retaining knowledge as to which recipient SMS was sent which message via whispir pool number.  This provides Whispir the ability to know which reply from which recipient is for which initial outbound message – it’s pretty clever. The only challenge is where you have very high volumes of messages being issued to the same recipient (e.g. a new sms sent to the same number every 5 minutes), and the list of pool numbers is exhausted with Whispir needing to re-use pool numbers.  This is a highly unlikely communication use case, but a principal which needs to be understood.</p></li>
+</ul>
+<pre><code class="highlight json"><span class="p">{</span><span class="w">
+    </span><span class="s2">"to"</span><span class="p">:</span><span class="w"> </span><span class="s2">"$mobile"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"subject"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Whispir"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"body"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Hello there. Reply Y"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"callbackId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"callbackA"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+
+</span><span class="p">{</span><span class="w">
+    </span><span class="s2">"to"</span><span class="p">:</span><span class="w"> </span><span class="s2">"$mobile"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"subject"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Whispir"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"body"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Goodbye. Reply Y"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"callbackId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"callbackB"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+
+<h3 id="scenario-1:">Scenario 1:</h3>
+
+<p>Assuming in a span of 10 seconds, these 2 SMSes were sent</p>
+
+<p>If user $mobile replies “Y”, which callbackId would be called ?</p>
+
+<ul>
+<li>Two separate messages are sent to the same mobile number, with the both including a callbackid. </li>
+<li>Each message will have been received by the recipient via two different sender numbers.</li>
+<li>Assuming the recipient responds to the first message they received, Whispir will trigger the callback ‘callbackA’. </li>
+<li>If they respond to the second message they received, Whispir will trigger the callback ‘callbackB’</li>
+</ul>
+
+<h3 id="scenario-2:">Scenario 2:</h3>
+
+<blockquote>
+<blockquote>
+<p>SMS sent:</p>
+</blockquote>
+</blockquote>
+<pre><code class="highlight json"><span class="p">{</span><span class="w">
+    </span><span class="s2">"to"</span><span class="p">:</span><span class="w"> </span><span class="s2">"$mobile"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"subject"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Whispir"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"body"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Hello there. Reply Y"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"callbackId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"callbackA"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+
+<blockquote>
+<blockquote>
+<p>Another SMS sent half hour later (#scenario 2):</p>
+</blockquote>
+</blockquote>
+<pre><code class="highlight json"><span class="p">{</span><span class="w">
+    </span><span class="s2">"to"</span><span class="p">:</span><span class="w"> </span><span class="s2">"$mobile"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"subject"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Whispir"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"body"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Goodbye. Reply Y"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"callbackId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"callbackB"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+
+<p>If user $mobile replies “Y”, which callbackId would be called?</p>
+
+<ul>
+<li>Two separate messages are sent to the same mobile number with a gap of 30 mins, with the both including a callbackid. </li>
+<li>Each message will have been received by the recipient via two different sender numbers.</li>
+<li>Assuming the recipient responds to the first message they received, Whispir will trigger the callback ‘callbackA’.</li>
+<li>If they respond to the second message they received, Whispir will trigger the callback ‘callbackB’</li>
+</ul>
+
+<h3 id="scenario-3:">Scenario 3:</h3>
+
+<blockquote>
+<blockquote>
+<p>SMS sent (#scenario 3):</p>
+</blockquote>
+</blockquote>
+<pre><code class="highlight json"><span class="p">{</span><span class="w">
+    </span><span class="s2">"to"</span><span class="p">:</span><span class="w"> </span><span class="s2">"$mobile"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"subject"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Whispir"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"body"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Hello there. Reply Y"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"callbackId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"callbackA"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+
+<p>User $mobile replies “Y” half hour later, would the callbackId still be relevant?</p>
+
+<ul>
+<li>Assuming this was the only message sent to the recipient in the 30 minutes, the response will trigger the callback ‘callbackA’</li>
+</ul>
+
+<p>How about 1 hour, 2 hours later?</p>
+
+<ul>
+<li>The duration between when the message is sent, and the reply received has no significance.</li>
+<li>The challenge in matching outbound messages and their inbound responses is only relevant when the entire pool of numbers (which continues to grow) is exhausted.</li>
+<li>Recipients can respond days (max 7) after the message send out occurred and Whispir will still track the correct message that the reply is relevant to.</li>
 </ul>
 
         <h1 id="workspaces">Workspaces</h1>
