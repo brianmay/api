@@ -1762,7 +1762,7 @@ Authorization: Basic am9obi5zbWl0aDpteXBhc3N3b3Jk
 <span class="cp">&lt;?xml version="1.0" encoding="UTF-8" standalone="yes"?&gt;</span>
 <span class="nt">&lt;ns2:message</span> <span class="na">xmlns:ns2=</span><span class="s">"http://schemas.api.whispir.com"</span><span class="nt">&gt;</span>
     <span class="nt">&lt;to&gt;</span>$mobile<span class="nt">&lt;/to&gt;</span>
-    <span class="nt">&lt;subject&gt;</span>Test Rich Message<span class="nt">&lt;/subject&gt;</span>    
+    <span class="nt">&lt;subject&gt;</span>Test Rich Message<span class="nt">&lt;/subject&gt;</span>
     <span class="nt">&lt;body&gt;</span>This is some content followed by the Rich Message link @@web_link@@<span class="nt">&lt;/body&gt;</span>
     <span class="nt">&lt;web&gt;</span>
         <span class="nt">&lt;type&gt;</span>text/html<span class="nt">&lt;/type&gt;</span>
@@ -1806,7 +1806,7 @@ Authorization: Basic am9obi5zbWl0aDpteXBhc3N3b3Jk
 <span class="cp">&lt;?xml version="1.0" encoding="UTF-8" standalone="yes"?&gt;</span>
 <span class="nt">&lt;ns2:message</span> <span class="na">xmlns:ns2=</span><span class="s">"http://schemas.api.whispir.com"</span><span class="nt">&gt;</span>
     <span class="nt">&lt;to&gt;</span>$mobile<span class="nt">&lt;/to&gt;</span>
-    <span class="nt">&lt;subject&gt;</span>Test Rich Message<span class="nt">&lt;/subject&gt;</span>    
+    <span class="nt">&lt;subject&gt;</span>Test Rich Message<span class="nt">&lt;/subject&gt;</span>
     <span class="nt">&lt;body&gt;</span>This is some content followed by the Rich Message link @@web_link@@<span class="nt">&lt;/body&gt;</span>
     <span class="nt">&lt;web&gt;</span>
         <span class="nt">&lt;type&gt;</span>text/html<span class="nt">&lt;/type&gt;</span>
@@ -2271,7 +2271,7 @@ Authorization: Basic am9obi5zbWl0aDpteXBhc3N3b3Jk
       <span class="nt">&lt;emailMappingField/&gt;</span>
       <span class="nt">&lt;voiceMappingField&gt;</span>
     <span class="nt">&lt;/resource&gt;</span>
-    <span class="nt">&lt;messageTemplateId&gt;</span>  
+    <span class="nt">&lt;messageTemplateId&gt;</span>
     <span class="nt">&lt;subject&gt;&lt;/subject&gt;</span>
     <span class="nt">&lt;body&gt;&lt;/body&gt;</span>
     <span class="nt">&lt;email&gt;</span>
@@ -2583,26 +2583,80 @@ Authorization: Basic am9obi5zbWl0aDpteXBhc3N3b3Jk
     </tbody>
 </table>
 
-<h3 id="response-structure">Response Structure</h3>
-
-<p>If the request was successful, the response contains the information for the calling application to retrieve information about the message.</p>
+<h2 id="response-structure">Response Structure</h2>
 
 <blockquote>
 <blockquote>
-<p>If the dynamic message was successful, the following response will be received.</p>
+<p>If the /message call is successful, the following response will be received.</p>
 </blockquote>
 </blockquote>
 <pre><code class="highlight plaintext">HTTP 1.1 202 Accepted
-Location: https://api.whispir.com/messages/4FBBC384BCE3DAABFE3
+Location: https://api.whispir.com/messages/4FBBC384BCE3DAABFE3?apikey=&lt;your_api_key&gt;
 
 Your request has been accepted for processing.
 </code></pre>
 
+<blockquote>
+<blockquote>
+<p>The Location value in the Header contains the messageId (for the sent message) as shown in the response above.</p>
+</blockquote>
+</blockquote>
+
+<p>If the request was successful, the response contains the information for the calling application to retrieve information about the message.</p>
+
 <p>If the request was not successful, the response will contain the information about why the request could not be processed.  This will be as per the standard Whispir API response code rules.</p>
 
-<p>The outcome of this message will be a complete message with placeholder variables @@ replaced with the supplied values.</p>
+<p>In case of a dynamic message, the outcome of this message will be a complete message with placeholder variables @@ replaced with the supplied values.</p>
 
-<p>For more information about retrieving the responses and status of the sent message, refer to <a href="https://whispir.github.io/api/#message-status">message status</a> below.</p>
+<p>For more information about retrieving the responses and status of the sent message, refer to <a href="/#message-status">message status</a> below.</p>
+
+<h2 id="recipient-information">Recipient Information</h2>
+
+<p>Using the Whispir API, users can send message to either ad-hoc or predefined recipients. </p>
+
+<p>The details below describe how these can be used in the <code class="prettyprint">&lt;to&gt;</code> field for any type of message.</p>
+
+<p><strong>For ad-hoc recipients:</strong></p>
+
+<p>Any valid E-mail address</p>
+
+<ul>
+<li><to>jsmtih@test.com</to></li>
+</ul>
+
+<p>Any valid Mobile number for SMS or Voice calls (countrycode prefixed)</p>
+
+<ul>
+<li><to>61423589146,6596624876</to></li>
+</ul>
+
+<p>Any valid Landline number for Voice calls only (countrycode prefixed)</p>
+
+<ul>
+<li><to>6197468794</to></li>
+</ul>
+
+<p><strong>For pre-entered Whispir recipients:</strong></p>
+
+<p>Contacts can be used as a message recipient simply by specifying any valid Whispir Contact MRI</p>
+
+<ul>
+<li><to>John_Smith.782749@Contact.whispir.com</to></li>
+</ul>
+
+<p>Users can be used as a message recipient simply by specifying any valid Whispir User MRI</p>
+
+<ul>
+<li><to>John_Smith@User.whispir.com</to></li>
+</ul>
+
+<p>Distribution Lists can be used as a message recipient simply by specifying any valid Whispir Distribution List MRI</p>
+
+<ul>
+<li><to>Crisis_Management.Critical_Incident_Management@list.project.whispir.com</to></li>
+</ul>
+
+<p>Each of these can be found by using the Whispir API to search for the resource type and locate the MRI field in the response.</p>
 
         <h1 id="message-status">Message Status</h1>
 
