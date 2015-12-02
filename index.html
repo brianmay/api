@@ -191,7 +191,7 @@ An API key will be generated for this application automatically.  You&rsquo;ll n
 <p>Connect to the API</p>
 
 <blockquote>
-<p>Using the information on the left, you can execute the following curl statment: </p>
+<p>Using the information on the left, you can execute the following curl statement: </p>
 </blockquote>
 </blockquote>
 <pre><code class="highlight shell">curl -H <span class="s2">"Authorization: &lt;Your Authorization Header&gt;"</span> 
@@ -1069,40 +1069,45 @@ Content-Type: application/vnd.whispir.contact-v2+xml
 <p>API Endpoint</p>
 
 <blockquote>
-<ul>
-<li>generic</li>
-</ul>
+<p>The following calls describe how to access messages from within your workspaces</p>
 </blockquote>
 </blockquote>
-<pre><code class="highlight xml">https://api.whispir.com/messages/?apikey=<span class="nt">&lt;your_api_key&gt;</span>
+<pre><code class="highlight xml"><span class="c">&lt;!-- From the default workspace --&gt;</span>
+
+https://api.whispir.com/messages/?apikey=<span class="nt">&lt;your_api_key&gt;</span>
 Content-Type: application/vnd.whispir.message-v1+xml
 </code></pre>
-<pre><code class="highlight go"><span class="n">https</span><span class="o">:</span><span class="c">//api.whispir.com/messages/?apikey=&lt;your_api_key&gt;</span><span class="x">
+<pre><code class="highlight go"><span class="c">// From the default workspace</span><span class="x">
+
+</span><span class="n">https</span><span class="o">:</span><span class="c">//api.whispir.com/messages/?apikey=&lt;your_api_key&gt;</span><span class="x">
+</span><span class="n">Content</span><span class="o">-</span><span class="n">Type</span><span class="o">:</span><span class="x"> </span><span class="n">application</span><span class="o">/</span><span class="n">vnd</span><span class="o">.</span><span class="n">whispir</span><span class="o">.</span><span class="n">message</span><span class="o">-</span><span class="n">v1</span><span class="o">+</span><span class="n">json</span><span class="x">
+</span></code></pre>
+<pre><code class="highlight xml"><span class="c">&lt;!-- Or from a defined workspace --&gt;</span>
+
+https://api.whispir.com/workspaces/{:id}/messages/?apikey=<span class="nt">&lt;your_api_key&gt;</span>
+Content-Type: application/vnd.whispir.message-v1+xml
+</code></pre>
+<pre><code class="highlight go"><span class="c">// Or from a defined workspace</span><span class="x">
+
+</span><span class="n">https</span><span class="o">:</span><span class="c">//api.whispir.com/workspaces/{:id}/messages/?apikey=&lt;your_api_key&gt;</span><span class="x">
 </span><span class="n">Content</span><span class="o">-</span><span class="n">Type</span><span class="o">:</span><span class="x"> </span><span class="n">application</span><span class="o">/</span><span class="n">vnd</span><span class="o">.</span><span class="n">whispir</span><span class="o">.</span><span class="n">message</span><span class="o">-</span><span class="n">v1</span><span class="o">+</span><span class="n">json</span><span class="x">
 </span></code></pre>
 
 <blockquote>
 <blockquote>
-<ul>
-<li>limited to a workspace</li>
-</ul>
+<p>The following resource types are supported for messages.</p>
 </blockquote>
 </blockquote>
-<pre><code class="highlight xml">https://api.whispir.com/workspaces/{:id}/messages/?apikey=<span class="nt">&lt;your_api_key&gt;</span>
-Content-Type: application/vnd.whispir.message-v1+xml
-</code></pre>
-<pre><code class="highlight go"><span class="n">https</span><span class="o">:</span><span class="c">//api.whispir.com/workspaces/{:id}/messages/?apikey=&lt;your_api_key&gt;</span><span class="x">
-</span><span class="n">Content</span><span class="o">-</span><span class="n">Type</span><span class="o">:</span><span class="x"> </span><span class="n">application</span><span class="o">/</span><span class="n">vnd</span><span class="o">.</span><span class="n">whispir</span><span class="o">.</span><span class="n">message</span><span class="o">-</span><span class="n">v1</span><span class="o">+</span><span class="n">json</span><span class="x">
-</span></code></pre>
-<pre><code class="highlight plaintext">&gt; Resource type
-
-- application/vnd.whispir.message-v1+xml
+<pre><code class="highlight plaintext">- application/vnd.whispir.message-v1+xml
 - application/vnd.whispir.message-v1+json
+</code></pre>
 
-
-&gt; Methods supported
-
-- GET
+<blockquote>
+<blockquote>
+<p>The following methods are supported for the messages endpoint.</p>
+</blockquote>
+</blockquote>
+<pre><code class="highlight plaintext">- GET
 - POST
 - DELETE
 </code></pre>
@@ -2664,40 +2669,45 @@ Your request has been accepted for processing.
 <p>API Endpoint</p>
 
 <blockquote>
-<ul>
-<li>generic</li>
-</ul>
+<p>The following calls describe how to access message status information from within your message resource</p>
 </blockquote>
 </blockquote>
-<pre><code class="highlight xml">https://api.whispir.com/messages/{:messageId}/messagestatus/?apikey=<span class="nt">&lt;your_api_key&gt;</span>
+<pre><code class="highlight xml"><span class="c">&lt;!-- From the default workspace --&gt;</span>
+
+https://api.whispir.com/messages/{:messageId}/messagestatus/?apikey=<span class="nt">&lt;your_api_key&gt;</span>
 Content-Type: application/vnd.whispir.messagestatus-v1+xml
 </code></pre>
-<pre><code class="highlight go"><span class="n">https</span><span class="o">:</span><span class="c">//api.whispir.com/messages/{:messageId}/messagestatus/?apikey=&lt;your_api_key&gt;</span><span class="x">
+<pre><code class="highlight go"><span class="c">//From the default workspace</span><span class="x">
+
+</span><span class="n">https</span><span class="o">:</span><span class="c">//api.whispir.com/messages/{:messageId}/messagestatus/?apikey=&lt;your_api_key&gt;</span><span class="x">
+</span><span class="n">Content</span><span class="o">-</span><span class="n">Type</span><span class="o">:</span><span class="x"> </span><span class="n">application</span><span class="o">/</span><span class="n">vnd</span><span class="o">.</span><span class="n">whispir</span><span class="o">.</span><span class="n">messagestatus</span><span class="o">-</span><span class="n">v1</span><span class="o">+</span><span class="n">json</span><span class="x">
+</span></code></pre>
+<pre><code class="highlight xml"><span class="c">&lt;!-- or from a defined workspace --&gt;</span>
+
+https://api.whispir.com/workspaces/{:id}/messages/{:messageId}/messagestatus/?apikey=<span class="nt">&lt;your_api_key&gt;</span>
+Content-Type: application/vnd.whispir.messagestatus-v1+xml
+</code></pre>
+<pre><code class="highlight go"><span class="c">//or from a defined workspace</span><span class="x">
+
+</span><span class="n">https</span><span class="o">:</span><span class="c">//api.whispir.com/workspaces/{:id}/messages/{:messageId}/messagestatus/?apikey=&lt;your_api_key&gt;</span><span class="x">
 </span><span class="n">Content</span><span class="o">-</span><span class="n">Type</span><span class="o">:</span><span class="x"> </span><span class="n">application</span><span class="o">/</span><span class="n">vnd</span><span class="o">.</span><span class="n">whispir</span><span class="o">.</span><span class="n">messagestatus</span><span class="o">-</span><span class="n">v1</span><span class="o">+</span><span class="n">json</span><span class="x">
 </span></code></pre>
 
 <blockquote>
 <blockquote>
-<ul>
-<li>limited to a workspace</li>
-</ul>
+<p>The following resource types are supported for messages status</p>
 </blockquote>
 </blockquote>
-<pre><code class="highlight xml">https://api.whispir.com/workspaces/{:id}/messages/{:messageId}/messagestatus/?apikey=<span class="nt">&lt;your_api_key&gt;</span>
-Content-Type: application/vnd.whispir.messagestatus-v1+xml
-</code></pre>
-<pre><code class="highlight go"><span class="n">https</span><span class="o">:</span><span class="c">//api.whispir.com/workspaces/{:id}/messages/{:messageId}/messagestatus/?apikey=&lt;your_api_key&gt;</span><span class="x">
-</span><span class="n">Content</span><span class="o">-</span><span class="n">Type</span><span class="o">:</span><span class="x"> </span><span class="n">application</span><span class="o">/</span><span class="n">vnd</span><span class="o">.</span><span class="n">whispir</span><span class="o">.</span><span class="n">messagestatus</span><span class="o">-</span><span class="n">v1</span><span class="o">+</span><span class="n">json</span><span class="x">
-</span></code></pre>
-<pre><code class="highlight plaintext">&gt; Resource type
-
-- application/vnd.whispir.messagestatus-v1+xml
+<pre><code class="highlight plaintext">- application/vnd.whispir.messagestatus-v1+xml
 - application/vnd.whispir.messagestatus-v1+json
+</code></pre>
 
-
-&gt; Methods supported
-
-- GET
+<blockquote>
+<blockquote>
+<p>The following methods are supported for the message status endpoint</p>
+</blockquote>
+</blockquote>
+<pre><code class="highlight plaintext">- GET
 </code></pre>
 
 <p>Whispir will automatically monitor the status of each message after it has been sent to each recipient.  Using the message status information, you are able to determine who received the message, what exact time they received it, on what message channel (SMS, Email, Voice, Web, Push Notification), whether they replied to the message, what time they replied, and on what messaging channel.</p>
@@ -11672,9 +11682,13 @@ Content-Type: application/vnd.whispir.import-v1+xml
 
 <h3 id="create-a-resource-specifying-the-contact-information">Create a resource specifying the contact information</h3>
 
-<p>Applications can upload a valid CSV, XML or JSON resource containing the contact information that will be imported into the Whispir Platform. Whispir will return the resource ID which can be used to import or update contacts within a workspace through the imports endpoint as described below.</p>
+<blockquote>
+<p>Sample Data File</p>
 
-<h4 id="request-structure">Request Structure</h4>
+<blockquote>
+<p>The following data file could be produced or created from data in your internal system that needs to be imported into Whispir.</p>
+</blockquote>
+</blockquote>
 <pre><code class="highlight xml"><span class="cp">&lt;?xml version="1.0" encoding="UTF-8" standalone="yes"?&gt;</span>
 <span class="nt">&lt;ns2:import</span> <span class="na">xmlns:ns2=</span><span class="s">"http://schemas.api.whispir.com"</span> 
              <span class="na">xmlns:ns3=</span><span class="s">"http://schemas.api.whispir.com/dap"</span><span class="nt">&gt;</span>
@@ -11717,6 +11731,26 @@ Content-Type: application/vnd.whispir.import-v1+xml
 </span><span class="p">}</span><span class="x">
 </span></code></pre>
 
+<blockquote>
+<blockquote>
+<p>The data could alternatively be provided in a CSV format</p>
+</blockquote>
+</blockquote>
+<pre><code class="highlight plaintext">firstName,lastName,workEmailAddress1,workMobilePhone1,workCountry,timezone
+John,Smith,john.smith@testcompany.com,61423456789,Australia,+10
+Jane,Smith,jane.smith@testcompany,com,61498765432,Australia,+10
+</code></pre>
+
+<blockquote>
+<blockquote>
+<p>You can then use the <code class="prettyprint">/resources</code> endpoint to upload this information as a Resource in Whispir.</p>
+</blockquote>
+</blockquote>
+
+<p>Applications can upload a valid CSV, XML or JSON resource containing the contact information that will be imported into the Whispir Platform. Whispir will return the resource ID which can be used to import or update contacts within a workspace through the imports endpoint as described below.</p>
+
+<h4 id="request-structure">Request Structure</h4>
+
 <p>Firstly, the application needs to upload a resource using the Creating Resources.</p>
 
 <p>The resource that needs to be provided for contact importing should be in one the following format:</p>
@@ -11726,21 +11760,19 @@ Content-Type: application/vnd.whispir.import-v1+xml
 <li>JSON</li>
 <li>CSV</li>
 </ul>
-<pre><code class="highlight plaintext">&gt; &gt; CSV format
-
-firstName,lastName,workEmailAddress1,workMobilePhone1,workCountry,timezone
-John,Smith,john.smith@testcompany.com,61423456789,Australia,+10
-Jane,Smith,jane.smith@testcompany,com,61498765432,Australia,+10
-</code></pre>
 
 <p>Once this resource has been imported with the appropriate mime type, the application can reference this resource within the import request.</p>
 
 <h3 id="import-a-resource-using-the-imports-endpoint">Import a resource using the imports endpoint</h3>
-<pre><code class="highlight plaintext">&gt; Import
 
-&gt; &gt; Doing an import by mapping the respective data columns to contact fields
+<blockquote>
+<p>Import</p>
 
-HTTP 1.1 POST https://api.whispir.com/imports?apikey=DFD0FD90u809SDF90832FDS
+<blockquote>
+<p>Doing an import by mapping the respective data columns to contact fields</p>
+</blockquote>
+</blockquote>
+<pre><code class="highlight plaintext">HTTP 1.1 POST https://api.whispir.com/imports?apikey=DFD0FD90u809SDF90832FDS
 Authorization: Basic asdf98nf89asdvasd2r398h8sdf
 Accept: application/vnd.whispir.import-v1+json
 
@@ -11749,20 +11781,24 @@ Accept: application/vnd.whispir.import-v1+json
     "importType" : "contact",
     "importOptions": {
         "fieldMapping" : {
-            "firstName": "name",
-            "lastName": "surname",
-            "workMobilePhone1": "work_mobile",
-            "country": "Australia",
-            "timezone": "+10"
+            "firstName": "firstName",
+            "lastName": "lastName",
+            "workMobilePhone1": "workEmailAddress1",
+            "workCountry": "workCountry",
+            "timezone": "timezone"
         },
         "importMode" : "replace"
     }
 
 }
 </code></pre>
-<pre><code class="highlight plaintext">&gt; &gt; If the request was successful, the response contains the information for the calling application to retrieve information about the import process that has been started.
 
-...
+<blockquote>
+<blockquote>
+<p>If the request was successful, the response contains the information for the calling application to retrieve information about the import process that has been started.</p>
+</blockquote>
+</blockquote>
+<pre><code class="highlight plaintext">...
 HTTP 1.1 202 Accepted
 ...
 </code></pre>
@@ -11853,10 +11889,8 @@ HTTP 1.1 202 Accepted
             </td>
         </tr>
         <tr>
-            <td style="text-align: left; font-weight: bold;" colspan="2">importMode</td>
-        </tr>
-        <tr>
-            <td colspan="2">
+            <td style="text-align: right; font-weight: bold;">importMode</td>
+            <td>
                 Description
                 <ul>
                     <li>
@@ -11878,10 +11912,8 @@ HTTP 1.1 202 Accepted
             </td>
         </tr>
         <tr>
-            <td style="text-align: left; font-weight: bold;" colspan="2">fieldMapping</td>
-        </tr>
-        <tr>
-            <td colspan="2">
+            <td style="text-align: right; font-weight: bold;">fieldMapping</td>
+            <td>
                 Description
                 <ul>
                     <li>
@@ -11994,7 +12026,7 @@ The complete listing of Contact fields are defined within the [contacts](https:/
                 </ul>
                 Sample value
                 <ul>
-                    <li>Australia</li>
+                    <li>workCountry</li>
                 </ul>
             </td>
         </tr>
@@ -12015,7 +12047,7 @@ The complete listing of Contact fields are defined within the [contacts](https:/
                 </ul>
                 Sample value
                 <ul>
-                    <li> +10 </li>
+                    <li>timezone</li>
                 </ul>
             </td>
         </tr>
