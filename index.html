@@ -7389,80 +7389,161 @@ Whispir Support
 
 <h2 id="sending-custom-parameters-in-callback-response">Sending custom parameters in callback response</h2>
 
+<blockquote>
+<p>Custom Parameters in callback response</p>
+
+<blockquote>
+<p>a single callback parameter</p>
+</blockquote>
+</blockquote>
+<pre><code class="highlight plaintext">HTTP 1.1 POST https://api.whispir.com/messages?apikey=[your_key]
+Authorization: Basic am9obi5zbWl0aDpteXBhc3N3b3Jk
+</code></pre>
+<pre><code class="highlight go"><span class="n">Content</span><span class="o">-</span><span class="n">Type</span><span class="o">:</span><span class="x"> </span><span class="n">application</span><span class="o">/</span><span class="n">vnd</span><span class="o">.</span><span class="n">whispir</span><span class="o">.</span><span class="n">message</span><span class="o">-</span><span class="n">v1</span><span class="o">+</span><span class="n">json</span><span class="x">
+</span><span class="p">{</span><span class="x">
+   </span><span class="s">"to"</span><span class="x"> </span><span class="o">:</span><span class="x"> </span><span class="s">"$mobile"</span><span class="p">,</span><span class="x">
+   </span><span class="s">"subject"</span><span class="x"> </span><span class="o">:</span><span class="x"> </span><span class="s">"Test SMS"</span><span class="p">,</span><span class="x">
+   </span><span class="s">"body"</span><span class="x"> </span><span class="o">:</span><span class="x"> </span><span class="s">"This is the SMS"</span><span class="p">,</span><span class="x">
+   </span><span class="s">"callbackId"</span><span class="x"> </span><span class="o">:</span><span class="x"> </span><span class="s">"Sample Callback 1"</span><span class="p">,</span><span class="x">
+   </span><span class="s">"callbackParameters"</span><span class="x"> </span><span class="o">:</span><span class="x"> </span><span class="p">{</span><span class="x">
+      </span><span class="s">"CustomID"</span><span class="x"> </span><span class="o">:</span><span class="x"> </span><span class="s">"890h0ef0fe09efw90e0jsdj0"</span><span class="x">
+   </span><span class="p">}</span><span class="x">
+</span><span class="p">}</span><span class="x">
+
+</span></code></pre>
+<pre><code class="highlight xml">Content-Type: application/vnd.whispir.message-v1+xml
+
+<span class="cp">&lt;?xml version="1.0" encoding="UTF-8" standalone="yes"?&gt;</span>
+<span class="nt">&lt;ns2:message</span> <span class="na">xmlns:ns2=</span><span class="s">"http://schemas.api.whispir.com"</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;to&gt;</span>$mobile<span class="nt">&lt;/to&gt;</span>
+    <span class="nt">&lt;subject&gt;</span>Test SMS<span class="nt">&lt;/subject&gt;</span>
+    <span class="nt">&lt;body&gt;</span>This is the SMS<span class="nt">&lt;/body&gt;</span>
+    <span class="nt">&lt;callbackId&gt;</span>Sample Callback 1<span class="nt">&lt;/callbackId&gt;</span>
+    <span class="nt">&lt;callbackParameters&gt;</span>
+        <span class="nt">&lt;CustomId&gt;</span>890h0ef0fe09efw90e0jsdj0<span class="nt">&lt;/CustomId&gt;</span>
+    <span class="nt">&lt;/callbackParameters&gt;</span>
+<span class="nt">&lt;/ns2:message&gt;</span> 
+</code></pre>
+
 <p>The callback API also provides a way to pass in customparameters which can be returned as is via the callback response.</p>
 
-<p>To explain in simple scenario driven terms –</p>
+<p>To explain in simple scenario driven terms;</p>
 
 <ul>
 <li>App sends a POST /messages request to Whispir for sending a message to the Customer</li>
-<li>App gets a location, messageID over a 202</li>
+<li>App gets a location, messageID with responseCode as <code class="prettyprint">202</code>. Means the message is received by Whispir successfully.</li>
 <li>Whispir Queues the request and executes it at the next execution cycle (usually immediate)</li>
+</ul>
+
+<p>then </p>
+
+<ul>
 <li>Customer receives the message and responds to it</li>
 <li>Whispir receives the message and pushes the response to App via the callback URI</li>
+</ul>
+
+<p>then</p>
+
+<ul>
 <li>App needs to identify who is the customer that has responded</li>
 <li>App uses the messageID provided earlier (in step 2) to cross check and identify</li>
 </ul>
 
-<p>As evident in the scenario, messageID plays a key role in identifying the message – response chain. Rather than using the Whispir provided messageID, the App can send in its own customparameters like customerID or a unique hash that corresponds to a specific transaction, or just about anything that can be a unique value in the perspective of the App. </p>
+<p>As evident in the scenario, messageID plays a key role in identifying the message – response chain. </p>
 
-<p>Whispir shall take note of these customparameters, and when the response is returned via the callback URI, these parameters are also added to the payload. </p>
+<p>However, rather than using just the Whispir provided messageID, the App can send in its own custom parameters like customerID or a unique hash that corresponds to a specific transaction, or just about anything that can be a unique value in the perspective of the App. </p>
+
+<p>Whispir shall take note of these custom parameters, and when the response is returned via the callback URI, these parameters are also added to the payload. These custom parameters are sent along with the message request as <code class="prettyprint">callbackParameters</code> object.</p>
 
 <p>This makes it easy for the App to identify the user data from the single / multiple / follow-on response of a conversation.</p>
-<pre><code class="highlight plaintext">HTTP 1.1 POST /messages
-Content-Type: application/vnd.whispir.message-v1+json
-{
-   "to" : "0423556682",
-   "subject" : "Test SMS",
-   "body" : "This is the SMS",
-   "callbackId" : "This is my callback",
-   **"callbackParameters" : {**
-      **"CustomID" : "890h0ef0fe09efw90e0jsdj0"**
-   **}**
-}
 
-</code></pre>
-
-<p>The data is provided via the ‘callbackParameters&rsquo; param and it is an array format with each data unit set in a name, value pair.
+<p>The data provided via the ‘callbackParameters&rsquo; param and it is an object format with each data unit set in a name, value pair.
 If there are more than one set of values, the data shall be sent in the following way –</p>
-<pre><code class="highlight plaintext">HTTP 1.1 POST /messages
-Content-Type: application/vnd.whispir.message-v1+json
 
-{
-   "to" : "0423556682",
-   "subject" : "Test SMS",
-   "body" : "This is the SMS",
-   "callbackId" : "This is my callback",
-   **"callbackParameters" : {
-      "CustomID" : "890h0ef0fe09efw90e0jsdj0",
-      "CustomID2" : "9ef0fe09efw90e0jsdjsd43fw"
-   }**
-}
+<blockquote>
+<blockquote>
+<p>multiple callback parameters</p>
+</blockquote>
+</blockquote>
+<pre><code class="highlight plaintext">HTTP 1.1 POST https://api.whispir.com/messages?apikey=[your_key]
+Authorization: Basic am9obi5zbWl0aDpteXBhc3N3b3Jk
+</code></pre>
+<pre><code class="highlight go"><span class="n">Content</span><span class="o">-</span><span class="n">Type</span><span class="o">:</span><span class="x"> </span><span class="n">application</span><span class="o">/</span><span class="n">vnd</span><span class="o">.</span><span class="n">whispir</span><span class="o">.</span><span class="n">message</span><span class="o">-</span><span class="n">v1</span><span class="o">+</span><span class="n">json</span><span class="x">
 
+</span><span class="p">{</span><span class="x">
+   </span><span class="s">"to"</span><span class="x"> </span><span class="o">:</span><span class="x"> </span><span class="s">"$mobile"</span><span class="p">,</span><span class="x">
+   </span><span class="s">"subject"</span><span class="x"> </span><span class="o">:</span><span class="x"> </span><span class="s">"Test SMS"</span><span class="p">,</span><span class="x">
+   </span><span class="s">"body"</span><span class="x"> </span><span class="o">:</span><span class="x"> </span><span class="s">"This is the SMS"</span><span class="p">,</span><span class="x">
+   </span><span class="s">"callbackId"</span><span class="x"> </span><span class="o">:</span><span class="x"> </span><span class="s">"This is my callback"</span><span class="p">,</span><span class="x">
+   </span><span class="s">"callbackParameters"</span><span class="x"> </span><span class="o">:</span><span class="x"> </span><span class="p">{</span><span class="x">
+      </span><span class="s">"CustomID"</span><span class="x"> </span><span class="o">:</span><span class="x"> </span><span class="s">"890h0ef0fe09efw90e0jsdj0"</span><span class="p">,</span><span class="x">
+      </span><span class="s">"CustomID2"</span><span class="x"> </span><span class="o">:</span><span class="x"> </span><span class="s">"9ef0fe09efw90e0jsdjsd43fw"</span><span class="x">
+   </span><span class="p">}</span><span class="x">
+</span><span class="p">}</span><span class="x">
+
+</span></code></pre>
+<pre><code class="highlight xml">Content-Type: application/vnd.whispir.message-v1+xml
+
+<span class="cp">&lt;?xml version="1.0" encoding="UTF-8" standalone="yes"?&gt;</span>
+<span class="nt">&lt;ns2:message</span> <span class="na">xmlns:ns2=</span><span class="s">"http://schemas.api.whispir.com"</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;to&gt;</span>$mobile<span class="nt">&lt;/to&gt;</span>
+    <span class="nt">&lt;subject&gt;</span>Test SMS<span class="nt">&lt;/subject&gt;</span>
+    <span class="nt">&lt;body&gt;</span>This is the SMS<span class="nt">&lt;/body&gt;</span>
+    <span class="nt">&lt;callbackId&gt;</span>Sample Callback 1<span class="nt">&lt;/callbackId&gt;</span>
+    <span class="nt">&lt;callbackParameters&gt;</span>
+        <span class="nt">&lt;CustomId&gt;</span>890h0ef0fe09efw90e0jsdj0<span class="nt">&lt;/CustomId&gt;</span>
+        <span class="nt">&lt;CustomId2&gt;</span>9ef0fe09efw90e0jsdjsd43fw<span class="nt">&lt;/CustomId2&gt;</span>
+    <span class="nt">&lt;/callbackParameters&gt;</span>
+<span class="nt">&lt;/ns2:message&gt;</span> 
 </code></pre>
 
 <p>In the <code class="prettyprint">Response</code>, The callback shall include these passed params. Below is an example response –</p>
-<pre><code class="highlight plaintext">HTTP 1.1 POST https://yourserver/callback.php
-Content-Type: application/json
-{
-    "messageId":"ABC4857BCCF4CA",
-    "location" : "https://api.whispir.com/messages/ABC4857BCCF4CA",
-    "from":{
-          "name":"Fred Waters",
-          "mri":"Fred_Waters.528798.Sandbox@Contact.whispir.com",
-          "mobile":"0430984567",
-          "email":"imacros@test.com",
-          "voice":"0761881564"
-         },
-    "responseMessage":{
-           "channel":"SMS",
-           "acknowledged":"09/01/13 13:22",
-           "content":"Yes, I accept. Will I need to bring steel cap boots?"
-    },
-    **"customParamters" : [{
-        "CustomID" : "890h0ef0fe09efw90e0jsdj0",
-        "CustomID2" : "9ef0fe09efw90e0jsdjsd43fw"
-    }]**
-}
+<pre><code class="highlight go"><span class="n">HTTP</span><span class="x"> </span><span class="m">1.1</span><span class="x"> </span><span class="n">POST</span><span class="x"> </span><span class="n">https</span><span class="o">:</span><span class="c">//yourserver/callback.php</span><span class="x">
+</span><span class="n">Content</span><span class="o">-</span><span class="n">Type</span><span class="o">:</span><span class="x"> </span><span class="n">application</span><span class="o">/</span><span class="n">json</span><span class="x">
+
+</span><span class="p">{</span><span class="x">
+    </span><span class="s">"messageId"</span><span class="o">:</span><span class="s">"ABC4857BCCF4CA"</span><span class="p">,</span><span class="x">
+    </span><span class="s">"location"</span><span class="x"> </span><span class="o">:</span><span class="x"> </span><span class="s">"https://api.whispir.com/messages/ABC4857BCCF4CA"</span><span class="p">,</span><span class="x">
+    </span><span class="s">"from"</span><span class="o">:</span><span class="p">{</span><span class="x">
+          </span><span class="s">"name"</span><span class="o">:</span><span class="s">"Fred Waters"</span><span class="p">,</span><span class="x">
+          </span><span class="s">"mri"</span><span class="o">:</span><span class="s">"Fred_Waters.528798.Sandbox@Contact.whispir.com"</span><span class="p">,</span><span class="x">
+          </span><span class="s">"mobile"</span><span class="o">:</span><span class="s">"0430984567"</span><span class="p">,</span><span class="x">
+          </span><span class="s">"email"</span><span class="o">:</span><span class="s">"imacros@test.com"</span><span class="p">,</span><span class="x">
+          </span><span class="s">"voice"</span><span class="o">:</span><span class="s">"0761881564"</span><span class="x">
+         </span><span class="p">},</span><span class="x">
+    </span><span class="s">"responseMessage"</span><span class="o">:</span><span class="p">{</span><span class="x">
+           </span><span class="s">"channel"</span><span class="o">:</span><span class="s">"SMS"</span><span class="p">,</span><span class="x">
+           </span><span class="s">"acknowledged"</span><span class="o">:</span><span class="s">"09/01/13 13:22"</span><span class="p">,</span><span class="x">
+           </span><span class="s">"content"</span><span class="o">:</span><span class="s">"Yes, I accept. Will I need to bring steel cap boots?"</span><span class="x">
+    </span><span class="p">},</span><span class="x">
+    </span><span class="s">"callbackParameters"</span><span class="x"> </span><span class="o">:</span><span class="x"> </span><span class="p">{</span><span class="x">
+        </span><span class="s">"CustomID"</span><span class="x"> </span><span class="o">:</span><span class="x"> </span><span class="s">"890h0ef0fe09efw90e0jsdj0"</span><span class="p">,</span><span class="x">
+        </span><span class="s">"CustomID2"</span><span class="x"> </span><span class="o">:</span><span class="x"> </span><span class="s">"9ef0fe09efw90e0jsdjsd43fw"</span><span class="x">
+    </span><span class="p">}</span><span class="x">
+</span><span class="p">}</span><span class="x">
+</span></code></pre>
+<pre><code class="highlight xml">Content-Type: application/xml
+
+<span class="nt">&lt;ns2:deliveryresponse</span> <span class="na">xmlns:ns2=</span><span class="s">"http://schemas.api.whispir.com"</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;messageid&gt;</span>ABC4857BCCF484575FCA<span class="nt">&lt;/messageid&gt;</span>
+    <span class="nt">&lt;messageLocation&gt;</span>https://api.whispir.com/messages/ABC4857BCCF484575FCA<span class="nt">&lt;/messageLocation&gt;</span>
+    <span class="nt">&lt;from&gt;</span>
+        <span class="nt">&lt;name&gt;</span>Fred Waters<span class="nt">&lt;/name&gt;</span> 
+        <span class="nt">&lt;mri&gt;</span>Fred_Waters.528798.Sandbox@Contact.whispir.com<span class="nt">&lt;/mri&gt;</span> 
+        <span class="nt">&lt;mobile&gt;</span>$mobile<span class="nt">&lt;/mobile&gt;</span> 
+        <span class="nt">&lt;email&gt;</span>me@example.com<span class="nt">&lt;/email&gt;</span> 
+        <span class="nt">&lt;voice&gt;</span>$mobile<span class="nt">&lt;/voice&gt;</span> 
+    <span class="nt">&lt;/from&gt;</span> 
+    <span class="nt">&lt;responsemessage&gt;</span> 
+        <span class="nt">&lt;channel&gt;</span>SMS<span class="nt">&lt;/channel&gt;</span> 
+        <span class="nt">&lt;acknowledged&gt;</span>09/01/13 13:22<span class="nt">&lt;/acknowledged&gt;</span> 
+        <span class="nt">&lt;content&gt;</span>Yes, I accept. Will I need to bring steel cap boots?<span class="nt">&lt;/content&gt;</span> 
+    <span class="nt">&lt;/responsemessage&gt;</span>
+    <span class="nt">&lt;callbackParameters&gt;</span>
+        <span class="nt">&lt;CustomId&gt;</span>890h0ef0fe09efw90e0jsdj0<span class="nt">&lt;/CustomId&gt;</span>
+        <span class="nt">&lt;CustomId2&gt;</span>9ef0fe09efw90e0jsdjsd43fw<span class="nt">&lt;/CustomId2&gt;</span>
+    <span class="nt">&lt;/callbackParameters&gt;</span>
+<span class="nt">&lt;/ns2:deliveryresponse&gt;</span>
 </code></pre>
 
 <p><em>Note</em>: 
