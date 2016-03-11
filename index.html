@@ -7220,11 +7220,11 @@ X-Whispir-Callback-Key: MY_AUTH_TOKEN
 
 <p>Whispir Callbacks have been designed to be simple, yet secure.</p>
 
-<p>In order to make your Callback Server processing much safer, whispir recommends the following security measures:</p>
+<p>In order to make your Callback Server processing much safer, Whispir strictly recommends the following security measures:</p>
 
 <ul>
-<li>Use SSL on your Callback URL</li>
-<li>IP Whitelisting for Whispir&rsquo;s IP address</li>
+<li>Secure your communications by use of SSL on your Callback Service URL (HTTPS)</li>
+<li>SSLv3 support is deprecated. So, only use a TLS cert that is approved by an accredited certificate authority (NOT self signed).</li>
 <li>Use an unique token</li>
 </ul>
 
@@ -7271,6 +7271,10 @@ X-Whispir-Callback-Key: MY_AUTH_TOKEN
 </ul>
 
 <p>When these are enabled, any reply or failed delivery will cause a <code class="prettyprint">GET</code> request to be invoked on the Callback URL.</p>
+
+<aside class="notice">
+Whispir does not allow/support client certificates use for Callbacks.
+</aside>
 
 <h2 id="retrieving-callbacks">Retrieving Callbacks</h2>
 
