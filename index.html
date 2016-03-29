@@ -191,24 +191,24 @@ An API key will be generated for this application automatically.  You&rsquo;ll n
 <p>Connect to the API</p>
 
 <blockquote>
-<p>Using the information on the left, you can execute the following curl statement: </p>
+<p>Using the information on the left, you can execute the following curl statement:</p>
 </blockquote>
 </blockquote>
-<pre><code class="highlight shell">curl -H <span class="s2">"Authorization: &lt;Your Authorization Header&gt;"</span> 
+<pre><code class="highlight shell">curl -H <span class="s2">"Authorization: &lt;Your Authorization Header&gt;"</span>
      https://api.whispir.com?apikey<span class="o">=</span>&lt;Your App API Key&gt;
 
 <span class="c"># with sample values</span>
 
 curl -H <span class="s2">"Authorization: Basic am9obi5zbWl0aDpteXBhc3N3b3Jk"</span>  
-     https://api.whispir.com?apikey<span class="o">=</span>89asdfohasd89023rsd 
+     https://api.whispir.com?apikey<span class="o">=</span>89asdfohasd89023rsd
 
 <span class="c"># If all is correct, the following response should be expected (The API defaults to an XML response)</span>
 
 &lt;?xml <span class="nv">version</span><span class="o">=</span><span class="s2">"1.0"</span> <span class="nv">encoding</span><span class="o">=</span><span class="s2">"UTF-8"</span> <span class="nv">standalone</span><span class="o">=</span><span class="s2">"yes"</span>?&gt;
-&lt;ns2:company <span class="nv">xmlns</span><span class="o">=</span><span class="s2">"http://schemas.api.whispir.com/dap"</span> 
+&lt;ns2:company <span class="nv">xmlns</span><span class="o">=</span><span class="s2">"http://schemas.api.whispir.com/dap"</span>
              xmlns:ns2<span class="o">=</span><span class="s2">"http://schemas.api.whispir.com"</span>&gt;
-    &lt;link <span class="nv">method</span><span class="o">=</span><span class="s2">"GET"</span> 
-          <span class="nv">rel</span><span class="o">=</span><span class="s2">"retrieveWorkspaces"</span> 
+    &lt;link <span class="nv">method</span><span class="o">=</span><span class="s2">"GET"</span>
+          <span class="nv">rel</span><span class="o">=</span><span class="s2">"retrieveWorkspaces"</span>
           <span class="nv">uri</span><span class="o">=</span><span class="s2">"https://api.whispir.com/workspaces?apikey=89asdfohasd89023rsd"</span>/&gt;
     ...
 &lt;/ns2:company&gt;
@@ -218,16 +218,16 @@ curl -H <span class="s2">"Authorization: Basic am9obi5zbWl0aDpteXBhc3N3b3Jk"</sp
 
 <p><strong>Whispir uses Basic HTTP Authentication for all API requests.</strong></p>
 
-<p>You can generate the Authorization header in most programming languages very easily, however for simplicity you can generate it here by filling in the form below. </p>
+<p>You can generate the Authorization header in most programming languages very easily, however for simplicity you can generate it here by filling in the form below.</p>
 
-<p><strong>Note:</strong> Your Whispir authentication information is not submitted or stored, it is only used as part of an algorithm to automatically generate your header. </p>
+<p><strong>Note:</strong> Your Whispir authentication information is not submitted or stored, it is only used as part of an algorithm to automatically generate your header.</p>
 
-<p><strong>Whispir Username:</strong>&nbsp;<input id="username" name="username" style="width: 60%; margin-bottom: 3px;" type="text"> <br/>
-<strong>Whispir Password:</strong>&nbsp;<input id="password" name="password" style="width: 60%" type="password"></p>
+<p>Whispir Username:<br/><input id="username" name="username" style="width: 60%; margin-bottom: 3px;" type="text"> <br/>
+Whispir Password:<br/><input id="password" name="password" style="width: 60%" type="password"></p>
 
 <p><button onclick="doEncode()" name="encode" id="encode">Generate your Authorization Header</button></p>
 
-<p><strong>Authorization Header:</strong>&nbsp;<input id="result" name="result" style="width: 60%" type="text"> <br/></p>
+<p>Authorization Header:<br/><input id="result" name="result" style="width: 60%" type="text"> <br/></p>
 
 <p>Once you have generated this header, you can use it in a request to the API. This will ensure everything is working correctly. To do this you can use a programming lanugage, a curl script, or a generic REST client.</p>
 
@@ -316,14 +316,14 @@ curl -H <span class="s2">"Authorization: Basic am9obi5zbWl0aDpteXBhc3N3b3Jk"</sp
 <p>Send your first message using curl.</p>
 </blockquote>
 </blockquote>
-<pre><code class="highlight shell">curl -H <span class="s2">"Authorization: Basic &lt;YOUR AUTH HEADER&gt;"</span> 
-     -H <span class="s2">"Content-Type: application/vnd.whispir.message-v1+json"</span> 
-     -H <span class="s2">"Accept: application/vnd.whispir.message-v1+json"</span> 
-     -d <span class="s1">'{ 
+<pre><code class="highlight shell">curl -H <span class="s2">"Authorization: Basic &lt;YOUR AUTH HEADER&gt;"</span>
+     -H <span class="s2">"Content-Type: application/vnd.whispir.message-v1+json"</span>
+     -H <span class="s2">"Accept: application/vnd.whispir.message-v1+json"</span>
+     -d <span class="s1">'{
             "to": "&lt;DESTINATION PHONE NUMBER(S)&gt;",
             "subject": "This is the first line of my SMS",
             "body": "This is the content of my SMS"
-         }'</span> 
+         }'</span>
      https://api.whispir.com/messages?apikey<span class="o">=</span>&lt;YOUR API KEY&gt;
 </code></pre>
 
@@ -339,11 +339,11 @@ curl -H <span class="s2">"Authorization: Basic am9obi5zbWl0aDpteXBhc3N3b3Jk"</sp
 
 <p>By now you should be able to connect to the API and can issue requests and receive responses. Based on this, you can now send your first SMS message using the API.</p>
 
-<p>This is very similar to the previous request you executed to test your connectivity, but instead of using an <strong>HTTP GET</strong> to retrieve information, this time you&rsquo;re going to use an <strong>HTTP POST</strong> to ask Whispir to do something. </p>
+<p>This is very similar to the previous request you executed to test your connectivity, but instead of using an <strong>HTTP GET</strong> to retrieve information, this time you&rsquo;re going to use an <strong>HTTP POST</strong> to ask Whispir to do something.</p>
 
 <p>As you&rsquo;re sending a message, you need to tell Whispir <em>who</em> to send it to, and <em>what</em> the type of content it is.</p>
 
-<p>You&rsquo;re going to use the URL <code class="prettyprint">https://api.whispir.com/messages</code> as the API endpoint. </p>
+<p>You&rsquo;re going to use the URL <code class="prettyprint">https://api.whispir.com/messages</code> as the API endpoint.</p>
 
 <h3 id="content-type">Content Type</h3>
 
@@ -361,7 +361,7 @@ Authorization: Basic am9obi5zbWl0aDpteXBhc3N3b3Jk
 </span><span class="n">Accept</span><span class="o">:</span><span class="x"> </span><span class="n">application</span><span class="o">/</span><span class="n">vnd</span><span class="o">.</span><span class="n">whispir</span><span class="o">.</span><span class="n">message</span><span class="o">-</span><span class="n">v1</span><span class="o">+</span><span class="n">json</span><span class="x">
 
 </span><span class="p">{</span><span class="x">
-    </span><span class="s">"to"</span><span class="o">:</span><span class="x"> </span><span class="s">"&lt;DESTINATION PHONE NUMBER&gt;"</span><span class="p">,</span><span class="x"> 
+    </span><span class="s">"to"</span><span class="o">:</span><span class="x"> </span><span class="s">"&lt;DESTINATION PHONE NUMBER&gt;"</span><span class="p">,</span><span class="x">
     </span><span class="s">"subject"</span><span class="o">:</span><span class="x"> </span><span class="s">"This is the first line of my SMS"</span><span class="p">,</span><span class="x">
     </span><span class="s">"body"</span><span class="o">:</span><span class="x"> </span><span class="s">"This is the content of my SMS"</span><span class="x">
 </span><span class="p">}</span><span class="x">
@@ -374,7 +374,7 @@ Accept: application/vnd.whispir.message-v1+xml
     <span class="nt">&lt;to&gt;</span>[DESTINATION PHONE NUMBER]<span class="nt">&lt;/to&gt;</span>
     <span class="nt">&lt;subject&gt;</span>This is the first line of my SMS<span class="nt">&lt;/subject&gt;</span>    
     <span class="nt">&lt;body&gt;</span>This is the content of my SMS<span class="nt">&lt;/body&gt;</span>
-<span class="nt">&lt;/ns2:message&gt;</span> 
+<span class="nt">&lt;/ns2:message&gt;</span>
 
 </code></pre>
 
@@ -12861,17 +12861,15 @@ The complete listing of Contact fields are defined within the [contacts](https:/
     </tbody>
 </table>
 
-        <h1 id="other-resources">Other Resources</h1>
+        <h1 id="contact-us">Contact Us</h1>
 
-<aside class="notice">
-    Updated 9 September 2015
-</aside>
+<p>As much as we try to keep this documentation up to date, it&rsquo;s possible that some features are not listed or aren&rsquo;t completely documented.</p>
 
-<p>This API documentation is being migrated from <a href="https://developer.whispir.com/docs">https://developer.whispir.com/docs</a>.</p>
+<p>If you cannot find the information you&rsquo;re after, or you generally have a question you&rsquo;d like to ask, please send us an email at <a href="mailto:support@whispir.io">support@whispir.io</a>, or tweet @whispir.</p>
 
-<p>If the information about the resource you are looking for is not yet listed here, please check the previous documentation.</p>
+<p>Thanks!</p>
 
-<p>If you still cannot find the information you&rsquo;re after, please send us an email at <a href="mailto:support@whispir.io">support@whispir.io</a>.</p>
+<p>The Whispir.io Team</p>
 
       </div>
       <div class="dark-box">
