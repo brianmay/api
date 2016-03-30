@@ -2111,7 +2111,7 @@ Authorization: Basic am9obi5zbWl0aDpteXBhc3N3b3Jk
 </span><span class="p">}</span><span class="x">
 </span></code></pre>
 
-<h3 id="scheduling-messages-to-be-delivered-later">Scheduling messages to be delivered later</h3>
+<h3 id="scheduling-messages-to-be-delivered-later">Scheduling messages to be <strong>delivered later</strong></h3>
 
 <p>Using the Whispir API, users can schedule messages to be sent later.</p>
 
@@ -2120,10 +2120,10 @@ Authorization: Basic am9obi5zbWl0aDpteXBhc3N3b3Jk
 <p>For example. the code will schedule a single message to be delivered at 3:55pm on the 14th February 2017.</p>
 
 <ul>
-<li>Using this method, messages can be easily scheduled so that the message is delivered when the recipient requires it.</li>
+<li>Using this method, messages can be easily scheduled so that the message is delivered when the recipient requires it. Or based on their preference time of day.</li>
 </ul>
 
-<h3 id="scheduling-messages-for-repeated-delivery">Scheduling messages for repeated delivery</h3>
+<h3 id="scheduling-messages-for-repeated-delivery">Scheduling messages for <strong>repeated delivery</strong></h3>
 
 <blockquote>
 <blockquote>
@@ -2171,7 +2171,7 @@ Authorization: Basic am9obi5zbWl0aDpteXBhc3N3b3Jk
 </span><span class="p">}</span><span class="x">
 </span></code></pre>
 
-<p>A second method of scheduling messages, users can schedule messages to be sent multiple times (e.g. every hour, every day or every 7 days).</p>
+<p>A second method of scheduling messages is where users can schedule messages to be sent multiple times/repeatedly (e.g. every hour, every day or every 7 days).</p>
 
 <p>Users can configure the repeat rate of the message delivery as part of the message sendout.</p>
 
@@ -2180,6 +2180,26 @@ Authorization: Basic am9obi5zbWl0aDpteXBhc3N3b3Jk
 <ul>
 <li>Using this method, users can easily schedule a message to be delivered multiple times starting from a date and continuing until desired.</li>
 </ul>
+
+<h3 id="time-zone"><strong>Time Zone</strong></h3>
+
+<p>When a message is scheduled, it is scheduled as per the timezone setting of the user who initiated the message request. Each user in Whispir has a timezone set in their profile. So, messages are sent relative to the user&rsquo;s timezone, not from the timezone from where the user is located now.</p>
+
+<p>For ex:</p>
+
+<ul>
+<li>If the user timezone setting is UTC, then messages are scheduled to be sent as per UTC, even if the user has triggered the message sitting in Singapore (+8). </li>
+</ul>
+
+<p>This is very important and has to be understood as Whispir does not honor the timezone the recipient is located in. So ensure that communication is sent in appropriate/preferred time given by them.</p>
+
+<p><em>Note:</em> Changing the user timezone after the message is triggered DOES NOT change the original scheduled time.</p>
+
+<h3 id="bulk-sending"><strong>Bulk Sending</strong></h3>
+
+<p>Both of the schedule types are also allowed in bulk messaging. You can upload a <a href="#resources">resource</a> and trigger a <a href="#dynamic-&amp;-bulk-messages">bulk message</a> to be sent using that resource at a scheduled time. </p>
+
+<p>However, at this point of time, Whispir does not allow each message row inside the resource file to be sent at different time. They should all be sent at once.</p>
 
 <h2 id="message-variables">Message Variables</h2>
 
@@ -2367,7 +2387,7 @@ Authorization: Basic am9obi5zbWl0aDpteXBhc3N3b3Jk
 
 <p>Each of these system tags will resolve on send of the message to the system information.  The system tags will only work when sending messages to any recipient.</p>
 
-<h2 id="dynamic-messages">Dynamic Messages</h2>
+<h2 id="dynamic-&amp;-bulk-messages">Dynamic &amp; Bulk Messages</h2>
 
 <blockquote>
 <p>Dynamic Messages</p>
@@ -7115,7 +7135,26 @@ The expected response to this call is an <strong>HTTP 201 - Created</strong>.</p
 <li>This is the only time a GET request is made. Subsequent requests (callbacks) will all be POST requests.</li>
 </ol>
 
-<h3 id="callback-authorization">Callback Authorization</h3>
+<h3 id="callback-creation-error"><strong>Callback creation Error</strong></h3>
+
+<p>Usually callback creation is simple and straight forward. But you may face errors at times when the configuration details given in the API are malformed.</p>
+
+<h4 id="400-malformed-error"><em>400 Malformed Error</em></h4>
+
+<p>This is the common error that you may face when creating a callback. If you get this issue, then check for the following:</p>
+
+<ol>
+<li>Read the error detail in the response body. It will give you the hint on what the issue is - immediately.</li>
+<li>Is the callback URL reachable from outside of your intranet ? Try again one more time from outside of your network.</li>
+<li><p>Is the response for a GET request to the URL a 200? Try it in your browser and see what is the status you get in the Network tab of Developer Tools (F12). Or you may use cURL.</p>
+
+<p>a. If the GET request does not receive a 200 response, Whispir will consider the Callback creation request a failure and throws a 400 Malformed Request.</p>
+
+<p>b. The &ldquo;request&rdquo; is malformed - in the sense that the URL given is not working and so a bad configuration/malformed detail is given to Whispir.</p></li>
+<li><p>A callback with the same name already exists in the Whispir under your account.</p></li>
+</ol>
+
+<h3 id="callback-authorization"><strong>Callback Authorization</strong></h3>
 
 <blockquote>
 <p>Callback Authorization</p>
@@ -7233,9 +7272,9 @@ X-Whispir-Callback-Key: MY_AUTH_TOKEN
 
 <p>There are two options for the location of this Authorization Token:</p>
 
-<h4 id="http-header">HTTP Header</h4>
+<h4 id="1.-http-header">1. HTTP Header</h4>
 
-<p>Using an HTTP Header for authorisation is the preferred approach. This method will use a custom HTTP Header <strong>X-Whispir-Callback-Key</strong>.</p>
+<p>Using an HTTP Header for authorisation is the preferred approach. This method will use a custom HTTP Header <em>X-Whispir-Callback-Key</em>.</p>
 
 <p>This can be added to the callback by specifying the code block:</p>
 
@@ -7243,13 +7282,13 @@ X-Whispir-Callback-Key: MY_AUTH_TOKEN
 
 <p>Every request to the specified URL will include the supplied AUTH Token within this Header.  Alternatively, this could be supplied as a query parameter as follows.</p>
 
-<h4 id="url-query-parameter">URL Query Parameter</h4>
+<h4 id="2.-url-query-parameter">2. URL Query Parameter</h4>
 
 <p>In this method, the Authorization will be passed to the callback server on the query string using an &#39;Auth&rsquo; parameter as follows:</p>
 
 <p><code class="prettyprint">&quot;auth&quot; : { &quot;type&quot; : &quot;querystring&quot;, &quot;key&quot; : &quot;MY_AUTH_TOKEN&quot; }</code></p>
 
-<h3 id="callback-types">Callback Types</h3>
+<h3 id="callback-types"><strong>Callback Types</strong></h3>
 
 <p>Callbacks can be added to any message that is sent from the Whispir API using the <code class="prettyprint">/messages</code> endpoint.</p>
 
