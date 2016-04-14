@@ -17,6 +17,21 @@
           setupLanguages(["go","xml"]);
         });
       </script>
+    <script>
+      //This is Google's default GA code
+      (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+      m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+      })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+      ga('create', 'UA-7856627-21', 'auto');
+      ga('send', 'pageview');
+      //This does hash-click tracking (inspired by http://stackoverflow.com/a/4813223)
+      $(document).ready(function() {
+        $('.tocify-item a').on('click', function(){
+          ga('send', 'pageview', {'page': location.pathname + location.search  + location.hash});
+        });
+      });
+    </script>
   </head>
 
   <body class="index">
@@ -12918,14 +12933,5 @@ The complete listing of Contact fields are defined within the [contacts](https:/
           </div>
       </div>
     </div>
-    <script>
-      (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-      m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-      })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
-      ga('create', 'UA-7856627-21', 'auto');
-      ga('send', 'pageview');
-    </script>
-    
   </body>
 </html>
