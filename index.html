@@ -98,6 +98,7 @@
 /users
 /customlists
 /callbacks
+/callbacks/:id/calls
 /workspaces
 </code></pre>
 
@@ -6940,15 +6941,19 @@ Authorization: Basic asdf98nf89asdvasd2r398h8sdf
 
         <h1 id="callbacks">Callbacks</h1>
 
-<p>Whispir utilises API Callbacks to send simple notifications to different registered services in the event that some change has occurred on the Whispir Platform. Callback in Whispir is akin to Web Hooks. The benefits of callback are -</p>
+<p>Whispir utilises API Callbacks to send simple notifications to different registered services in the event that some change has occurred on the Whispir Platform.</p>
+
+<p>Callbacks are used widely in web applications to transfer information that may become avialable at some point in the future.  These are sometimes referred to as &lsquo;webhooks&rsquo;.</p>
+
+<p>The benefits of using api callbacks are:</p>
 
 <ul>
-<li>Whispir will instantly notify your callback server when there is change occured in Whispir platform.</li>
+<li>Whispir will instantly notify your callback server when there is change occurred in Whispir platform.</li>
 <li>You save on your daily API call limits by NOT having to call the /messageresponses or /messagestatus endpoints.</li>
 <li>Response based workflows can be built quickly and effectively.</li>
 </ul>
 
-<p><em>Callback word is termed to make understand the point that Whispir will call you back on your callback server.</em></p>
+<p><em>The word &#39;Callback&rsquo; is termed to help users understand that Whispir will call you back when data is made available.</em></p>
 
 <p>So, it is you who creates an endpoint (a page in your application) that Whispir shall callback upon an event happening. That endpoint can simply be your existing application (as mentioned earlier) or another application that needs/processes the response information.</p>
 
@@ -6967,49 +6972,48 @@ An example callback that your application or service would receive is specified 
 </code></pre>
 <pre><code class="highlight xml">Content-Type: application/xml
 
+<span class="cp">&lt;?xml version="1.0" encoding="UTF-8" standalone="yes"?&gt;</span>
 <span class="nt">&lt;ns2:deliveryResponse</span> <span class="na">xmlns:ns2=</span><span class="s">"http://schemas.api.whispir.com"</span><span class="nt">&gt;</span>
-    <span class="nt">&lt;messageId&gt;</span>ABC4857BCCF484575FCA<span class="nt">&lt;/messageId&gt;</span>
-    <span class="nt">&lt;messageLocation&gt;</span>https://api.whispir.com/messages/ABC4857BCCF484575FCA<span class="nt">&lt;/messageLocation&gt;</span>
-    <span class="nt">&lt;from&gt;</span>
-        <span class="nt">&lt;name&gt;</span>Fred Waters<span class="nt">&lt;/name&gt;</span>
-        <span class="nt">&lt;mri&gt;</span>Fred_Waters.528798.Sandbox@Contact.whispir.com<span class="nt">&lt;/mri&gt;</span>
-        <span class="nt">&lt;mobile&gt;</span>$mobile<span class="nt">&lt;/mobile&gt;</span>
-        <span class="nt">&lt;email&gt;</span>me@example.com<span class="nt">&lt;/email&gt;</span>
-        <span class="nt">&lt;voice&gt;</span>$mobile<span class="nt">&lt;/voice&gt;</span>
-    <span class="nt">&lt;/from&gt;</span>
-    <span class="nt">&lt;responseMessage&gt;</span>
-        <span class="nt">&lt;channel&gt;</span>SMS<span class="nt">&lt;/channel&gt;</span>
-        <span class="nt">&lt;acknowledged&gt;</span>09/01/13 13:22<span class="nt">&lt;/acknowledged&gt;</span>
-        <span class="nt">&lt;content&gt;</span>Yes, I accept. Will I need to bring steel cap boots?<span class="nt">&lt;/content&gt;</span>
-    <span class="nt">&lt;/responseMessage&gt;</span>
+  <span class="nt">&lt;messageid&gt;</span>ABC4857BCCF484575FCA<span class="nt">&lt;/messageid&gt;</span>
+  <span class="nt">&lt;messagelocation&gt;</span>https://api.whispir.com/messages/ABC4857BCCF484575FCA<span class="nt">&lt;/messagelocation&gt;</span>
+  <span class="nt">&lt;from&gt;</span>
+      <span class="nt">&lt;name&gt;</span>Fred Waters<span class="nt">&lt;/name&gt;</span>
+      <span class="nt">&lt;mri&gt;</span>Fred_Waters.528798.Sandbox@Contact.whispir.com<span class="nt">&lt;/mri&gt;</span>
+      <span class="nt">&lt;mobile&gt;</span>$mobile<span class="nt">&lt;/mobile&gt;</span>
+      <span class="nt">&lt;email&gt;</span>me@example.com<span class="nt">&lt;/email&gt;</span>
+      <span class="nt">&lt;voice&gt;</span>$mobile<span class="nt">&lt;/voice&gt;</span>
+  <span class="nt">&lt;/from&gt;</span>
+  <span class="nt">&lt;responseMessage&gt;</span>
+      <span class="nt">&lt;channel&gt;</span>SMS<span class="nt">&lt;/channel&gt;</span>
+      <span class="nt">&lt;acknowledged&gt;</span>09/01/16 13:22<span class="nt">&lt;/acknowledged&gt;</span>
+      <span class="nt">&lt;content&gt;</span>Yes, I accept. Will I need to bring steel cap boots?<span class="nt">&lt;/content&gt;</span>
+  <span class="nt">&lt;/responseMessage&gt;</span>
 <span class="nt">&lt;/ns2:deliveryResponse&gt;</span>
 </code></pre>
 <pre><code class="highlight go"><span class="n">Content</span><span class="o">-</span><span class="n">Type</span><span class="o">:</span><span class="x"> </span><span class="n">application</span><span class="o">/</span><span class="n">json</span><span class="x">
 </span><span class="p">{</span><span class="x">
-    </span><span class="s">"messageId"</span><span class="o">:</span><span class="s">"ABC4857BCCF484575FCA"</span><span class="p">,</span><span class="x">
-    </span><span class="s">"messageLocation"</span><span class="x"> </span><span class="o">:</span><span class="x"> </span><span class="s">"https://api.whispir.com/messages/ABC4857BCCF484575FCA"</span><span class="p">,</span><span class="x">
-    </span><span class="s">"from"</span><span class="o">:</span><span class="p">{</span><span class="x">
-          </span><span class="s">"name"</span><span class="o">:</span><span class="s">"Fred Waters"</span><span class="p">,</span><span class="x">
-          </span><span class="s">"mri"</span><span class="o">:</span><span class="s">"Fred_Waters.528798.Sandbox@Contact.whispir.com"</span><span class="p">,</span><span class="x">
-          </span><span class="s">"mobile"</span><span class="o">:</span><span class="s">"$mobile"</span><span class="p">,</span><span class="x">
-          </span><span class="s">"email"</span><span class="o">:</span><span class="s">"me@example.com"</span><span class="p">,</span><span class="x">
-          </span><span class="s">"voice"</span><span class="o">:</span><span class="s">"$mobile"</span><span class="x">
-         </span><span class="p">},</span><span class="x">
-    </span><span class="s">"responseMessage"</span><span class="o">:</span><span class="p">{</span><span class="x">
-           </span><span class="s">"channel"</span><span class="o">:</span><span class="s">"SMS"</span><span class="p">,</span><span class="x">
-           </span><span class="s">"acknowledged"</span><span class="o">:</span><span class="s">"09/01/13 13:22"</span><span class="p">,</span><span class="x">
-           </span><span class="s">"content"</span><span class="o">:</span><span class="s">"Yes, I accept. Will I need to bring steel cap boots?"</span><span class="x">
-    </span><span class="p">}</span><span class="x">
+  </span><span class="s">"messageid"</span><span class="o">:</span><span class="s">"ABC4857BCCF484575FCA"</span><span class="p">,</span><span class="x">
+  </span><span class="s">"messagelocation"</span><span class="x"> </span><span class="o">:</span><span class="x"> </span><span class="s">"https://api.whispir.com/messages/ABC4857BCCF484575FCA"</span><span class="p">,</span><span class="x">
+  </span><span class="s">"from"</span><span class="o">:</span><span class="p">{</span><span class="x">
+    </span><span class="s">"name"</span><span class="o">:</span><span class="s">"Fred Waters"</span><span class="p">,</span><span class="x">
+    </span><span class="s">"mri"</span><span class="o">:</span><span class="s">"Fred_Waters.528798.Sandbox@Contact.whispir.com"</span><span class="p">,</span><span class="x">
+    </span><span class="s">"mobile"</span><span class="o">:</span><span class="s">"$mobile"</span><span class="p">,</span><span class="x">
+    </span><span class="s">"email"</span><span class="o">:</span><span class="s">"me@example.com"</span><span class="p">,</span><span class="x">
+    </span><span class="s">"voice"</span><span class="o">:</span><span class="s">"$mobile"</span><span class="x">
+  </span><span class="p">},</span><span class="x">
+  </span><span class="s">"responseMessage"</span><span class="o">:</span><span class="p">{</span><span class="x">
+    </span><span class="s">"channel"</span><span class="o">:</span><span class="s">"SMS"</span><span class="p">,</span><span class="x">
+    </span><span class="s">"acknowledged"</span><span class="o">:</span><span class="s">"09/01/16 13:22"</span><span class="p">,</span><span class="x">
+    </span><span class="s">"content"</span><span class="o">:</span><span class="s">"Yes, I accept. Will I need to bring steel cap boots?"</span><span class="x">
+  </span><span class="p">}</span><span class="x">
 </span><span class="p">}</span><span class="x">
 </span></code></pre>
 
 <p>Callbacks allow custom applications to register URLs with Whispir that are used for notifications when certain events occur e.g. a response to a message is received, or a message was undeliverable.</p>
 
-<p><br/><img src="http://developer.whispir.com/files/Whispir_API_diagram.png"/><br/></p>
+<p><br/><p style="text-align: center"><img src="http://developer.whispir.com/files/Whispir_API_diagram.png"/><br/></p></p>
 
 <p>Whispir&rsquo;s Callback Service will forward the content of each message response, along with some associated metadata to a URL that the user has pre-registered to receive this information.</p>
-
-<p><strong>Note:</strong> Whispir does not check for a response from this callback server. On setup, it is expected that the callback server will respond with a 200 OK to a GET request. Any error response sent from this callback server during general use is not considered. Users should not expect callbacks to be re-tried on error.</p>
 
 <p>Some other points to follow -</p>
 
@@ -7017,7 +7021,7 @@ An example callback that your application or service would receive is specified 
 <li>Always use a domain name for the callback. Do NOT use an IP.</li>
 <li>Ensure that your callback server is reachable on the internet. It should not be <code class="prettyprint">localhost</code> or an intranet only application that cannot be reached from the WWW.</li>
 <li>Limit the port to 80 or 443. Do no use any other ports.</li>
-<li>Depending on the type chosen &lsquo;json&rsquo; or &#39;xml&rsquo; for the Content-Type, whispir would make a similar GET (and subsequently POST) calls. So, please ensure that your your web server is configured to handle such MIME type.</li>
+<li>Depending on the type chosen &#39;json&rsquo; or &#39;xml&rsquo; for the Content-Type, whispir would make a similar GET (and subsequently POST) calls. So, please ensure that your your web server is configured to handle such MIME type.</li>
 <li>Most importantly, if your application infrastructure is behind a firewall, then make sure that the firewall allows an incoming POST request.</li>
 </ol>
 
@@ -7041,14 +7045,16 @@ Authorization: Basic am9obi5zbWl0aDpteXBhc3N3b3Jk
     <span class="nt">&lt;name&gt;</span>Callback Name<span class="nt">&lt;/name&gt;</span>
     <span class="nt">&lt;url&gt;</span>http://myserver.com/mycallback.php<span class="nt">&lt;/url&gt;</span>
     <span class="nt">&lt;auth&gt;</span>
-        <span class="nt">&lt;key&gt;</span>MY_AUTH_KEY<span class="nt">&lt;/key&gt;</span>
-        <span class="nt">&lt;type&gt;</span>querystring<span class="nt">&lt;/type&gt;</span>
+      <span class="nt">&lt;key&gt;</span>MY_AUTH_KEY<span class="nt">&lt;/key&gt;</span>
+      <span class="nt">&lt;type&gt;</span>querystring<span class="nt">&lt;/type&gt;</span>
     <span class="nt">&lt;/auth&gt;</span>
     <span class="nt">&lt;contentType&gt;</span>json<span class="nt">&lt;/contentType&gt;</span>
+    <span class="nt">&lt;removeHTML&gt;</span>enabled<span class="nt">&lt;/removeHTML&gt;</span>
+    <span class="nt">&lt;retriesEnabled&gt;</span>true<span class="nt">&lt;/retriesEnabled&gt;</span>
     <span class="nt">&lt;email&gt;</span>me@example.com<span class="nt">&lt;/email&gt;</span>
     <span class="nt">&lt;callbacks&gt;</span>
-        <span class="nt">&lt;reply&gt;</span>enabled<span class="nt">&lt;/reply&gt;</span>
-        <span class="nt">&lt;undeliverable&gt;</span>enabled<span class="nt">&lt;/undeliverable&gt;</span>
+      <span class="nt">&lt;reply&gt;</span>enabled<span class="nt">&lt;/reply&gt;</span>
+      <span class="nt">&lt;undeliverable&gt;</span>enabled<span class="nt">&lt;/undeliverable&gt;</span>
     <span class="nt">&lt;/callbacks&gt;</span>
 <span class="nt">&lt;/ns2:companyapicallback&gt;</span>
 </code></pre>
@@ -7062,6 +7068,8 @@ Authorization: Basic am9obi5zbWl0aDpteXBhc3N3b3Jk
     </span><span class="s">"key"</span><span class="x"> </span><span class="o">:</span><span class="x"> </span><span class="s">"MY_AUTH_KEY"</span><span class="x">
   </span><span class="p">},</span><span class="x">
   </span><span class="s">"contentType"</span><span class="x"> </span><span class="o">:</span><span class="x"> </span><span class="s">"json"</span><span class="p">,</span><span class="x">
+  </span><span class="s">"removeHTML"</span><span class="x"> </span><span class="o">:</span><span class="x"> </span><span class="s">"disabled"</span><span class="p">,</span><span class="x">
+  </span><span class="s">"retriesEnabled"</span><span class="x"> </span><span class="o">:</span><span class="x"> </span><span class="s">"true"</span><span class="p">,</span><span class="x">
   </span><span class="s">"email"</span><span class="x"> </span><span class="o">:</span><span class="x"> </span><span class="s">"me@example.com"</span><span class="p">,</span><span class="x">
   </span><span class="s">"callbacks"</span><span class="x"> </span><span class="o">:</span><span class="x"> </span><span class="p">{</span><span class="x">
     </span><span class="s">"reply"</span><span class="x"> </span><span class="o">:</span><span class="x"> </span><span class="s">"enabled"</span><span class="p">,</span><span class="x">
@@ -7123,6 +7131,28 @@ The expected response to this call is an <strong>HTTP 201 - Created</strong>.</p
             </td>
         </tr>
         <tr>
+            <td style="text-align: right; font-weight: bold;">removeHTML:</td>
+            <td><strong>String</strong><br/>
+                Specifies whether HTML should be stripped from responses.<br/><br/>
+                The choices are as follows:
+                <ul>
+                  <li>enabled</li>
+                  <li>disabled</li>
+                </ul>
+            </td>
+        </tr>
+        <tr>
+            <td style="text-align: right; font-weight: bold;">retriesEnabled:</td>
+            <td><strong>Boolean</strong><br/>
+                Specifies whether Whispir should perform retries in the event there is a failure accessing the callback service.<br/><br/>
+                The choices are as follows:
+                <ul>
+                  <li>true</li>
+                  <li>false</li>
+                </ul>
+            </td>
+        </tr>
+        <tr>
             <td style="text-align: right; font-weight: bold;">email:</td>
             <td><strong>String</strong><br/>
                 Specifies the email address where failure notifications should be sent.
@@ -7150,23 +7180,24 @@ The expected response to this call is an <strong>HTTP 201 - Created</strong>.</p
 <li>This is the only time a GET request is made. Subsequent requests (callbacks) will all be POST requests.</li>
 </ol>
 
-<h3 id="callback-creation-error"><strong>Callback creation Error</strong></h3>
+<h3 id="callback-creation-errors"><strong>Callback Creation Errors</strong></h3>
 
 <p>Usually callback creation is simple and straight forward. But you may face errors at times when the configuration details given in the API are malformed.</p>
 
-<h4 id="400-malformed-error"><em>400 Malformed Error</em></h4>
+<p><strong>400 Malformed Error</strong></p>
 
 <p>This is the common error that you may face when creating a callback. If you get this issue, then check for the following:</p>
 
 <ol>
-<li>Read the error detail in the response body. It will give you the hint on what the issue is - immediately.</li>
-<li>Is the callback URL reachable from outside of your intranet ? Try again one more time from outside of your network.</li>
-<li><p>Is the response for a GET request to the URL a 200? Try it in your browser and see what is the status you get in the Network tab of Developer Tools (F12). Or you may use cURL.</p>
-
-<p>a. If the GET request does not receive a 200 response, Whispir will consider the Callback creation request a failure and throws a 400 Malformed Request.</p>
-
-<p>b. The &ldquo;request&rdquo; is malformed - in the sense that the URL given is not working and so a bad configuration/malformed detail is given to Whispir.</p></li>
-<li><p>A callback with the same name already exists in the Whispir under your account.</p></li>
+  <li>Read the error detail in the response body. It will give you the hint on what the issue is - immediately.</li>
+  <li>Is the callback URL reachable from outside of your intranet?<br/>Try again one more time from outside of your network.</li>
+  <li>Is the response for a GET request to the URL a 200?<br/>Try it in your browser and see what is the status you get in the Network tab of Developer Tools (F12). Or you may use cURL.<br/>
+    <ul>
+      <li>If the GET request does not receive a 200 response, Whispir will consider the Callback creation request a failure and throws a 400 Malformed Request.</li>
+      <li>The &ldquo;request&rdquo; is malformed - in the sense that the URL given is not working and so a bad configuration/malformed detail is given to Whispir.</li>
+    </ul>
+  </li>
+  <li>A callback with the same name already exists in the Whispir under your account.</li>
 </ol>
 
 <h3 id="callback-authorization"><strong>Callback Authorization</strong></h3>
@@ -7188,20 +7219,21 @@ X-Whispir-Callback-Key: MY_AUTH_TOKEN
 </code></pre>
 <pre><code class="highlight xml">Content-Type: application/xml
 
+<span class="cp">&lt;?xml version="1.0" encoding="UTF-8" standalone="yes"?&gt;</span>
 <span class="nt">&lt;ns2:deliveryResponse</span> <span class="na">xmlns:ns2=</span><span class="s">"http://schemas.api.whispir.com"</span><span class="nt">&gt;</span>
-    <span class="nt">&lt;messageId&gt;</span>ABC4857BCCF484575FCA<span class="nt">&lt;/messageId&gt;</span>
-    <span class="nt">&lt;messageLocation&gt;</span>https://api.whispir.com/messages/ABC4857BCCF484575FCA<span class="nt">&lt;/messageLocation&gt;</span>
+    <span class="nt">&lt;messageid&gt;</span>ABC4857BCCF484575FCA<span class="nt">&lt;/messageid&gt;</span>
+    <span class="nt">&lt;messagelocation&gt;</span>https://api.whispir.com/messages/ABC4857BCCF484575FCA<span class="nt">&lt;/messagelocation&gt;</span>
     <span class="nt">&lt;from&gt;</span>
-        <span class="nt">&lt;name&gt;</span>Fred Waters<span class="nt">&lt;/name&gt;</span>
-        <span class="nt">&lt;mri&gt;</span>Fred_Waters.528798.Sandbox@Contact.whispir.com<span class="nt">&lt;/mri&gt;</span>
-        <span class="nt">&lt;mobile&gt;</span>$mobile<span class="nt">&lt;/mobile&gt;</span>
-        <span class="nt">&lt;email&gt;</span>me@example.com<span class="nt">&lt;/email&gt;</span>
-        <span class="nt">&lt;voice&gt;</span>$mobile<span class="nt">&lt;/voice&gt;</span>
+      <span class="nt">&lt;name&gt;</span>Fred Waters<span class="nt">&lt;/name&gt;</span>
+      <span class="nt">&lt;mri&gt;</span>Fred_Waters.528798.Sandbox@Contact.whispir.com<span class="nt">&lt;/mri&gt;</span>
+      <span class="nt">&lt;mobile&gt;</span>$mobile<span class="nt">&lt;/mobile&gt;</span>
+      <span class="nt">&lt;email&gt;</span>me@example.com<span class="nt">&lt;/email&gt;</span>
+      <span class="nt">&lt;voice&gt;</span>$mobile<span class="nt">&lt;/voice&gt;</span>
     <span class="nt">&lt;/from&gt;</span>
     <span class="nt">&lt;responseMessage&gt;</span>
-        <span class="nt">&lt;channel&gt;</span>SMS<span class="nt">&lt;/channel&gt;</span>
-        <span class="nt">&lt;acknowledged&gt;</span>09/01/13 13:22<span class="nt">&lt;/acknowledged&gt;</span>
-        <span class="nt">&lt;content&gt;</span>Yes, I accept. Will I need to bring steel cap boots?<span class="nt">&lt;/content&gt;</span>
+      <span class="nt">&lt;channel&gt;</span>SMS<span class="nt">&lt;/channel&gt;</span>
+      <span class="nt">&lt;acknowledged&gt;</span>09/01/16 13:22<span class="nt">&lt;/acknowledged&gt;</span>
+      <span class="nt">&lt;content&gt;</span>Yes, I accept. Will I need to bring steel cap boots?<span class="nt">&lt;/content&gt;</span>
     <span class="nt">&lt;/responseMessage&gt;</span>
 <span class="nt">&lt;/ns2:deliveryResponse&gt;</span>
 </code></pre>
@@ -7235,28 +7267,29 @@ X-Whispir-Callback-Key: MY_AUTH_TOKEN
 </code></pre>
 <pre><code class="highlight xml">Content-Type: application/xml
 
+<span class="cp">&lt;?xml version="1.0" encoding="UTF-8" standalone="yes"?&gt;</span>
 <span class="nt">&lt;ns2:deliveryResponse</span> <span class="na">xmlns:ns2=</span><span class="s">"http://schemas.api.whispir.com"</span><span class="nt">&gt;</span>
-    <span class="nt">&lt;messageId&gt;</span>ABC4857BCCF484575FCA<span class="nt">&lt;/messageId&gt;</span>
-    <span class="nt">&lt;messageLocation&gt;</span>https://api.whispir.com/messages/ABC4857BCCF484575FCA<span class="nt">&lt;/messageLocation&gt;</span>
+    <span class="nt">&lt;messageid&gt;</span>ABC4857BCCF484575FCA<span class="nt">&lt;/messageid&gt;</span>
+    <span class="nt">&lt;messagelocation&gt;</span>https://api.whispir.com/messages/ABC4857BCCF484575FCA<span class="nt">&lt;/messagelocation&gt;</span>
     <span class="nt">&lt;from&gt;</span>
-        <span class="nt">&lt;name&gt;</span>Fred Waters<span class="nt">&lt;/name&gt;</span>
-        <span class="nt">&lt;mri&gt;</span>Fred_Waters.528798.Sandbox@Contact.whispir.com<span class="nt">&lt;/mri&gt;</span>
-        <span class="nt">&lt;mobile&gt;</span>$mobile<span class="nt">&lt;/mobile&gt;</span>
-        <span class="nt">&lt;email&gt;</span>me@example.com<span class="nt">&lt;/email&gt;</span>
-        <span class="nt">&lt;voice&gt;</span>$mobile<span class="nt">&lt;/voice&gt;</span>
+      <span class="nt">&lt;name&gt;</span>Fred Waters<span class="nt">&lt;/name&gt;</span>
+      <span class="nt">&lt;mri&gt;</span>Fred_Waters.528798.Sandbox@Contact.whispir.com<span class="nt">&lt;/mri&gt;</span>
+      <span class="nt">&lt;mobile&gt;</span>$mobile<span class="nt">&lt;/mobile&gt;</span>
+      <span class="nt">&lt;email&gt;</span>me@example.com<span class="nt">&lt;/email&gt;</span>
+      <span class="nt">&lt;voice&gt;</span>$mobile<span class="nt">&lt;/voice&gt;</span>
     <span class="nt">&lt;/from&gt;</span>
     <span class="nt">&lt;responseMessage&gt;</span>
-        <span class="nt">&lt;channel&gt;</span>SMS<span class="nt">&lt;/channel&gt;</span>
-        <span class="nt">&lt;acknowledged&gt;</span>09/01/13 13:22<span class="nt">&lt;/acknowledged&gt;</span>
-        <span class="nt">&lt;content&gt;</span>Yes, I accept. Will I need to bring steel cap boots?<span class="nt">&lt;/content&gt;</span>
+      <span class="nt">&lt;channel&gt;</span>SMS<span class="nt">&lt;/channel&gt;</span>
+      <span class="nt">&lt;acknowledged&gt;</span>09/01/16 13:22<span class="nt">&lt;/acknowledged&gt;</span>
+      <span class="nt">&lt;content&gt;</span>Yes, I accept. Will I need to bring steel cap boots?<span class="nt">&lt;/content&gt;</span>
     <span class="nt">&lt;/responseMessage&gt;</span>
 <span class="nt">&lt;/ns2:deliveryResponse&gt;</span>
 </code></pre>
 <pre><code class="highlight go"><span class="n">Content</span><span class="o">-</span><span class="n">Type</span><span class="o">:</span><span class="x"> </span><span class="n">application</span><span class="o">/</span><span class="n">json</span><span class="x">
 
 </span><span class="p">{</span><span class="x">
-  </span><span class="s">"messageId"</span><span class="x"> </span><span class="o">:</span><span class="x"> </span><span class="s">"ABC4857BCCF484575FCA"</span><span class="p">,</span><span class="x">
-  </span><span class="s">"messageLocation"</span><span class="x"> </span><span class="o">:</span><span class="x"> </span><span class="s">"https://api.whispir.com/messages/ABC4857BCCF484575FCA"</span><span class="p">,</span><span class="x">
+  </span><span class="s">"messageid"</span><span class="x"> </span><span class="o">:</span><span class="x"> </span><span class="s">"ABC4857BCCF484575FCA"</span><span class="p">,</span><span class="x">
+  </span><span class="s">"messagelocation"</span><span class="x"> </span><span class="o">:</span><span class="x"> </span><span class="s">"https://api.whispir.com/messages/ABC4857BCCF484575FCA"</span><span class="p">,</span><span class="x">
   </span><span class="s">"from"</span><span class="x"> </span><span class="o">:</span><span class="x"> </span><span class="p">{</span><span class="x">
     </span><span class="s">"name"</span><span class="x"> </span><span class="o">:</span><span class="x"> </span><span class="s">"Fred Waters"</span><span class="p">,</span><span class="x">
     </span><span class="s">"mri"</span><span class="x"> </span><span class="o">:</span><span class="x"> </span><span class="s">"Fred_Waters.528798.Sandbox@Contact.whispir.com"</span><span class="p">,</span><span class="x">
@@ -7274,7 +7307,7 @@ X-Whispir-Callback-Key: MY_AUTH_TOKEN
 
 <p>Whispir Callbacks have been designed to be simple, yet secure.</p>
 
-<p>In order to make your Callback Server processing much safer, whispir recommends the following security measures:</p>
+<p>In order to make your Callback Server processing much safer, Whispir recommends the following security measures:</p>
 
 <ul>
 <li>Use SSL on your Callback URL</li>
@@ -7283,11 +7316,11 @@ X-Whispir-Callback-Key: MY_AUTH_TOKEN
 
 <p>The unique token should be an alphanumeric string generated and assigned specifically for Whispir Callbacks.</p>
 
-<p>When provided in the callback payload, Whipir will include this in every request made to the listening application. The token&rsquo;s presence ensures and confirms that the request has originated truly from Whispir.</p>
+<p>When provided in the callback payload, Whispir will include this in every request made to the listening application. The token&rsquo;s presence ensures and confirms that the request has originated truly from Whispir.</p>
 
 <p>There are two options for the location of this Authorization Token:</p>
 
-<h4 id="1.-http-header">1. HTTP Header</h4>
+<p><strong>1. HTTP Header</strong></p>
 
 <p>Using an HTTP Header for authorisation is the preferred approach. This method will use a custom HTTP Header <em>X-Whispir-Callback-Key</em>.</p>
 
@@ -7297,13 +7330,13 @@ X-Whispir-Callback-Key: MY_AUTH_TOKEN
 
 <p>Every request to the specified URL will include the supplied AUTH Token within this Header.  Alternatively, this could be supplied as a query parameter as follows.</p>
 
-<h4 id="2.-url-query-parameter">2. URL Query Parameter</h4>
+<p><strong>2. URL Query Parameter</strong></p>
 
 <p>In this method, the Authorization will be passed to the callback server on the query string using an &#39;Auth&rsquo; parameter as follows:</p>
 
 <p><code class="prettyprint">&quot;auth&quot; : { &quot;type&quot; : &quot;querystring&quot;, &quot;key&quot; : &quot;MY_AUTH_TOKEN&quot; }</code></p>
 
-<h3 id="callback-types"><strong>Callback Types</strong></h3>
+<h3 id="callback-types">Callback Types</h3>
 
 <p>Callbacks can be added to any message that is sent from the Whispir API using the <code class="prettyprint">/messages</code> endpoint.</p>
 
@@ -7436,7 +7469,7 @@ Authorization: Basic am9obi5zbWl0aDpteXBhc3N3b3Jk
         <tr>
             <td style="text-align: right; font-weight: bold;">url:</td>
             <td><strong>String</strong><br/>
-                The applciation URL that was given to the Callback at creation time.  Also the endpoint that will be used when supplying callback information.
+                The application URL that was given to the Callback at creation time.  Also the endpoint that will be used when supplying callback information.
             </td>
         </tr>
         <tr>
@@ -7489,18 +7522,20 @@ Authorization: Basic am9obi5zbWl0aDpteXBhc3N3b3Jk
 
 <p>Any responses to the above sent message will be forwarded back to the URL within the Callback named <code class="prettyprint">Sample Callback 1</code>.</p>
 
-<h2 id="callback-failures">Callback Failures</h2>
+<h2 id="handling-callback-failures">Handling Callback Failures</h2>
 
 <blockquote>
 <p>Callback Failures</p>
 
 <blockquote>
 <p>Whispir will automatically send notifications to your nominated email address in the event of a failure to access your callback server.</p>
+
+<p>When retries are enabled, the following message will be sent.</p>
 </blockquote>
 </blockquote>
 <pre><code class="highlight plaintext">Dear Customer,
 
-Your callback &lt;callback_id&gt; failed on &lt;date&gt; with response: &lt;response&gt;.
+Your callback *callback_id* failed on *date* with response: *response*.
 
 The callback that failed is as follows:
 
@@ -7512,13 +7547,21 @@ Email: me@example.com
 Channel: SMS
 Content: Yes, I accept. Will I need to bring steel cap boots?
 
-Please take the necessary steps to ensure your callback is configured correctly.
+Whispir will automatically retry any failed requests to this callback endpoint for 24 hours, after which the requests can be queried using the Whispir API for up to 30 days.
 
-If this callback URL continues to fail, Whispir may remove this until the service is resolved.
+Please take the necessary steps to ensure your callback is configured correctly.
 
 Regards,
 Whispir Support
 
+</code></pre>
+
+<blockquote>
+<blockquote>
+<p>When retries are disabled, the message will be slightly different.</p>
+</blockquote>
+</blockquote>
+<pre><code class="highlight plaintext">Retries are disabled on this callback endpoint so no retries will be attempted. Any requests can be queried using the Whispir API for up to 12 months from this notification.
 </code></pre>
 
 <p>In the event the provided callback URL could not be reached or the connection to the service times out, Whispir will automatically generate a notification to the nominated email address with the details of the failed attempt.</p>
@@ -7532,10 +7575,319 @@ Whispir Support
 <li>If the Callback Server does not return a response within 60 seconds.</li>
 </ul>
 
+<p><strong>Callback Retries</strong></p>
+
+<p>The <code class="prettyprint">retriesEnabled</code> flag can be enabled on a callback to ensure that Whispir automatically attempts to retry in the event of a failure occurring.</p>
+
+<p>When a failure conditions occurs, Whispir will mark the callback server as <em>down</em> and log the attempted callback as <em>Failed</em>.</p>
+
+<p>This callback will be attempted to be retried after ~5 minutes. If the server is available, the callbacks will automatically be processed through the server, the user doesn&rsquo;t need to take any further action.</p>
+
+<p>The following rules apply to Whispir&rsquo;s automated retries for callbacks:</p>
+
+<ul>
+<li>When a failure to make a callback occurs, Whispir will begin retries ~every 5 minutes.</li>
+<li>Whispir will retry any callback for up to 24h.</li>
+<li>After 24h, the callbacks will no longer be retried.</li>
+<li>If the callback service becomes available prior to 24h, the callbacks will automatically re-process.</li>
+<li>If the callback service takes longer than 24h, the user can access the callback information from the <code class="prettyprint">/callbacks/:id/calls</code> endpoint.</li>
+</ul>
+
+<blockquote>
+<p>Retrieving attempted calls to a callback endpoint</p>
+
+<blockquote>
+<p>The following API Methods allow you to access callback attempts via the API</p>
+</blockquote>
+</blockquote>
+<pre><code class="highlight plaintext">HTTP 1.1 GET https://api.whispir.com/callbacks/BCD374DABC73649B/calls?apikey=[your_api_key]
+Authorization: Basic am9obi5zbWl0aDpteXBhc3N3b3Jk
+</code></pre>
+<pre><code class="highlight xml">Accept: application/vnd.whispir.api-call-v1+xml
+
+<span class="cp">&lt;?xml version="1.0" encoding="UTF-8" standalone="yes"?&gt;</span>
+<span class="nt">&lt;ns2:return</span> <span class="na">xmlns:ns2=</span><span class="s">"http://schemas.api.whispir.com/dap"</span> <span class="na">xmlns:ns3=</span><span class="s">"http://schemas.api.whispir.com"</span><span class="nt">&gt;</span>
+  <span class="nt">&lt;status&gt;</span>1 to 1 of 1<span class="nt">&lt;/status&gt;</span>
+  <span class="nt">&lt;ns2:call&gt;</span>
+    <span class="nt">&lt;id&gt;</span>B3EDFE83DF389DFE<span class="nt">&lt;/id&gt;</span>
+    <span class="nt">&lt;messageId&gt;</span>ABC4857BCCF484575FCA<span class="nt">&lt;/messageId&gt;</span>
+    <span class="nt">&lt;messageLocation&gt;</span>https://api.whispir.com/messages/ABC4857BCCF484575FCA<span class="nt">&lt;/messageLocation&gt;</span>
+    <span class="nt">&lt;status&gt;</span>FAILED<span class="nt">&lt;/status&gt;</span>
+    <span class="nt">&lt;from&gt;</span>
+      <span class="nt">&lt;voice&gt;&lt;/voice&gt;</span>
+      <span class="nt">&lt;mri&gt;</span>Fred_Waters.528798.Sandbox@Contact.whispir.com<span class="nt">&lt;/mri&gt;</span>
+      <span class="nt">&lt;name&gt;</span>Fred Waters<span class="nt">&lt;/name&gt;</span>
+      <span class="nt">&lt;mobile&gt;</span>$mobile<span class="nt">&lt;/mobile&gt;</span>
+      <span class="nt">&lt;email&gt;&lt;/email&gt;</span>
+    <span class="nt">&lt;/from&gt;</span>
+    <span class="nt">&lt;responseMessage&gt;</span>
+      <span class="nt">&lt;acknowledged&gt;</span>09/01/13 13:22<span class="nt">&lt;/acknowledged&gt;</span>
+      <span class="nt">&lt;channel&gt;</span>SMS<span class="nt">&lt;/channel&gt;</span>
+      <span class="nt">&lt;content&gt;</span>Yes, I accept. Will I need to bring steel cap boots?<span class="nt">&lt;/content&gt;</span>
+    <span class="nt">&lt;/responseMessage&gt;</span>
+    <span class="nt">&lt;callback&gt;</span>
+      <span class="nt">&lt;name&gt;</span>My Callback Server<span class="nt">&lt;/name&gt;</span>
+      <span class="nt">&lt;attemptedDate&gt;</span>09/01/13 13:22<span class="nt">&lt;/attemptedDate&gt;</span>
+      <span class="nt">&lt;id&gt;</span>B384FD38DCBADE38<span class="nt">&lt;/id&gt;</span>
+      <span class="nt">&lt;url&gt;</span>https://www.myapplication.com/myapp<span class="nt">&lt;/url&gt;</span>
+      <span class="nt">&lt;statusMessage&gt;</span>Internal Server Error<span class="nt">&lt;/statusMessage&gt;</span>
+      <span class="nt">&lt;statusCode&gt;</span>500<span class="nt">&lt;/statusCode&gt;</span>
+    <span class="nt">&lt;/callback&gt;</span>
+    <span class="nt">&lt;link&gt;</span>
+      <span class="nt">&lt;uri&gt;</span>/callbacks/B384FD38DCBADE38/calls/B3EDFE83DF389DFE<span class="nt">&lt;/uri&gt;</span>
+      <span class="nt">&lt;rel&gt;</span>updateCall<span class="nt">&lt;/rel&gt;</span>
+      <span class="nt">&lt;method&gt;</span>PUT<span class="nt">&lt;/method&gt;</span>
+    <span class="nt">&lt;/link&gt;</span>
+  <span class="nt">&lt;/ns2:call&gt;</span>
+  <span class="nt">&lt;ns2:link&gt;</span>
+    <span class="nt">&lt;uri&gt;</span>/callbacks/B384FD38DCBADE38/calls?offset=20<span class="ni">&amp;amp;</span>limit=20<span class="nt">&lt;/uri&gt;</span>
+    <span class="nt">&lt;rel&gt;</span>next<span class="nt">&lt;/rel&gt;</span>
+    <span class="nt">&lt;method&gt;</span>GET<span class="nt">&lt;/method&gt;</span>
+  <span class="nt">&lt;/ns2:link&gt;</span>
+<span class="nt">&lt;/ns2:return&gt;</span>
+
+</code></pre>
+<pre><code class="highlight go"><span class="n">Accept</span><span class="o">:</span><span class="x"> </span><span class="n">application</span><span class="o">/</span><span class="n">vnd</span><span class="o">.</span><span class="n">whispir</span><span class="o">.</span><span class="n">api</span><span class="o">-</span><span class="n">callback</span><span class="o">-</span><span class="n">v1</span><span class="o">+</span><span class="n">json</span><span class="x">
+
+</span><span class="p">{</span><span class="x">
+  </span><span class="s">"status"</span><span class="o">:</span><span class="x"> </span><span class="s">"1 to 1 of 1"</span><span class="p">,</span><span class="x">
+  </span><span class="s">"calls"</span><span class="o">:</span><span class="x"> </span><span class="p">[</span><span class="x">
+    </span><span class="p">{</span><span class="x">
+      </span><span class="s">"id"</span><span class="o">:</span><span class="x"> </span><span class="s">"B3EDFE83DF389DFE"</span><span class="p">,</span><span class="x">
+      </span><span class="s">"messageId"</span><span class="o">:</span><span class="x"> </span><span class="s">"ABC4857BCCF484575FCA"</span><span class="p">,</span><span class="x">
+      </span><span class="s">"messageLocation"</span><span class="o">:</span><span class="x"> </span><span class="s">"https://api.whispir.com/messages/ABC4857BCCF484575FCA"</span><span class="p">,</span><span class="x">
+      </span><span class="s">"from"</span><span class="o">:</span><span class="x"> </span><span class="p">{</span><span class="x">
+        </span><span class="s">"name"</span><span class="o">:</span><span class="x"> </span><span class="s">"Fred Waters"</span><span class="p">,</span><span class="x">
+        </span><span class="s">"mri"</span><span class="o">:</span><span class="x"> </span><span class="s">"Fred_Waters.528798.Sandbox@Contact.whispir.com"</span><span class="p">,</span><span class="x">
+        </span><span class="s">"mobile"</span><span class="o">:</span><span class="x"> </span><span class="s">"$mobile"</span><span class="p">,</span><span class="x">
+        </span><span class="s">"email"</span><span class="o">:</span><span class="x"> </span><span class="s">""</span><span class="p">,</span><span class="x">
+        </span><span class="s">"voice"</span><span class="o">:</span><span class="x"> </span><span class="s">""</span><span class="x">
+      </span><span class="p">},</span><span class="x">
+      </span><span class="s">"responseMessage"</span><span class="o">:</span><span class="x"> </span><span class="p">{</span><span class="x">
+        </span><span class="s">"channel"</span><span class="o">:</span><span class="x"> </span><span class="s">"SMS"</span><span class="p">,</span><span class="x">
+        </span><span class="s">"acknowledged"</span><span class="o">:</span><span class="x"> </span><span class="s">"09/01/13 13:22"</span><span class="p">,</span><span class="x">
+        </span><span class="s">"content"</span><span class="o">:</span><span class="x"> </span><span class="s">"Yes, I accept. Will I need to bring steel cap boots?"</span><span class="x">
+      </span><span class="p">},</span><span class="x">
+      </span><span class="s">"callback"</span><span class="o">:</span><span class="x"> </span><span class="p">{</span><span class="x">
+        </span><span class="s">"id"</span><span class="o">:</span><span class="x"> </span><span class="s">"B384FD38DCBADE38"</span><span class="p">,</span><span class="x">
+        </span><span class="s">"name"</span><span class="o">:</span><span class="x"> </span><span class="s">"My Callback Server"</span><span class="p">,</span><span class="x">
+        </span><span class="s">"url"</span><span class="o">:</span><span class="x"> </span><span class="s">"https://www.myapplication.com/myapp"</span><span class="p">,</span><span class="x">
+        </span><span class="s">"attemptedDate"</span><span class="o">:</span><span class="x"> </span><span class="s">"09/01/13 13:22"</span><span class="p">,</span><span class="x">
+        </span><span class="s">"statusCode"</span><span class="o">:</span><span class="x"> </span><span class="m">500</span><span class="p">,</span><span class="x">
+        </span><span class="s">"statusMessage"</span><span class="o">:</span><span class="x"> </span><span class="s">"Internal Server Error"</span><span class="x">
+      </span><span class="p">},</span><span class="x">
+      </span><span class="s">"link"</span><span class="o">:</span><span class="x"> </span><span class="p">[{</span><span class="x">
+        </span><span class="s">"rel"</span><span class="o">:</span><span class="x"> </span><span class="s">"updateCall"</span><span class="p">,</span><span class="x">
+        </span><span class="s">"uri"</span><span class="o">:</span><span class="x"> </span><span class="s">"/callbacks/B384FD38DCBADE38/calls/B3EDFE83DF389DFE"</span><span class="p">,</span><span class="x">
+        </span><span class="s">"method"</span><span class="o">:</span><span class="x"> </span><span class="s">"PUT"</span><span class="x">
+      </span><span class="p">}]</span><span class="x">
+    </span><span class="p">}</span><span class="x">
+  </span><span class="p">],</span><span class="x">
+  </span><span class="s">"link"</span><span class="o">:</span><span class="x"> </span><span class="p">[{</span><span class="x">
+    </span><span class="s">"rel"</span><span class="o">:</span><span class="x"> </span><span class="s">"next"</span><span class="p">,</span><span class="x">
+    </span><span class="s">"uri"</span><span class="o">:</span><span class="x"> </span><span class="s">"/callbacks/B384FD38DCBADE38/calls?limit=20&amp;offset=20"</span><span class="p">,</span><span class="x">
+    </span><span class="s">"method"</span><span class="o">:</span><span class="x"> </span><span class="s">"GET"</span><span class="x">
+  </span><span class="p">}]</span><span class="x">
+</span><span class="p">}</span><span class="x">
+</span></code></pre>
+
+<p>To retrieve a list of attempted API calls from the Whispir API you can execute an <strong>HTTP GET</strong> using the <code class="prettyprint">/calls</code> endpoint on a specific <code class="prettyprint">callback</code>.</p>
+
+<p>You will need to supply one of the following headers (for retrieving JSON or XML):</p>
+
+<ul>
+<li>Accept: application/vnd.whispir.api-call-v1+xml</li>
+<li>Accept: application/vnd.whispir.api-call-v1+json</li>
+</ul>
+
+<p>An array of calls will be returned to you in the HTTP response body.</p>
+
+<p>Each of these calls will provide the following information:</p>
+
+<table>
+    <thead>
+        <tr>
+            <th style="width: 50%" colspan="2">Response Elements</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td style="text-align: right; font-weight: bold;">id:</td>
+            <td><strong>String</strong><br/>
+                The unique ID of the specific call within Whispir.
+            </td>
+        </tr>
+        <tr>
+            <td style="text-align: right; font-weight: bold;">messageid:</td>
+            <td><strong>String</strong><br/>
+                The unique ID of the message within Whispir.
+            </td>
+        </tr>
+        <tr>
+            <td style="text-align: right; font-weight: bold;">messagelocation:</td>
+            <td><strong>String</strong><br/>
+                The fully qualified URL to the original message within Whispir.
+            </td>
+        </tr>
+        <tr>
+            <td style="text-align: right; font-weight: bold;">status:</td>
+            <td><strong>String</strong><br/>
+                The status of this particular callback attempt. The options are:
+                <ul>
+                  <li>SUCCESS</li>
+                  <li>FAILED</li>
+                </ul>
+            </td>
+        </tr>
+        <tr>
+            <td style="text-align: right; font-weight: bold;">from:</td>
+            <td><strong>Object</strong><br/>
+                The details about this particular message sender / responder.<br/><br/>
+                The properties of this object are as follows:
+                <ul>
+                  <li>name (string): The name of the sender of this message.</li>
+                  <li>mri (string): The unique identifier for this contact within Whispir.</li>
+                  <li>mobile (string): The mobile number associated to this sender.</li>
+                  <li>voice (string): The phone number associated to the voice channel for this sender.</li>
+                  <li>email (string): The email address associated to the email channel for this sender.</li>
+                </ul>
+            </td>
+        </tr>
+        <tr>
+            <td style="text-align: right; font-weight: bold;">responseMessage:</td>
+            <td><strong>Object</strong><br/>
+                The details about this particular message that has been sent to the callback.<br/><br/>
+                The properties of this object are as follows:
+                <ul>
+                  <li>channel (string): The channel that this message was sent on. Either <strong>SMS</strong>, <strong>EMAIL</strong> or <strong>VOICE</strong>.</li>
+                  <li>acknowledged (string): The date/time that this message was acknowledged.</li>
+                  <li>undeliverable (string): The date/time that this message was marked as undeliverable.</li>
+                  <li>content (string): The content of the message.</li>
+                </ul>
+                <strong>Note:</strong> Only one of the <em>acknowledged</em> or <em>undeliverable</em> timestamps will be provided.
+            </td>
+        </tr>
+        <tr>
+            <td style="text-align: right; font-weight: bold;">callback:</td>
+            <td><strong>Object</strong><br/>
+                The details about this particular callback attempt.<br/><br/>
+                The properties of this object are as follows:
+                <ul>
+                  <li>id (string): The ID of the callback that was attempted to be invoked.</li>
+                  <li>name (string): The name of the callback server that was attempted to be invoked.</li>
+                  <li>url (string): The url of the callback server that was attempted to be invoked.</li>
+                  <li>attemptedDate (string): The date/time that the callback server was attempted to be invoked.</li>
+                  <li>statusCode (integer): The statuscode that was returned from the callback service.</li>
+                  <li>statusMessage (string): The status message that was returned from the callback service.</li>
+                </ul>
+            </td>
+        </tr>
+        <tr>
+            <td style="text-align: right; font-weight: bold;">link:</td>
+            <td><strong>Array</strong><br/>
+                Provides a list of URLs that can be used to manipulate or access the callback.
+                <ul>
+                  <li>uri - the link to access the specific callback</li>
+                  <li>rel - the descriptor for what the link will do</li>
+                  <li>method - the HTTP method to use with this particular link</li>
+                </ul>
+            </td>
+        </tr>
+    </tbody>
+</table>
+
+<p><strong>Updating the status of calls to a callback</strong></p>
+
+<p>As every call to a callback endpoint is now stored within the <code class="prettyprint">calls</code> endpoint, it&rsquo;s possible that when failed calls are successfully processed through a manual exercise, that these calls will then need to be updated to reflect the current status.</p>
+
+<p>Take the following example:</p>
+
+<ol>
+<li>Callback server becomes unavailable.</li>
+<li>A message is sent via Whispir with callbacks enabled.</li>
+<li>The Message gets a response, and this triggers the callback</li>
+<li>The callback server is unavailable, so the response is stored with a status of &#39;FAILED&rsquo;</li>
+<li>After 24h, the callback server becomes available again.  Retries have stopped, so this information will not automatically flow into the callback server.</li>
+<li>The customer writes a script to <code class="prettyprint">GET</code> all of the calls stored in the <code class="prettyprint">/calls</code> endpoint and process them.</li>
+<li>Once successfully processed, the customer&rsquo;s script should update the contents of the <code class="prettyprint">/calls</code> endpoint to reflect the current status of &#39;SUCCESS&rsquo;.</li>
+</ol>
+
+<p>This process can be facilitated with the use of a <code class="prettyprint">PUT</code> request to the <code class="prettyprint">/calls</code> endpoint in Whispir.</p>
+
+<blockquote>
+<p>Updating the status of the calls within the /calls endpoint</p>
+
+<blockquote>
+<p>The following API Methods allow you to update callback attempts via the API</p>
+</blockquote>
+</blockquote>
+<pre><code class="highlight plaintext">HTTP 1.1 PUT https://api.whispir.com/callbacks/BCD374DABC73649B/calls?apikey=[YOUR_API_KEY]&amp;id[]=YOUR_CALL_ID
+Authorization: Basic am9obi5zbWl0aDpteXBhc3N3b3Jk
+</code></pre>
+<pre><code class="highlight xml">Accept: application/vnd.whispir.api-call-v1+xml
+
+<span class="cp">&lt;?xml version="1.0" encoding="UTF-8" standalone="yes"?&gt;</span>
+<span class="nt">&lt;ns2:call</span> <span class="na">xmlns:ns2=</span><span class="s">"http://schemas.api.whispir.com/dap"</span> <span class="na">xmlns:ns3=</span><span class="s">"http://schemas.api.whispir.com"</span><span class="nt">&gt;</span>
+  <span class="nt">&lt;status&gt;</span>SUCCESS<span class="nt">&lt;/status&gt;</span>
+<span class="nt">&lt;/ns2:call&gt;</span>
+
+</code></pre>
+<pre><code class="highlight go"><span class="n">Accept</span><span class="o">:</span><span class="x"> </span><span class="n">application</span><span class="o">/</span><span class="n">vnd</span><span class="o">.</span><span class="n">whispir</span><span class="o">.</span><span class="n">api</span><span class="o">-</span><span class="n">call</span><span class="o">-</span><span class="n">v1</span><span class="o">+</span><span class="n">json</span><span class="x">
+
+</span><span class="p">{</span><span class="x">
+  </span><span class="s">"status"</span><span class="o">:</span><span class="x"> </span><span class="s">"SUCCESS"</span><span class="x">
+</span><span class="p">}</span><span class="x">
+</span></code></pre>
+
+<blockquote>
+<blockquote>
+<p>The expected response code for this process is 204 - No Content.</p>
+</blockquote>
+</blockquote>
+
+<p>To update a list of attempted API calls from the Whispir API you can execute an <strong>HTTP PUT</strong> using the <code class="prettyprint">/calls</code> endpoint on a specific <code class="prettyprint">callback</code>.</p>
+
+<p>You will need to supply one of the following headers (for retrieving JSON or XML):</p>
+
+<ul>
+<li>Accept: application/vnd.whispir.api-call-v1+xml</li>
+<li>Accept: application/vnd.whispir.api-call-v1+json</li>
+</ul>
+
+<p>The expected response code for this operation is <strong>204 - No Content</strong></p>
+
+<p>Users can specify multiple IDs to be updated using the following notation:</p>
+
+<p><code class="prettyprint">/callbacks/:id/calls?id=ID1&amp;id=ID2&amp;id=ID3...</code></p>
+
+<p>This ensures that all callbacks that have been processed can be updated in a single API call, rather than having to make a single API call per callback attempt.</p>
+
+<p>The <strong>PUT</strong> request takes a single API parameter in the body:</p>
+
+<table>
+  <thead>
+      <tr>
+          <th style="width: 50%" colspan="2">Request Elements</th>
+      </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="text-align: right; font-weight: bold;">status:</td>
+      <td><strong>String</strong><br/>
+          The status to update the attempted calls to:
+          <ul>
+            <li>SUCCESS</li>
+            <li>FAILED</li>
+          </ul>
+      </td>
+    </tr>
+  </tbody>
+</table>
+
 <h2 id="callback-parameters">Callback Parameters</h2>
 
 <blockquote>
-<p>callback parameters in callback response</p>
+<p>Callback Parameters within a Callback Response</p>
 
 <blockquote>
 <p>a single callback parameter</p>
@@ -7622,7 +7974,7 @@ Authorization: Basic am9obi5zbWl0aDpteXBhc3N3b3Jk
 
 <ul>
 <li>App sends a POST /messages request to Whispir for sending a message to the Customer</li>
-<li>App gets a location, messageID with responseCode as <code class="prettyprint">202</code>. Means the message is received by Whispir successfully.</li>
+<li>App gets a location, messageid with responseCode as <code class="prettyprint">202</code>. Means the message is received by Whispir successfully.</li>
 <li>Whispir Queues the request and executes it at the next execution cycle (usually immediate)</li>
 </ul>
 
@@ -7637,12 +7989,12 @@ Authorization: Basic am9obi5zbWl0aDpteXBhc3N3b3Jk
 
 <ul>
 <li>App needs to identify who is the customer that has responded</li>
-<li>App uses the messageID provided earlier (in step 2) to cross check and identify</li>
+<li>App uses the messageid provided earlier (in step 2) to cross check and identify</li>
 </ul>
 
-<p>As evident in the scenario, messageID plays a key role in identifying the message – response chain.</p>
+<p>As evident in the scenario, messageid plays a key role in identifying the message – response chain.</p>
 
-<p>However, rather than using just the Whispir provided messageID, the App can send in its own free-will callback parameters like</p>
+<p>However, rather than using just the Whispir provided messageid, the App can send in its own free-will callback parameters like</p>
 
 <ul>
 <li>customerID or</li>
@@ -7698,7 +8050,7 @@ Authorization: Basic am9obi5zbWl0aDpteXBhc3N3b3Jk
 </span><span class="n">Content</span><span class="o">-</span><span class="n">Type</span><span class="o">:</span><span class="x"> </span><span class="n">application</span><span class="o">/</span><span class="n">json</span><span class="x">
 
 </span><span class="p">{</span><span class="x">
-    </span><span class="s">"messageId"</span><span class="o">:</span><span class="s">"ABC4857BCCF4CA"</span><span class="p">,</span><span class="x">
+    </span><span class="s">"messageid"</span><span class="o">:</span><span class="s">"ABC4857BCCF4CA"</span><span class="p">,</span><span class="x">
     </span><span class="s">"location"</span><span class="x"> </span><span class="o">:</span><span class="x"> </span><span class="s">"https://api.whispir.com/messages/ABC4857BCCF4CA"</span><span class="p">,</span><span class="x">
     </span><span class="s">"from"</span><span class="o">:</span><span class="p">{</span><span class="x">
           </span><span class="s">"name"</span><span class="o">:</span><span class="s">"Fred Waters"</span><span class="p">,</span><span class="x">
@@ -7722,31 +8074,31 @@ Authorization: Basic am9obi5zbWl0aDpteXBhc3N3b3Jk
 <pre><code class="highlight xml">Content-Type: application/xml
 
 <span class="nt">&lt;ns2:deliveryResponse</span> <span class="na">xmlns:ns2=</span><span class="s">"http://schemas.api.whispir.com"</span><span class="nt">&gt;</span>
-    <span class="nt">&lt;messageId&gt;</span>ABC4857BCCF484575FCA<span class="nt">&lt;/messageId&gt;</span>
-    <span class="nt">&lt;messageLocation&gt;</span>https://api.whispir.com/messages/ABC4857BCCF484575FCA<span class="nt">&lt;/messageLocation&gt;</span>
-    <span class="nt">&lt;from&gt;</span>
-        <span class="nt">&lt;name&gt;</span>Fred Waters<span class="nt">&lt;/name&gt;</span>
-        <span class="nt">&lt;mri&gt;</span>Fred_Waters.528798.Sandbox@Contact.whispir.com<span class="nt">&lt;/mri&gt;</span>
-        <span class="nt">&lt;mobile&gt;</span>$mobile<span class="nt">&lt;/mobile&gt;</span>
-        <span class="nt">&lt;email&gt;</span>me@example.com<span class="nt">&lt;/email&gt;</span>
-        <span class="nt">&lt;voice&gt;</span>$mobile<span class="nt">&lt;/voice&gt;</span>
-    <span class="nt">&lt;/from&gt;</span>
-    <span class="nt">&lt;responseMessage&gt;</span>
-        <span class="nt">&lt;channel&gt;</span>SMS<span class="nt">&lt;/channel&gt;</span>
-        <span class="nt">&lt;acknowledged&gt;</span>09/01/13 13:22<span class="nt">&lt;/acknowledged&gt;</span>
-        <span class="nt">&lt;content&gt;</span>Yes, I accept. Will I need to bring steel cap boots?<span class="nt">&lt;/content&gt;</span>
-    <span class="nt">&lt;/responseMessage&gt;</span>
-    <span class="nt">&lt;customParameters&gt;</span>
-      <span class="nt">&lt;entry&gt;</span>
-        <span class="nt">&lt;key&gt;</span>CustomerId<span class="nt">&lt;/key&gt;</span>
-        <span class="nt">&lt;value&gt;</span>890h0ef0fe09efw90e0jsdj0<span class="nt">&lt;/value&gt;</span>
-      <span class="nt">&lt;/entry&gt;</span>
-      <span class="nt">&lt;entry&gt;</span>
-        <span class="nt">&lt;key&gt;</span>TransactionId<span class="nt">&lt;/key&gt;</span>
-        <span class="nt">&lt;value&gt;</span>9ef0fe09efw90e0jsdjsd43fw<span class="nt">&lt;/value&gt;</span>
-      <span class="nt">&lt;/entry&gt;</span>
-      ...
-    <span class="nt">&lt;/customParameters&gt;</span>
+  <span class="nt">&lt;messageid&gt;</span>ABC4857BCCF484575FCA<span class="nt">&lt;/messageid&gt;</span>
+  <span class="nt">&lt;messagelocation&gt;</span>https://api.whispir.com/messages/ABC4857BCCF484575FCA<span class="nt">&lt;/messagelocation&gt;</span>
+  <span class="nt">&lt;from&gt;</span>
+      <span class="nt">&lt;name&gt;</span>Fred Waters<span class="nt">&lt;/name&gt;</span>
+      <span class="nt">&lt;mri&gt;</span>Fred_Waters.528798.Sandbox@Contact.whispir.com<span class="nt">&lt;/mri&gt;</span>
+      <span class="nt">&lt;mobile&gt;</span>$mobile<span class="nt">&lt;/mobile&gt;</span>
+      <span class="nt">&lt;email&gt;</span>me@example.com<span class="nt">&lt;/email&gt;</span>
+      <span class="nt">&lt;voice&gt;</span>$mobile<span class="nt">&lt;/voice&gt;</span>
+  <span class="nt">&lt;/from&gt;</span>
+  <span class="nt">&lt;responseMessage&gt;</span>
+      <span class="nt">&lt;channel&gt;</span>SMS<span class="nt">&lt;/channel&gt;</span>
+      <span class="nt">&lt;acknowledged&gt;</span>09/01/13 13:22<span class="nt">&lt;/acknowledged&gt;</span>
+      <span class="nt">&lt;content&gt;</span>Yes, I accept. Will I need to bring steel cap boots?<span class="nt">&lt;/content&gt;</span>
+  <span class="nt">&lt;/responseMessage&gt;</span>
+  <span class="nt">&lt;customParameters&gt;</span>
+    <span class="nt">&lt;entry&gt;</span>
+      <span class="nt">&lt;key&gt;</span>CustomerId<span class="nt">&lt;/key&gt;</span>
+      <span class="nt">&lt;value&gt;</span>890h0ef0fe09efw90e0jsdj0<span class="nt">&lt;/value&gt;</span>
+    <span class="nt">&lt;/entry&gt;</span>
+    <span class="nt">&lt;entry&gt;</span>
+      <span class="nt">&lt;key&gt;</span>TransactionId<span class="nt">&lt;/key&gt;</span>
+      <span class="nt">&lt;value&gt;</span>9ef0fe09efw90e0jsdjsd43fw<span class="nt">&lt;/value&gt;</span>
+    <span class="nt">&lt;/entry&gt;</span>
+    ...
+  <span class="nt">&lt;/customParameters&gt;</span>
 <span class="nt">&lt;/ns2:deliveryResponse&gt;</span>
 </code></pre>
 
@@ -7772,11 +8124,11 @@ Authorization: Basic am9obi5zbWl0aDpteXBhc3N3b3Jk
 <p>Custom Parameters are different from callbackParameters. To make it clear again -</p>
 
 <ul>
-<li>callbackParameters is used by you in /messages endpoint to pass in any custom values that you need to receive back in the callback reponse</li>
+<li>callbackParameters is used by you in /messages endpoint to pass in any custom values that you need to receive back in the callback response</li>
 <li>customParameters in used by Whispir in the callback response to pass back the callbackParameters (and other values) that you have passed in earlier</li>
 </ul>
 
-<p>This is important, so you may read that again or have a coffee and read that again. I needed a chocolate to get that going. ;)</p>
+<p>This is important, so you may read that again now, or have a coffee and read it in 10 mins. I needed a chocolate to get that going. ;)</p>
 
 <p>Custom Parameters are included in the response object of a callback POST that Whispir makes to your server. These parameters contain important information about</p>
 
@@ -8057,17 +8409,17 @@ Authorization: Basic am9obi5zbWl0aDpteXBhc3N3b3Jk
 <li><p>For communications sent via SMS, things get slightly more complex.  Whispir uses a pool of mobile numbers, with Whispir retaining knowledge as to which recipient SMS was sent which message via whispir pool number.  This provides Whispir the ability to know which reply from which recipient is for which initial outbound message – it’s pretty clever. The only challenge is where you have very high volumes of messages being issued to the same recipient (e.g. a new sms sent to the same number every 5 minutes), and the list of pool numbers is exhausted with Whispir needing to re-use pool numbers.  This is a highly unlikely communication use case, but a principal which needs to be understood.</p></li>
 </ul>
 <pre><code class="highlight json"><span class="p">{</span><span class="w">
-    </span><span class="s2">"to"</span><span class="p">:</span><span class="w"> </span><span class="s2">"$mobile"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"subject"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Whispir"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"body"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Hello there. Reply Y"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"callbackId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"callbackA"</span><span class="w">
+  </span><span class="s2">"to"</span><span class="p">:</span><span class="w"> </span><span class="s2">"$mobile"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"subject"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Whispir"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"body"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Hello there. Reply Y"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"callbackId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"callbackA"</span><span class="w">
 </span><span class="p">}</span><span class="w">
 
 </span><span class="p">{</span><span class="w">
-    </span><span class="s2">"to"</span><span class="p">:</span><span class="w"> </span><span class="s2">"$mobile"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"subject"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Whispir"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"body"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Goodbye. Reply Y"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"callbackId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"callbackB"</span><span class="w">
+  </span><span class="s2">"to"</span><span class="p">:</span><span class="w"> </span><span class="s2">"$mobile"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"subject"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Whispir"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"body"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Goodbye. Reply Y"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"callbackId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"callbackB"</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
 
@@ -8092,10 +8444,10 @@ Authorization: Basic am9obi5zbWl0aDpteXBhc3N3b3Jk
 </blockquote>
 </blockquote>
 <pre><code class="highlight json"><span class="p">{</span><span class="w">
-    </span><span class="s2">"to"</span><span class="p">:</span><span class="w"> </span><span class="s2">"$mobile"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"subject"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Whispir"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"body"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Hello there. Reply Y"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"callbackId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"callbackA"</span><span class="w">
+  </span><span class="s2">"to"</span><span class="p">:</span><span class="w"> </span><span class="s2">"$mobile"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"subject"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Whispir"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"body"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Hello there. Reply Y"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"callbackId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"callbackA"</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
 
@@ -8105,10 +8457,10 @@ Authorization: Basic am9obi5zbWl0aDpteXBhc3N3b3Jk
 </blockquote>
 </blockquote>
 <pre><code class="highlight json"><span class="p">{</span><span class="w">
-    </span><span class="s2">"to"</span><span class="p">:</span><span class="w"> </span><span class="s2">"$mobile"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"subject"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Whispir"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"body"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Goodbye. Reply Y"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"callbackId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"callbackB"</span><span class="w">
+  </span><span class="s2">"to"</span><span class="p">:</span><span class="w"> </span><span class="s2">"$mobile"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"subject"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Whispir"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"body"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Goodbye. Reply Y"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"callbackId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"callbackB"</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
 
@@ -8129,10 +8481,10 @@ Authorization: Basic am9obi5zbWl0aDpteXBhc3N3b3Jk
 </blockquote>
 </blockquote>
 <pre><code class="highlight json"><span class="p">{</span><span class="w">
-    </span><span class="s2">"to"</span><span class="p">:</span><span class="w"> </span><span class="s2">"$mobile"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"subject"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Whispir"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"body"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Hello there. Reply Y"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"callbackId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"callbackA"</span><span class="w">
+  </span><span class="s2">"to"</span><span class="p">:</span><span class="w"> </span><span class="s2">"$mobile"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"subject"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Whispir"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"body"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Hello there. Reply Y"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"callbackId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"callbackA"</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
 
@@ -11457,9 +11809,7 @@ Authorization: Basic am9obi5zbWl0aDpteXBhc3N3b3Jk
 <p>API Endpoint</p>
 
 <blockquote>
-<ul>
-<li>generic</li>
-</ul>
+<p>Default Workspace Example</p>
 </blockquote>
 </blockquote>
 <pre><code class="highlight xml">https://api.whispir.com/resources/?apikey=<span class="nt">&lt;your_api_key&gt;</span>
@@ -11471,9 +11821,7 @@ Content-Type: application/vnd.whispir.resource-v1+xml
 
 <blockquote>
 <blockquote>
-<ul>
-<li>limited to a workspace</li>
-</ul>
+<p>Workspace Specific Example</p>
 </blockquote>
 </blockquote>
 <pre><code class="highlight xml">https://api.whispir.com/workspaces/{:id}/resources/?apikey=<span class="nt">&lt;your_api_key&gt;</span>
@@ -11482,9 +11830,11 @@ Content-Type: application/vnd.whispir.resource-v1+xml
 <pre><code class="highlight go"><span class="n">https</span><span class="o">:</span><span class="c">//api.whispir.com/workspaces/{:id}/resources/?apikey=&lt;your_api_key&gt;</span><span class="x">
 </span><span class="n">Content</span><span class="o">-</span><span class="n">Type</span><span class="o">:</span><span class="x"> </span><span class="n">application</span><span class="o">/</span><span class="n">vnd</span><span class="o">.</span><span class="n">whispir</span><span class="o">.</span><span class="n">resource</span><span class="o">-</span><span class="n">v1</span><span class="o">+</span><span class="n">json</span><span class="x">
 </span></code></pre>
-<pre><code class="highlight plaintext">&gt; Methods supported
 
-- GET
+<blockquote>
+<p>Methods supported</p>
+</blockquote>
+<pre><code class="highlight plaintext">- GET
 - POST
 - PUT
 - DELETE
@@ -11501,140 +11851,139 @@ Content-Type: application/vnd.whispir.resource-v1+xml
         </tr>
     </thead>
     <tbody>
-        <tr>
-            <td style="text-align: right; font-weight: bold;">GET</td>
-            <td>
-                /resources
-                <ul>
-                    <li>
-                    Provides a List of all the currently saved resources in the company (URIs), sorted by most recently updated
-                    </li>
-                </ul>
-                /resources/{:id}
-                <ul>
-                    <li>
-                    Retrieves the representation of the requested resource. (this does not allow users to download the resource, only the representation)
-                    </li>
-                </ul>
-                /workspaces/(id)/resources
-                <ul>
-                    <li>
-                    Provides a List of all the currently saved resources in the specified workspace(URIs), sorted by most recently updated
-                    </li>
-                </ul>
-                /workspaces/(id)/resources/(id)
-                <ul>
-                    <li>
-                    Retrieves the representation of the requested resource. (this does not allow users to download the resource, only the representation)
-                    </li>
-                </ul>
-            </td>
-        </tr>
-        <tr>
-            <td style="text-align: right; font-weight: bold;">POST</td>
-            <td>
-                /resources
-                <ul>
-                    <li>
-                    Creates a new resource for use in the API
-                    </li>
-                </ul>
-                /resources/{:id}
-                <ul>
-                    <li>
-                    METHOD not supported
-                    </li>
-                </ul>
-                /workspaces/(id)/resources
-                <ul>
-                    <li>
-                    Creates a new resource for use in the API under the particular workspace
-                    </li>
-                </ul>
-                /workspaces/(id)/resources/{:id}
-                <ul>
-                    <li>
-                    METHOD not supported
-                    </li>
-                </ul>
-            </td>
-        </tr>
-        <tr>
-            <td style="text-align: right; font-weight: bold;">PUT</td>
-            <td>
-                /resources
-                <ul>
-                    <li>
-                    METHOD not supported
-                    </li>
-                </ul>
-                /resources/{:id}
-                <ul>
-                    <li>
-                    Update the specified resource with the one supplied in the request.
-                    </li>
-                </ul>
-                /workspaces/(id)/resources
-                <ul>
-                    <li>
-                    METHOD not supported
-                    </li>
-                </ul>
-                /workspaces/(id)/resources/{:id}
-                <ul>
-                    <li>
-                    Update the specified resource with the one supplied in the request under the particular workspace
-                    </li>
-                </ul>
-            </td>
-        </tr>
-        <tr>
-            <td style="text-align: right; font-weight: bold;">DELETE</td>
-            <td>
-                /resources
-                <ul>
-                    <li>
-                    METHOD not supported
-                    </li>
-                </ul>
-                /resources/{:id}
-                <ul>
-                    <li>
-                    Delete the specified resource from the Whispir Platform.
-                    </li>
-                </ul>
-                /workspaces/(id)/resources
-                <ul>
-                    <li>
-                    METHOD not supported
-                    </li>
-                </ul>
-                /workspaces/(id)/resources/{:id}
-                <ul>
-                    <li>
-                    Delete the specified resource from the Whispir Platform under the particular workspace
-                    </li>
-                </ul>
-            </td>
-        </tr>
-    </tbody>
+    <tr>
+      <td style="text-align: right; font-weight: bold;">GET</td>
+      <td>
+        /resources
+        <ul>
+          <li>
+          Provides a List of all the currently saved resources in the company (URIs), sorted by most recently updated
+          </li>
+        </ul>
+        /resources/{:id}
+        <ul>
+          <li>
+          Retrieves the representation of the requested resource. (this does not allow users to download the resource, only the representation)
+          </li>
+        </ul>
+        /workspaces/(id)/resources
+        <ul>
+          <li>
+          Provides a List of all the currently saved resources in the specified workspace(URIs), sorted by most recently updated
+          </li>
+        </ul>
+        /workspaces/(id)/resources/(id)
+        <ul>
+          <li>
+          Retrieves the representation of the requested resource. (this does not allow users to download the resource, only the representation)
+          </li>
+        </ul>
+      </td>
+    </tr>
+    <tr>
+      <td style="text-align: right; font-weight: bold;">POST</td>
+      <td>
+        /resources
+        <ul>
+          <li>
+          Creates a new resource for use in the API
+          </li>
+        </ul>
+        /resources/{:id}
+        <ul>
+          <li>
+          METHOD not supported
+          </li>
+        </ul>
+        /workspaces/(id)/resources
+        <ul>
+          <li>
+          Creates a new resource for use in the API under the particular workspace
+          </li>
+        </ul>
+        /workspaces/(id)/resources/{:id}
+        <ul>
+          <li>
+          METHOD not supported
+          </li>
+        </ul>
+      </td>
+    </tr>
+    <tr>
+      <td style="text-align: right; font-weight: bold;">PUT</td>
+      <td>
+        /resources
+        <ul>
+          <li>
+          METHOD not supported
+          </li>
+        </ul>
+        /resources/{:id}
+        <ul>
+          <li>
+          Update the specified resource with the one supplied in the request.
+          </li>
+        </ul>
+        /workspaces/(id)/resources
+        <ul>
+          <li>
+          METHOD not supported
+          </li>
+        </ul>
+        /workspaces/(id)/resources/{:id}
+        <ul>
+          <li>
+          Update the specified resource with the one supplied in the request under the particular workspace
+          </li>
+        </ul>
+      </td>
+    </tr>
+    <tr>
+      <td style="text-align: right; font-weight: bold;">DELETE</td>
+      <td>
+        /resources
+        <ul>
+          <li>
+          METHOD not supported
+          </li>
+        </ul>
+        /resources/{:id}
+        <ul>
+          <li>
+          Delete the specified resource from the Whispir Platform.
+          </li>
+        </ul>
+        /workspaces/(id)/resources
+        <ul>
+          <li>
+          METHOD not supported
+          </li>
+        </ul>
+        /workspaces/(id)/resources/{:id}
+        <ul>
+          <li>
+          Delete the specified resource from the Whispir Platform under the particular workspace
+          </li>
+        </ul>
+      </td>
+    </tr>
+  </tbody>
 </table>
 
 <h2 id="creating-a-resource">Creating a resource</h2>
 <pre><code class="highlight plaintext">HTTP 1.1 POST https://api.whispir.com/resources?apikey=[your_api_key]
 Authorization: Basic asdf98nf89asdvasd2r398h8sdf
 </code></pre>
-<pre><code class="highlight xml">Content-Type: application/vnd.whispir.resource-v1+xml 
-
+<pre><code class="highlight xml">Content-Type: application/vnd.whispir.resource-v1+xml
 
 <span class="cp">&lt;?xml version="1.0" encoding="UTF-8" standalone="yes"?&gt;</span>
 <span class="nt">&lt;ns3:resource</span> <span class="na">xmlns:ns2=</span><span class="s">"http://schemas.api.whispir.com/dap"</span> <span class="na">xmlns:ns3=</span><span class="s">"http://schemas.api.whispir.com"</span><span class="nt">&gt;</span>
     <span class="nt">&lt;name&gt;</span>test.csv<span class="nt">&lt;/name&gt;</span>
     <span class="nt">&lt;scope&gt;</span>private<span class="nt">&lt;/scope&gt;</span>
     <span class="nt">&lt;mimeType&gt;</span>text/csv<span class="nt">&lt;/mimeType&gt;</span>
-    <span class="nt">&lt;derefUri&gt;</span>
+   <span class="nt">&lt;derefUri&gt;</span>
      ...base64 representation...
-    <span class="nt">&lt;/derefUri&gt;</span>
+     <span class="nt">&lt;/derefUri&gt;</span>
 <span class="nt">&lt;/ns3:resource&gt;</span>
 
 </code></pre>
@@ -11648,16 +11997,19 @@ Authorization: Basic asdf98nf89asdvasd2r398h8sdf
 </span><span class="p">}</span><span class="x">   
 
 </span></code></pre>
-<pre><code class="highlight plaintext">&gt; &gt; Response 
 
-HTTP 1.1 201 Created
+<blockquote>
+<blockquote>
+<p>Response</p>
+</blockquote>
+</blockquote>
+<pre><code class="highlight plaintext">HTTP 1.1 201 Created
 ...
 Location: http://api.whispir.com/resources/4FBBC384BCE3DAABFE3
 ...
-
 </code></pre>
 
-<p>Creating a resource is very easy. To create a new resource we should use the <code class="prettyprint">/resources</code> end point. </p>
+<p>Creating a resource is very easy. To create a new resource we should use the <code class="prettyprint">/resources</code> end point.</p>
 
 <p>The following are the mandatory fields needed to create a resource -</p>
 
@@ -11675,41 +12027,41 @@ Location: http://api.whispir.com/resources/4FBBC384BCE3DAABFE3
         </tr>
     </thead>
     <tbody>
-        <tr>
-            <td style="text-align: right; font-weight: bold;">name:</td>
-            <td><strong>String</strong><br/>
-                Specifies the name of the file being uploaded. The extension of the file too is allowed to be present in the name. <b>Eg:</b> australia-contacts.csv
+    <tr>
+      <td style="text-align: right; font-weight: bold;">name:</td>
+      <td><strong>String</strong><br/>
+        Specifies the name of the file being uploaded. The extension of the file too is allowed to be present in the name. <b>Eg:</b> australia-contacts.csv
 <br><br>
 <b>Note:</b> It is advised that names should not contain spaces or special characters other than `-` and `.`. This helps for easier search and also for a valid URL link (especially) in case of public scoped files. <br><b>Eg:</b> `australia-contacts.csv` is better name convention than `australia contacts.csv` as the latter converts into `australia%20contacts.csv`.
-            </td>
-        </tr>
-        <tr>
-            <td style="text-align: right; font-weight: bold;">scope:</td>
-            <td><strong>String</strong><br/>
-                Specifies the permission scope of the file being uploaded. The scope defines the access restriction of the resource. It can be only one of - 
-            <ul>
-                <li><b>Public</b> - Public files have an addressable URL and are available publicly</li>
-                <li><b>Private</b> - Private files have no URL and are only available for bulk messaging purposes and for importing contacts.</li>
-            </ul>
-            </td>
-        </tr>
-        <tr>
-            <td style="text-align: right; font-weight: bold;">mimeType:</td>
-            <td><strong>String</strong><br/>
-                The mime type of the file that is being uploaded. The type is dependent on the scope of the resource.
-            <ul>
-                <li><b>Public</b> - Public files can be of any mimetype. text/html; text/csv</li>
-                <li><b>Private</b> - Private files are restricted to CSV, JSON, and XML.</li>
-            </ul>
-            </td>
-        </tr>
-        <tr>
-            <td style="text-align: right; font-weight: bold;">derefUri:</td>
-            <td><strong>String</strong><br/>
-                The base64 representation of the file being submitted.
-            </td>
-        </tr>
-    </tbody>
+      </td>
+    </tr>
+    <tr>
+      <td style="text-align: right; font-weight: bold;">scope:</td>
+      <td><strong>String</strong><br/>
+        Specifies the permission scope of the file being uploaded. The scope defines the access restriction of the resource. It can be only one of -
+      <ul>
+        <li><b>Public</b> - Public files have an addressable URL and are available publicly</li>
+        <li><b>Private</b> - Private files have no URL and are only available for bulk messaging purposes and for importing contacts.</li>
+      </ul>
+      </td>
+    </tr>
+    <tr>
+      <td style="text-align: right; font-weight: bold;">mimeType:</td>
+      <td><strong>String</strong><br/>
+        The mime type of the file that is being uploaded. The type is dependent on the scope of the resource.
+      <ul>
+        <li><b>Public</b> - Public files can be of any mimetype. text/html; text/csv</li>
+        <li><b>Private</b> - Private files are restricted to CSV, JSON, and XML.</li>
+      </ul>
+      </td>
+    </tr>
+    <tr>
+      <td style="text-align: right; font-weight: bold;">derefUri:</td>
+      <td><strong>String</strong><br/>
+        The base64 representation of the file being submitted.
+      </td>
+    </tr>
+  </tbody>
 </table>
 
 <p><strong>Note:</strong> When creating a resource, the following conditions apply -</p>
@@ -11722,34 +12074,41 @@ Location: http://api.whispir.com/resources/4FBBC384BCE3DAABFE3
 
 <h3 id="example-resources">Example resources</h3>
 
-<p>The following are all equivalent representations of the same data structure, across the three supported formats. </p>
+<p>The following are all equivalent representations of the same data structure, across the three supported formats.</p>
 
 <h3 id="csv-format">CSV format</h3>
 
 <p>As the CSV file format does not support structured objects, they have been omitted from the dataset.</p>
-<pre><code class="highlight plaintext">&gt; &gt; CSV 
 
-fullname,email,mobile,streetaddress,suburb,manifest.name,manifest.value.timestamp
+<blockquote>
+<blockquote>
+<p>CSV</p>
+</blockquote>
+</blockquote>
+<pre><code class="highlight plaintext">fullname,email,mobile,streetaddress,suburb,manifest.name,manifest.value.timestamp
 Franco Himboli,fhimboli@gmail.com,0410509001,123 Auburn Rd,Hawthorn,Delivery Manifest,20-10-2014 10:24
 Jordan Windsor,jwindsor@yahoo.com,0410509002,360 Walsh Rd,North Melbourne,Delivery Manifest,20-10-2014 10:24
 </code></pre>
 
 <h3 id="json-format">JSON Format</h3>
-<pre><code class="highlight go"><span class="x">
-</span><span class="o">&gt;</span><span class="x"> </span><span class="o">&gt;</span><span class="x"> </span><span class="n">JSON</span><span class="x">
 
-</span><span class="p">[{</span><span class="x">
+<blockquote>
+<blockquote>
+<p>JSON</p>
+</blockquote>
+</blockquote>
+<pre><code class="highlight go"><span class="p">[{</span><span class="x">
  </span><span class="s">"fullname"</span><span class="o">:</span><span class="x"> </span><span class="s">"Franco Himboli"</span><span class="p">,</span><span class="x">
  </span><span class="s">"email"</span><span class="o">:</span><span class="x"> </span><span class="s">"ftrimboli@gmail.com"</span><span class="p">,</span><span class="x">
  </span><span class="s">"mobile"</span><span class="o">:</span><span class="x"> </span><span class="s">"0410509001"</span><span class="p">,</span><span class="x">
  </span><span class="s">"streetaddress"</span><span class="o">:</span><span class="x"> </span><span class="s">"123 Auburn Rd"</span><span class="p">,</span><span class="x">
  </span><span class="s">"suburb"</span><span class="o">:</span><span class="x"> </span><span class="s">"Hawthorn"</span><span class="p">,</span><span class="x">
  </span><span class="s">"Reference"</span><span class="o">:</span><span class="x"> </span><span class="s">"Xpress Mail"</span><span class="p">,</span><span class="x">
- </span><span class="s">"MsgData"</span><span class="x"> </span><span class="o">:</span><span class="x"> </span><span class="p">{</span><span class="x"> 
-    </span><span class="s">"POBDetail"</span><span class="o">:</span><span class="x"> </span><span class="p">{</span><span class="x">
-        </span><span class="s">"DateAndTime"</span><span class="x"> </span><span class="o">:</span><span class="x"> </span><span class="s">"09-Sep-2015 12:15 PM"</span><span class="p">,</span><span class="x">
-        </span><span class="s">"Message"</span><span class="x"> </span><span class="o">:</span><span class="x"> </span><span class="s">"Please let us know if the time slot is acceptable. Respond with a 'No' to get alternative time slot"</span><span class="x">
-    </span><span class="p">}</span><span class="x">
+ </span><span class="s">"MsgData"</span><span class="x"> </span><span class="o">:</span><span class="x"> </span><span class="p">{</span><span class="x">
+  </span><span class="s">"POBDetail"</span><span class="o">:</span><span class="x"> </span><span class="p">{</span><span class="x">
+    </span><span class="s">"DateAndTime"</span><span class="x"> </span><span class="o">:</span><span class="x"> </span><span class="s">"09-Sep-2015 12:15 PM"</span><span class="p">,</span><span class="x">
+    </span><span class="s">"Message"</span><span class="x"> </span><span class="o">:</span><span class="x"> </span><span class="s">"Please let us know if the time slot is acceptable. Respond with a 'No' to get alternative time slot"</span><span class="x">
+  </span><span class="p">}</span><span class="x">
   </span><span class="p">}</span><span class="x">
 </span><span class="p">},</span><span class="x">
 </span><span class="p">{</span><span class="x">
@@ -11759,11 +12118,11 @@ Jordan Windsor,jwindsor@yahoo.com,0410509002,360 Walsh Rd,North Melbourne,Delive
  </span><span class="s">"streetaddress"</span><span class="o">:</span><span class="x"> </span><span class="s">"360 Walsh Rd"</span><span class="p">,</span><span class="x">
  </span><span class="s">"suburb"</span><span class="o">:</span><span class="x"> </span><span class="s">"North Melbourne"</span><span class="p">,</span><span class="x">
  </span><span class="s">"Reference"</span><span class="o">:</span><span class="x"> </span><span class="s">"Xpress Mail"</span><span class="p">,</span><span class="x">
- </span><span class="s">"MsgData"</span><span class="x"> </span><span class="o">:</span><span class="x"> </span><span class="p">{</span><span class="x"> 
-    </span><span class="s">"POBDetail"</span><span class="o">:</span><span class="x"> </span><span class="p">{</span><span class="x">
-        </span><span class="s">"DateAndTime"</span><span class="x"> </span><span class="o">:</span><span class="x"> </span><span class="s">"09-Sep-2015 12:30 PM"</span><span class="p">,</span><span class="x">
-        </span><span class="s">"Message"</span><span class="x"> </span><span class="o">:</span><span class="x"> </span><span class="s">"Please let us know if the time slot is acceptable. Respond with a 'No' to get alternative time slot"</span><span class="x">
-    </span><span class="p">}</span><span class="x">
+ </span><span class="s">"MsgData"</span><span class="x"> </span><span class="o">:</span><span class="x"> </span><span class="p">{</span><span class="x">
+  </span><span class="s">"POBDetail"</span><span class="o">:</span><span class="x"> </span><span class="p">{</span><span class="x">
+    </span><span class="s">"DateAndTime"</span><span class="x"> </span><span class="o">:</span><span class="x"> </span><span class="s">"09-Sep-2015 12:30 PM"</span><span class="p">,</span><span class="x">
+    </span><span class="s">"Message"</span><span class="x"> </span><span class="o">:</span><span class="x"> </span><span class="s">"Please let us know if the time slot is acceptable. Respond with a 'No' to get alternative time slot"</span><span class="x">
+  </span><span class="p">}</span><span class="x">
   </span><span class="p">}</span><span class="x">
 </span><span class="p">}]</span><span class="x">
 </span></code></pre>
@@ -11778,13 +12137,13 @@ Jordan Windsor,jwindsor@yahoo.com,0410509002,360 Walsh Rd,North Melbourne,Delive
       <span class="nt">&lt;mobile&gt;</span>0410509001<span class="nt">&lt;/mobile&gt;</span>
       <span class="nt">&lt;streetaddress&gt;</span>123 Auburn Rd<span class="nt">&lt;/streetaddress&gt;</span>
       <span class="nt">&lt;suburb&gt;</span>Hawthorn<span class="nt">&lt;/suburb&gt;</span>
-      <span class="nt">&lt;Reference&gt;</span>Xpress Mail<span class="nt">&lt;/Reference&gt;</span>
+    <span class="nt">&lt;Reference&gt;</span>Xpress Mail<span class="nt">&lt;/Reference&gt;</span>
       <span class="nt">&lt;MsgData&gt;</span>
-        <span class="nt">&lt;POBDetail&gt;</span>
-            <span class="nt">&lt;DateAndTime&gt;</span>09-Sep-2015 12:15 PM<span class="nt">&lt;/DateAndTime&gt;</span>
-            <span class="nt">&lt;Message&gt;</span>Please let us know if the time slot is acceptable. Respond with a 'No' to get alternative time slot<span class="err">&lt;</span>/Message
-        <span class="nt">&lt;/POBDetail&gt;</span>
-      <span class="nt">&lt;/MsgData&gt;</span>
+    <span class="nt">&lt;POBDetail&gt;</span>
+      <span class="nt">&lt;DateAndTime&gt;</span>09-Sep-2015 12:15 PM<span class="nt">&lt;/DateAndTime&gt;</span>
+      <span class="nt">&lt;Message&gt;</span>Please let us know if the time slot is acceptable. Respond with a 'No' to get alternative time slot<span class="nt">&lt;/Message&gt;</span>
+    <span class="nt">&lt;/POBDetail&gt;</span>
+    <span class="nt">&lt;/MsgData&gt;</span>
    <span class="nt">&lt;/recipient&gt;</span>
    <span class="nt">&lt;recipient&gt;</span>
       <span class="nt">&lt;name&gt;</span>Jordan<span class="nt">&lt;/name&gt;</span>
@@ -11795,11 +12154,11 @@ Jordan Windsor,jwindsor@yahoo.com,0410509002,360 Walsh Rd,North Melbourne,Delive
       <span class="nt">&lt;suburb&gt;</span>North Melbourne<span class="nt">&lt;/suburb&gt;</span>
       <span class="nt">&lt;Reference&gt;</span>Xpress Mail<span class="nt">&lt;/Reference&gt;</span>
       <span class="nt">&lt;MsgData&gt;</span>
-        <span class="nt">&lt;POBDetail&gt;</span>
-            <span class="nt">&lt;DateAndTime&gt;</span>09-Sep-2015 12:30 PM<span class="nt">&lt;/DateAndTime&gt;</span>
-            <span class="nt">&lt;Message&gt;</span>Please let us know if the time slot is acceptable. Respond with a 'No' to get alternative time slot<span class="err">&lt;</span>/Message
-        <span class="nt">&lt;/POBDetail&gt;</span>
-      <span class="nt">&lt;/MsgData&gt;</span>
+    <span class="nt">&lt;POBDetail&gt;</span>
+      <span class="nt">&lt;DateAndTime&gt;</span>09-Sep-2015 12:30 PM<span class="nt">&lt;/DateAndTime&gt;</span>
+      <span class="nt">&lt;Message&gt;</span>Please let us know if the time slot is acceptable. Respond with a 'No' to get alternative time slot<span class="nt">&lt;/Message&gt;</span>
+    <span class="nt">&lt;/POBDetail&gt;</span>
+    <span class="nt">&lt;/MsgData&gt;</span>
    <span class="nt">&lt;/recipient&gt;</span>
 <span class="nt">&lt;/recipients&gt;</span>
 </code></pre>
@@ -11808,7 +12167,7 @@ Jordan Windsor,jwindsor@yahoo.com,0410509002,360 Walsh Rd,North Melbourne,Delive
 
 <h2 id="encode-the-json,-csv-or-xml-into-base64">Encode the JSON, CSV or XML into Base64</h2>
 
-<p>In order to prepare the file to be uploaded to Whispir, it needs to be endcoded from it&rsquo;s textual representation into a Base64 encoded version.  Base64 is a common method of encoding binary data in ASCII format. Whispir uses it as a common method of exchange of file data.  It is also used when uploading attachments to messages in Whispir, or specifing custom WAV files for outbound voice calls.  More information about Base64 can be found <a href="https://en.wikipedia.org/wiki/Base64">here</a> . </p>
+<p>In order to prepare the file to be uploaded to Whispir, it needs to be endcoded from it&rsquo;s textual representation into a Base64 encoded version.  Base64 is a common method of encoding binary data in ASCII format. Whispir uses it as a common method of exchange of file data.  It is also used when uploading attachments to messages in Whispir, or specifing custom WAV files for outbound voice calls.  More information about Base64 can be found <a href="https://en.wikipedia.org/wiki/Base64">here</a> .</p>
 
 <p>Most programming languages will provide a facility to convert text into Base64.  A simple internet search for &lsquo;base 64 encode java&rsquo;, or &#39;base 64 encode PHP&rsquo; will yeild results on how to accomplish this task.</p>
 
@@ -11824,7 +12183,7 @@ Jordan Windsor,jwindsor@yahoo.com,0410509002,360 Walsh Rd,North Melbourne,Delive
 <pre><code class="highlight plaintext">HTTP 1.1 POST https://api.whispir.com/resources?apikey=[your_api_key]
 Authorization: Basic asdf98nf89asdvasd2r398h8sdf
 </code></pre>
-<pre><code class="highlight xml">Content-Type: application/vnd.whispir.resource-v1+xml 
+<pre><code class="highlight xml">Content-Type: application/vnd.whispir.resource-v1+xml
 
 
 <span class="cp">&lt;?xml version="1.0" encoding="UTF-8" standalone="yes"?&gt;</span>
@@ -11846,11 +12205,15 @@ Authorization: Basic asdf98nf89asdvasd2r398h8sdf
 </span><span class="p">}</span><span class="x">   
 
 </span></code></pre>
-<pre><code class="highlight plaintext">&gt; &gt; Response 
 
-&gt; &gt; Once the resource is created, you can now use this in Whispir to send a message to each of the recipients using the data within the resource.
+<blockquote>
+<blockquote>
+<p>Response</p>
 
-HTTP 1.1 201 Created
+<p>Once the resource is created, you can now use this in Whispir to send a message to each of the recipients using the data within the resource.</p>
+</blockquote>
+</blockquote>
+<pre><code class="highlight plaintext">HTTP 1.1 201 Created
 ...
 Location: http://api.whispir.com/resources/ABD435DBFCD663DEDEFF?apikey=&lt;your_api_key&gt;
 ...
@@ -11862,23 +12225,31 @@ Location: http://api.whispir.com/resources/ABD435DBFCD663DEDEFF?apikey=&lt;your_
 <p>Apart from use in the <a href="https://whispir.github.io/api/#dynamic-messages">Dynamic Messages</a>, resources can be equally used sending dynamic messages with or without a template.</p>
 
 <p>Assuming there is a template that has already been created with stencil as -</p>
-<pre><code class="highlight plaintext">&gt; &gt; TemplateID: BCD384BC3847CD3484CD
 
-{ 
-  "messageTemplateName" : "Delivery Plan", 
-  "subject" : "Delivery Plan:", 
-  "body" : "Hi @@name@@ @@surname@@, Your planned mail delivery is at @@MsgData.POBDetail.DateAndTime@@. @@MsgData.POBDetail.Message@@. Any questions, please call 1300 WHISPIR."
-}
-</code></pre>
+<blockquote>
+<blockquote>
+<p>TemplateID: BCD384BC3847CD3484CD</p>
+</blockquote>
+</blockquote>
+<pre><code class="highlight json"><span class="p">{</span><span class="w">
+  </span><span class="s2">"messageTemplateName"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"Delivery Plan"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"subject"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"Delivery Plan:"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"body"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"Hi @@name@@ @@surname@@, Your planned mail delivery is at @@MsgData.POBDetail.DateAndTime@@. @@MsgData.POBDetail.Message@@. Any questions, please call 1300 WHISPIR."</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
 
 <p>Now we have the templateId(for content) with the resourceID (for recipients). Using these two key pieces of information, developers can submit an API request to kick off the Dynamic Messaging process.</p>
 
 <p>The <code class="prettyprint">smsMappingField</code> should be mapped to the column or key that holds the number to which the SMS has to sent to; and the <code class="prettyprint">emailMappingField</code> to the email to which the message has to be sent to. refer to <a href="https://whispir.github.io/api/#dynamic-messages">Dynamic Messages</a> for more details on the mapping.</p>
-<pre><code class="highlight plaintext">&gt; Sending the Bulk Message
 
-&gt; &gt; the resource type here is application/vnd.whispir.bulkmessage-v1+xml, application/vnd.whispir.bulkmessage-v1+json. Not the usual application/vnd.whispir.message-v1+xml, application/vnd.whispir.message-v1+json.
+<blockquote>
+<p>Sending the Bulk Message</p>
 
-HTTP 1.1 POST https://api.whispir.com/messages?apikey=[your_api_key]
+<blockquote>
+<p>the resource type here is application/vnd.whispir.bulkmessage-v1+xml, application/vnd.whispir.bulkmessage-v1+json. Not the usual application/vnd.whispir.message-v1+xml, application/vnd.whispir.message-v1+json.</p>
+</blockquote>
+</blockquote>
+<pre><code class="highlight plaintext">HTTP 1.1 POST https://api.whispir.com/messages?apikey=[your_api_key]
 Authorization: Basic asdf98nf89asdvasd2r398h8sdf
 </code></pre>
 <pre><code class="highlight xml">Content-Type: application/vnd.whispir.bulkmessage-v1+xml
@@ -11887,7 +12258,7 @@ Authorization: Basic asdf98nf89asdvasd2r398h8sdf
 <span class="nt">&lt;ns2:message</span> <span class="na">xmlns:ns2=</span><span class="s">"http://schemas.api.whispir.com"</span><span class="nt">&gt;</span>
    <span class="nt">&lt;resource&gt;</span>
       <span class="nt">&lt;resourceId&gt;</span>ABD435DBFCD663DEDEFF<span class="nt">&lt;/resourceId&gt;</span>
-      <span class="nt">&lt;smsMappingField&gt;</span>mobile<span class="nt">&lt;/smsMappingField&gt;</span>
+    <span class="nt">&lt;smsMappingField&gt;</span>mobile<span class="nt">&lt;/smsMappingField&gt;</span>
       <span class="nt">&lt;emailMappingField&gt;</span>email<span class="nt">&lt;/emailMappingField&gt;</span>
    <span class="nt">&lt;/resource&gt;</span>
    <span class="nt">&lt;messageTemplateId&gt;</span>BCD384BC3847CD3484CD<span class="nt">&lt;/messageTemplateId&gt;</span>
@@ -11896,26 +12267,32 @@ Authorization: Basic asdf98nf89asdvasd2r398h8sdf
 <pre><code class="highlight go"><span class="n">Content</span><span class="o">-</span><span class="n">Type</span><span class="o">:</span><span class="x"> </span><span class="n">application</span><span class="o">/</span><span class="n">vnd</span><span class="o">.</span><span class="n">whispir</span><span class="o">.</span><span class="n">bulkmessage</span><span class="o">-</span><span class="n">v1</span><span class="o">+</span><span class="n">json</span><span class="x">
 
 </span><span class="p">{</span><span class="x">
-    </span><span class="s">"resource"</span><span class="x"> </span><span class="o">:</span><span class="p">{</span><span class="x">
-        </span><span class="s">"resourceId"</span><span class="x"> </span><span class="o">:</span><span class="x"> </span><span class="s">"ABD435DBFCD663DEDEFF"</span><span class="p">,</span><span class="x">
-        </span><span class="s">"smsMappingField"</span><span class="x"> </span><span class="o">:</span><span class="x"> </span><span class="s">"mobile"</span><span class="p">,</span><span class="x">
-        </span><span class="s">"emailMappingField"</span><span class="x"> </span><span class="o">:</span><span class="x"> </span><span class="s">"email"</span><span class="p">,</span><span class="x">
-        </span><span class="s">"voiceMappingField"</span><span class="x"> </span><span class="o">:</span><span class="x"> </span><span class="s">""</span><span class="x">
-    </span><span class="p">},</span><span class="x">
-    </span><span class="s">"messageTemplateId"</span><span class="o">:</span><span class="x"> </span><span class="s">"BCD384BC3847CD3484CD"</span><span class="x">
+  </span><span class="s">"resource"</span><span class="x"> </span><span class="o">:</span><span class="p">{</span><span class="x">
+    </span><span class="s">"resourceId"</span><span class="x"> </span><span class="o">:</span><span class="x"> </span><span class="s">"ABD435DBFCD663DEDEFF"</span><span class="p">,</span><span class="x">
+    </span><span class="s">"smsMappingField"</span><span class="x"> </span><span class="o">:</span><span class="x"> </span><span class="s">"mobile"</span><span class="p">,</span><span class="x">
+    </span><span class="s">"emailMappingField"</span><span class="x"> </span><span class="o">:</span><span class="x"> </span><span class="s">"email"</span><span class="p">,</span><span class="x">
+    </span><span class="s">"voiceMappingField"</span><span class="x"> </span><span class="o">:</span><span class="x"> </span><span class="s">""</span><span class="x">
+  </span><span class="p">},</span><span class="x">
+  </span><span class="s">"messageTemplateId"</span><span class="o">:</span><span class="x"> </span><span class="s">"BCD384BC3847CD3484CD"</span><span class="x">
 </span><span class="p">}</span><span class="x">
 </span></code></pre>
-<pre><code class="highlight plaintext">&gt; Final Message delivered to Customer (Individually)
 
-&gt; &gt; The message when combined with the data will be -
+<blockquote>
+<p>Final Message delivered to Customer (Individually)</p>
 
-Hi Franco Thimboli, Your planned mail delivery is at 09-Sep-2015 12:15 PM. Please let us know if the time slot is acceptable. Respond with a 'No' to get alternative time slot. Any questions, please call 1300 WHISPIR.
+<blockquote>
+<p>The message when combined with the data will be -</p>
+</blockquote>
+</blockquote>
+<pre><code class="highlight plaintext">Hi Franco Thimboli, Your planned mail delivery is at 09-Sep-2015 12:15 PM. Please let us know if the time slot is acceptable. Respond with a 'No' to get alternative time slot. Any questions, please call 1300 WHISPIR.
 
 Hi Jordan Windsor, Your planned mail delivery is at 09-Sep-2015 12:30 PM. Please let us know if the time slot is acceptable. Respond with a 'No' to get alternative time slot. Any questions, please call 1300 WHISPIR.
 </code></pre>
-<pre><code class="highlight plaintext">&gt; Response
 
-HTTP 1.1 202 Accepted
+<blockquote>
+<p>Response</p>
+</blockquote>
+<pre><code class="highlight plaintext">HTTP 1.1 202 Accepted
 Location: http://api.whispir.com/messages/CDB938478CD6DBC3784C?apikey=[your_api_key]
 </code></pre>
 
@@ -11928,115 +12305,118 @@ Location: http://api.whispir.com/messages/CDB938478CD6DBC3784C?apikey=[your_api_
         <tr>
             <th style="width: 50%" colspan="2">Standard Error Scenarios</th>
         </tr>
-        <tr>
+    <tr>
             <th style="width: 50%">Error Condition</th>
             <th style="width: 50%">Details</th>
         </tr>
     </thead>
     <tbody>
-        <tr>
-            <td style="text-align: right; font-weight: bold;">Request a URI that doesn&rsquo;t exist</td>
-            <td>
-                Response Code
-                <ul>
-                    <li>
-                    404 Not Found
-                    </li>
-                </ul>
-                Description
-                <ul>
-                    <li>
-                    The requested URI does not exist
-                    </li>
-                </ul>
-                Actions for application client
-                <ul>
-                    <li>
-                    Resource does not exist. Incorrect resource identifier, or resource has been removed.
-                    </li>
-                </ul>
-            </td>
-        </tr>
-        <tr>
-            <td style="text-align: right; font-weight: bold;">Provide an attachment that is bigger than 10 MB</td>
-            <td>
-                Response Code
-                <ul>
-                    <li>
-                    422 Unprocessable Entity
-                    </li>
-                </ul>
-                Description
-                <ul>
-                    <li>
-                    The POST request entity exceeds allowed size 
-                    </li>
-                </ul>
-                Actions for application client
-                <ul>
-                    <li>
-                    Ensure the size of the resource does not exceed 10MiB.
-                    </li>
-                </ul>
-            </td>
-        </tr>
-        <tr>
-            <td style="text-align: right; font-weight: bold;">Provide a mime type that is not json, xml or csv</td>
-            <td>
-                Response Code
-                <ul>
-                    <li>
-                    422 Unprocessable Entity
-                    </li>
-                </ul>
-                Description
-                <ul>
-                    <li>
-                    The request was unsuccessful because the requested content type is not supported by the API.
-                    </li>
-                </ul>
-                Actions for application client
-                <ul>
-                    <li>
-                    Incorrect mime type. Only text/csv, application/xml, application/json are supported as bulk message resources.
-                    </li>
-                </ul>
-            </td>
-        </tr>
-        <tr>
-            <td style="text-align: right; font-weight: bold;">Malformed XML or JSON passed</td>
-            <td>
-                Response Code
-                <ul>
-                    <li>
-                    422 Unprocessable Entity
-                    </li>
-                </ul>
-                Description
-                <ul>
-                    <li>
-                    An error occurred when processing entity in the request.
-                    </li>
-                </ul>
-                Actions for application client
-                <ul>
-                    <li>
-                     Likely to be a malformed CSV, XML, or JSON file. Verify the data structure. 
-                    </li>
-                </ul>
-            </td>
-        </tr>
-    </tbody>
+    <tr>
+      <td style="text-align: right; font-weight: bold;">Request a URI that doesn&rsquo;t exist</td>
+      <td>
+        Response Code
+        <ul>
+          <li>
+          404 Not Found
+          </li>
+        </ul>
+        Description
+        <ul>
+          <li>
+          The requested URI does not exist
+          </li>
+        </ul>
+        Actions for application client
+        <ul>
+          <li>
+          Resource does not exist. Incorrect resource identifier, or resource has been removed.
+          </li>
+        </ul>
+      </td>
+    </tr>
+    <tr>
+      <td style="text-align: right; font-weight: bold;">Provide an attachment that is bigger than 10 MB</td>
+      <td>
+        Response Code
+        <ul>
+          <li>
+          422 Unprocessable Entity
+          </li>
+        </ul>
+        Description
+        <ul>
+          <li>
+          The POST request entity exceeds allowed size
+          </li>
+        </ul>
+        Actions for application client
+        <ul>
+          <li>
+          Ensure the size of the resource does not exceed 10MiB.
+          </li>
+        </ul>
+      </td>
+    </tr>
+    <tr>
+      <td style="text-align: right; font-weight: bold;">Provide a mime type that is not json, xml or csv</td>
+      <td>
+        Response Code
+        <ul>
+          <li>
+          422 Unprocessable Entity
+          </li>
+        </ul>
+        Description
+        <ul>
+          <li>
+          The request was unsuccessful because the requested content type is not supported by the API.
+          </li>
+        </ul>
+        Actions for application client
+        <ul>
+          <li>
+          Incorrect mime type. Only text/csv, application/xml, application/json are supported as bulk message resources.
+          </li>
+        </ul>
+      </td>
+    </tr>
+    <tr>
+      <td style="text-align: right; font-weight: bold;">Malformed XML or JSON passed</td>
+      <td>
+        Response Code
+        <ul>
+          <li>
+          422 Unprocessable Entity
+          </li>
+        </ul>
+        Description
+        <ul>
+          <li>
+          An error occurred when processing entity in the request.
+          </li>
+        </ul>
+        Actions for application client
+        <ul>
+          <li>
+           Likely to be a malformed CSV, XML, or JSON file. Verify the data structure.
+          </li>
+        </ul>
+      </td>
+    </tr>
+  </tbody>
 </table>
 
 <h2 id="retrieving-existing-resources">Retrieving existing resources</h2>
 
 <p>Existing resources can be easily retrieved via the GET /resources API call. The response lists all of the existing public and private resources available in the system.</p>
-<pre><code class="highlight plaintext">&gt; Retrieving resources
 
-&gt; &gt; The resources contain the id, and url link of the resource (only public)
+<blockquote>
+<p>Retrieving resources</p>
 
-</code></pre>
+<blockquote>
+<p>The resources contain the id, and url link of the resource (only public)</p>
+</blockquote>
+</blockquote>
 <pre><code class="highlight plaintext">HTTP 1.1 GET https://api.whispir.com/resources/?apikey=&lt;your_api_key&gt;
 Authorization: Basic asdf98nf89asdvasd2r398h8sdf
 </code></pre>
@@ -12190,11 +12570,14 @@ Authorization: Basic asdf98nf89asdvasd2r398h8sdf
 <h3 id="retrieving-a-single-resource">Retrieving a single resource</h3>
 
 <p>A single resource (public|private) can be retrieved from the available resource by using the resource&rsquo;s specific link uri.</p>
-<pre><code class="highlight plaintext">&gt; Retrieving a single resource
 
-&gt; &gt; use the resource's link uri for private scope file
+<blockquote>
+<p>Retrieving a single resource</p>
 
-</code></pre>
+<blockquote>
+<p>use the resource&rsquo;s link uri for private scope file</p>
+</blockquote>
+</blockquote>
 <pre><code class="highlight plaintext">HTTP 1.1 GET https://api.whispir.com/resources/D3E2XCDF3WS4859?apikey=&lt;your_api_key&gt;
 Authorization: Basic asdf98nf89asdvasd2r398h8sdf
 </code></pre>
@@ -12250,7 +12633,7 @@ Authorization: Basic asdf98nf89asdvasd2r398h8sdf
     <span class="nt">&lt;name&gt;</span>users.json<span class="nt">&lt;/name&gt;</span>
     <span class="nt">&lt;scope&gt;</span>public<span class="nt">&lt;/scope&gt;</span>
     <span class="nt">&lt;mimeType&gt;</span>application/json<span class="nt">&lt;/mimeType&gt;</span>
-    <span class="nt">&lt;url&gt;</span>https://cdn-ap.whispir.com/public/resources/2163b29d4edf1bd77d71a36210d472360cd.json<span class="nt">&lt;/url&gt;</span>
+  <span class="nt">&lt;url&gt;</span>https://cdn-ap.whispir.com/public/resources/2163b29d4edf1bd77d71a36210d472360cd.json<span class="nt">&lt;/url&gt;</span>
     <span class="nt">&lt;ns2:link</span> <span class="na">uri=</span><span class="s">"https://api.whispir.com/resources/F1212CF334EDR68?apikey=&lt;your_api_key&gt;"</span> <span class="na">rel=</span><span class="s">"self"</span> <span class="na">method=</span><span class="s">"GET"</span><span class="nt">/&gt;</span>
     <span class="nt">&lt;ns2:link</span> <span class="na">uri=</span><span class="s">"https://api.whispir.com/resources/F1212CF334EDR68?apikey=&lt;your_api_key&gt;"</span> <span class="na">rel=</span><span class="s">"updateResource"</span> <span class="na">method=</span><span class="s">"PUT"</span> <span class="na">type=</span><span class="s">"application/vnd.whispir.resource-v1+json,application/vnd.whispir.resource-v1+xml"</span><span class="nt">/&gt;</span>
     <span class="nt">&lt;ns2:link</span> <span class="na">uri=</span><span class="s">"https://api.whispir.com/resources/F1212CF334EDR68?apikey=&lt;your_api_key&gt;"</span> <span class="na">rel=</span><span class="s">"deleteResource"</span> <span class="na">method=</span><span class="s">"DELETE"</span><span class="nt">/&gt;</span>
@@ -12292,34 +12675,34 @@ Authorization: Basic asdf98nf89asdvasd2r398h8sdf
         </tr>
     </thead>
     <tbody>
-        <tr>
-            <td style="text-align: right; font-weight: bold;">name:</td>
-            <td><strong>String</strong><br/>
-                Specifies the name of the resource. The name is given during creation.
-            </td>
-        </tr>
-        <tr>
-            <td style="text-align: right; font-weight: bold;">scope:</td>
-            <td><strong>String</strong><br/>
-                Specifies the permission scope of the file being uploaded.
-            </ul>
-            </td>
-        </tr>
-        <tr>
-            <td style="text-align: right; font-weight: bold;">mimeType:</td>
-            <td><strong>String</strong><br/>
-                The mime type of the file that is being uploaded. 
-            </td>
-        </tr>
-        <tr>
-            <td style="text-align: right; font-weight: bold;">url:</td>
-            <td><strong>String</strong><br/>
-                The downloaded link to the resource location. Browsing this link results in a download of the resource.
-                <br><br>
-                <b>Note:</b> Only available for Public scoped resources.
-            </td>
-        </tr>
-        <tr>
+    <tr>
+      <td style="text-align: right; font-weight: bold;">name:</td>
+      <td><strong>String</strong><br/>
+        Specifies the name of the resource. The name is given during creation.
+      </td>
+    </tr>
+    <tr>
+      <td style="text-align: right; font-weight: bold;">scope:</td>
+      <td><strong>String</strong><br/>
+        Specifies the permission scope of the file being uploaded.
+      </ul>
+      </td>
+    </tr>
+    <tr>
+      <td style="text-align: right; font-weight: bold;">mimeType:</td>
+      <td><strong>String</strong><br/>
+        The mime type of the file that is being uploaded.
+      </td>
+    </tr>
+    <tr>
+      <td style="text-align: right; font-weight: bold;">url:</td>
+      <td><strong>String</strong><br/>
+        The downloaded link to the resource location. Browsing this link results in a download of the resource.
+        <br><br>
+        <b>Note:</b> Only available for Public scoped resources.
+      </td>
+    </tr>
+    <tr>
             <td style="text-align: right; font-weight: bold;">link:</td>
             <td><strong>Array</strong><br/>
                 Provides a list of URLs that can be used to manipulate or access the message template.
@@ -12330,7 +12713,7 @@ Authorization: Basic asdf98nf89asdvasd2r398h8sdf
                 </ul>
             </td>
         </tr>
-    </tbody>
+  </tbody>
 </table>
 
 <h3 id="filtering-search-results">Filtering search results</h3>
@@ -12341,50 +12724,70 @@ Authorization: Basic asdf98nf89asdvasd2r398h8sdf
 
 <ul>
 <li>Public - <code class="prettyprint">&amp;scope=public</code></li>
-<li>Private - <code class="prettyprint">&amp;scope=private</code> </li>
+<li>Private - <code class="prettyprint">&amp;scope=private</code></li>
 </ul>
-<pre><code class="highlight plaintext">&gt; Filtering resources by scope
 
-&gt; &gt; Only get the public resources
+<blockquote>
+<p>Filtering resources by scope</p>
 
-HTTP 1.1 GET https://api.whispir.com/resources/?apikey=&lt;your_api_key&gt;&amp;scope=public
+<blockquote>
+<p>Only get the public resources</p>
+</blockquote>
+</blockquote>
+<pre><code class="highlight plaintext">HTTP 1.1 GET https://api.whispir.com/resources/?apikey=&lt;your_api_key&gt;&amp;scope=public
 Authorization: Basic asdf98nf89asdvasd2r398h8sdf
+</code></pre>
 
-&gt; &gt; Only get the private resources
-
-HTTP 1.1 GET https://api.whispir.com/resources/?apikey=&lt;your_api_key&gt;&amp;scope=private
+<blockquote>
+<blockquote>
+<p>Only get the private resources</p>
+</blockquote>
+</blockquote>
+<pre><code class="highlight plaintext">HTTP 1.1 GET https://api.whispir.com/resources/?apikey=&lt;your_api_key&gt;&amp;scope=private
 Authorization: Basic asdf98nf89asdvasd2r398h8sdf
 </code></pre>
 
 <h4 id="filtering-by-name">Filtering By name</h4>
-<pre><code class="highlight plaintext">&gt; Filtering resources by scope
 
-&gt; &gt; With extension of file type
+<blockquote>
+<p>Filtering resources by scope</p>
 
-HTTP 1.1 GET https://api.whispir.com/resources/?apikey=&lt;your_api_key&gt;&amp;name=australia.csv
+<blockquote>
+<p>With extension of file type</p>
+</blockquote>
+</blockquote>
+<pre><code class="highlight plaintext">HTTP 1.1 GET https://api.whispir.com/resources/?apikey=&lt;your_api_key&gt;&amp;name=australia.csv
 Authorization: Basic asdf98nf89asdvasd2r398h8sdf
-
-&gt; &gt; Response will be array of records that match exactly the whole name given in the query
 </code></pre>
-<pre><code class="highlight plaintext">&gt; &gt; Only part of name
 
-HTTP 1.1 GET https://api.whispir.com/resources/?apikey=&lt;your_api_key&gt;&amp;name=au
+<blockquote>
+<blockquote>
+<p>Response will be array of records that match exactly the whole name given in the query</p>
+
+<p>Only part of name</p>
+</blockquote>
+</blockquote>
+<pre><code class="highlight plaintext">HTTP 1.1 GET https://api.whispir.com/resources/?apikey=&lt;your_api_key&gt;&amp;name=au
 Authorization: Basic asdf98nf89asdvasd2r398h8sdf
-
-&gt; &gt; Response will match all records that have `au` in their file name. So, multiple records are returned.
 </code></pre>
+
+<blockquote>
+<blockquote>
+<p>Response will match all records that have <code class="prettyprint">au</code> in their file name. So, multiple records are returned.</p>
+</blockquote>
+</blockquote>
 
 <p>Resources can be filtered by their name. This can be achieved by sending in the name in the URL as query parameter.</p>
 
-<p><strong>Note:</strong> The name including the file extension makes it a unique search. </p>
+<p><strong>Note:</strong> The name including the file extension makes it a unique search.</p>
 
-<p>Eg: - <code class="prettyprint">&amp;name=australia.csv</code> </p>
+<p>Eg: - <code class="prettyprint">&amp;name=australia.csv</code></p>
 
 <h2 id="updating-a-resource">Updating a resource</h2>
 <pre><code class="highlight plaintext">HTTP 1.1 PUT https://api.whispir.com/resources/ABD435DBFCD663DEDEFF?apikey=[your_api_key]
 Authorization: Basic asdf98nf89asdvasd2r398h8sdf
 </code></pre>
-<pre><code class="highlight xml">Content-Type: application/vnd.whispir.resource-v1+xml 
+<pre><code class="highlight xml">Content-Type: application/vnd.whispir.resource-v1+xml
 
 
 <span class="cp">&lt;?xml version="1.0" encoding="UTF-8" standalone="yes"?&gt;</span>
@@ -12406,11 +12809,15 @@ Authorization: Basic asdf98nf89asdvasd2r398h8sdf
 </span><span class="p">}</span><span class="x">   
 
 </span></code></pre>
-<pre><code class="highlight plaintext">&gt; &gt; Response 
 
-&gt; &gt; Once the resource is updated, the older version is technically removed. The new resource data will be used in all the references of the resource (via the ID)
+<blockquote>
+<blockquote>
+<p>Response</p>
 
-HTTP 1.1 204 No Content
+<p>Once the resource is updated, the older version is technically removed. The new resource data will be used in all the references of the resource (via the ID)</p>
+</blockquote>
+</blockquote>
+<pre><code class="highlight plaintext">HTTP 1.1 204 No Content
 </code></pre>
 
 <p>Updating a resource involves the same process as in creating a resource. The process of using one of the format (CSV, JSON, XML) for private and any format for public -&gt; converting to base64 encoded data is the same.</p>
@@ -12420,17 +12827,25 @@ HTTP 1.1 204 No Content
 <p>Any or all of the 4 values can be changed. <strong>i.e,</strong> name, scope, mimeType, deferUri, but all 4 are mandatory values to be sent.</p>
 
 <h2 id="deleting-a-resource">Deleting a resource</h2>
-<pre><code class="highlight plaintext">&gt; Deleting a resource
 
-&gt; &gt; Exact URI of the resource has to be provided.
+<blockquote>
+<p>Deleting a resource</p>
 
-HTTP 1.1 DELETE https://api.whispir.com/resources/F1212CF334EDR68?apikey=[your_key]
+<blockquote>
+<p>Exact URI of the resource has to be provided.</p>
+</blockquote>
+</blockquote>
+<pre><code class="highlight plaintext">HTTP 1.1 DELETE https://api.whispir.com/resources/F1212CF334EDR68?apikey=[your_key]
 Authorization: Basic am9obi5zbWl0aDpteXBhc3N3b3Jk
 </code></pre>
-<pre><code class="highlight plaintext">&gt; Response
 
-&gt; &gt; 204 No Content
-</code></pre>
+<blockquote>
+<p>Response</p>
+
+<blockquote>
+<p>204 No Content</p>
+</blockquote>
+</blockquote>
 
 <p>Resources can be deleted after use. These can be both public and private in scope.</p>
 
