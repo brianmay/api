@@ -11776,32 +11776,7 @@ Authorization: Basic asdf98nf89asdvasd2r398h8sdf
 
 <h2 id="deleting-an-event">Deleting an Event</h2>
 
-<p><strong>Note:</strong> Rather than deleting an event, it is recommended to just mark the event as completed. This ensure that the event data is retained for future audit compliance.</p>
-
-<blockquote>
-<p>Deleting an event</p>
-
-<blockquote>
-<p>The following request allows a user to delete the event in a workspace using the Whispir API.</p>
-</blockquote>
-</blockquote>
-<pre><code class="highlight plaintext">HTTP 1.1 DELETE https://api.whispir.com/workspaces/{id}/events/SODFNODS092FDS2980?apikey=&lt;your_api_key&gt;
-Authorization: Basic am9obi5zbWl0aDpteXBhc3N3b3Jk
-</code></pre>
-
-<blockquote>
-<blockquote>
-<p>response</p>
-</blockquote>
-</blockquote>
-<pre><code class="highlight plaintext">HTTP 1.1 204 No Content
-</code></pre>
-
-<p>Deleting an event can be performed using a DELETE request to the /events/{id} endpoint. So, to perform this, the account must have the &ldquo;Delete&rdquo; - &ldquo;Incident&rdquo; access in the permissions and roles settings.</p>
-
-<p>After performing this request, the response does not contain any information other than the headers as it is not necessary.</p>
-
-<p>The delete an event if successful shall respond with a <code class="prettyprint">204 No Content</code>.</p>
+<p>It is not currently possible to remove events from the Whispir Platform. Instead, events should be updated to have a status of &#39;Closed&rsquo;.</p>
 
         <h1 id="resources">Resources</h1>
 
