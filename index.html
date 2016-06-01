@@ -6092,7 +6092,7 @@ Authorization: Basic [your basic auth]
 <span class="cp">&lt;?xml version="1.0" encoding="UTF-8" standalone="yes"?&gt;</span>
 <span class="nt">&lt;ns2:message</span> <span class="na">xmlns:ns2=</span><span class="s">"http://schemas.api.whispir.com"</span><span class="nt">&gt;</span>
     <span class="nt">&lt;to&gt;</span>Docs_Distribution_List.company@list.company.whispir.sg<span class="nt">&lt;/to&gt;</span>
-    <span class="nt">&lt;subject&gt;</span>Simple SMS to List of contacts in the distribution list<span class="nt">&lt;/subject&gt;</span>    
+    <span class="nt">&lt;subject&gt;</span>Simple SMS to List of contacts in the distribution list<span class="nt">&lt;/subject&gt;</span>
     <span class="nt">&lt;body&gt;</span>This is the content of my sample sms message.<span class="nt">&lt;/body&gt;</span>
 <span class="nt">&lt;/ns2:message&gt;</span>
 </code></pre>
@@ -6134,6 +6134,73 @@ Authorization: Basic [your basic auth]
 <p>Deleting the distribution is done via a <code class="prettyprint">DELETE /distributionlist/{id}</code> endpoint. </p>
 
 <p>You can only delete the distribution list that you have created or a valid userId associated with the specific distribution list.</p>
+
+<h2 id="location-tags-for-distribution-lists">Location Tags for Distribution Lists</h2>
+
+<p>Distribution Lists allow to add Locations as their property. This can be useful to geo-tag a group of users or assets in a single location. The location data can be set of multiple values with each entry specifying the lat, lon values and the type of data. There is no TTL attached to these values, so using the &lsquo;type&rsquo; of location can help with proper identification and data stale ness.</p>
+
+<p>Type can be:</p>
+
+<ol>
+<li>&#39;CurrentLocation&rsquo; - used to specify that the data is latest and is nearest best last known location of the DL asset</li>
+<li>&rsquo;-any-key-identifier&rsquo; - can be any custom identifier key name that you can use to identify/associate the location value with. Like &#39;AlternativeLocation&rsquo; or &#39;LocationB&rsquo; or &#39;LocationX&rsquo; etc.</li>
+</ol>
+
+<blockquote>
+<p>Creating Distribution Lists with Location values</p>
+
+<blockquote>
+<p>Distribution Lists can contain lists of Contacts, Users or other Distribution Lists</p>
+</blockquote>
+</blockquote>
+<pre><code class="highlight plaintext">POST https://api.whispir.com/distributionlists?apikey=[your api key]
+Authorization: Basic [your basic auth]
+</code></pre>
+<pre><code class="highlight xml">Content-Type: application/vnd.whispir.distributionlist-v1+xml
+
+<span class="cp">&lt;?xml version="1.0" encoding="UTF-8" standalone="yes"?&gt;</span>
+<span class="nt">&lt;ns1:distributionlists</span> <span class="na">xmlns:ns2=</span><span class="s">"http://schemas.api.whispir.com"</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;name&gt;</span>My Distribution List<span class="nt">&lt;/name&gt;</span>
+    <span class="nt">&lt;description&gt;&lt;/description&gt;</span>
+    <span class="nt">&lt;access&gt;</span>Open<span class="nt">&lt;/access&gt;</span>
+    <span class="nt">&lt;visibility&gt;</span>Public<span class="nt">&lt;/visibility&gt;</span>
+    <span class="nt">&lt;contactIds&gt;&lt;/contactIds&gt;</span>
+    <span class="nt">&lt;userIds&gt;&lt;/userIds&gt;</span>
+    <span class="nt">&lt;distListIds&gt;&lt;/distListIds&gt;</span>
+    <span class="nt">&lt;locations&gt;</span>
+    <span class="nt">&lt;location&gt;</span>
+        <span class="nt">&lt;latitude&gt;</span>47.6204232<span class="nt">&lt;/latitude&gt;</span>
+        <span class="nt">&lt;longitude&gt;</span>-122.3493552<span class="nt">&lt;/longitude&gt;</span>
+        <span class="nt">&lt;type&gt;</span>CurrentLocation<span class="nt">&lt;/type&gt;</span>
+    <span class="nt">&lt;/location&gt;</span>
+    <span class="nt">&lt;/locations&gt;</span>
+<span class="nt">&lt;/ns1:distributionlists&gt;</span>
+</code></pre>
+<pre><code class="highlight go"><span class="n">Content</span><span class="o">-</span><span class="n">Type</span><span class="o">:</span><span class="x"> </span><span class="n">application</span><span class="o">/</span><span class="n">vnd</span><span class="o">.</span><span class="n">whispir</span><span class="o">.</span><span class="n">distributionlist</span><span class="o">-</span><span class="n">v1</span><span class="o">+</span><span class="n">json</span><span class="x">
+
+</span><span class="p">{</span><span class="x">
+    </span><span class="s">"name"</span><span class="x"> </span><span class="o">:</span><span class="x"> </span><span class="s">"My Distribution List"</span><span class="p">,</span><span class="x">
+    </span><span class="s">"description"</span><span class="x"> </span><span class="o">:</span><span class="x"> </span><span class="s">""</span><span class="p">,</span><span class="x">
+    </span><span class="s">"access"</span><span class="x"> </span><span class="o">:</span><span class="x"> </span><span class="s">"Open"</span><span class="p">,</span><span class="x">
+    </span><span class="s">"visibility"</span><span class="x"> </span><span class="o">:</span><span class="x"> </span><span class="s">"Public"</span><span class="p">,</span><span class="x">
+    </span><span class="s">"contactIds"</span><span class="x"> </span><span class="o">:</span><span class="x"> </span><span class="s">""</span><span class="p">,</span><span class="x">
+    </span><span class="s">"userIds"</span><span class="x"> </span><span class="o">:</span><span class="x"> </span><span class="s">""</span><span class="p">,</span><span class="x">
+    </span><span class="s">"distListIds"</span><span class="x"> </span><span class="o">:</span><span class="x"> </span><span class="s">""</span><span class="p">,</span><span class="x">
+    </span><span class="s">"locations"</span><span class="o">:</span><span class="x"> </span><span class="p">[</span><span class="x">
+        </span><span class="p">{</span><span class="x">
+          </span><span class="s">"longitude"</span><span class="o">:</span><span class="x"> </span><span class="o">-</span><span class="m">122.3493552</span><span class="p">,</span><span class="x">
+          </span><span class="s">"latitude"</span><span class="o">:</span><span class="x"> </span><span class="m">47.6204232</span><span class="p">,</span><span class="x">
+          </span><span class="s">"type"</span><span class="o">:</span><span class="x"> </span><span class="s">"CurrentLocation"</span><span class="x">
+        </span><span class="p">}</span><span class="x">
+    </span><span class="p">]</span><span class="x">
+</span><span class="p">}</span><span class="x">
+</span></code></pre>
+
+<blockquote>
+<blockquote>
+<p>Users should expect a <code class="prettyprint">201 Created</code> response after executing this request. Or <code class="prettyprint">204 No Content</code> in case of a distribution lost update using <code class="prettyprint">PUT</code></p>
+</blockquote>
+</blockquote>
 
         <h1 id="scenarios">Scenarios</h1>
 
