@@ -1162,10 +1162,10 @@ Authorization: Basic &lt;YOUR AUTH HEADER&gt;
             Pin:
         <span class="nt">&lt;/type&gt;</span>
     <span class="nt">&lt;/voice&gt;</span>
-    <span class="nt">&lt;web&gt;</span> 
-        <span class="nt">&lt;body&gt;</span>This is web body of my test message<span class="nt">&lt;/body&gt;</span> 
-        <span class="nt">&lt;type&gt;</span>text/plain<span class="nt">&lt;/type&gt;</span> 
-    <span class="nt">&lt;/web&gt;</span> 
+    <span class="nt">&lt;web&gt;</span>
+        <span class="nt">&lt;body&gt;</span>This is web body of my test message<span class="nt">&lt;/body&gt;</span>
+        <span class="nt">&lt;type&gt;</span>text/plain<span class="nt">&lt;/type&gt;</span>
+    <span class="nt">&lt;/web&gt;</span>
     <span class="nt">&lt;social&gt;</span>
         <span class="nt">&lt;social</span> <span class="na">id=</span><span class="s">"social"</span><span class="nt">&gt;</span>
             <span class="nt">&lt;body&gt;</span>Twitter Content.<span class="nt">&lt;/body&gt;</span>
@@ -1186,14 +1186,14 @@ Authorization: Basic &lt;YOUR AUTH HEADER&gt;
     </span><span class="s">"body"</span><span class="x"> </span><span class="o">:</span><span class="x"> </span><span class="s">"This is the body of my test SMS message"</span><span class="p">,</span><span class="x">
     </span><span class="s">"email"</span><span class="x"> </span><span class="o">:</span><span class="x"> </span><span class="p">{</span><span class="x">
         </span><span class="s">"body"</span><span class="x"> </span><span class="o">:</span><span class="x"> </span><span class="s">"This is the body of my test Email message"</span><span class="p">,</span><span class="x">
-        </span><span class="s">"footer"</span><span class="x"> </span><span class="o">:</span><span class="x"> </span><span class="s">"This is the footer of my message 
+        </span><span class="s">"footer"</span><span class="x"> </span><span class="o">:</span><span class="x"> </span><span class="s">"This is the footer of my message
                     (generally where a signature would go)"</span><span class="p">,</span><span class="x">
         </span><span class="s">"type"</span><span class="x"> </span><span class="o">:</span><span class="x"> </span><span class="s">"text/plain"</span><span class="x">
     </span><span class="p">},</span><span class="x">
     </span><span class="s">"voice"</span><span class="x"> </span><span class="o">:</span><span class="x"> </span><span class="p">{</span><span class="x">
-        </span><span class="s">"header"</span><span class="x"> </span><span class="o">:</span><span class="x"> </span><span class="s">"This is the introduction, 
+        </span><span class="s">"header"</span><span class="x"> </span><span class="o">:</span><span class="x"> </span><span class="s">"This is the introduction,
                     read out prior to any key press"</span><span class="p">,</span><span class="x">
-        </span><span class="s">"body"</span><span class="x"> </span><span class="o">:</span><span class="x"> </span><span class="s">"This is the body of the voice call, 
+        </span><span class="s">"body"</span><span class="x"> </span><span class="o">:</span><span class="x"> </span><span class="s">"This is the body of the voice call,
                   read out after the key press"</span><span class="p">,</span><span class="x">
         </span><span class="s">"type"</span><span class="x"> </span><span class="o">:</span><span class="x"> </span><span class="s">"ConfCall:,
                   ConfAccountNo:,
@@ -1202,7 +1202,7 @@ Authorization: Basic &lt;YOUR AUTH HEADER&gt;
                   Pin:"</span><span class="x">
     </span><span class="p">},</span><span class="x">
     </span><span class="s">"web"</span><span class="x"> </span><span class="o">:</span><span class="x"> </span><span class="p">{</span><span class="x">
-        </span><span class="s">"body"</span><span class="x"> </span><span class="o">:</span><span class="x"> </span><span class="s">"This is the content of my web publishing 
+        </span><span class="s">"body"</span><span class="x"> </span><span class="o">:</span><span class="x"> </span><span class="s">"This is the content of my web publishing
                  or Rich Push Message"</span><span class="p">,</span><span class="x">
         </span><span class="s">"type"</span><span class="x"> </span><span class="o">:</span><span class="x"> </span><span class="s">"text/plain"</span><span class="x">
     </span><span class="p">},</span><span class="x">
@@ -1250,7 +1250,7 @@ Authorization: Basic &lt;YOUR AUTH HEADER&gt;
 
 <p>As message resources can exist in the default (Company) workspace or other workspace, messages have two access URLs:</p>
 
-<p><code class="prettyprint">https://api.whispir.com/messages</code> - for Company Workspace messages 
+<p><code class="prettyprint">https://api.whispir.com/messages</code> - for Company Workspace messages
 <code class="prettyprint">https://api.whispir.com/workspaces/:id/messages</code> - for other Workspace messages</p>
 
 <p>If your application does not require separate workspaces, you can simply send all messages from the default Company workspace.</p>
@@ -1356,7 +1356,7 @@ Accept: application/vnd.whispir.message-v1+xml
     <span class="nt">&lt;to&gt;</span>$mobile<span class="nt">&lt;/to&gt;</span>
     <span class="nt">&lt;subject&gt;</span>Test SMS Message<span class="nt">&lt;/subject&gt;</span>
     <span class="nt">&lt;body&gt;</span>This is the body of my test SMS message<span class="nt">&lt;/body&gt;</span>
-<span class="nt">&lt;/ns2:message&gt;</span> 
+<span class="nt">&lt;/ns2:message&gt;</span>
 </code></pre>
 <pre><code class="highlight go"><span class="n">Content</span><span class="o">-</span><span class="n">Type</span><span class="o">:</span><span class="x"> </span><span class="n">application</span><span class="o">/</span><span class="n">vnd</span><span class="o">.</span><span class="n">whispir</span><span class="o">.</span><span class="n">message</span><span class="o">-</span><span class="n">v1</span><span class="o">+</span><span class="n">json</span><span class="x">
 </span><span class="n">Accept</span><span class="o">:</span><span class="x"> </span><span class="n">application</span><span class="o">/</span><span class="n">vnd</span><span class="o">.</span><span class="n">whispir</span><span class="o">.</span><span class="n">message</span><span class="o">-</span><span class="n">v1</span><span class="o">+</span><span class="n">json</span><span class="x">
@@ -1412,7 +1412,7 @@ Accept: application/vnd.whispir.message-v1+xml
 <h3 id="notes:">Notes:</h3>
 
 <ul>
-<li>Each SMS message can contain up to <strong>1600&#42;</strong> characters </li>
+<li>Each SMS message can contain up to <strong>1600&#42;</strong> characters</li>
 <li>The Subject field is Mandatory.</li>
 <li>The Body field is Mandatory.</li>
 <li>MRI (Message Resource Identifier) is the unique Whispir address for the Contact, User or Distribution List.</li>
@@ -1443,7 +1443,7 @@ Authorization: Basic am9obi5zbWl0aDpteXBhc3N3b3Jk
         <span class="nt">&lt;footer&gt;</span>Email signature goes here.<span class="nt">&lt;/footer&gt;</span>
         <span class="nt">&lt;type&gt;</span>text/plain<span class="nt">&lt;/type&gt;</span>
     <span class="nt">&lt;/email&gt;</span>
-<span class="nt">&lt;/ns2:message&gt;</span> 
+<span class="nt">&lt;/ns2:message&gt;</span>
 </code></pre>
 <pre><code class="highlight go"><span class="n">Content</span><span class="o">-</span><span class="n">Type</span><span class="o">:</span><span class="x"> </span><span class="n">application</span><span class="o">/</span><span class="n">vnd</span><span class="o">.</span><span class="n">whispir</span><span class="o">.</span><span class="n">message</span><span class="o">-</span><span class="n">v1</span><span class="o">+</span><span class="n">json</span><span class="x">
 </span><span class="n">Accept</span><span class="o">:</span><span class="x"> </span><span class="n">application</span><span class="o">/</span><span class="n">vnd</span><span class="o">.</span><span class="n">whispir</span><span class="o">.</span><span class="n">message</span><span class="o">-</span><span class="n">v1</span><span class="o">+</span><span class="n">json</span><span class="x">
@@ -1483,7 +1483,7 @@ Authorization: Basic am9obi5zbWl0aDpteXBhc3N3b3Jk
         <span class="nt">&lt;/body&gt;</span>
         <span class="nt">&lt;type&gt;</span>text/html<span class="nt">&lt;/type&gt;</span>
     <span class="nt">&lt;/email&gt;</span>
-<span class="nt">&lt;/ns2:message&gt;</span> 
+<span class="nt">&lt;/ns2:message&gt;</span>
 </code></pre>
 <pre><code class="highlight go"><span class="n">Content</span><span class="o">-</span><span class="n">Type</span><span class="o">:</span><span class="x"> </span><span class="n">application</span><span class="o">/</span><span class="n">vnd</span><span class="o">.</span><span class="n">whispir</span><span class="o">.</span><span class="n">message</span><span class="o">-</span><span class="n">v1</span><span class="o">+</span><span class="n">json</span><span class="x">
 </span><span class="n">Accept</span><span class="o">:</span><span class="x"> </span><span class="n">application</span><span class="o">/</span><span class="n">vnd</span><span class="o">.</span><span class="n">whispir</span><span class="o">.</span><span class="n">message</span><span class="o">-</span><span class="n">v1</span><span class="o">+</span><span class="n">json</span><span class="x">
@@ -1557,7 +1557,7 @@ AABJRU5ErkJggg==<span class="nt">&lt;/derefUri&gt;</span>
 <span class="nt">&lt;/ns2:message&gt;</span>
 </code></pre>
 <pre><code class="highlight go"><span class="n">Content</span><span class="o">-</span><span class="n">Type</span><span class="o">:</span><span class="x"> </span><span class="n">application</span><span class="o">/</span><span class="n">vnd</span><span class="o">.</span><span class="n">whispir</span><span class="o">.</span><span class="n">message</span><span class="o">-</span><span class="n">v1</span><span class="o">+</span><span class="n">json</span><span class="x">
-</span><span class="n">Accept</span><span class="o">:</span><span class="x"> </span><span class="n">application</span><span class="o">/</span><span class="n">vnd</span><span class="o">.</span><span class="n">whispir</span><span class="o">.</span><span class="n">message</span><span class="o">-</span><span class="n">v1</span><span class="o">+</span><span class="n">json</span><span class="x"> 
+</span><span class="n">Accept</span><span class="o">:</span><span class="x"> </span><span class="n">application</span><span class="o">/</span><span class="n">vnd</span><span class="o">.</span><span class="n">whispir</span><span class="o">.</span><span class="n">message</span><span class="o">-</span><span class="n">v1</span><span class="o">+</span><span class="n">json</span><span class="x">
 
 </span><span class="p">{</span><span class="x">
     </span><span class="s">"to"</span><span class="x"> </span><span class="o">:</span><span class="x"> </span><span class="s">"jsmith@test.com"</span><span class="p">,</span><span class="x">
@@ -1653,7 +1653,7 @@ Authorization: Basic am9obi5zbWl0aDpteXBhc3N3b3Jk
             Pin:
         <span class="nt">&lt;/type&gt;</span>
     <span class="nt">&lt;/voice&gt;</span>
-<span class="nt">&lt;/ns2:message&gt;</span> 
+<span class="nt">&lt;/ns2:message&gt;</span>
 </code></pre>
 <pre><code class="highlight go"><span class="n">Content</span><span class="o">-</span><span class="n">Type</span><span class="o">:</span><span class="x"> </span><span class="n">application</span><span class="o">/</span><span class="n">vnd</span><span class="o">.</span><span class="n">whispir</span><span class="o">.</span><span class="n">message</span><span class="o">-</span><span class="n">v1</span><span class="o">+</span><span class="n">json</span><span class="x">
 
@@ -1697,7 +1697,7 @@ Authorization: Basic am9obi5zbWl0aDpteXBhc3N3b3Jk
             Pin:0000
         <span class="nt">&lt;/type&gt;</span>
     <span class="nt">&lt;/voice&gt;</span>
-<span class="nt">&lt;/ns2:message&gt;</span> 
+<span class="nt">&lt;/ns2:message&gt;</span>
 </code></pre>
 <pre><code class="highlight go"><span class="n">Content</span><span class="o">-</span><span class="n">Type</span><span class="o">:</span><span class="x"> </span><span class="n">application</span><span class="o">/</span><span class="n">vnd</span><span class="o">.</span><span class="n">whispir</span><span class="o">.</span><span class="n">message</span><span class="o">-</span><span class="n">v1</span><span class="o">+</span><span class="n">json</span><span class="x">
 
@@ -1806,7 +1806,7 @@ Authorization: Basic am9obi5zbWl0aDpteXBhc3N3b3Jk
             <span class="nt">&lt;/attachment&gt;</span>
         <span class="nt">&lt;/resources&gt;</span>
     <span class="nt">&lt;/voice&gt;</span>
-<span class="nt">&lt;/ns2:message&gt;</span> 
+<span class="nt">&lt;/ns2:message&gt;</span>
 </code></pre>
 <pre><code class="highlight go"><span class="n">Content</span><span class="o">-</span><span class="n">Type</span><span class="o">:</span><span class="x"> </span><span class="n">application</span><span class="o">/</span><span class="n">vnd</span><span class="o">.</span><span class="n">whispir</span><span class="o">.</span><span class="n">message</span><span class="o">-</span><span class="n">v1</span><span class="o">+</span><span class="n">json</span><span class="x">
 
@@ -1835,7 +1835,7 @@ Authorization: Basic am9obi5zbWl0aDpteXBhc3N3b3Jk
 
 <h4 id="wav-file-criteria">WAV File Criteria</h4>
 
-<p>Before a WAV file will be played, it needs to conform to a certain criteria. </p>
+<p>Before a WAV file will be played, it needs to conform to a certain criteria.</p>
 
 <ul>
 <li>All WAV files must be 8bit, 8000Hz, 1ch, 64kbps MAX.</li>
@@ -1881,7 +1881,7 @@ Authorization: Basic am9obi5zbWl0aDpteXBhc3N3b3Jk
             ]]&gt;
         <span class="nt">&lt;/body&gt;</span>
     <span class="nt">&lt;/web&gt;</span>
-<span class="nt">&lt;/ns2:message&gt;</span> 
+<span class="nt">&lt;/ns2:message&gt;</span>
 </code></pre>
 <pre><code class="highlight go"><span class="n">Content</span><span class="o">-</span><span class="n">Type</span><span class="o">:</span><span class="x"> </span><span class="n">application</span><span class="o">/</span><span class="n">vnd</span><span class="o">.</span><span class="n">whispir</span><span class="o">.</span><span class="n">message</span><span class="o">-</span><span class="n">v1</span><span class="o">+</span><span class="n">json</span><span class="x">
 </span><span class="n">Accept</span><span class="o">:</span><span class="x"> </span><span class="n">application</span><span class="o">/</span><span class="n">vnd</span><span class="o">.</span><span class="n">whispir</span><span class="o">.</span><span class="n">message</span><span class="o">-</span><span class="n">v1</span><span class="o">+</span><span class="n">json</span><span class="x">
@@ -1893,7 +1893,7 @@ Authorization: Basic am9obi5zbWl0aDpteXBhc3N3b3Jk
    </span><span class="s">"web"</span><span class="x"> </span><span class="o">:</span><span class="x"> </span><span class="p">{</span><span class="x">
       </span><span class="s">"type"</span><span class="x"> </span><span class="o">:</span><span class="x"> </span><span class="s">"text/html"</span><span class="p">,</span><span class="x">
       </span><span class="s">"body"</span><span class="x"> </span><span class="o">:</span><span class="x"> </span><span class="s">"&lt;div class='content'&gt;This is the body of my Rich Message&lt;/div&gt;"</span><span class="x">
-   </span><span class="p">}</span><span class="x"> 
+   </span><span class="p">}</span><span class="x">
 </span><span class="p">}</span><span class="x">
 </span></code></pre>
 
@@ -1929,7 +1929,7 @@ Authorization: Basic am9obi5zbWl0aDpteXBhc3N3b3Jk
             ]]&gt;
         <span class="nt">&lt;/body&gt;</span>
     <span class="nt">&lt;/web&gt;</span>
-<span class="nt">&lt;/ns2:message&gt;</span> 
+<span class="nt">&lt;/ns2:message&gt;</span>
 </code></pre>
 <pre><code class="highlight go"><span class="n">Content</span><span class="o">-</span><span class="n">Type</span><span class="o">:</span><span class="x"> </span><span class="n">application</span><span class="o">/</span><span class="n">vnd</span><span class="o">.</span><span class="n">whispir</span><span class="o">.</span><span class="n">message</span><span class="o">-</span><span class="n">v1</span><span class="o">+</span><span class="n">json</span><span class="x">
 </span><span class="n">Accept</span><span class="o">:</span><span class="x"> </span><span class="n">application</span><span class="o">/</span><span class="n">vnd</span><span class="o">.</span><span class="n">whispir</span><span class="o">.</span><span class="n">message</span><span class="o">-</span><span class="n">v1</span><span class="o">+</span><span class="n">json</span><span class="x">
@@ -1941,7 +1941,7 @@ Authorization: Basic am9obi5zbWl0aDpteXBhc3N3b3Jk
    </span><span class="s">"web"</span><span class="x"> </span><span class="o">:</span><span class="x"> </span><span class="p">{</span><span class="x">
       </span><span class="s">"type"</span><span class="x"> </span><span class="o">:</span><span class="x"> </span><span class="s">"text/html"</span><span class="p">,</span><span class="x">
       </span><span class="s">"body"</span><span class="x"> </span><span class="o">:</span><span class="x"> </span><span class="s">"&lt;div id='content'&gt;&lt;p&gt;Hi &lt;span id='first_name'&gt;&lt;/span&gt;&lt;/p&gt;&lt;p&gt;This is the body of my Rich Message&lt;/p&gt;&lt;script type='text/javascript'&gt;document.getElementById('first_name').innerHTML = Whispir.data.profile.firstname;&lt;/script&gt;&lt;/div&gt;"</span><span class="x">
-   </span><span class="p">}</span><span class="x"> 
+   </span><span class="p">}</span><span class="x">
 </span><span class="p">}</span><span class="x">
 </span></code></pre>
 <pre><code class="highlight php"><span class="c">&lt;!--For ease of reading, the above HTML looks like--&gt;</span>
@@ -1955,9 +1955,9 @@ Authorization: Basic am9obi5zbWl0aDpteXBhc3N3b3Jk
 <span class="nt">&lt;/div&gt;</span>
 </code></pre>
 
-<p>Whispir&rsquo;s Rich Messages provide you with the capability to seamlessly &#39;push&rsquo; HTML content to your audience. </p>
+<p>Whispir&rsquo;s Rich Messages provide you with the capability to seamlessly &#39;push&rsquo; HTML content to your audience.</p>
 
-<p>This can be in the form of a simple web page, through to a mini web application with interactive widgets such as video, a data visualisation, or map. </p>
+<p>This can be in the form of a simple web page, through to a mini web application with interactive widgets such as video, a data visualisation, or map.</p>
 
 <p>For example;</p>
 
@@ -1984,7 +1984,7 @@ Authorization: Basic am9obi5zbWl0aDpteXBhc3N3b3Jk
 <ul>
 <li>Build to a responsive design that works across your target devices. Ensure you test across these devices.</li>
 <li>Whispir strips body and doctype tags, and replaces them with tags suitable to render on mobile devices. The final DOCTYPE is delivered as a HTML 5 doctype.</li>
-<li>Use style tags at the <strong>bottom</strong> of the HTML content (rather than in the head tag or inline styles). </li>
+<li>Use style tags at the <strong>bottom</strong> of the HTML content (rather than in the head tag or inline styles).</li>
 <li>Custom javascript should be included at the bottom of the content if possible (speeds up viewing).</li>
 </ul>
 
@@ -2026,18 +2026,18 @@ Authorization: Basic am9obi5zbWl0aDpteXBhc3N3b3Jk
 <span class="nt">&lt;ns2:message</span> <span class="na">xmlns:ns2=</span><span class="s">"http://schemas.api.whispir.com"</span><span class="nt">&gt;</span>
     <span class="nt">&lt;to&gt;</span>$mobile<span class="nt">&lt;/to&gt;</span>
     <span class="nt">&lt;subject&gt;</span>Test Web Message<span class="nt">&lt;/subject&gt;</span>    
-    <span class="nt">&lt;web&gt;</span> 
-        <span class="nt">&lt;body&gt;</span>This is web body of my test message<span class="nt">&lt;/body&gt;</span> 
-        <span class="nt">&lt;type&gt;</span>text/plain<span class="nt">&lt;/type&gt;</span> 
-    <span class="nt">&lt;/web&gt;</span> 
-    <span class="nt">&lt;social&gt;</span> 
-        <span class="nt">&lt;social</span> <span class="na">id=</span><span class="s">"social"</span><span class="nt">&gt;</span> 
+    <span class="nt">&lt;web&gt;</span>
+        <span class="nt">&lt;body&gt;</span>This is web body of my test message<span class="nt">&lt;/body&gt;</span>
+        <span class="nt">&lt;type&gt;</span>text/plain<span class="nt">&lt;/type&gt;</span>
+    <span class="nt">&lt;/web&gt;</span>
+    <span class="nt">&lt;social&gt;</span>
+        <span class="nt">&lt;social</span> <span class="na">id=</span><span class="s">"social"</span><span class="nt">&gt;</span>
             <span class="nt">&lt;body&gt;</span>This is the content of social message for Twitter<span class="nt">&lt;/body&gt;</span>
-         <span class="nt">&lt;/social&gt;</span> 
-        <span class="nt">&lt;social</span> <span class="na">id=</span><span class="s">"social_long"</span><span class="nt">&gt;</span> 
+         <span class="nt">&lt;/social&gt;</span>
+        <span class="nt">&lt;social</span> <span class="na">id=</span><span class="s">"social_long"</span><span class="nt">&gt;</span>
             <span class="nt">&lt;body&gt;</span>This is the content of social message for Facebook<span class="nt">&lt;/body&gt;</span>
-            <span class="nt">&lt;type&gt;</span>text/plain<span class="nt">&lt;/type&gt;</span> 
-        <span class="nt">&lt;/social&gt;</span> 
+            <span class="nt">&lt;type&gt;</span>text/plain<span class="nt">&lt;/type&gt;</span>
+        <span class="nt">&lt;/social&gt;</span>
     <span class="nt">&lt;/social&gt;</span>
 <span class="nt">&lt;/ns2:message&gt;</span>
 </code></pre>
@@ -2165,7 +2165,7 @@ Authorization: Basic am9obi5zbWl0aDpteXBhc3N3b3Jk
     <span class="nt">&lt;repetitionCount&gt;</span>10<span class="nt">&lt;/repetitionCount&gt;</span>
     <span class="nt">&lt;repeatDays&gt;</span>0<span class="nt">&lt;/repeatDays&gt;</span>
     <span class="nt">&lt;repeatHrs&gt;</span>1<span class="nt">&lt;/repeatHrs&gt;</span>
-    <span class="nt">&lt;repeatMin&gt;</span>0<span class="nt">&lt;/repeatMin&gt;</span> 
+    <span class="nt">&lt;repeatMin&gt;</span>0<span class="nt">&lt;/repeatMin&gt;</span>
 <span class="nt">&lt;/ns2:message&gt;</span>
 </code></pre>
 <pre><code class="highlight go"><span class="n">Content</span><span class="o">-</span><span class="n">Type</span><span class="o">:</span><span class="x"> </span><span class="n">application</span><span class="o">/</span><span class="n">vnd</span><span class="o">.</span><span class="n">whispir</span><span class="o">.</span><span class="n">message</span><span class="o">-</span><span class="n">v1</span><span class="o">+</span><span class="n">json</span><span class="x">
@@ -2183,7 +2183,7 @@ Authorization: Basic am9obi5zbWl0aDpteXBhc3N3b3Jk
     </span><span class="s">"repetitionCount"</span><span class="x"> </span><span class="o">:</span><span class="x"> </span><span class="s">"10"</span><span class="p">,</span><span class="x">
     </span><span class="s">"repeatDays"</span><span class="x"> </span><span class="o">:</span><span class="x"> </span><span class="s">"0"</span><span class="p">,</span><span class="x">
     </span><span class="s">"repeatHrs"</span><span class="x"> </span><span class="o">:</span><span class="x"> </span><span class="s">"1"</span><span class="p">,</span><span class="x">
-    </span><span class="s">"repeatMin"</span><span class="x"> </span><span class="o">:</span><span class="x"> </span><span class="s">"0"</span><span class="x"> 
+    </span><span class="s">"repeatMin"</span><span class="x"> </span><span class="o">:</span><span class="x"> </span><span class="s">"0"</span><span class="x">
 </span><span class="p">}</span><span class="x">
 </span></code></pre>
 
@@ -2204,7 +2204,7 @@ Authorization: Basic am9obi5zbWl0aDpteXBhc3N3b3Jk
 <p>For ex:</p>
 
 <ul>
-<li>If the user timezone setting is UTC, then messages are scheduled to be sent as per UTC, even if the user has triggered the message sitting in Singapore (+8). </li>
+<li>If the user timezone setting is UTC, then messages are scheduled to be sent as per UTC, even if the user has triggered the message sitting in Singapore (+8).</li>
 </ul>
 
 <p>This is very important and has to be understood as Whispir does not honor the timezone the recipient is located in. So ensure that communication is sent in appropriate/preferred time given by them.</p>
@@ -2213,7 +2213,7 @@ Authorization: Basic am9obi5zbWl0aDpteXBhc3N3b3Jk
 
 <h3 id="bulk-sending"><strong>Bulk Sending</strong></h3>
 
-<p>Both of the schedule types are also allowed in bulk messaging. You can upload a <a href="#resources">resource</a> and trigger a <a href="#dynamic-&amp;-bulk-messages">bulk message</a> to be sent using that resource at a scheduled time. </p>
+<p>Both of the schedule types are also allowed in bulk messaging. You can upload a <a href="#resources">resource</a> and trigger a <a href="#dynamic-and-bulk-messages">bulk message</a> to be sent using that resource at a scheduled time.</p>
 
 <p>However, at this point of time, Whispir does not allow each message row inside the resource file to be sent at different time. They should all be sent at once.</p>
 
@@ -2236,7 +2236,7 @@ Authorization: Basic am9obi5zbWl0aDpteXBhc3N3b3Jk
     <span class="nt">&lt;to&gt;</span>John_Wick.1143139@Contact.whispir.sg<span class="nt">&lt;/to&gt;</span>
     <span class="nt">&lt;subject&gt;</span>Test SMS Message with tags<span class="nt">&lt;/subject&gt;</span>
     <span class="nt">&lt;body&gt;</span>Hi @@first_name@@.  This is your message.<span class="nt">&lt;/body&gt;</span>
-<span class="nt">&lt;/ns2:message&gt;</span> 
+<span class="nt">&lt;/ns2:message&gt;</span>
 </code></pre>
 <pre><code class="highlight go"><span class="n">Content</span><span class="o">-</span><span class="n">Type</span><span class="o">:</span><span class="x"> </span><span class="n">application</span><span class="o">/</span><span class="n">vnd</span><span class="o">.</span><span class="n">whispir</span><span class="o">.</span><span class="n">message</span><span class="o">-</span><span class="n">v1</span><span class="o">+</span><span class="n">json</span><span class="x">
 </span><span class="n">Accept</span><span class="o">:</span><span class="x"> </span><span class="n">application</span><span class="o">/</span><span class="n">vnd</span><span class="o">.</span><span class="n">whispir</span><span class="o">.</span><span class="n">message</span><span class="o">-</span><span class="n">v1</span><span class="o">+</span><span class="n">json</span><span class="x">
@@ -2335,7 +2335,7 @@ Authorization: Basic am9obi5zbWl0aDpteXBhc3N3b3Jk
     <span class="nt">&lt;to&gt;</span>$mobile<span class="nt">&lt;/to&gt;</span>
     <span class="nt">&lt;subject&gt;</span>Test SMS Message with tags<span class="nt">&lt;/subject&gt;</span>
     <span class="nt">&lt;body&gt;</span>The date is @@dd@@ / @@mm@@ / @@yyyy@@.<span class="nt">&lt;/body&gt;</span>
-<span class="nt">&lt;/ns2:message&gt;</span> 
+<span class="nt">&lt;/ns2:message&gt;</span>
 </code></pre>
 <pre><code class="highlight go"><span class="n">Content</span><span class="o">-</span><span class="n">Type</span><span class="o">:</span><span class="x"> </span><span class="n">application</span><span class="o">/</span><span class="n">vnd</span><span class="o">.</span><span class="n">whispir</span><span class="o">.</span><span class="n">message</span><span class="o">-</span><span class="n">v1</span><span class="o">+</span><span class="n">json</span><span class="x">
 </span><span class="n">Accept</span><span class="o">:</span><span class="x"> </span><span class="n">application</span><span class="o">/</span><span class="n">vnd</span><span class="o">.</span><span class="n">whispir</span><span class="o">.</span><span class="n">message</span><span class="o">-</span><span class="n">v1</span><span class="o">+</span><span class="n">json</span><span class="x">
@@ -2403,7 +2403,7 @@ Authorization: Basic am9obi5zbWl0aDpteXBhc3N3b3Jk
 
 <p>Each of these system tags will resolve on send of the message to the system information.  The system tags will only work when sending messages to any recipient.</p>
 
-<h2 id="dynamic-&amp;-bulk-messages">Dynamic &amp; Bulk Messages</h2>
+<h2 id="dynamic-and-bulk-messages">Dynamic and Bulk Messages</h2>
 
 <blockquote>
 <p>Dynamic Messages</p>
@@ -2412,12 +2412,12 @@ Authorization: Basic am9obi5zbWl0aDpteXBhc3N3b3Jk
 <p>Whispir&rsquo;s API allows users to upload structured data, and process this line by line into outbound communications via SMS, Email, Voice, Web or Social Media.</p>
 </blockquote>
 </blockquote>
-<pre><code class="highlight plaintext">|------------|------------|-------------|-------------|------------| 
+<pre><code class="highlight plaintext">|------------|------------|-------------|-------------|------------|
 | First Name | Last Name  | Mobile      | Amount Owed | Date Due   |
-|------------|------------|-------------|-------------|------------| 
+|------------|------------|-------------|-------------|------------|
 | Jono       | Johnson    | +6590091234 | S$1000      | 21/08/2015 |
 | Steve      | Smith      | +6590091235 | S$1100      | 22/08/2015 |
-|------------|------------|-------------|-------------|------------| 
+|------------|------------|-------------|-------------|------------|
 </code></pre>
 
 <blockquote>
@@ -2489,7 +2489,7 @@ Accept: application/vnd.whispir.message-v1+xml
 </blockquote>
 </blockquote>
 
-<p>To upload a file to Whispir&rsquo;s API, users will make an API call to the <code class="prettyprint">/resources</code> endpoint. </p>
+<p>To upload a file to Whispir&rsquo;s API, users will make an API call to the <code class="prettyprint">/resources</code> endpoint.</p>
 
 <p>Applications can use this endpoint to store the source files for dynamic messages. This endpoint can also be used to store any file based data (e.g. images, pdf documents, spreadsheets) for an unlimited amount of time.</p>
 
@@ -2534,7 +2534,7 @@ Authorization: Basic am9obi5zbWl0aDpteXBhc3N3b3Jk
         <span class="nt">&lt;type&gt;&lt;/type&gt;</span>
     <span class="nt">&lt;/web&gt;</span>
     <span class="nt">&lt;callbackId/&gt;</span>
-<span class="nt">&lt;/ns2:message&gt;</span> 
+<span class="nt">&lt;/ns2:message&gt;</span>
 </code></pre>
 <pre><code class="highlight go"><span class="n">Content</span><span class="o">-</span><span class="n">Type</span><span class="o">:</span><span class="x"> </span><span class="n">application</span><span class="o">/</span><span class="n">vnd</span><span class="o">.</span><span class="n">whispir</span><span class="o">.</span><span class="n">bulkmessage</span><span class="o">-</span><span class="n">v1</span><span class="o">+</span><span class="n">json</span><span class="x">
 
@@ -2543,7 +2543,10 @@ Authorization: Basic am9obi5zbWl0aDpteXBhc3N3b3Jk
         </span><span class="s">"resourceId"</span><span class="x"> </span><span class="o">:</span><span class="x"> </span><span class="s">""</span><span class="p">,</span><span class="x">
         </span><span class="s">"smsMappingField"</span><span class="x"> </span><span class="o">:</span><span class="x"> </span><span class="s">""</span><span class="p">,</span><span class="x">
         </span><span class="s">"emailMappingField"</span><span class="x"> </span><span class="o">:</span><span class="x"> </span><span class="s">""</span><span class="p">,</span><span class="x">
-        </span><span class="s">"voiceMappingField"</span><span class="x"> </span><span class="o">:</span><span class="x"> </span><span class="s">""</span><span class="x">
+        </span><span class="s">"voiceMappingField"</span><span class="x"> </span><span class="o">:</span><span class="x"> </span><span class="s">""</span><span class="p">,</span><span class="x">
+        </span><span class="s">"options"</span><span class="x"> </span><span class="o">:</span><span class="x"> </span><span class="p">{</span><span class="x">
+            </span><span class="s">"resolveRecipients"</span><span class="x"> </span><span class="o">:</span><span class="x"> </span><span class="s">""</span><span class="x">
+        </span><span class="p">}</span><span class="x">
     </span><span class="p">},</span><span class="x">
     </span><span class="s">"messageTemplateId"</span><span class="x"> </span><span class="o">:</span><span class="x"> </span><span class="s">""</span><span class="p">,</span><span class="x">
     </span><span class="s">"subject"</span><span class="x"> </span><span class="o">:</span><span class="x"> </span><span class="s">""</span><span class="p">,</span><span class="x">
@@ -2665,7 +2668,7 @@ Authorization: Basic am9obi5zbWl0aDpteXBhc3N3b3Jk
                 The id of the callback to be used for responses to this message.<br/>
                 Sample Value: SampleCallback
                 <br/><br/>
-                <b>Note:</b> callback IDs are configured by Administrators within the Whispir Platform. 
+                <b>Note:</b> callback IDs are configured by Administrators within the Whispir Platform.
             </td>
         </tr>
     </tbody>
@@ -2701,7 +2704,7 @@ Authorization: Basic am9obi5zbWl0aDpteXBhc3N3b3Jk
                 The column name from within the CSV file that refers to the field on each row that should be used for Email messages.<br/>
                 Sample Value: Email
                 <br/><br/>
-                <strong>Note:</strong> This field will default to ‘email’ if present in the file and this field is not populated. 
+                <strong>Note:</strong> This field will default to ‘email’ if present in the file and this field is not populated.
             </td>
         </tr>
         <tr>
@@ -2710,7 +2713,17 @@ Authorization: Basic am9obi5zbWl0aDpteXBhc3N3b3Jk
                 The column name from within the CSV file that refers to the field on each row that should be used for Voice messages.<br/>
                 Sample Value: Mobile
                 <br/><br/>
-                <strong>Note:</strong> This field will default to ‘mobile’ if present in the file and this field is not populated. 
+                <strong>Note:</strong> This field will default to ‘mobile’ if present in the file and this field is not populated.
+            </td>
+        </tr>
+        <tr>
+            <td style="text-align: right; font-weight: bold;">options</td>
+            <td>
+                This specifies other options that are available within this bulk message.
+                <br/>
+                <ul>
+                  <li>resolveRecipients (true/false) - Whether recipients should be resolved to contacts in the Whispir Workspace. Default: true for less than 5000 recipients</li>
+                </ul>
             </td>
         </tr>
     </tbody>
@@ -2719,7 +2732,7 @@ Authorization: Basic am9obi5zbWl0aDpteXBhc3N3b3Jk
 <table>
     <thead>
         <tr>
-            <th style="width: 50%" colspan="2">Message Content Section – *Required when no template is used.</th>
+            <th style="width: 50%" colspan="2">Message Content Section – *Required when no template is used.*</th>
         </tr>
     </thead>
     <tbody>
@@ -2743,7 +2756,7 @@ Authorization: Basic am9obi5zbWl0aDpteXBhc3N3b3Jk
 <table>
     <thead>
         <tr>
-            <th style="width: 50%" colspan="2">Email Section – *Required for email messages</th>
+            <th style="width: 50%" colspan="2">Email Section – *Required for email messages*</th>
         </tr>
     </thead>
     <tbody>
@@ -2774,7 +2787,7 @@ Authorization: Basic am9obi5zbWl0aDpteXBhc3N3b3Jk
 <table>
     <thead>
         <tr>
-            <th style="width: 50%" colspan="2">Voice Section – *Required for voice messages</th>
+            <th style="width: 50%" colspan="2">Voice Section – *Required for voice messages*</th>
         </tr>
     </thead>
     <tbody>
@@ -2805,7 +2818,7 @@ Authorization: Basic am9obi5zbWl0aDpteXBhc3N3b3Jk
 <table>
     <thead>
         <tr>
-            <th style="width: 50%" colspan="2">Web Section – *Required for web/rich push messages</th>
+            <th style="width: 50%" colspan="2">Web Section – *Required for web/rich push messages*</th>
         </tr>
     </thead>
     <tbody>
@@ -2855,7 +2868,7 @@ Your request has been accepted for processing.
 
 <h2 id="recipient-information">Recipient Information</h2>
 
-<p>Using the Whispir API, users can send message to either ad-hoc or predefined recipients. </p>
+<p>Using the Whispir API, users can send message to either ad-hoc or predefined recipients.</p>
 
 <p>The details below describe how these can be used in the <code class="prettyprint">&lt;to&gt;</code> field for any type of message.</p>
 
@@ -8922,7 +8935,7 @@ Content-Type: application/vnd.whispir.activity-v1+xml
 <pre><code class="highlight plaintext">HTTP 1.1 POST https://api.whispir.com/activities?apikey=[your_api_key]
 Authorization: Basic asdf98nf89asdvasd2r398h8sdf
 </code></pre>
-<pre><code class="highlight xml">Content-Type: application/vnd.whispir.activity-v1+xml 
+<pre><code class="highlight xml">Content-Type: application/vnd.whispir.activity-v1+xml
 
 
 <span class="cp">&lt;?xml version="1.0" encoding="UTF-8" standalone="yes"?&gt;</span>
@@ -8964,98 +8977,98 @@ Authorization: Basic asdf98nf89asdvasd2r398h8sdf
         </tr>
     </thead>
     <tbody>
-        <tr>
-            <td style="text-align: right; font-weight: bold;">action :</td>
-            <td><strong>String</strong><br/>
-                Specifies the action performed during this activity.
-                The following are the list of actions that can be performed -
-                <ul>
-                    <li>Create</li>
-                    <li>Update</li>
-                    <li>Move</li>
-                    <li>Copy</li>
-                    <li>Draft</li>
-                    <li>Send</li>
-                    <li>Modified</li>
-                    <li>Delete</li>
-                    <li>Contact Import File</li>
-                    <li>Login</li>
-                    <li>Approve</li>
-                    <li>Reject</li>
-                    <li>Dispatch</li>
-                    <li>Register</li>
-                    <li>Accept</li>
-                    <li>Closed</li>
-                    <li>Map</li>
-                    <li>Un-map</li>
-                </ul>
-            </td>
-        </tr>
-        <tr>
-            <td style="text-align: right; font-weight: bold;">module:</td>
-            <td><strong>String</strong><br/>
-                Specifies the module to which this activity belongs to.
-                The following are the list of actions that can be performed -
-                <ul>
-                    <li>System</li>
-                    <li>Message</li>
-                    <li>Scheduled Message</li>
-                    <li>User</li>
-                    <li>Contact</li>
-                    <li>DistributionList</li>
-                    <li>Template</li>
-                    <li>Workspace</li>
-                    <li>Event</li>
-                    <li>WebService</li>
-                    <li>Settings</li>
-                    <li>Conversation</li>
-                    <li>Gateway</li>
-                    <li>Workspace Mapping</li>
-                    <li>Folders</li>
-                    <li>Team</li>
-                    <li>RSS</li>
-                    <li>API Mapping</li>
-                    <li>Asset</li>
-                    <li>Instruction</li>
-                </ul>
-            </td>
-        </tr>
-        <tr>
-            <td style="text-align: right; font-weight: bold;">workspace:</td>
-            <td><strong>String</strong><br/>
-                The workspace in which this activity is performed. This will usually be the API user&rsquo;s default workspace
-            </td>
-        </tr>
-        <tr>
-            <td style="text-align: right; font-weight: bold;">user:</td>
-            <td><strong>String</strong><br/>
-                The username of the person who performed this activity. This will usually be the API user invoking the creation.
-            </td>
-        </tr>
-        <tr>
-            <td style="text-align: right; font-weight: bold;">status:</td>
-            <td><strong>String</strong><br/>
-                Specifies the status of the activity. The status can be one of - 
-                <ul>
-                    <li>Successful</li>
-                    <li>Failed</li>
-                    <li>Rejected</li>
-                </ul>
-            </td>
-        </tr>
-        <tr>
-            <td style="text-align: right; font-weight: bold;">description:</td>
-            <td><strong>String</strong><br/>
-                The description of the activity. This is a free text that details about the activity. <br><br> <b>Note:</b> If this is not provided during the creation of the activity, this field will not exist for the specific activity. As updating an activity is not allowed, care has to be taken to ensure that absence of this field is justified as per your audit - compliance needs.
-            </td>
-        </tr>
-        <tr>
-            <td style="text-align: right; font-weight: bold;">time:</td>
-            <td><strong>String</strong><br/>
-                The date and time of the activity in the format: dd/mm/yy hh:mm. This will be defaulted to the time at which this activity is created.
-            </td>
-        </tr>
-    </tbody>
+    <tr>
+      <td style="text-align: right; font-weight: bold;">action :</td>
+      <td><strong>String</strong><br/>
+        Specifies the action performed during this activity.
+        The following are the list of actions that can be performed -
+        <ul>
+          <li>Create</li>
+          <li>Update</li>
+          <li>Move</li>
+          <li>Copy</li>
+          <li>Draft</li>
+          <li>Send</li>
+          <li>Modified</li>
+          <li>Delete</li>
+          <li>Contact Import File</li>
+          <li>Login</li>
+          <li>Approve</li>
+          <li>Reject</li>
+          <li>Dispatch</li>
+          <li>Register</li>
+          <li>Accept</li>
+          <li>Closed</li>
+          <li>Map</li>
+          <li>Un-map</li>
+        </ul>
+      </td>
+    </tr>
+    <tr>
+      <td style="text-align: right; font-weight: bold;">module:</td>
+      <td><strong>String</strong><br/>
+        Specifies the module to which this activity belongs to.
+        The following are the list of actions that can be performed -
+        <ul>
+          <li>System</li>
+          <li>Message</li>
+          <li>Scheduled Message</li>
+          <li>User</li>
+          <li>Contact</li>
+          <li>DistributionList</li>
+          <li>Template</li>
+          <li>Workspace</li>
+          <li>Event</li>
+          <li>WebService</li>
+          <li>Settings</li>
+          <li>Conversation</li>
+          <li>Gateway</li>
+          <li>Workspace Mapping</li>
+          <li>Folders</li>
+          <li>Team</li>
+          <li>RSS</li>
+          <li>API Mapping</li>
+          <li>Asset</li>
+          <li>Instruction</li>
+        </ul>
+      </td>
+    </tr>
+    <tr>
+      <td style="text-align: right; font-weight: bold;">workspace:</td>
+      <td><strong>String</strong><br/>
+        The workspace in which this activity is performed. This will usually be the API user&rsquo;s default workspace
+      </td>
+    </tr>
+    <tr>
+      <td style="text-align: right; font-weight: bold;">user:</td>
+      <td><strong>String</strong><br/>
+        The username of the person who performed this activity. This will usually be the API user invoking the creation.
+      </td>
+    </tr>
+    <tr>
+      <td style="text-align: right; font-weight: bold;">status:</td>
+      <td><strong>String</strong><br/>
+        Specifies the status of the activity. The status can be one of -
+        <ul>
+          <li>Successful</li>
+          <li>Failed</li>
+          <li>Rejected</li>
+        </ul>
+      </td>
+    </tr>
+    <tr>
+      <td style="text-align: right; font-weight: bold;">description:</td>
+      <td><strong>String</strong><br/>
+        The description of the activity. This is a free text that details about the activity. <br><br> <b>Note:</b> If this is not provided during the creation of the activity, this field will not exist for the specific activity. As updating an activity is not allowed, care has to be taken to ensure that absence of this field is justified as per your audit - compliance needs.
+      </td>
+    </tr>
+    <tr>
+      <td style="text-align: right; font-weight: bold;">time:</td>
+      <td><strong>String</strong><br/>
+        The date and time of the activity in the format: dd/mm/yy hh:mm. This will be defaulted to the time at which this activity is created.
+      </td>
+    </tr>
+  </tbody>
 </table>
 
 <h2 id="retrieving-activities">Retrieving Activities</h2>
@@ -9098,7 +9111,7 @@ Authorization: Basic asdf98nf89asdvasd2r398h8sdf
             <span class="nt">&lt;workspaceName&gt;</span>Whispir<span class="nt">&lt;/workspaceName&gt;</span>
             <span class="nt">&lt;ns2:link</span> <span class="na">uri=</span><span class="s">"https://api.whispir.com/activities/19F603F21E8A7D536D577A6B4DBCFE3F?apikey=[your_api_key]"</span> <span class="na">rel=</span><span class="s">"self"</span> <span class="na">method=</span><span class="s">"GET"</span><span class="nt">/&gt;</span>
         <span class="nt">&lt;/ns2:activity&gt;</span>
-        <span class="nt">&lt;ns2:activity&gt;</span>
+    <span class="nt">&lt;ns2:activity&gt;</span>
             <span class="nt">&lt;user&gt;</span>markm<span class="nt">&lt;/user&gt;</span>
             <span class="nt">&lt;time&gt;</span>22/12/14 11:37<span class="nt">&lt;/time&gt;</span>
             <span class="nt">&lt;action&gt;</span>Logout<span class="nt">&lt;/action&gt;</span>
@@ -9172,7 +9185,7 @@ Authorization: Basic asdf98nf89asdvasd2r398h8sdf
         </span><span class="p">}</span><span class="x">
       </span><span class="p">]</span><span class="x">
     </span><span class="p">},</span><span class="x">
-    </span><span class="p">{</span><span class="x">
+  </span><span class="p">{</span><span class="x">
       </span><span class="s">"user"</span><span class="o">:</span><span class="x"> </span><span class="s">"markm"</span><span class="p">,</span><span class="x">
       </span><span class="s">"time"</span><span class="o">:</span><span class="x"> </span><span class="s">"22/12/14 11:37"</span><span class="p">,</span><span class="x">
       </span><span class="s">"action"</span><span class="o">:</span><span class="x"> </span><span class="s">"Logout"</span><span class="p">,</span><span class="x">
@@ -9188,7 +9201,7 @@ Authorization: Basic asdf98nf89asdvasd2r398h8sdf
         </span><span class="p">}</span><span class="x">
       </span><span class="p">]</span><span class="x">
     </span><span class="p">},</span><span class="x">
-    </span><span class="p">{</span><span class="x">
+  </span><span class="p">{</span><span class="x">
       </span><span class="s">"user"</span><span class="o">:</span><span class="x"> </span><span class="s">"markm"</span><span class="p">,</span><span class="x">
       </span><span class="s">"time"</span><span class="o">:</span><span class="x"> </span><span class="s">"22/12/14 11:20"</span><span class="p">,</span><span class="x">
       </span><span class="s">"action"</span><span class="o">:</span><span class="x"> </span><span class="s">"Login"</span><span class="p">,</span><span class="x">
@@ -9227,66 +9240,66 @@ Authorization: Basic asdf98nf89asdvasd2r398h8sdf
         </tr>
     </thead>
     <tbody>
-        <tr>
-            <td style="text-align: right; font-weight: bold;">action :</td>
-            <td><strong>String</strong><br/>
-                Specifies the action performed during this activity.
-            </td>
-        </tr>
-        <tr>
-            <td style="text-align: right; font-weight: bold;">module:</td>
-            <td><strong>String</strong><br/>
-                Specifies the module to which this activity belongs to.
-            </td>
-        </tr>
-        <tr>
-            <td style="text-align: right; font-weight: bold;">workspace:</td>
-            <td><strong>String</strong><br/>
-                The workspace in which this activity is performed.
-            </td>
-        </tr>
-        <tr>
-            <td style="text-align: right; font-weight: bold;">user:</td>
-            <td><strong>String</strong><br/>
-                The username of the person who performed this activity.
-            </td>
-        </tr>
-        <tr>
-            <td style="text-align: right; font-weight: bold;">status:</td>
-            <td><strong>String</strong><br/>
-                Specifies the status of the activity. The status can be one of - 
-                <ul>
-                    <li>Successful</li>
-                    <li>Failed</li>
-                    <li>Rejected</li>
-                </ul>
-            </td>
-        </tr>
-        <tr>
-            <td style="text-align: right; font-weight: bold;">description:</td>
-            <td><strong>String</strong><br/>
-                The description of the activity.
-            </td>
-        </tr>
-        <tr>
-            <td style="text-align: right; font-weight: bold;">time:</td>
-            <td><strong>String</strong><br/>
-                The date and time of the activity in the format: dd/mm/yy hh:mm.
-            </td>
-        </tr>
-        <tr>
-            <td style="text-align: right; font-weight: bold;">link:</td>
-            <td><strong>Array</strong><br/>
-                Provides a list of URLs that can be used to manipulate or access the activity. 
-                <br>
-                <ul>
-                    <li>uri - the link to access the activity</li>
-                    <li>rel - the descriptor for what the link will do</li>
-                    <li>method - the HTTP method to use with this particular link</li>
-                </ul>
-            </td>
-        </tr>
-    </tbody>
+    <tr>
+      <td style="text-align: right; font-weight: bold;">action :</td>
+      <td><strong>String</strong><br/>
+        Specifies the action performed during this activity.
+      </td>
+    </tr>
+    <tr>
+      <td style="text-align: right; font-weight: bold;">module:</td>
+      <td><strong>String</strong><br/>
+        Specifies the module to which this activity belongs to.
+      </td>
+    </tr>
+    <tr>
+      <td style="text-align: right; font-weight: bold;">workspace:</td>
+      <td><strong>String</strong><br/>
+        The workspace in which this activity is performed.
+      </td>
+    </tr>
+    <tr>
+      <td style="text-align: right; font-weight: bold;">user:</td>
+      <td><strong>String</strong><br/>
+        The username of the person who performed this activity.
+      </td>
+    </tr>
+    <tr>
+      <td style="text-align: right; font-weight: bold;">status:</td>
+      <td><strong>String</strong><br/>
+        Specifies the status of the activity. The status can be one of -
+        <ul>
+          <li>Successful</li>
+          <li>Failed</li>
+          <li>Rejected</li>
+        </ul>
+      </td>
+    </tr>
+    <tr>
+      <td style="text-align: right; font-weight: bold;">description:</td>
+      <td><strong>String</strong><br/>
+        The description of the activity.
+      </td>
+    </tr>
+    <tr>
+      <td style="text-align: right; font-weight: bold;">time:</td>
+      <td><strong>String</strong><br/>
+        The date and time of the activity in the format: dd/mm/yy hh:mm.
+      </td>
+    </tr>
+    <tr>
+      <td style="text-align: right; font-weight: bold;">link:</td>
+      <td><strong>Array</strong><br/>
+        Provides a list of URLs that can be used to manipulate or access the activity.
+        <br>
+        <ul>
+          <li>uri - the link to access the activity</li>
+          <li>rel - the descriptor for what the link will do</li>
+          <li>method - the HTTP method to use with this particular link</li>
+        </ul>
+      </td>
+    </tr>
+  </tbody>
 </table>
 
 <p><strong>Note:</strong> The API currently results in a <code class="prettyprint">404 Not Found</code> when there are no activities present in the log for a given search criteria. This should not be not confused with a failed response. But rather as <code class="prettyprint">No Data Found</code>.</p>
@@ -9308,24 +9321,24 @@ Authorization: Basic asdf98nf89asdvasd2r398h8sdf
         </tr>
     </thead>
     <tbody>
-        <tr>
-            <td style="text-align: right; font-weight: bold;">Request</td>
-            <td style="text-align: left; font-weight: bold;">Description</td>
-        </tr>
-        <tr>
-            <td style="text-align: right;;">/activities</td>
-            <td>Only returns activity that took place in My Company</td>
-        </tr>
-        <tr>
-            <td style="text-align: right;;">/workspaces/:id/activities</td>
-            <td>Only returns activity that took place in the specified workspace</td>
-        </tr>
-    </tbody>
+    <tr>
+      <td style="text-align: right; font-weight: bold;">Request</td>
+      <td style="text-align: left; font-weight: bold;">Description</td>
+    </tr>
+    <tr>
+      <td style="text-align: right;;">/activities</td>
+      <td>Only returns activity that took place in My Company</td>
+    </tr>
+    <tr>
+      <td style="text-align: right;;">/workspaces/:id/activities</td>
+      <td>Only returns activity that took place in the specified workspace</td>
+    </tr>
+  </tbody>
 </table>
 
-<h2 id="search/filter-on-activity-logs">Search/Filter on Activity Logs</h2>
+<h2 id="search-or-filter-on-activity-logs">Search or Filter on Activity Logs</h2>
 
-<p>Activity logs can become quickly huge owing to the amount of actions performed. In such cases, to have a proper filtering of data during a GET /activities, Whispir API provides very neat filtering options on the data. </p>
+<p>Activity logs can become quickly huge owing to the amount of actions performed. In such cases, to have a proper filtering of data during a GET /activities, Whispir API provides very neat filtering options on the data.</p>
 <pre><code class="highlight plaintext">HTTP 1.1 GET https://api.whispir.com/activities?apikey=[your_api_key]&amp;field=value
 Authorization: Basic asdf98nf89asdvasd2r398h8sdf
 </code></pre>
@@ -9339,43 +9352,43 @@ Authorization: Basic asdf98nf89asdvasd2r398h8sdf
         </tr>
     </thead>
     <tbody>
-        <tr>
-            <td style="text-align: right; font-weight: bold;">action :</td>
-            <td>/activities?action=Map</td>
-        </tr>
-        <tr>
-            <td style="text-align: right; font-weight: bold;">module:</td>
-            <td>/activities?module=Message</td>
-        </tr>
-        <tr>
-            <td style="text-align: right; font-weight: bold;">user:</td>
-            <td>/activities?user=james</td>
-        </tr>
-        <tr>
-            <td style="text-align: right; font-weight: bold;">workspace:</td>
-            <td>/activities?workspace=Whispir. <br/><br/>One can also refer to <i>restricting to only a workspace</i> section above</td>
-        </tr>
-        <tr>
-            <td style="text-align: right; font-weight: bold;">status:</td>
-            <td>/activities?status=Successful</td>
-        </tr>
-        <tr>
-            <td style="text-align: right; font-weight: bold;">description:</td>
-            <td>/activities?description=Imported</td>
-        </tr>
-        <tr>
-            <td style="text-align: right; font-weight: bold;">Start time:</td>
-            <td>The date and time to start searching from in the format: dd/mm/yyyy hh:mm. This will search on the `time` field <br/><br/>
-                /activities?startTime=01/01/2015%2000:00
-            </td>
-        </tr>
-        <tr>
-            <td style="text-align: right; font-weight: bold;">End time:</td>
-            <td>The date and time to start searching from in the format: dd/mm/yyyy hh:mm<br/><br/>
-                /activities?endTime=01/01/2015%2000:00
-            </td>
-        </tr>
-    </tbody>
+    <tr>
+      <td style="text-align: right; font-weight: bold;">action :</td>
+      <td>/activities?action=Map</td>
+    </tr>
+    <tr>
+      <td style="text-align: right; font-weight: bold;">module:</td>
+      <td>/activities?module=Message</td>
+    </tr>
+    <tr>
+      <td style="text-align: right; font-weight: bold;">user:</td>
+      <td>/activities?user=james</td>
+    </tr>
+    <tr>
+      <td style="text-align: right; font-weight: bold;">workspace:</td>
+      <td>/activities?workspace=Whispir. <br/><br/>One can also refer to <i>restricting to only a workspace</i> section above</td>
+    </tr>
+    <tr>
+      <td style="text-align: right; font-weight: bold;">status:</td>
+      <td>/activities?status=Successful</td>
+    </tr>
+    <tr>
+      <td style="text-align: right; font-weight: bold;">description:</td>
+      <td>/activities?description=Imported</td>
+    </tr>
+    <tr>
+      <td style="text-align: right; font-weight: bold;">Start time:</td>
+      <td>The date and time to start searching from in the format: dd/mm/yyyy hh:mm. This will search on the `time` field <br/><br/>
+        /activities?startTime=01/01/2015%2000:00
+      </td>
+    </tr>
+    <tr>
+      <td style="text-align: right; font-weight: bold;">End time:</td>
+      <td>The date and time to start searching from in the format: dd/mm/yyyy hh:mm<br/><br/>
+        /activities?endTime=01/01/2015%2000:00
+      </td>
+    </tr>
+  </tbody>
 </table>
 
 <p><strong>Note:</strong> The API currently results in a <code class="prettyprint">404 Not Found</code> when there are no activities present in the log for a given search criteria. This should not be not confused with a failed response. But rather as <code class="prettyprint">No Data Found</code>.</p>
@@ -9440,13 +9453,13 @@ Content-Type: application/vnd.whispir.customlist-v1+xml
 <li>Priority 1 (&lt;2hr resolution)</li>
 </ul>
 
-<p>If this is not the standard for the company, the values can be changed to suit your needs. This is where custom lists come in to help. Just Create a custom list and via company settings set the custom list to override the existing list. When this is done, the user using the interface shall only see the new custom list values in place of the standard list.These custom lists can be associated to message attributes, event fields, contact fields. </p>
+<p>If this is not the standard for the company, the values can be changed to suit your needs. This is where custom lists come in to help. Just Create a custom list and via company settings set the custom list to override the existing list. When this is done, the user using the interface shall only see the new custom list values in place of the standard list.These custom lists can be associated to message attributes, event fields, contact fields.</p>
 
 <p><strong>Translations within Voice Module -</strong></p>
 
 <p>The custom lists can also be used to do translations during the Voice Module usage. During the call, options can be read out in various languages depending on the user preference of language. In this case, the standard list is replaced with a custom list that is merely a translation in the target language word to word. Instead of the English, the specific language words are read out, making it easier to communicate with end customers from multiple language groups.</p>
 
-<p>Permission Rules applicable on the Custom Lists - </p>
+<p>Permission Rules applicable on the Custom Lists -</p>
 
 <ul>
 <li>Any API user will be able to perform a GET on /customlists</li>
@@ -9454,9 +9467,9 @@ Content-Type: application/vnd.whispir.customlist-v1+xml
 <li>If the user is a Company Member or Company Guest, they will receive a 403 Forbidden advising they don&rsquo;t have permission to access this resource</li>
 </ul>
 
-<p>CONTENT (type) - </p>
+<p>CONTENT (type) -</p>
 
-<p>The customlists will contain all lists in the company across the following places 
+<p>The customlists will contain all lists in the company across the following places
 - RSS Custom Lists
 - Incident Custom Lists (Events/Assets)
 - Message Attribute Custom Lists
@@ -9613,7 +9626,7 @@ Authorization: Basic asdf98nf89asdvasd2r398h8sdf
 <li>Accept: application/vnd.whispir.customlist-v1+json</li>
 </ul>
 
-<p>An array of Custom Lists will be returned to you in the HTTP response body. </p>
+<p>An array of Custom Lists will be returned to you in the HTTP response body.</p>
 
 <table>
     <thead>
@@ -9622,64 +9635,64 @@ Authorization: Basic asdf98nf89asdvasd2r398h8sdf
         </tr>
     </thead>
     <tbody>
-        <tr>
-            <td style="text-align: right; font-weight: bold;">id:</td>
-            <td><strong>Number</strong><br/>
-                Specifies the unique id of the List.
-            </td>
-        </tr>
-        <tr>
-            <td style="text-align: right; font-weight: bold;">name:</td>
-            <td><strong>String</strong><br/>
-                Specifies the name of the List.
-            </td>
-        </tr>
-        <tr>
-            <td style="text-align: right; font-weight: bold;">type:</td>
-            <td><strong>String</strong><br/>
-                Specifies the type. The type can be one of - 
-                <ul>
-                    <li>INCIDENT</li>
-                    <li>MESSAGE</li>
-                    <li>CONTACT</li>
-                    <li>RSS</li>
-                </ul>
-            </td>
-        </tr>
-        <tr>
-            <td style="text-align: right; font-weight: bold;">sorttype:</td>
-            <td><strong>String</strong><br/>
-                Specifies the sorting order. The order can be one of - 
-                <ul>
-                    <li>As Displayed</li>
-                    <li>Ascending</li>
-                    <li>Descending</li>
-                </ul>
-            </td>
-        </tr>
-        <tr>
-            <td style="text-align: right; font-weight: bold;">linked:</td>
-            <td><strong>String</strong><br/>
-                Specifies the linked status. Linked list item values are dependent on other lists. The linked can be one of - 
-                <ul>
-                    <li>disabled</li>
-                    <li><i>list id to which this is linked with</i></li>
-                </ul>
-            </td>
-        </tr>
-        <tr>
-            <td style="text-align: right; font-weight: bold;">link:</td>
-            <td><strong>Array</strong><br/>
-                Provides a list of URLs that can be used to manipulate or access the list. 
-                <br>
-                <ul>
-                    <li>uri - the link to access the list</li>
-                    <li>rel - the descriptor for what the link will do</li>
-                    <li>method - the HTTP method to use with this particular link</li>
-                </ul>
-            </td>
-        </tr>
-    </tbody>
+    <tr>
+      <td style="text-align: right; font-weight: bold;">id:</td>
+      <td><strong>Number</strong><br/>
+        Specifies the unique id of the List.
+      </td>
+    </tr>
+    <tr>
+      <td style="text-align: right; font-weight: bold;">name:</td>
+      <td><strong>String</strong><br/>
+        Specifies the name of the List.
+      </td>
+    </tr>
+    <tr>
+      <td style="text-align: right; font-weight: bold;">type:</td>
+      <td><strong>String</strong><br/>
+        Specifies the type. The type can be one of -
+        <ul>
+          <li>INCIDENT</li>
+          <li>MESSAGE</li>
+          <li>CONTACT</li>
+          <li>RSS</li>
+        </ul>
+      </td>
+    </tr>
+    <tr>
+      <td style="text-align: right; font-weight: bold;">sorttype:</td>
+      <td><strong>String</strong><br/>
+        Specifies the sorting order. The order can be one of -
+        <ul>
+          <li>As Displayed</li>
+          <li>Ascending</li>
+          <li>Descending</li>
+        </ul>
+      </td>
+    </tr>
+    <tr>
+      <td style="text-align: right; font-weight: bold;">linked:</td>
+      <td><strong>String</strong><br/>
+        Specifies the linked status. Linked list item values are dependent on other lists. The linked can be one of -
+        <ul>
+          <li>disabled</li>
+          <li><i>list id to which this is linked with</i></li>
+        </ul>
+      </td>
+    </tr>
+    <tr>
+      <td style="text-align: right; font-weight: bold;">link:</td>
+      <td><strong>Array</strong><br/>
+        Provides a list of URLs that can be used to manipulate or access the list.
+        <br>
+        <ul>
+          <li>uri - the link to access the list</li>
+          <li>rel - the descriptor for what the link will do</li>
+          <li>method - the HTTP method to use with this particular link</li>
+        </ul>
+      </td>
+    </tr>
+  </tbody>
 </table>
 
 <h2 id="details-of-a-specific-custom-list">Details of a Specific Custom List</h2>
@@ -9755,79 +9768,79 @@ Authorization: Basic asdf98nf89asdvasd2r398h8sdf
         </tr>
     </thead>
     <tbody>
-        <tr>
-            <td style="text-align: right; font-weight: bold;">id:</td>
-            <td><strong>Number</strong><br/>
-                Specifies the unique id of the List.
-            </td>
-        </tr>
-        <tr>
-            <td style="text-align: right; font-weight: bold;">name:</td>
-            <td><strong>String</strong><br/>
-                Specifies the name of the List.
-            </td>
-        </tr>
-        <tr>
-            <td style="text-align: right; font-weight: bold;">type:</td>
-            <td><strong>String</strong><br/>
-                Specifies the type. The type can be one of - 
-                <ul>
-                    <li>INCIDENT</li>
-                    <li>MESSAGE</li>
-                    <li>CONTACT</li>
-                    <li>RSS</li>
-                </ul>
-            </td>
-        </tr>
-        <tr>
-            <td style="text-align: right; font-weight: bold;">createdDate:</td>
-            <td><strong>String</strong><br/>
-                Specifies the date of the List creation.
-            </td>
-        </tr>
-        <tr>
-            <td style="text-align: right; font-weight: bold;">sorttype:</td>
-            <td><strong>String</strong><br/>
-                Specifies the sorting order. The order can be one of - 
-                <ul>
-                    <li>As Displayed</li>
-                    <li>Ascending</li>
-                    <li>Descending</li>
-                </ul>
-            </td>
-        </tr>
-        <tr>
-            <td style="text-align: right; font-weight: bold;">linked:</td>
-            <td><strong>String</strong><br/>
-                Specifies the linked status. Linked list item values are dependent on other lists. The linked can be one of - 
-                <ul>
-                    <li>disabled</li>
-                    <li><i>list id to which this is linked with</i></li>
-                </ul>
-            </td>
-        </tr>
-        <tr>
-            <td style="text-align: right; font-weight: bold;">customlabellists:</td>
-            <td><strong>Object</strong><br/>
-                Contains the individual list items that make up this list. <br><br>The `name` is the text that is shown to the user, where as the `value` is the internally passed in value.
-            </td>
-        </tr>
-        <tr>
-            <td style="text-align: right; font-weight: bold;">link:</td>
-            <td><strong>Array</strong><br/>
-                Provides a list of URLs that can be used to manipulate or access the list. 
-                <br>
-                <ul>
-                    <li>uri - the link to access the list</li>
-                    <li>rel - the descriptor for what the link will do</li>
-                    <li>method - the HTTP method to use with this particular link</li>
-                </ul>
-            </td>
-        </tr>
-    </tbody>
+    <tr>
+      <td style="text-align: right; font-weight: bold;">id:</td>
+      <td><strong>Number</strong><br/>
+        Specifies the unique id of the List.
+      </td>
+    </tr>
+    <tr>
+      <td style="text-align: right; font-weight: bold;">name:</td>
+      <td><strong>String</strong><br/>
+        Specifies the name of the List.
+      </td>
+    </tr>
+    <tr>
+      <td style="text-align: right; font-weight: bold;">type:</td>
+      <td><strong>String</strong><br/>
+        Specifies the type. The type can be one of -
+        <ul>
+          <li>INCIDENT</li>
+          <li>MESSAGE</li>
+          <li>CONTACT</li>
+          <li>RSS</li>
+        </ul>
+      </td>
+    </tr>
+    <tr>
+      <td style="text-align: right; font-weight: bold;">createdDate:</td>
+      <td><strong>String</strong><br/>
+        Specifies the date of the List creation.
+      </td>
+    </tr>
+    <tr>
+      <td style="text-align: right; font-weight: bold;">sorttype:</td>
+      <td><strong>String</strong><br/>
+        Specifies the sorting order. The order can be one of -
+        <ul>
+          <li>As Displayed</li>
+          <li>Ascending</li>
+          <li>Descending</li>
+        </ul>
+      </td>
+    </tr>
+    <tr>
+      <td style="text-align: right; font-weight: bold;">linked:</td>
+      <td><strong>String</strong><br/>
+        Specifies the linked status. Linked list item values are dependent on other lists. The linked can be one of -
+        <ul>
+          <li>disabled</li>
+          <li><i>list id to which this is linked with</i></li>
+        </ul>
+      </td>
+    </tr>
+    <tr>
+      <td style="text-align: right; font-weight: bold;">customlabellists:</td>
+      <td><strong>Object</strong><br/>
+        Contains the individual list items that make up this list. <br><br>The `name` is the text that is shown to the user, where as the `value` is the internally passed in value.
+      </td>
+    </tr>
+    <tr>
+      <td style="text-align: right; font-weight: bold;">link:</td>
+      <td><strong>Array</strong><br/>
+        Provides a list of URLs that can be used to manipulate or access the list.
+        <br>
+        <ul>
+          <li>uri - the link to access the list</li>
+          <li>rel - the descriptor for what the link will do</li>
+          <li>method - the HTTP method to use with this particular link</li>
+        </ul>
+      </td>
+    </tr>
+  </tbody>
 </table>
 
-<h2 id="search/filter-on-custom-lists">Search/Filter on Custom Lists</h2>
+<h2 id="search-or-filter-on-custom-lists">Search or Filter on Custom Lists</h2>
 
 <p>API allows you to be able to query the <code class="prettyprint">GET /customlists</code> endpoint using the following filters.</p>
 <pre><code class="highlight plaintext">HTTP 1.1 GET https://api.whispir.com/customlists?apikey=[your_api_key]&amp;field=value
@@ -9843,15 +9856,15 @@ Authorization: Basic asdf98nf89asdvasd2r398h8sdf
         </tr>
     </thead>
     <tbody>
-        <tr>
-            <td style="text-align: right; font-weight: bold;">name:</td>
-            <td>/customlists?name=Category</td>
-        </tr>
-        <tr>
-            <td style="text-align: right; font-weight: bold;">type:</td>
-            <td>/customlists?type=Message</td>
-        </tr>
-    </tbody>
+    <tr>
+      <td style="text-align: right; font-weight: bold;">name:</td>
+      <td>/customlists?name=Category</td>
+    </tr>
+    <tr>
+      <td style="text-align: right; font-weight: bold;">type:</td>
+      <td>/customlists?type=Message</td>
+    </tr>
+  </tbody>
 </table>
 
 <p><strong>Note:</strong> The API currently results in a <code class="prettyprint">404 Not Found</code> when there are no activities present in the log for a given search criteria. This should not be not confused with a failed response. But rather as <code class="prettyprint">No Data Found</code>.</p>
@@ -12262,7 +12275,7 @@ Location: http://api.whispir.com/resources/ABD435DBFCD663DEDEFF?apikey=&lt;your_
 
 </code></pre>
 
-<h2 id="sending-messages-using-template-&amp;-resources">Sending Messages using template &amp; resources</h2>
+<h2 id="sending-messages-using-template-and-resources">Sending Messages using template and resources</h2>
 
 <p>Apart from use in the <a href="https://whispir.github.io/api/#dynamic-messages">Dynamic Messages</a>, resources can be equally used sending dynamic messages with or without a template.</p>
 
