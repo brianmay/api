@@ -7105,7 +7105,8 @@ An example callback that your application or service would receive is specified 
 <li>Ensure that your callback server is reachable on the internet. It should not be <code class="prettyprint">localhost</code> or an intranet only application that cannot be reached from the WWW.</li>
 <li>Limit the port to 80 or 443. Do no use any other ports.</li>
 <li>Depending on the type chosen &#39;json&rsquo; or &#39;xml&rsquo; for the Content-Type, whispir would make a similar GET (and subsequently POST) calls. So, please ensure that your your web server is configured to handle such MIME type.</li>
-<li>Most importantly, if your application infrastructure is behind a firewall, then make sure that the firewall allows an incoming POST request.</li>
+<li>If your application infrastructure is behind a firewall, then make sure that the firewall allows an incoming POST request.</li>
+<li>Whispir does not have static IP addresses that it makes API calls from.  Users can validate requests have come from Whispir by using the available auth types.</li>
 </ol>
 
 <h2 id="creating-new-callbacks">Creating new Callbacks</h2>
