@@ -5798,7 +5798,7 @@ Authorization: Basic [your basic auth]
 <span class="cp">&lt;?xml version="1.0" encoding="UTF-8" standalone="yes"?&gt;</span>
 <span class="nt">&lt;ns1:distributionlists</span> <span class="na">xmlns:ns2=</span><span class="s">"http://schemas.api.whispir.com"</span><span class="nt">&gt;</span>
     <span class="nt">&lt;name&gt;</span>My Distribution List<span class="nt">&lt;/name&gt;</span>
-    <span class="nt">&lt;description&gt;&lt;/description&gt;</span>    
+    <span class="nt">&lt;description&gt;&lt;/description&gt;</span>
     <span class="nt">&lt;access&gt;</span>Open<span class="nt">&lt;/access&gt;</span>
     <span class="nt">&lt;visibility&gt;</span>Public<span class="nt">&lt;/visibility&gt;</span>
     <span class="nt">&lt;contactIds&gt;&lt;/contactIds&gt;</span>
@@ -6028,68 +6028,146 @@ Authorization: Basic [your basic auth]
 <li><strong>&amp;description=</strong> - to search by description</li>
 </ul>
 
-<h2 id="adding-contacts">Adding Contacts</h2>
+<h2 id="modifying-distribution-lists">Modifying Distribution Lists</h2>
 
 <blockquote>
-<p>Adding Contacts</p>
+<p>Getting the DL</p>
 
 <blockquote>
-<p>Contacts can be added to Distribution Lists when the list is created, or by using a <code class="prettyprint">PUT</code> request at a later stage.</p>
+<p>Request</p>
 </blockquote>
 </blockquote>
-<pre><code class="highlight plaintext">POST https://api.whispir.com/distributionlists?apikey=[your api key]
+<pre><code class="highlight plaintext">GET https://api.whispir.com/distributionlists/CF5AF1AE49ED07A6?apikey=[your api key]
 Authorization: Basic [your basic auth]
 </code></pre>
-<pre><code class="highlight xml">Content-Type: application/vnd.whispir.distributionlist-v1+xml
+
+<blockquote>
+<blockquote>
+<p>Response</p>
+</blockquote>
+</blockquote>
+<pre><code class="highlight xml">Accept: application/vnd.whispir.distributionlist-v1+xml
 
 <span class="cp">&lt;?xml version="1.0" encoding="UTF-8" standalone="yes"?&gt;</span>
 <span class="nt">&lt;ns1:distributionlists</span> <span class="na">xmlns:ns2=</span><span class="s">"http://schemas.api.whispir.com"</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;id&gt;</span>CF5AF1AE49ED07A6<span class="nt">&lt;/id&gt;</span>
     <span class="nt">&lt;name&gt;</span>Rockstar Distribution List<span class="nt">&lt;/name&gt;</span>
-    <span class="nt">&lt;description&gt;</span>All the rocks were once stars - astrophysicist inside me<span class="nt">&lt;/description&gt;</span>    
+    <span class="nt">&lt;description&gt;</span>All the rocks were once stars - astrophysicist inside me<span class="nt">&lt;/description&gt;</span>
     <span class="nt">&lt;access&gt;</span>Open<span class="nt">&lt;/access&gt;</span>
     <span class="nt">&lt;visibility&gt;</span>Public<span class="nt">&lt;/visibility&gt;</span>
     <span class="nt">&lt;contactIds&gt;</span>7CC205AE17FFDC8A,92XC05AE154FDC8A<span class="nt">&lt;/contactIds&gt;</span>
     <span class="nt">&lt;userIds&gt;&lt;/userIds&gt;</span>
     <span class="nt">&lt;distListIds&gt;&lt;/distListIds&gt;</span>
+...
 <span class="nt">&lt;/ns1:distributionlists&gt;</span>
 </code></pre>
-<pre><code class="highlight go"><span class="n">Content</span><span class="o">-</span><span class="n">Type</span><span class="o">:</span><span class="x"> </span><span class="n">application</span><span class="o">/</span><span class="n">vnd</span><span class="o">.</span><span class="n">whispir</span><span class="o">.</span><span class="n">distributionlist</span><span class="o">-</span><span class="n">v1</span><span class="o">+</span><span class="n">json</span><span class="x">
-
+<pre><code class="highlight go"><span class="n">Accept</span><span class="o">:</span><span class="x"> </span><span class="n">application</span><span class="o">/</span><span class="n">vnd</span><span class="o">.</span><span class="n">whispir</span><span class="o">.</span><span class="n">distributionlist</span><span class="o">-</span><span class="n">v1</span><span class="o">+</span><span class="n">json</span><span class="x">
 </span><span class="p">{</span><span class="x">
+    </span><span class="s">"id"</span><span class="o">:</span><span class="x"> </span><span class="s">"CF5AF1AE49ED07A6"</span><span class="p">,</span><span class="x">
     </span><span class="s">"name"</span><span class="x"> </span><span class="o">:</span><span class="x"> </span><span class="s">"Rockstar Distribution List"</span><span class="p">,</span><span class="x">
     </span><span class="s">"description"</span><span class="x"> </span><span class="o">:</span><span class="x"> </span><span class="s">"All the rocks were once stars - astrophysicist inside me"</span><span class="p">,</span><span class="x">
     </span><span class="s">"access"</span><span class="x"> </span><span class="o">:</span><span class="x"> </span><span class="s">"Open"</span><span class="p">,</span><span class="x">
     </span><span class="s">"visibility"</span><span class="x"> </span><span class="o">:</span><span class="x"> </span><span class="s">"Public"</span><span class="p">,</span><span class="x">
     </span><span class="s">"contactIds"</span><span class="x"> </span><span class="o">:</span><span class="x"> </span><span class="s">"7CC205AE17FFDC8A,92XC05AE154FDC8A"</span><span class="p">,</span><span class="x">
     </span><span class="s">"userIds"</span><span class="x"> </span><span class="o">:</span><span class="x"> </span><span class="s">""</span><span class="p">,</span><span class="x">
-    </span><span class="s">"distListIds"</span><span class="x"> </span><span class="o">:</span><span class="x"> </span><span class="s">""</span><span class="x">
+    </span><span class="s">"distListIds"</span><span class="x"> </span><span class="o">:</span><span class="x"> </span><span class="s">""</span><span class="p">,</span><span class="x">
+</span><span class="o">...</span><span class="x">
 </span><span class="p">}</span><span class="x">
 </span></code></pre>
 
-<p>A contact can be added to the distribution list in two ways. </p>
+<blockquote>
+<p>Updating the DL</p>
 
-<p>While creating the distribution list by passing the following 3 values:</p>
+<blockquote>
+<p>Lets do the following in a single request</p>
 
-<ul>
-<li><strong>ContactIds</strong> string is a comma separated list of Contact IDs that you would like added to the list.</li>
-<li><strong>UserIds</strong> specifies the Whispir Users that should also be notified when this list is used.</li>
-<li><strong>DistListIds</strong> specifies the nested lists that are contained within this distribution list.</li>
-</ul>
+<ol>
+<li>Remove a contactId</li>
+<li>Add two new UserId values</li>
+</ol>
 
-<p>Or, after the distribution list is created by performing these steps:</p>
+<p>Request</p>
+</blockquote>
+</blockquote>
+<pre><code class="highlight plaintext">PUT https://api.whispir.com/distributionlists/CF5AF1AE49ED07A6?apikey=[your api key]
+Authorization: Basic [your basic auth]
+</code></pre>
+<pre><code class="highlight xml">Content-Type: application/vnd.whispir.distributionlist-v1+xml
 
-<ul>
-<li>A <strong>PUT</strong> request is placed with the distribution list ID specified in the URL.</li>
-<li>The contactIds, userIds, distListIds can be passed all together in a single request.</li>
-</ul>
+<span class="cp">&lt;?xml version="1.0" encoding="UTF-8" standalone="yes"?&gt;</span>
+<span class="nt">&lt;ns1:distributionlists</span> <span class="na">xmlns:ns2=</span><span class="s">"http://schemas.api.whispir.com"</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;id&gt;</span>CF5AF1AE49ED07A6<span class="nt">&lt;/id&gt;</span>
+    <span class="nt">&lt;name&gt;</span>Rockstar Distribution List<span class="nt">&lt;/name&gt;</span>
+    <span class="nt">&lt;description&gt;</span>All the rocks were once stars - astrophysicist inside me<span class="nt">&lt;/description&gt;</span>
+    <span class="nt">&lt;access&gt;</span>Open<span class="nt">&lt;/access&gt;</span>
+    <span class="nt">&lt;visibility&gt;</span>Public<span class="nt">&lt;/visibility&gt;</span>
+    <span class="nt">&lt;contactIds&gt;</span>7CC205AE17FFDC8A,92XC05AE154FDC8A<span class="nt">&lt;/contactIds&gt;</span>
+    <span class="nt">&lt;userIds&gt;&lt;/userIds&gt;</span>
+    <span class="nt">&lt;distListIds&gt;&lt;/distListIds&gt;</span>
+...
+<span class="nt">&lt;/ns1:distributionlists&gt;</span>
+</code></pre>
+<pre><code class="highlight go"><span class="n">Content</span><span class="o">-</span><span class="n">Type</span><span class="o">:</span><span class="x"> </span><span class="n">application</span><span class="o">/</span><span class="n">vnd</span><span class="o">.</span><span class="n">whispir</span><span class="o">.</span><span class="n">distributionlist</span><span class="o">-</span><span class="n">v1</span><span class="o">+</span><span class="n">json</span><span class="x">
+
+</span><span class="p">{</span><span class="x">
+    </span><span class="s">"id"</span><span class="o">:</span><span class="x"> </span><span class="s">"CF5AF1AE49ED07A6"</span><span class="p">,</span><span class="x">
+    </span><span class="s">"name"</span><span class="x"> </span><span class="o">:</span><span class="x"> </span><span class="s">"Rockstar Distribution List"</span><span class="p">,</span><span class="x">
+    </span><span class="s">"description"</span><span class="x"> </span><span class="o">:</span><span class="x"> </span><span class="s">"All the rocks were once stars - astrophysicist inside me"</span><span class="p">,</span><span class="x">
+    </span><span class="s">"access"</span><span class="x"> </span><span class="o">:</span><span class="x"> </span><span class="s">"Open"</span><span class="p">,</span><span class="x">
+    </span><span class="s">"visibility"</span><span class="x"> </span><span class="o">:</span><span class="x"> </span><span class="s">"Public"</span><span class="p">,</span><span class="x">
+    </span><span class="s">"contactIds"</span><span class="x"> </span><span class="o">:</span><span class="x"> </span><span class="s">"7CC205AE17FFDC8A"</span><span class="p">,</span><span class="x">
+    </span><span class="s">"userIds"</span><span class="x"> </span><span class="o">:</span><span class="x"> </span><span class="s">"F0547F6F2E4839F8,900972D1C916FE84"</span><span class="p">,</span><span class="x">
+    </span><span class="s">"distListIds"</span><span class="x"> </span><span class="o">:</span><span class="x"> </span><span class="s">""</span><span class="p">,</span><span class="x">
+</span><span class="o">...</span><span class="x">
+</span><span class="p">}</span><span class="x">
+</span></code></pre>
 
 <blockquote>
 <blockquote>
-<p>If an existing contactId is again added, it does neither throws an error, nor create two entries. The contactId is just neglected and only 1 record is maintained.</p>
+<p>Response</p>
 </blockquote>
 </blockquote>
+<pre><code class="highlight plaintext">204 No Content
+</code></pre>
 
-<p>If the PUT request was successful, the expected response code is a <code class="prettyprint">204 No Content</code></p>
+<p>A distribution list allows you to associate the following -</p>
+
+<ul>
+<li><strong>ContactIds</strong> (type: String) is a comma separated list of Contact IDs that you would like added to the list.</li>
+<li><strong>UserIds</strong> (type: String) specifies the Whispir Users that should also be notified when this list is used.</li>
+<li><strong>DistListIds</strong> (type: String) specifies the nested lists that are contained within this distribution list.</li>
+</ul>
+
+<p>Any or all three of these can be updated via the PUT method along with the DL properties (name, description, location etc).</p>
+
+<p>The steps usually are -</p>
+
+<ol>
+<li>Create a Distribution List (DL)</li>
+<li><p>While creating the DL itself, you can put in the ContactIds, UserIds, distListIds (nested) so that the DL is created with those values readily placed in.</p></li>
+<li><p>After the DL is created, if you want to add/update the values, then</p></li>
+<li><p>Do a GET request to retrieve the specific DL.</p>
+
+<p>a. GET https://api.whispir.com/workspaces/{id}/distributionlists/{id}?apikey=xxxx</p>
+
+<p>b. This will return you the DL object</p></li>
+<li><p>Modify the DL properties (name, description, contactIds, UserIds, dlIds, location etc) as needed</p></li>
+<li><p>Do a PUT request to update the DL details</p>
+
+<p>a. PUT https://api.whispir.com/workspaces/{id}/distributionlists/{id}?apikey=xxxx</p>
+
+<p>b. Successful update gives you a 204 No Content</p>
+
+<p>c. The contactIds, userIds, distListIds can be passed all together in a single request.</p></li>
+</ol>
+
+<p>Note:</p>
+
+<ol>
+<li><p>If an existing contactId is again added, it does neither throws an error, nor create two entries. The contactId is just neglected and only 1 record is maintained.</p></li>
+<li><p>If the PUT request was successful, the expected response code is a <code class="prettyprint">204 No Content</code></p></li>
+<li><p>For Modifying the Location Information refer to <a href="http://10.0.2.15:4567/#location-tags-for-distribution-lists">Location Tags for Distribution Lists</a></p></li>
+</ol>
 
 <h2 id="sending-messages">Sending Messages</h2>
 
@@ -7105,8 +7183,7 @@ An example callback that your application or service would receive is specified 
 <li>Ensure that your callback server is reachable on the internet. It should not be <code class="prettyprint">localhost</code> or an intranet only application that cannot be reached from the WWW.</li>
 <li>Limit the port to 80 or 443. Do no use any other ports.</li>
 <li>Depending on the type chosen &#39;json&rsquo; or &#39;xml&rsquo; for the Content-Type, whispir would make a similar GET (and subsequently POST) calls. So, please ensure that your your web server is configured to handle such MIME type.</li>
-<li>If your application infrastructure is behind a firewall, then make sure that the firewall allows an incoming POST request.</li>
-<li>Whispir does not have static IP addresses that it makes API calls from.  Users can validate requests have come from Whispir by using the available auth types.</li>
+<li>Most importantly, if your application infrastructure is behind a firewall, then make sure that the firewall allows an incoming POST request.</li>
 </ol>
 
 <h2 id="creating-new-callbacks">Creating new Callbacks</h2>
