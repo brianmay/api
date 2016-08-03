@@ -670,13 +670,13 @@ HTTP/1.1 403 Forbidden
         <tr>
             <td style="text-align: right; font-weight: bold;">201 Created:</td>
             <td><strong>Successfully created the resource.</strong><br/>
-                The requested resource has been successfully created and can be found via the URL in the ‘Location’ header
+                The requested resource has been successfully created and can be found via the URL in the &lsquo;Location&rsquo; header
             </td>
         </tr>
         <tr>
             <td style="text-align: right; font-weight: bold;">202 Accepted:</td>
             <td><strong>Successfully accepted the request for processing</strong><br/>
-                The request has been accepted for processing by the asynchronous processor.
+                The request has been accepted for processing by the asynchronous processor. The request&rsquo;s unique identifier can be found via the URL in the 'Location&rsquo; header
             </td>
         </tr>
         <tr>
@@ -1046,7 +1046,7 @@ Content-Type: application/vnd.whispir.contact-v2+xml
 
 <p>Most resources will provide these links at the end of the response object in a <code class="prettyprint">link</code> array that supplies links with <code class="prettyprint">rel=next</code> and <code class="prettyprint">rel=prev</code> attributes.</p>
 
-<p>This makes programatic pagination easy as you can simply detect for the presence of these attributes. You can loop through the pages until you receive a response of &lsquo;No messages found&rsquo;.</p>
+<p>This makes programatic pagination easy as you can simply detect for the presence of these attributes. You can loop through the pages until you receive a response of &#39;No messages found&rsquo;.</p>
 
 <p><strong>Note:</strong> The following resources aren&rsquo;t paginated for ease of use:</p>
 
@@ -1367,6 +1367,9 @@ Accept: application/vnd.whispir.message-v1+xml
    </span><span class="s">"body"</span><span class="x"> </span><span class="o">:</span><span class="x"> </span><span class="s">"This is the body of my test SMS message"</span><span class="x">
 </span><span class="p">}</span><span class="x">
 </span></code></pre>
+<pre><code class="highlight plaintext">Response: 202 Accepted
+Location: https://api.whispir.com/messages/{id}?apikey=[your_key]
+</code></pre>
 
 <p>Sending SMS from Whispir is as easy as providing the recipient information and the content of the message.</p>
 
@@ -1419,6 +1422,15 @@ Accept: application/vnd.whispir.message-v1+xml
 </ul>
 
 <p>&#42; SMS character counts are limited in some countries. Contact your local Whispir Representative for information about the supported number of characters in your region.</p>
+
+<h3 id="response">Response</h3>
+
+<ul>
+<li>If the response is <code class="prettyprint">202 Accepted</code>, then the <code class="prettyprint">location</code> header contains the reference to the message request. This value can be used to retrieve the message status, responses later on.</li>
+<li>For any other response codes, please refer to the <a href="#http-response-codes">HTTP Response Codes</a> section.</li>
+<li>If you have failed to capture the <code class="prettyprint">location</code> header value, then refer to <a href="#retrieve-a-previously-sent-message"> How to Retrieve previously sent messages? </a></li>
+<li>This process is same for sms, email, voice, push notifications.</li>
+</ul>
 
 <h2 id="email-messages">Email Messages</h2>
 
