@@ -2413,7 +2413,127 @@ Authorization: Basic am9obi5zbWl0aDpteXBhc3N3b3Jk
     </tbody>
 </table>
 
-<p>Each of these system tags will resolve on send of the message to the system information.  The system tags will only work when sending messages to any recipient.</p>
+<p>Each of these system tags will resolve on send of the message to the system information. The system tags will only work when sending messages to any recipient.</p>
+
+<h2 id="message-attributes">Message Attributes</h2>
+
+<blockquote>
+<p>Message Attributes</p>
+
+<blockquote>
+<p>Sending an invitation message</p>
+</blockquote>
+</blockquote>
+<pre><code class="highlight plaintext">HTTP 1.1 POST http://api.whispir.com/messages?apikey=[your_api_key]
+Authorization: Basic am9obi5zbWl0aDpteXBhc3N3b3Jk
+</code></pre>
+<pre><code class="highlight go"><span class="n">Content</span><span class="o">-</span><span class="n">Type</span><span class="o">:</span><span class="x"> </span><span class="n">application</span><span class="o">/</span><span class="n">vnd</span><span class="o">.</span><span class="n">whispir</span><span class="o">.</span><span class="n">message</span><span class="o">-</span><span class="n">v1</span><span class="o">+</span><span class="n">json</span><span class="x">
+
+</span><span class="p">{</span><span class="x">
+   </span><span class="s">"to"</span><span class="x"> </span><span class="o">:</span><span class="x"> </span><span class="s">"john@api-example.com"</span><span class="p">,</span><span class="x"> 
+   </span><span class="s">"subject"</span><span class="x"> </span><span class="o">:</span><span class="x"> </span><span class="s">"Reminder:"</span><span class="p">,</span><span class="x"> 
+   </span><span class="s">"body"</span><span class="x"> </span><span class="o">:</span><span class="x"> </span><span class="s">"Your invitation to the Acme Event will expire on 13/06/2014."</span><span class="p">,</span><span class="x"> 
+   </span><span class="s">"email"</span><span class="x"> </span><span class="o">:</span><span class="x"> </span><span class="p">{</span><span class="x"> 
+      </span><span class="s">"type"</span><span class="x"> </span><span class="o">:</span><span class="x"> </span><span class="s">"text/plain"</span><span class="p">,</span><span class="x"> 
+      </span><span class="s">"body"</span><span class="x"> </span><span class="o">:</span><span class="x"> </span><span class="s">"Your invitation to the Acme Event will expire on 13/06/2014."</span><span class="x"> 
+   </span><span class="p">}</span><span class="x">
+</span><span class="p">}</span><span class="x">
+</span></code></pre>
+
+<p>Whispir&rsquo;s API customers who have Message Attributes configured within the Whispir Platform have the ability to simplify their API message requests by using the Message Attributes directly from the API.</p>
+
+<p>Using Message Attributes allows developers to focus on the data behind a message, rather than focusing on the presentation or messaging channels within the message. </p>
+
+<p>This separation ensures that the marketing or communications teams within an organisation can focus on what they are best at, and the developers can ensure the system integrations are working as effectively as possible.</p>
+
+<ul>
+<li>For example:</li>
+</ul>
+
+<p>A message could contain some content, and a potential variable such as the expiry of the invitation:</p>
+
+<p><em>Reminder: your invitation to the Acme Event will expire on 13/06/2014.</em></p>
+
+<p>The API call to populate this without Message Attributes could look as shown in the code example-</p>
+
+<h3 id="using-templates-to-add-in-variables">Using Templates to add in variables</h3>
+
+<blockquote>
+<blockquote>
+<p>Using Templates to add in variables</p>
+</blockquote>
+</blockquote>
+<pre><code class="highlight plaintext">HTTP 1.1 POST http://api.whispir.com/templates?apikey=&lt;yourkey&gt;
+Authorization: Basic am9obi5zbWl0aDpteXBhc3N3b3Jk
+</code></pre>
+<pre><code class="highlight go"><span class="n">Content</span><span class="o">-</span><span class="n">Type</span><span class="o">:</span><span class="x"> </span><span class="n">application</span><span class="o">/</span><span class="n">vnd</span><span class="o">.</span><span class="n">whispir</span><span class="o">.</span><span class="n">template</span><span class="o">-</span><span class="n">v1</span><span class="o">+</span><span class="n">json</span><span class="x">
+
+</span><span class="p">{</span><span class="x"> 
+   </span><span class="s">"messageTemplateName"</span><span class="x"> </span><span class="o">:</span><span class="x"> </span><span class="s">"Event Reminder"</span><span class="p">,</span><span class="x"> 
+   </span><span class="s">"subject"</span><span class="x"> </span><span class="o">:</span><span class="x"> </span><span class="s">"Reminder:"</span><span class="p">,</span><span class="x"> 
+   </span><span class="s">"body"</span><span class="x"> </span><span class="o">:</span><span class="x"> </span><span class="s">"Your invitation to the Acme Event will expire on @@event_expiry@@."</span><span class="p">,</span><span class="x"> 
+   </span><span class="s">"email"</span><span class="x"> </span><span class="o">:</span><span class="x"> </span><span class="p">{</span><span class="x"> 
+      </span><span class="s">"type"</span><span class="x"> </span><span class="o">:</span><span class="x"> </span><span class="s">"text/plain"</span><span class="p">,</span><span class="x"> 
+      </span><span class="s">"body"</span><span class="x"> </span><span class="o">:</span><span class="x"> </span><span class="s">"Your invitation to the Acme Event will expire on @@event_expiry@@."</span><span class="x"> 
+   </span><span class="p">}</span><span class="x">
+</span><span class="p">}</span><span class="x">
+</span></code></pre>
+
+<blockquote>
+<blockquote>
+<p>Response - Template Created</p>
+</blockquote>
+</blockquote>
+<pre><code class="highlight plaintext">HTTP 1.1 201 Created
+Location: http://api.whispir.com/templates/DACADB02209CC93C
+</code></pre>
+<pre><code class="highlight go"><span class="p">{</span><span class="x"> 
+   </span><span class="s">"id"</span><span class="o">:</span><span class="x"> </span><span class="s">"DACADB02209CC93C"</span><span class="p">,</span><span class="x"> 
+   </span><span class="s">"messageTemplateName"</span><span class="x"> </span><span class="o">:</span><span class="x"> </span><span class="s">"Event Reminder"</span><span class="p">,</span><span class="x"> 
+   </span><span class="s">"subject"</span><span class="x"> </span><span class="o">:</span><span class="x"> </span><span class="s">"Reminder:"</span><span class="p">,</span><span class="x"> 
+   </span><span class="s">"body"</span><span class="x"> </span><span class="o">:</span><span class="x"> </span><span class="s">"Your invitation to the Acme Event will expire on @@event_expiry@@."</span><span class="p">,</span><span class="x"> 
+   </span><span class="s">"email"</span><span class="x"> </span><span class="o">:</span><span class="x"> </span><span class="p">{</span><span class="x"> 
+      </span><span class="s">"type"</span><span class="x"> </span><span class="o">:</span><span class="x"> </span><span class="s">"text/plain"</span><span class="p">,</span><span class="x"> 
+      </span><span class="s">"body"</span><span class="x"> </span><span class="o">:</span><span class="x"> </span><span class="s">"Your invitation to the Acme Event will expire on @@event_expiry@@."</span><span class="x"> 
+   </span><span class="p">}</span><span class="x">
+</span><span class="p">}</span><span class="x">
+</span></code></pre>
+
+<p>Using Message Attributes and Message Templates allows developers to cleanly separate these responsibilities. This is done by combining both the channels being selected for the message, and the data driving the message.</p>
+
+<ul>
+<li>For example: </li>
+</ul>
+
+<p>The same message could be saved into a Whispir Message Template (see code example).</p>
+
+<p>Using this Message Template ID and now using the Message Attribute @@event_expiry@@, the updated is far simpler to implement and is more efficient.</p>
+
+<blockquote>
+<p>Using Template (with attributes) </p>
+
+<blockquote>
+<p>to send the Message</p>
+</blockquote>
+</blockquote>
+<pre><code class="highlight plaintext">HTTP 1.1 POST http://api.whispir.com/messages?apikey=[your_api_key]
+Authorization: Basic am9obi5zbWl0aDpteXBhc3N3b3Jk
+</code></pre>
+<pre><code class="highlight go"><span class="n">Content</span><span class="o">-</span><span class="n">Type</span><span class="o">:</span><span class="x"> </span><span class="n">application</span><span class="o">/</span><span class="n">vnd</span><span class="o">.</span><span class="n">whispir</span><span class="o">.</span><span class="n">message</span><span class="o">-</span><span class="n">v1</span><span class="o">+</span><span class="n">json</span><span class="x">
+
+</span><span class="p">{</span><span class="x"> 
+   </span><span class="s">"to"</span><span class="x"> </span><span class="o">:</span><span class="x"> </span><span class="s">"john@api-example.com"</span><span class="p">,</span><span class="x"> 
+   </span><span class="s">"messageTemplateId"</span><span class="x"> </span><span class="o">:</span><span class="x"> </span><span class="s">"DACADB02209CC93C"</span><span class="p">,</span><span class="x"> 
+   </span><span class="s">"messageattributes"</span><span class="x"> </span><span class="o">:</span><span class="x"> </span><span class="p">{</span><span class="x">
+      </span><span class="s">"attribute"</span><span class="x"> </span><span class="o">:</span><span class="x"> </span><span class="p">[{</span><span class="x">
+         </span><span class="s">"name"</span><span class="x"> </span><span class="o">:</span><span class="x"> </span><span class="s">"event_expiry"</span><span class="p">,</span><span class="x">     
+         </span><span class="s">"value"</span><span class="x"> </span><span class="o">:</span><span class="x"> </span><span class="s">"13/06/2014"</span><span class="x">   
+      </span><span class="p">}]</span><span class="x">
+   </span><span class="p">}</span><span class="x"> 
+</span><span class="p">}</span><span class="x"> 
+</span></code></pre>
+
+<p><em>Note:</em> Message Attributes are not enabled by default for Whispir Customers. These can be configured in your account with some cost - by contacting your Whispir Representative or <a href="mailto:sales@whispir.com">sales@whispir.com</a></p>
 
 <h2 id="dynamic-and-bulk-messages">Dynamic and Bulk Messages</h2>
 
