@@ -2510,7 +2510,7 @@ Location: http://api.whispir.com/templates/DACADB02209CC93C
 <p>Using this Message Template ID and now using the Message Attribute @@event_expiry@@, the updated is far simpler to implement and is more efficient.</p>
 
 <blockquote>
-<p>Using Template (with attributes) </p>
+<p>Using Template (with attributes)</p>
 
 <blockquote>
 <p>to send the Message</p>
@@ -2533,7 +2533,12 @@ Authorization: Basic am9obi5zbWl0aDpteXBhc3N3b3Jk
 </span><span class="p">}</span><span class="x"> 
 </span></code></pre>
 
-<p><em>Note:</em> Message Attributes are not enabled by default for Whispir Customers. These can be configured in your account with some cost - by contacting your Whispir Representative or <a href="mailto:sales@whispir.com">sales@whispir.com</a></p>
+<p><em>Note:</em> </p>
+
+<ul>
+<li>User-defined attributes available through the API are configured at the account level and require Whispir administrative assistance to enable. </li>
+<li>You can start using user-defined attributes through the api by contacting your Whispir Customer Success Representative or <a href="mailto:sales@whispir.com">sales@whispir.com</a></li>
+</ul>
 
 <h2 id="dynamic-and-bulk-messages">Dynamic and Bulk Messages</h2>
 
@@ -8008,6 +8013,7 @@ Authorization: Basic am9obi5zbWl0aDpteXBhc3N3b3Jk
       </span><span class="s">"id"</span><span class="o">:</span><span class="x"> </span><span class="s">"B3EDFE83DF389DFE"</span><span class="p">,</span><span class="x">
       </span><span class="s">"messageId"</span><span class="o">:</span><span class="x"> </span><span class="s">"ABC4857BCCF484575FCA"</span><span class="p">,</span><span class="x">
       </span><span class="s">"messageLocation"</span><span class="o">:</span><span class="x"> </span><span class="s">"https://api.whispir.com/messages/ABC4857BCCF484575FCA"</span><span class="p">,</span><span class="x">
+      </span><span class="s">"status"</span><span class="o">:</span><span class="x"> </span><span class="s">"FAILED"</span><span class="p">,</span><span class="x">
       </span><span class="s">"from"</span><span class="o">:</span><span class="x"> </span><span class="p">{</span><span class="x">
         </span><span class="s">"name"</span><span class="o">:</span><span class="x"> </span><span class="s">"Fred Waters"</span><span class="p">,</span><span class="x">
         </span><span class="s">"mri"</span><span class="o">:</span><span class="x"> </span><span class="s">"Fred_Waters.528798.Sandbox@Contact.whispir.com"</span><span class="p">,</span><span class="x">
@@ -8042,8 +8048,6 @@ Authorization: Basic am9obi5zbWl0aDpteXBhc3N3b3Jk
   </span><span class="p">}]</span><span class="x">
 </span><span class="p">}</span><span class="x">
 </span></code></pre>
-
-<p>To retrieve a list of attempted API calls from the Whispir API you can execute an <strong>HTTP GET</strong> using the <code class="prettyprint">/calls</code> endpoint on a specific <code class="prettyprint">callback</code>.</p>
 
 <p>You will need to supply one of the following headers (for retrieving JSON or XML):</p>
 
@@ -8148,6 +8152,53 @@ Authorization: Basic am9obi5zbWl0aDpteXBhc3N3b3Jk
     </tbody>
 </table>
 
+<p><strong>Retrieving the list of calls based on their Status</strong></p>
+
+<blockquote>
+<p>Retrieve based on Status</p>
+
+<blockquote>
+<p>Failed Calls</p>
+</blockquote>
+</blockquote>
+<pre><code class="highlight plaintext">HTTP 1.1 GET https://api.whispir.com/callbacks/BCD374DABC73649B/calls?apikey=[your_api_key]&amp;status=FAILED
+Authorization: Basic am9obi5zbWl0aDpteXBhc3N3b3Jk
+</code></pre>
+
+<blockquote>
+<blockquote>
+<p>Success Calls</p>
+</blockquote>
+</blockquote>
+<pre><code class="highlight plaintext">HTTP 1.1 GET https://api.whispir.com/callbacks/BCD374DABC73649B/calls?apikey=[your_api_key]&amp;status=SUCCESS
+Authorization: Basic am9obi5zbWl0aDpteXBhc3N3b3Jk
+</code></pre>
+
+<p>To retrieve a list of attempted API calls from the Whispir API you can execute an <strong>HTTP GET</strong> using the <code class="prettyprint">/calls</code> endpoint on a specific <code class="prettyprint">callback</code>.</p>
+
+<p>To specifically retrieve the FAILED/SUCCESS calls, one can pass a <strong>status</strong> query param in the URL.</p>
+
+<table>
+  <thead>
+      <tr>
+          <th style="width: 50%" colspan="2">Query params</th>
+      </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="text-align: right; font-weight: bold;">status:</td>
+      <td><strong>String</strong><br/>
+          The status value can be one of:
+          <ul>
+            <li>&status=SUCCESS</li>
+            <li>&status=FAILED</li>
+          </ul>
+          Only calls with requested STATUS will be present in the response.
+      </td>
+    </tr>
+  </tbody>
+</table>
+
 <p><strong>Updating the status of calls to a callback</strong></p>
 
 <p>As every call to a callback endpoint is now stored within the <code class="prettyprint">calls</code> endpoint, it&rsquo;s possible that when failed calls are successfully processed through a manual exercise, that these calls will then need to be updated to reflect the current status.</p>
@@ -8173,7 +8224,7 @@ Authorization: Basic am9obi5zbWl0aDpteXBhc3N3b3Jk
 <p>The following API Methods allow you to update callback attempts via the API</p>
 </blockquote>
 </blockquote>
-<pre><code class="highlight plaintext">HTTP 1.1 PUT https://api.whispir.com/callbacks/BCD374DABC73649B/calls?apikey=[YOUR_API_KEY]&amp;id[]=YOUR_CALL_ID
+<pre><code class="highlight plaintext">HTTP 1.1 PUT https://api.whispir.com/callbacks/BCD374DABC73649B/calls?apikey=[YOUR_API_KEY]&amp;id=YOUR_CALL_ID
 Authorization: Basic am9obi5zbWl0aDpteXBhc3N3b3Jk
 </code></pre>
 <pre><code class="highlight xml">Accept: application/vnd.whispir.api-call-v1+xml
