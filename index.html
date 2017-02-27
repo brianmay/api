@@ -1096,7 +1096,7 @@ Content-Type: application/vnd.whispir.message-v1+xml
 <pre><code class="highlight go"><span class="c">// From the default workspace</span><span class="x">
 
 </span><span class="n">https</span><span class="o">:</span><span class="c">//api.whispir.com/messages/?apikey=&lt;your_api_key&gt;</span><span class="x">
-</span><span class="n">Content</span><span class="o">-</span><span class="n">Type</span><span class="o">:</span><span class="x"> </span><span class="n">application</span><span class="o">/</span><span class="n">vnd</span><span class="o">.</span><span class="n">whispir</span><span class="o">.</span><span class="n">message</span><span class="o">-</span><span class="n">v1</span><span class="o">+</span><span class="n">json</span><span class="x">
+</span><span class="n">Accept</span><span class="o">:</span><span class="x"> </span><span class="n">application</span><span class="o">/</span><span class="n">vnd</span><span class="o">.</span><span class="n">whispir</span><span class="o">.</span><span class="n">message</span><span class="o">-</span><span class="n">v1</span><span class="o">+</span><span class="n">json</span><span class="x">
 </span></code></pre>
 <pre><code class="highlight xml"><span class="c">&lt;!-- Or from a defined workspace --&gt;</span>
 
@@ -1207,15 +1207,17 @@ Authorization: Basic &lt;YOUR AUTH HEADER&gt;
         </span><span class="s">"type"</span><span class="x"> </span><span class="o">:</span><span class="x"> </span><span class="s">"text/plain"</span><span class="x">
     </span><span class="p">},</span><span class="x">
     </span><span class="s">"social"</span><span class="x"> </span><span class="o">:</span><span class="x"> </span><span class="p">{</span><span class="x">
-        </span><span class="s">"social"</span><span class="x"> </span><span class="o">:</span><span class="x"> </span><span class="p">{</span><span class="x">
+        </span><span class="s">"social"</span><span class="x"> </span><span class="o">:</span><span class="x"> </span><span class="p">[</span><span class="x">
+        </span><span class="p">{</span><span class="x">
             </span><span class="s">"id"</span><span class="x"> </span><span class="o">:</span><span class="x"> </span><span class="s">"social"</span><span class="p">,</span><span class="x">
             </span><span class="s">"body"</span><span class="x"> </span><span class="o">:</span><span class="x"> </span><span class="s">"Twitter Content."</span><span class="x">
         </span><span class="p">},</span><span class="x">
-        </span><span class="s">"social"</span><span class="x"> </span><span class="o">:</span><span class="x"> </span><span class="p">{</span><span class="x">
+        </span><span class="p">{</span><span class="x">
             </span><span class="s">"id"</span><span class="x"> </span><span class="o">:</span><span class="x"> </span><span class="s">"social_long"</span><span class="p">,</span><span class="x">
             </span><span class="s">"body"</span><span class="x"> </span><span class="o">:</span><span class="x"> </span><span class="s">"Facebook Content."</span><span class="p">,</span><span class="x">
             </span><span class="s">"type"</span><span class="x"> </span><span class="o">:</span><span class="x"> </span><span class="s">"text/plain"</span><span class="x">
         </span><span class="p">}</span><span class="x">
+    </span><span class="p">]</span><span class="x">
     </span><span class="p">},</span><span class="x">
     </span><span class="s">"type"</span><span class="x"> </span><span class="o">:</span><span class="x"> </span><span class="s">"defaultNoReply"</span><span class="p">,</span><span class="x">
     </span><span class="s">"features"</span><span class="x"> </span><span class="o">:</span><span class="x"> </span><span class="p">{</span><span class="x">
@@ -2135,7 +2137,7 @@ Authorization: Basic am9obi5zbWl0aDpteXBhc3N3b3Jk
     </span><span class="p">},</span><span class="x">
     </span><span class="s">"messageType"</span><span class="x"> </span><span class="o">:</span><span class="x"> </span><span class="s">"SCHEDULED"</span><span class="p">,</span><span class="x">
     </span><span class="s">"scheduleType"</span><span class="x"> </span><span class="o">:</span><span class="x"> </span><span class="s">"ONCE"</span><span class="p">,</span><span class="x">
-    </span><span class="s">"scheduleDate"</span><span class="x"> </span><span class="o">:</span><span class="x"> </span><span class="s">"14/02/207 15:55"</span><span class="x">
+    </span><span class="s">"scheduleDate"</span><span class="x"> </span><span class="o">:</span><span class="x"> </span><span class="s">"14/02/2017 15:55"</span><span class="x">
 </span><span class="p">}</span><span class="x">
 </span></code></pre>
 
@@ -10212,20 +10214,6 @@ Authorization: Basic asdf98nf89asdvasd2r398h8sdf
 Content-Type: application/vnd.whispir.user-v1+xml
 </code></pre>
 <pre><code class="highlight go"><span class="n">https</span><span class="o">:</span><span class="c">//api.whispir.com/users/?apikey=&lt;your_api_key&gt;</span><span class="x">
-</span><span class="n">Content</span><span class="o">-</span><span class="n">Type</span><span class="o">:</span><span class="x"> </span><span class="n">application</span><span class="o">/</span><span class="n">vnd</span><span class="o">.</span><span class="n">whispir</span><span class="o">.</span><span class="n">user</span><span class="o">-</span><span class="n">v1</span><span class="o">+</span><span class="n">json</span><span class="x">
-</span></code></pre>
-
-<blockquote>
-<blockquote>
-<ul>
-<li>limited to a workspace</li>
-</ul>
-</blockquote>
-</blockquote>
-<pre><code class="highlight xml">https://api.whispir.com/workspaces/{:id}/users/?apikey=<span class="nt">&lt;your_api_key&gt;</span>
-Content-Type: application/vnd.whispir.user-v1+xml
-</code></pre>
-<pre><code class="highlight go"><span class="n">https</span><span class="o">:</span><span class="c">//api.whispir.com/workspaces/{:id}/users/?apikey=&lt;your_api_key&gt;</span><span class="x">
 </span><span class="n">Content</span><span class="o">-</span><span class="n">Type</span><span class="o">:</span><span class="x"> </span><span class="n">application</span><span class="o">/</span><span class="n">vnd</span><span class="o">.</span><span class="n">whispir</span><span class="o">.</span><span class="n">user</span><span class="o">-</span><span class="n">v1</span><span class="o">+</span><span class="n">json</span><span class="x">
 </span></code></pre>
 <pre><code class="highlight plaintext">&gt; Resource type
